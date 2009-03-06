@@ -24,7 +24,7 @@ Production output of a planet is determined by number of workers could be placed
 
 PO planet=APC planet*MR*GP
 
-Gravity penalty is know as 0.5 for heavyG planets and 0.25 for lowG, but it doesn’t count time factor. To do so we need to apply correction factor.
+Gravity penalty is know as 0.5 for heavyG planets and 0.25 for lowG, but it doesn’t count time factor. To do so we need to apply time correction factor.
 Lets consider average duration of the game is 150 turns. And lets assume we can tech gravity generator by t100. Thus gravity affects us approximately 2/3 time of the game. Hence the gravity penalty (0.5 for hvG and 0.25 for the lowG) should be multiplied by the time factor of 2/3.
 Available Planets Production Output of a sector is sum of PO of all planets of this sector:
 APPO=ΣPOi
