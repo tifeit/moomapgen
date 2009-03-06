@@ -1,4 +1,4 @@
-New map generator conception
+New map generator conception. Author: Irakly
 
 Universe is divided into X sectors depending on the number of players. The space of each sector is respectively subdivided into 4 subsectors: the closest to hw, i.e. within 6 parsecs from hw, the medium range - from 6 to 12 parsecs from hw, long range space - more than 12 parsecs away from hw and border space - systems 1 - 3 parsecs from border. Each subsector receives correction factor (cf) for scoring purposes: the hw subsector - 1.0; the medium - 0.85; the long range - 0.7; and border subsector - 0.5 The players sectors are to be compared and normalized to meet the tolerance range by the following criteria:
 
