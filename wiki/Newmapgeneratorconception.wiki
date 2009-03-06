@@ -31,7 +31,7 @@ APPO=ΣPOi
 When summarizing, correction factor based on subsector category *IS applied*.
 Each sectors APPO is summarized and compared. The difference should fit into 10% tolerance range. If the difference of APPO of the sector exceeds 10% then the map should be corrected by respective procedures (i.e. changing mineral richness of the planets). 
 
-6. Terraformed Planets Production Output. The same comparison as in paragraph  5 but for terraformed planets.
+6. Terraformed Planets Production Output. The same comparison as in paragraph  5 but for fully terraformed planets.
 
 7. Number or arti planets in each sector should be equal; Arti planets should never be radiated or toxic.
 Total PPC of arti planets should be in 10% tolerance range. When summarizing arti planets PPC, correction factor based on subsector category *IS applied*.
