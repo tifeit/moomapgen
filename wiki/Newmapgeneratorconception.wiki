@@ -35,3 +35,4 @@ Each sectors APPO is summarized and compared. The difference should fit into 10%
 
 7. Number or arti planets in each sector should be equal;
 Total PPC of arti planets should be in 10% tolerance range. When summarizing arti planets PPC, correction factor based on subsector category *IS applied*.
+If the difference of PPC of arti planets of the sector exceeds 10% then the map should be corrected by respective procedures (i.e. changing pop capacity of the arti planets).
