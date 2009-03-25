@@ -92,10 +92,6 @@ int main(int argc, char *argv[]) {
 	getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
 
 	calcPlanetsNum(aStarSystems, aHwCoordinates, nNumOfStars);
-	for (i = 0; i != nNumOfPlayers; i++) {
-	
-		printf("Player %d HW X = %d Y = %d\n", i, aHwCoordinates[i][0], aHwCoordinates[i][1]);
-	}
 
 	if (terraformFlags != 0) 
 		terraform(aPlanets, nNumOfPlanets, terraformFlags);
