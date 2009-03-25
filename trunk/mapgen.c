@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 			case 'h':
 				printf("Usage: %s [-h] [-t] [-V] [-f file]\n\n"
 
-					"Example: %s -t -f SAVE10.GAM\n\n"
+					"Example: %s -t toxic -t upoor -t lowg -t heavyg -t tiny -t small -f SAVE10.GAM\n\n"
 
 					"Options:\n"
 					"  -h             This help.\n\n"
