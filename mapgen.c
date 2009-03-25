@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
 	unsigned int i;
 	FILE *fp;
 	unsigned int terraformFlags = 0, opt;
-	char sSaveFile[100];
+	char sSaveFile[100] = "SAVE10.GAM";
 
 	while ((opt = getopt(argc, argv, "ht:f:V")) != -1) {
 		switch (opt) {
@@ -73,11 +73,11 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	fp = fopen("SAVE10.GAM", "rb+");
+	fp = fopen(sSaveFile, "rb+");
 	
 	if (fp == NULL) {
 	
-		fprintf(stderr, "Can not open SAVE10.GAM");
+		fprintf(stderr, "Can not open %s", sSaveFile);
 		return 0;
 	}
 
