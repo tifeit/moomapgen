@@ -1,103 +1,78 @@
-#include <stdio.h>
-#include <stdlib.h>
-#define MAX_SYSTEMS 55
-#define MAX_PLANETS 360
-#define STAR_OFFSET 0x17ad3
-#define PLANET_OFFSET 0x162e9
-
-#ifdef __GNUC__
-	#define STRUCT_TYPE struct
-	#define STRUCT_TYPE_END __attribute__((__packed__));
-#else
-	#define STRUCT_TYPE _Packed struct
-	#define STRUCT_TYPE_END ;
-#endif
-
-STRUCT_TYPE starSystem {
-
-	unsigned char sName[15];		//Star System Name									00-0E	15	bytes
-	unsigned short int nXpos;		//X Position										0F-10	2	bytes
-	unsigned short int nYpos;		//Y Position										11-12 	2	bytes
-	unsigned char nSize;			//Star Size 0=Large 3=Tiny							13		1	byte
-	unsigned char nOwner;			//System Primary Owner 0-7 player (PlayerID)		14		1	byte
-	unsigned char nUnknown;			//Unknown											15		1	byte
-	unsigned char nStarType;		//Star Type											16		1	bytea
-									//0=Blue 1=White 2=Yellow 3=Orange 4=Red 5=Brown 6=BlackHole
-	unsigned char sUnknown[17];		//Unknown											17-27	17	bytes
-	unsigned char nSpecial;			//SystemSpecial										28		1	byte
-									//0=None 1=Space Debris 3=Pirate Cache 4=Gold Deposites 5=Gem Deposites
-									//6=Natives 7=Splinter Colony 8=Hero A=Artifacts World B=Orion
-	unsigned char nWormSystem;		//0-127 Wormhole leads to "system" FF - no wormhole	29		1	byte
-	unsigned char sUnknown2[15];	//Unknown											2A-38	15	bytes 
-	unsigned char nWarpIdict;		//Warp Interdictor 0 none, 1-8 owner (PlayerID-1)	39		1	byte
-	unsigned char sUnknown3[5];		//Unknown											3A-3E	5	bytes
-	unsigned char nArtemisNet;		//Artemis Systemr 0 none, 1-8 owner (PlayerID-1)	3F		1	byte	
-	unsigned char sUnknown4[10];	//Unknown											40-49 10	bytes
-	unsigned short int aPlanet[5];	//Link to planets table								4A-53 10	bytes
-	unsigned char sUnknown5[29];	//Unknown											54-70 29	bytes
-} STRUCT_TYPE_END
-
-struct starSystem createStarSystem(int i) {
-
-	struct starSystem star;
-	int c=0;
-
-	sprintf(star.sName, "Star_%d", i);
-	star.nXpos = 1+rand()%300;
-	star.nYpos = 1+rand()%300;
-	star.nSize = rand()%3;
-	star.nOwner = 0;
-	star.nStarType = 0;
-	star.nSpecial = 0;
-	star.nWormSystem = 0xff;
-	star.nWarpIdict = 0;
-	star.nArtemisNet = 0;
-	star.aPlanet[0]=star.aPlanet[1]=star.aPlanet[2]=star.aPlanet[3]=star.aPlanet[4]=0xffff;
-		
-	//Fill unknown with nulls
-	star.nUnknown = 0x00;
-	for (c=0; c!=17; c++) star.sUnknown[c] = 0;
-	for (c=0; c!=15; c++) star.sUnknown2[c] = 15;
-	for (c=0; c!=5; c++) star.sUnknown3[c] = 5;
-	for (c=0; c!=10; c++) star.sUnknown4[c] = 10;
-	for (c=0; c!=29; c++) star.sUnknown5[c] = 29;
-
-
-	return star;
-};
-
-STRUCT_TYPE planet {
-
-	unsigned short int nColonyID;	//Link to colonies table
-	unsigned char nStarID;			//Link to stars table
-	unsigned char nOrbit;			//Orbit 0-4
-	unsigned char nPlanetType;		//Planet type 1=Asteroid 2=Gas Planet 3=Planet
-	unsigned char nPlanetSize;		//Planet size 0=Tiny 1=Small 2=Medium 3=Large 4=Huge
-	unsigned char nPlanetGravity;	//Planet gravity 0=Low Gravity 1=Normal 2=Heavy Gravity
-	unsigned char nUnknown;			//Unknown
-	unsigned char nEnvClass;		//Enviromental class 0=Toxic 1=Radiated 2=Barren 3=Desert 4=Tundra
-									//5=Ocean 6=Swamp 7=Arid 8=Terr 9=Gaia
-	unsigned char nDrawingID;		//0-5 image in planets.lbx
-									//@todo Find and insert correlation between image and planet environment
-	unsigned char nMineralClass;	//Planet Mineral Class 0=upoor 1=poor 2=abundant 3=rich 4=ultrarich
-	unsigned char nFoodBase;		//@todo Find out how foodbase correlates with enviromental class
-	unsigned char nTerraformsDone;	//Number of terraforming done
-	unsigned char nUnknown2;		//Unknown 2=Tiny 4=Small 5=Medium 7=Large A=Huge
-	unsigned char nUnknown3;
-	unsigned char nPlanetSpecial;	//0=None 1=? 2=Space Debris 3=Pirate Cache 4=Gold Deposits 5=Gem Deposits
-									//6=Natives 7=Splinter Colony 8=Hero A=Artifacts world B=Orion
-	unsigned char nFlags;			//2=Soil Enrichment
-} STRUCT_TYPE_END
+#define MAPGEN_VERSION "Concept"
+#include "mapgen.h"
 
 struct starSystem aStarSystems[MAX_SYSTEMS];
 struct planet aPlanets[MAX_PLANETS];
-int main() {
+unsigned char nNumOfPlayers, nNumOfStars, nNumOfPlanets;
+unsigned int aHwCoordinates[MAX_PLAYERS][2];
 
-	int i;
+int main(int argc, char *argv[]) {
+
+	unsigned int i;
 	FILE *fp;
+	unsigned int terraformFlags = 0, opt;
+	char sSaveFile[100];
 
-	printf("Size of aStarSystems[0]: 0x%xBytes, size of aStarSystems: 0x%xBytes.\nSize of aPlanets[0]: 0x%xBytes, size of aPlanets: 0x%xBytes.", sizeof aStarSystems[0], sizeof aStarSystems, sizeof aPlanets[0], sizeof aPlanets);
+	while ((opt = getopt(argc, argv, "ht:f:V")) != -1) {
+		switch (opt) {
+		
+			case 't':
+				if      (strstr(optarg, "toxic"))
+						terraformFlags |= FLG_NOTOXIC;
 
+				else if (strstr(optarg, "upoor"))
+						terraformFlags |= FLG_NOUPOOR;
+
+				else if (strstr(optarg, "lowg"))
+						terraformFlags |= FLG_NOLG;
+
+				else if (strstr(optarg, "heavyg"))
+						terraformFlags |= FLG_NOHG;
+
+				else if (strstr(optarg, "tiny"))
+						terraformFlags |= FLG_NOTINY;
+
+				else if (strstr(optarg, "small"))
+						terraformFlags |= FLG_NOSMALL;
+
+				else {
+						fprintf(stderr, "Unknown Terraform parameter %s\n", optarg);
+						exit(1);
+				}
+			break;
+			case 'h':
+				printf("Usage: %s [-h] [-t] [-V] [-f file]\n\n"
+
+					"Example: %s -t -f SAVE10.GAM\n\n"
+
+					"Options:\n"
+					"  -h             This help.\n\n"
+
+					"  -t             Terraform\n"
+					"                   toxic - Toxic planets become radiated\n"
+					"                   upoor - Ultra Poor planets become poor\n"
+					"                   lowg - Low Gravity planets become Normal Gravity\n"
+					"                   heavyg - Heavy Gravity planets become Normal Gravity\n"
+					"                   tiny - Tiny planets become small\n"
+					"                   small - Small planets become medium\n\n"
+					"  -f file        Edit 'file' instead of SAVE10.GAM\n\n"
+
+					"  -V             Print Version and exit\n\n", argv[0], argv[0]);
+					exit(0);
+			break;
+			case 'f':
+				sprintf(sSaveFile, "%s", optarg);
+			break;
+			case 'V':
+				printf("Version: %s\n\n", MAPGEN_VERSION);
+				exit(0);
+			default:
+				fprintf(stderr, "Usage: %s [-h] [-t terraform_type] [-f file]\n", argv[0]);
+				exit(1);
+			break;
+		}
+	}
+	
 	fp = fopen("SAVE10.GAM", "rb+");
 	
 	if (fp == NULL) {
@@ -107,19 +82,29 @@ int main() {
 	}
 
 	//Reading Star Systems information.
-	fseek(fp, STAR_OFFSET, SEEK_SET);
-
-	fread(&aStarSystems, sizeof aStarSystems, 1, fp);
-
-	//Editing Star Systems information.
-	for (i = 0; i != MAX_SYSTEMS ; i++) {
+	getFileData(aStarSystems, sizeof aStarSystems, STAR_OFFSET, fp);
 	
-		if (aStarSystems[i].nXpos == 0) {
+	//Reading Planets information.	
+	getFileData(&aPlanets, sizeof aPlanets, PLANET_OFFSET, fp);
 
-			aStarSystems[i] = createStarSystem(i);
-		}
-		//aStarSystems[i].nStarType = 0;
+	getFileData(&nNumOfStars, sizeof nNumOfStars, NUM_OF_STARS_OFFSET, fp);
+	getFileData(&nNumOfPlanets, sizeof nNumOfPlanets, NUM_OF_PLANETS_OFFSET, fp);
+	getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
+
+	calcPlanetsNum(aStarSystems, aHwCoordinates, nNumOfStars);
+	for (i = 0; i != nNumOfPlayers; i++) {
+	
+		printf("Player %d HW X = %d Y = %d\n", i, aHwCoordinates[i][0], aHwCoordinates[i][1]);
 	}
+
+	if (terraformFlags != 0) 
+		terraform(aPlanets, nNumOfPlanets, terraformFlags);
+	
+
+	//Writing Planets information.
+	fseek(fp, PLANET_OFFSET, SEEK_SET);
+
+	fwrite(&aPlanets, sizeof aPlanets, 1, fp);
 
 	//Wrighting Star Systems information.
 	fseek(fp, STAR_OFFSET, SEEK_SET);
