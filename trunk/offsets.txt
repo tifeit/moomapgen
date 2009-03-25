@@ -1,3 +1,10 @@
+Players:
+
+#Players @0x1aa0c 1Byte
+Race offset: @0x1aa0f to @0x21f55
+
+#Stars @0x17ad1
+
 Star table @ offset 0x17ad3 in save game (0x71 bytes per star)
 
 Index    function
@@ -8,7 +15,7 @@ Index    function
 11-12     Y-position (lo/hi)
 13        Star size (0-3=Large-Tiny)
 14        System Primary Owner (0-7=player #, FF=unowned)
-15        Unknown
+15        Unknown 												Принимает значения 0, 1, 2. Для не существующих планет всегда 0
 16        Star type
                0=Blue
                1=White
@@ -17,7 +24,7 @@ Index    function
                4=Red
                5=Brown
                6=Black Hole
-17-27     Unknown
+17-27     Unknown												Все нули
 28        System Special
                0=none
                2=Space Debris
@@ -30,7 +37,9 @@ Index    function
                A=Artifacts world
                B=Orion
 29        Wormhole leads to (0-7f=system #, FF = no wormhole)
-30-38     Unknown
+2A-36     Unknown
+37        #Player
+38        Unknown
 39        System has Warp Indictor (0=none, 1-8=owner player 0-7)
 3A-3E     Unknown
 3F        System has Artimis Net (0=none, 1-8=owner player 0-7)
