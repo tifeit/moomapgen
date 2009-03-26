@@ -1,16 +1,18 @@
-#define MAPGEN_VERSION "Concept"
+#define MAPGEN_VERSION "Pre Alpha"
 #include "mapgen.h"
 
 struct starSystem aStarSystems[MAX_SYSTEMS];
 struct planet aPlanets[MAX_PLANETS];
-unsigned char nNumOfPlayers, nNumOfStars, nNumOfPlanets;
-unsigned int aHwCoordinates[MAX_PLAYERS][2];
+struct starSystem *ptrSystem;
+unsigned char nNumOfPlayers, nNumOfStars;
+unsigned short nNumOfPlanets;
+unsigned int aHwCoordinates[MAX_PLAYERS][3];
 
 int main(int argc, char *argv[]) {
 
 	unsigned int i;
 	FILE *fp;
-	unsigned int terraformFlags = 0, opt;
+	unsigned int terraformFlags = 0, hwFlags = 0, opt;
 	char sSaveFile[100] = "SAVE10.GAM";
 
 	while ((opt = getopt(argc, argv, "ht:f:V")) != -1) {
@@ -35,6 +37,9 @@ int main(int argc, char *argv[]) {
 				else if (strstr(optarg, "small"))
 						terraformFlags |= FLG_NOSMALL;
 
+				else if (strstr(optarg, "flathw"))
+						hwFlags |= FLG_FLATHW;
+
 				else {
 						fprintf(stderr, "Unknown Terraform parameter %s\n", optarg);
 						exit(1);
@@ -54,7 +59,13 @@ int main(int argc, char *argv[]) {
 					"                   lowg - Low Gravity planets become Normal Gravity\n"
 					"                   heavyg - Heavy Gravity planets become Normal Gravity\n"
 					"                   tiny - Tiny planets become small\n"
-					"                   small - Small planets become medium\n\n"
+					"                   small - Small planets become medium\n"
+					"                   flathw - Flattens unoccupied planets in HomeWorlds:\n"
+					"                   They become Abundant, Toxics and Rad's become Barren, gravity become Normal except for one planet,\n"
+					"                   it become the same gravity as occupied planet, size is set in order Large, Large again, Medium, Small untill\n"
+					"                   there are no more planets to modify.\n\n"
+
+
 					"  -f file        Edit 'file' instead of SAVE10.GAM\n\n"
 
 					"  -V             Print Version and exit\n\n", argv[0], argv[0]);
@@ -96,6 +107,14 @@ int main(int argc, char *argv[]) {
 	if (terraformFlags != 0) 
 		terraform(aPlanets, nNumOfPlanets, terraformFlags);
 	
+	if (hwFlags != 0) {
+
+		for (i = 0; i != nNumOfPlayers; i++) {
+			
+			ptrSystem = &aStarSystems[aHwCoordinates[i][2]];
+			modifyHW(aPlanets, ptrSystem, aHwCoordinates[i][2], hwFlags);
+		}
+	}
 
 	//Writing Planets information.
 	fseek(fp, PLANET_OFFSET, SEEK_SET);
