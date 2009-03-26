@@ -8,9 +8,6 @@ void tohex(void *string, unsigned int length) {
 	for (i = 0; i != length; i++) {
 
 		printf("%.2X ", *point++);
-
-		if ( i%100 == 0 ) 
-			gets(buff);
 	}
 	printf("\n");
 }
@@ -62,9 +59,9 @@ void getFileData(void *storage, unsigned long length, unsigned long offset, FILE
 	fread(storage, length, 1, fp);
 }
 
-void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][2], unsigned char nNumOfStars) {
+void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars) {
 
-	unsigned int i;
+	unsigned char i;
 
 	//Finding HomeWorlds
 	for (i = 0; i != nNumOfStars; i++) {
@@ -72,11 +69,12 @@ void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates
 		if(aStarSystems[i].sUnknown2[13] != 0xff) {
 			aHwCoordinates[aStarSystems[i].sUnknown2[13]][0] = aStarSystems[i].nXpos;
 			aHwCoordinates[aStarSystems[i].sUnknown2[13]][1] = aStarSystems[i].nYpos;
+			aHwCoordinates[aStarSystems[i].sUnknown2[13]][2] = i;
 		}
 	}
 }
 
-void terraform(struct planet *aPlanets, unsigned int nPlanets, unsigned int flags) {
+void terraform(struct planet *aPlanets, unsigned short nPlanets, unsigned int flags) {
 
 	unsigned int i;
 		
@@ -97,5 +95,58 @@ void terraform(struct planet *aPlanets, unsigned int nPlanets, unsigned int flag
 		}
 		if (flags & FLG_NOSMALL && aPlanets[i].nPlanetSize == 1)
 			aPlanets[i].nPlanetSize = 2;
+	}
+}
+
+void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned int nSystemID, unsigned int flags) {
+	
+	unsigned char i, nDonePlanets = 0, nHwGravity;
+	struct planet *aHwPlanets;
+	struct planet *ptrPlanet;
+	char nSetGravity = 0;
+
+	if (flags & FLG_FLATHW) {
+
+
+		//Finding HomeWorld planet gravity
+		for ( i = 0; i != 5; i++ ) {
+		
+			if ( ptrSystem->aPlanet[i] != 0xffff )
+				if (aPlanets[ptrSystem->aPlanet[i]].nColonyID != 0xffff)
+					nHwGravity = aPlanets[ptrSystem->aPlanet[i]].nPlanetGravity;
+		}
+
+		//Flatting HomeWorld
+		for ( i = 0; i != 5; i++ ) {
+		
+			if (ptrSystem->aPlanet[i] != 0xffff && aPlanets[ptrSystem->aPlanet[i]].nColonyID == 0xffff) {
+				
+				ptrPlanet = &aPlanets[ptrSystem->aPlanet[i]];
+
+				//Make them abundant
+				ptrPlanet->nMineralClass = 2;
+
+				//Make toxics and radioactive barren
+				if (ptrPlanet->nEnvClass < 2)
+					ptrPlanet->nEnvClass = 2;
+
+				//Set Gravity
+				if (!nSetGravity) {
+					ptrPlanet->nPlanetGravity = nHwGravity;
+					nSetGravity = 1;
+				}
+				else
+					ptrPlanet->nPlanetGravity = 1;
+
+				//Set Size
+				if (nDonePlanets == 0 || nDonePlanets == 1)
+					ptrPlanet->nPlanetSize = 3;
+				else if (nDonePlanets == 2)
+					ptrPlanet->nPlanetSize = 2;
+				else
+					ptrPlanet->nPlanetSize = 1;
+				nDonePlanets++;
+			}
+		}
 	}
 }

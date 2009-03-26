@@ -7,12 +7,16 @@
 #define NUM_OF_PLANETS_OFFSET 0x162e7
 #define NUM_OF_PLAYERS_OFFSET 0x1aa0c
 
+//Terraforming flags
 #define FLG_NOTOXIC		1
 #define FLG_NOUPOOR		2
 #define FLG_NOLG		4
 #define FLG_NOHG		8
 #define FLG_NOTINY		16
 #define	FLG_NOSMALL		32
+
+//Homeworld flags
+#define FLG_FLATHW		1
 
 #include <stdio.h>
 #include <stdlib.h>
