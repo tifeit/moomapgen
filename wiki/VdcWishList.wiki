@@ -1,0 +1,3 @@
+= VDC WishList =
+
+ * Increase Fighters, Bombers and missiles combat speed.
