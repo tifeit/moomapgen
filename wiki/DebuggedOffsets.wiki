@@ -1,1 +1,5 @@
 = CMBTMIS_Missile_Speed_ =
+
+||Shuttles||cseg01:0003CE00  FF 18 00 EB A4 BA *06* 00  00 00 66 83 FB 08 7D 1E||
+||Bomber(Or HeavyFighter)||cseg01:0003CDE0  00 00 74 4A BA 0E 00 00  00 EB 43 BA *08* 00 00 00||
+||Bomber(Or HeavyFighter)||cseg01:0003CD80  E9 A9 00 00 00 BA 18 00  00 00 EB F2 BA *08* 00 00||
