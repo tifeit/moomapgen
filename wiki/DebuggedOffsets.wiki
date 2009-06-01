@@ -10,3 +10,9 @@
 ||Missile AND Td Bomber AND Td Hvy Fighter||`cseg01:0003CDB0  00 0F 84 77 00 00 00 BA  `*0C*` 00 00 00 E9 6D 00 00`||
 ||Td Fighter||`cseg01:0003CDC0  00 BA `*0A*` 00 00 00 66 83  FB 08 7D 62 0F BF C3 69`||
 ||Fst Mod Bonus||`cseg01:0003CE40  F6 45 FD 10 74 03 83 C2  `*04*` 89 D0 C9 5E 59 C3 53`||
+
+= `SHIPMOVE_Can_Order_Ship_` =
+
+||Tachyon Communications1||`cseg01:000FF710  18 00 01 C7 80 BF 72 01  00 00 `*03*` 74 DC 80 BF CB`||
+||Tachyon Communications2-3||`cseg01:000FF720  01 00 00 `*03*` 74 09 80 BF  C7 01 00 00 `*03*` 75 60 B0`||
+||Sub-Space Communications||`cseg01:000FF760  E8 14 C7 FE FF 83 F8 `*05*`  7F 1D 0F B6 4D F8 0F B6`||
