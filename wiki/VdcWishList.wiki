@@ -2,7 +2,7 @@
 
  # ~~Скорость базовая торпед, ракет, файтеров.~~ [DebuggedOffsets#CMBTMIS_Missile_Speed_]
  # Количество доступных очков расовых настроек: Начальных (+10); отрицательных (10). Бразеновский свич picks=x непосредственно задает начальное количество очков. Это можно использовать в качестве подсказки, чтобы найти местонахождение этой константы в .exe
- # Радиус действия системы космической коммуникации Текущие значения: Tech180 : "Tachyon Communications" - 3 parsecs Tech176 : "Sub-Space Communications" - 5 parsecs Tech91 : "Hyperspace Communications" - unlimited
+ # ~~Радиус действия системы космической коммуникации.~~[DebuggedOffsets#SHIPMOVE_Can_Order_Ship_]
  # Количество командых очков, поставляемых системой космической коммуникации: Текущие значения: Tech180 : "Tachyon Communications" - 1 Tech176 : "Sub-Space Communications" - 2 Tech91 : "Hyperspace Communications" - 3
  # Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130
  # Research-бонусы Scoutlab-ов Текущие значения: Frigate -1 Destroyer -2 Cruiser -4 Battleship -8 Titan -16 Doom Star -32
