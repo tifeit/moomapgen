@@ -16,3 +16,9 @@
 ||Tachyon Communications1||`cseg01:000FF710  18 00 01 C7 80 BF 72 01  00 00 `*03*` 74 DC 80 BF CB`||
 ||Tachyon Communications2-3||`cseg01:000FF720  01 00 00 `*03*` 74 09 80 BF  C7 01 00 00 `*03*` 75 60 B0`||
 ||Sub-Space Communications||`cseg01:000FF760  E8 14 C7 FE FF 83 F8 `*05*`  7F 1D 0F B6 4D F8 0F B6`||
+
+= `COLCALC_Compute_Player_Maintenance_` =
+
+||Tachyon Communications||`cseg01:000E21E0  00 00 C7 45 D8 `*01*` 00 00  00 8B 55 D8 0F AF D0 89`||
+||Sub-Space Communications||`cseg01:000E21C0  75 10 C7 45 EC B0 00 00  00 C7 45 D8 `*02*` 00 00 00`||
+||Hyperspace Communications||`cseg01:000E21B0  C7 45 D8 `*03*` 00 00 00 EB  30 80 B9 C7 01 00 00 0`||
