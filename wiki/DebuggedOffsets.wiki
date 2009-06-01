@@ -22,3 +22,13 @@
 ||Tachyon Communications||`cseg01:000E21E0  00 00 C7 45 D8 `*01*` 00 00  00 8B 55 D8 0F AF D0 89`||
 ||Sub-Space Communications||`cseg01:000E21C0  75 10 C7 45 EC B0 00 00  00 C7 45 D8 `*02*` 00 00 00`||
 ||Hyperspace Communications||`cseg01:000E21B0  C7 45 D8 `*03*` 00 00 00 EB  30 80 B9 C7 01 00 00 0`||
+
+= `Max negative pics` =
+
+Signatures for VDCGM2.EXE:
+
+||`05 6C 37 02 00 83 F8 `*F6*` 7D 41 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 FC E7 FF FF 8D 45 F6 E8 09 CD 01 00 E8 4B A6`||
+||`F8 `*F6*` 7D 46 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 3A E9 FF FF 8D 45 F6 E8 47 CE 01 00 E8 89 A7 0C 00 E8 0F EB FF`||
+||`F8 `*F6*` 7D 48 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 9E E8 FF FF 8D 45 F6 E8 AB CD 01 00 E8 ED A6 0C 00 E8 73 EA FF`||
+
+F6 is one byte signed char. So F6 = -10, F5 = -11, F4 = -12 ... EC = -20
