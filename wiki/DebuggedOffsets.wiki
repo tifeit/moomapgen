@@ -4,7 +4,7 @@
 ||Bomber(Or Heavy Fighter)||`cseg01:0003CDE0  00 00 74 4A BA 0E 00 00  00 EB 43 BA `*08*` 00 00 00`||
 ||Bomber(Or Heavy Fighter)||`cseg01:0003CD80  E9 A9 00 00 00 BA 18 00  00 00 EB F2 BA `*08*` 00 00`||
 ||Fighter||`cseg01:0003CDC0  00 BA `*0A*` 00 00 00 66 83  FB 08 7D 62 0F BF C3 69`||
-||Anti-Matter Torpedo||`cseg01:0003CD70  00 0F 82 B7 00 00 00 EB  3E BA `*14*` 00 00 00 31 C`||
+||Anti-Matter Torpedo||`cseg01:0003CD70  00 0F 82 B7 00 00 00 EB  3E BA `*14*` 00 00 00 31 C9`||
 ||Plasma Torpedo||`cseg01:0003CD80  E9 A9 00 00 00 BA `*18*` 00  00 00 EB F2 BA 08 00 00`||
 ||Shuttle + Transdimmensional||`cseg01:0003CE20  BC 06 BC 08 00 00 00 74  05 BA `*0A*` 00 00 00 66 85`||
 ||Missile AND Td Bomber AND Td Hvy Fighter||`cseg01:0003CDB0  00 0F 84 77 00 00 00 BA  `*0C*` 00 00 00 E9 6D 00 00`||
