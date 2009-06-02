@@ -13,7 +13,7 @@
 
 = `SHIPMOVE_Can_Order_Ship_` =
 
-||Tachyon Communications1||`cseg01:000FF710  18 00 01 C7 80 BF 72 01  00 00 `*03*` 74 DC 80 BF CB`||
+||Tachyon Communications1||`cseg01:000FF710  01 00 01 C7 80 BF 72 01  00 00 `*03*` 74 DC 80 BF CB`||
 ||Tachyon Communications2-3||`cseg01:000FF720  01 00 00 `*03*` 74 09 80 BF  C7 01 00 00 `*03*` 75 60 B0`||
 ||Sub-Space Communications||`cseg01:000FF760  E8 14 C7 FE FF 83 F8 `*05*`  7F 1D 0F B6 4D F8 0F B6`||
 
