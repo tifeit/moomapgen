@@ -32,3 +32,10 @@ Signatures for VDCGM2.EXE:
 ||`F8 `*F6*` 7D 48 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 9E E8 FF FF 8D 45 F6 E8 AB CD 01 00 E8 ED A6 0C 00 E8 73 EA FF`||
 
 F6 is one byte signed char. So F6 = -10, F5 = -11, F4 = -12 ... EC = -20
+
+= `CMBTMISS_Get_Missile_Hits_` =
+
+||Nuclear||`cseg01:0003E0F0  0F 85 A3 00 00 00 B9 `*04*`  00 00 00 E9 99 00 00 00`||
+||Merculite||`cseg01:0003E100  B9 `*08*` 00 00 00 E9 8F 00  00 00 B9 0C 00 00 00 E9`||
+||Pulsion||`cseg01:0003E100  B9 08 00 00 00 E9 8F 00  00 00 B9 `*0C*` 00 00 00 E9`||
+||Zeon||`cseg01:0003E110  85 00 00 00 B9 `*10*` 00 00  00 E9 7B 00 00 00 B9 05`||
