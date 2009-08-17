@@ -17,5 +17,5 @@ tachyon scanner -20 ; neutronium scanner -40 ; sensors -70
 
 нас интересует увеличить это k=2...
 
-# % распределение ресурсов (оружия) старбаз: hvmount beam, normal beam, pd beam, missiles.
+# % распределение ресурсов старбаз (оружия): hvmount beam, normal beam, pd beam, missiles.
 сделать вставку для торпед - напопалам с ракетами, по оружию, чтобы любой тип оружия использовал все имеющиеся модификации.
