@@ -58,7 +58,7 @@ for 12 starting pics.
 
 = `CMBTMISS_Get_Missile_Hits_` =
 
-||Nuclear||`cseg01:0003E0F0  0F 85 A3 00 00 00 B9 `*04*`  00 00 00 E9 99 00 00 00`||
+||Nuclear||`cseg01:0003E0F0  0F 85 A3 00 00 00 B9 `*04*`  00 00 00 E9 `||
 ||Merculite||`cseg01:0003E100  E9 99 00 00 00 B9 `*08*` 00 00 00 E9 8F`||
 ||Pulsion||`cseg01:0003E100  8F 00  00 00 B9 `*0C*` 00 00 00 E9 85`||
 ||Zeon||`cseg01:0003E110  85 00 00 00 B9 `*10*` 00 00  00 E9 7B 00 00 00 B9 05`||
