@@ -30,6 +30,8 @@ Signatures for VDCGM2.EXE:
 ||`05 6C 37 02 00 83 F8 `*F6*` 7D 41 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 FC E7 FF FF 8D 45 F6 E8 09 CD 01 00 E8 4B A6`||
 ||`F8 `*F6*` 7D 46 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 3A E9 FF FF 8D 45 F6 E8 47 CE 01 00 E8 89 A7 0C 00 E8 0F EB FF`||
 ||`F8 `*F6*` 7D 48 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 9E E8 FF FF 8D 45 F6 E8 AB CD 01 00 E8 ED A6 0C 00 E8 73 EA FF`||
+
+Signatures for ORION2.EXE (1.31):
 ||`cseg01:00059870  02 0F BF 15 6C 37 19 00  01 D0 83 F8 `*F6*` 7D 1C 89`||
 ||`cseg01:00059990  83 F8 `*F6*` 7C 3C 0F BF 15  66 37 19 00 0F BF C7 29`||
 ||`cseg01:00059E30  83 F8 `*F6*` 7D 1C 0F BF 45  6E 66 8B 44 45 2E 0F BF`||
@@ -39,6 +41,16 @@ Signatures for VDCGM2.EXE:
 ||`cseg01:00059C60  19 00 01 D0 83 F8 `*F6*` 7C  15 0F BF 45 52 0F BF 15`||
 
 F6 is one byte signed char. So F6 = -10, F5 = -11, F4 = -12 ... EC = -20
+
+= `Starting Positive pics` =
+
+Signatures for VDCGM2.EXE:
+
+||`53 51 52 56 57 C8 04 00 00 `*E8 F2 BC 09 00*` 31 F6 31 D2 0F BF`||
+Replace with
+||`53 51 52 56 57 C8 04 00 00 `*BB 0C 00 00 00*` 31 F6 31 D2 0F BF`||
+for 12 starting pics.
+
 
 = `CMBTMISS_Get_Missile_Hits_` =
 
