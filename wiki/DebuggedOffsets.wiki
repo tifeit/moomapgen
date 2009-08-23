@@ -38,7 +38,6 @@ Signatures for ORION2.EXE (1.31):
 ||`cseg01:00059E70  00 0F BE 54 32 F5 01 DA  83 FA `*F6*` 7C 1F 0F BF 5D`||
 ||`cseg01:00059BB0  BE 04 02 0F BF 15 6C 37  19 00 01 D0 83 F8 `*F6*` 7D`||
 ||`cseg01:00059C60  19 00 01 D0 83 F8 `*F6*` 7C  15 0F BF 45 52 0F BF 15`||
-||`cseg01:00059C60  19 00 01 D0 83 F8 `*F6*` 7C  15 0F BF 45 52 0F BF 15`||
 
 F6 is one byte signed char. So F6 = -10, F5 = -11, F4 = -12 ... EC = -20
 
