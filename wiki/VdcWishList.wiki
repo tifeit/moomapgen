@@ -8,7 +8,7 @@
  # Бонусы от сканеров по уменьшению действия систем радиоэлектронного подавления ECM:tachyon scanner -20; neutronium scanner -40; sensors -70.
  # Research-бонусы Scoutlab-ов Текущие значения: Frigate -1 Destroyer -2 Cruiser -4, Battleship -8, Titan -16, Doom Star -32.
  # Бонус командных очков старбаз: Tech168 : "Star Base" - +1; Tech27  : "Battlestation" - +2; Tech169 : "Star Fortress"  - +3.  
- # Бонус технологии Tech113 : "Nano Disassemblers" (k =2)
+ # Бонус технологии Tech113 "Nano Disassemblers" (k =2)
 формула полюшна: (prod - 2*planetsize)/2 с нанодизассемблерами будет: (prod - k*2*planetsize)/2. Нас интересует увеличить это k=2... 
  # матрица прихода лидеров во времени в зависимости от хода игры. Влияние харизматика и репульсива.
  # распределение ресурсов старбаз (оружия): hvmount beam, normal beam, pd beam, missiles.
