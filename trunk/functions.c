@@ -59,7 +59,7 @@ void getFileData(void *storage, unsigned long length, unsigned long offset, FILE
 	fread(storage, length, 1, fp);
 }
 
-void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars) {
+void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars, unsigned char verbose) {
 
 	unsigned char i;
 
@@ -67,9 +67,16 @@ void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates
 	for (i = 0; i != nNumOfStars; i++) {
 
 		if(aStarSystems[i].sUnknown2[13] != 0xff) {
+
 			aHwCoordinates[aStarSystems[i].sUnknown2[13]][0] = aStarSystems[i].nXpos;
 			aHwCoordinates[aStarSystems[i].sUnknown2[13]][1] = aStarSystems[i].nYpos;
 			aHwCoordinates[aStarSystems[i].sUnknown2[13]][2] = i;
+
+			if (verbose) {
+
+				printf("HomeWorld:\n");
+				printSystem(&aStarSystems[i]);
+			}
 		}
 	}
 }
@@ -105,7 +112,7 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 	struct planet *ptrPlanet;
 	char nSetGravity = 0;
 
-	if (flags & FLG_FLATHW) {
+	if (flags & FLG_FLATHW || flags & FLG_FIXEDHW) {
 
 
 		//Finding HomeWorld planet gravity
@@ -130,6 +137,10 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 				if (ptrPlanet->nEnvClass < 2)
 					ptrPlanet->nEnvClass = 2;
 
+				//Make gaias terrain
+				if (ptrPlanet->nEnvClass == 9)
+					ptrPlanet->nEnvClass = 8;
+
 				//Set Gravity
 				if (!nSetGravity) {
 					ptrPlanet->nPlanetGravity = nHwGravity;
@@ -145,6 +156,23 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 					ptrPlanet->nPlanetSize = 2;
 				else
 					ptrPlanet->nPlanetSize = 1;
+
+				//Make planet Enviroment Class fixed if we have to.
+				if (flags & FLG_FIXEDHW) {
+
+					if (nDonePlanets == 0)
+						ptrPlanet->nEnvClass = 6;
+
+					else if (nDonePlanets == 1)
+						ptrPlanet->nEnvClass = 4;
+
+					else if (nDonePlanets == 2)
+						ptrPlanet->nEnvClass = 7;
+
+					else if (nDonePlanets == 3)
+						ptrPlanet->nEnvClass = 3;
+				}
+
 				nDonePlanets++;
 			}
 		}

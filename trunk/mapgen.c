@@ -1,4 +1,4 @@
-#define MAPGEN_VERSION "Pre Alpha"
+#define MAPGEN_VERSION "0.1"
 #include "mapgen.h"
 
 struct starSystem aStarSystems[MAX_SYSTEMS];
@@ -11,11 +11,12 @@ unsigned int aHwCoordinates[MAX_PLAYERS][3];
 int main(int argc, char *argv[]) {
 
 	unsigned int i;
+	unsigned char verbose = 0;
 	FILE *fp;
 	unsigned int terraformFlags = 0, hwFlags = 0, opt;
 	char sSaveFile[100] = "SAVE10.GAM";
 
-	while ((opt = getopt(argc, argv, "ht:f:V")) != -1) {
+	while ((opt = getopt(argc, argv, "hvt:f:V")) != -1) {
 		switch (opt) {
 		
 			case 't':
@@ -40,6 +41,9 @@ int main(int argc, char *argv[]) {
 				else if (strstr(optarg, "flathw"))
 						hwFlags |= FLG_FLATHW;
 
+				else if (strstr(optarg, "fixedhw"))
+						hwFlags |= FLG_FIXEDHW;
+
 				else {
 						fprintf(stderr, "Unknown Terraform parameter %s\n", optarg);
 						exit(1);
@@ -62,20 +66,26 @@ int main(int argc, char *argv[]) {
 					"                   small - Small planets become medium\n"
 					"                   flathw - Flattens unoccupied planets in HomeWorlds:\n"
 					"                   They become Abundant, Toxics and Rad's become Barren, gravity become Normal except for one planet,\n"
-					"                   it become the same gravity as occupied planet, size is set in order Large, Large again, Medium, Small untill\n"
-					"                   there are no more planets to modify.\n\n"
+					"                   it become the same gravity as occupied planet, size is set in order\n"
+					"                   Large, Large again, Medium, Small untill\n"
+					"                   there are no more planets to modify. Gaias become Terrain.\n"
+					"                   fixedhw - Used only with `flathw`. Planets become: Large Swamp, Large Tundra, Medium Arid, Small Desert.\n\n"
 
+					"  -f file          Edit 'file' instead of SAVE10.GAM\n\n"
 
-					"  -f file        Edit 'file' instead of SAVE10.GAM\n\n"
+					"  -v               Verbose debugging output(CHEAT!)\n\n"
 
-					"  -V             Print Version and exit\n\n", argv[0], argv[0]);
+					"  -V               Print Version and exit\n\n", argv[0], argv[0]);
 					exit(0);
 			break;
 			case 'f':
 				sprintf(sSaveFile, "%s", optarg);
 			break;
+			case 'v':
+				verbose = 1;
+			break;
 			case 'V':
-				printf("Version: %s\n\n", MAPGEN_VERSION);
+				printf("Version: %s\n", MAPGEN_VERSION);
 				exit(0);
 			default:
 				fprintf(stderr, "Usage: %s [-h] [-t terraform_type] [-f file]\n", argv[0]);
@@ -102,7 +112,7 @@ int main(int argc, char *argv[]) {
 	getFileData(&nNumOfPlanets, sizeof nNumOfPlanets, NUM_OF_PLANETS_OFFSET, fp);
 	getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
 
-	calcPlanetsNum(aStarSystems, aHwCoordinates, nNumOfStars);
+	calcPlanetsNum(aStarSystems, aHwCoordinates, nNumOfStars, verbose);
 
 	if (terraformFlags != 0) 
 		terraform(aPlanets, nNumOfPlanets, terraformFlags);
@@ -110,7 +120,7 @@ int main(int argc, char *argv[]) {
 	if (hwFlags != 0) {
 
 		for (i = 0; i != nNumOfPlayers; i++) {
-			
+		
 			ptrSystem = &aStarSystems[aHwCoordinates[i][2]];
 			modifyHW(aPlanets, ptrSystem, aHwCoordinates[i][2], hwFlags);
 		}

@@ -17,6 +17,7 @@
 
 //Homeworld flags
 #define FLG_FLATHW		1
+#define FLG_FIXEDHW		2
 
 #include <stdio.h>
 #include <stdlib.h>
