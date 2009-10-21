@@ -1,6 +1,5 @@
 void tohex(void *string, unsigned int length) {
 	unsigned char i;
-	unsigned char buff[2];
 	unsigned char *point;
 
 	point = string;
@@ -12,16 +11,45 @@ void tohex(void *string, unsigned int length) {
 	printf("\n");
 }
 
-void printSystem(struct starSystem* starSystem) {
+void printSystem(struct starSystem* starSystem, struct planet *aPlanets) {
 	
+	unsigned char i;
+	struct planet *ptrPlanet;
+
 	printf("%s (%d, %d) Size: %d Owner: %d nUnknown: %d nStarType: %d\n", starSystem->sName, starSystem->nXpos, starSystem->nYpos,
 		starSystem->nSize, starSystem->nOwner, starSystem->nUnknown, starSystem->nStarType);
+
 	tohex(starSystem->sUnknown, sizeof starSystem->sUnknown);
 	tohex(starSystem->sUnknown2, sizeof starSystem->sUnknown2);
 	tohex(starSystem->sUnknown3, sizeof starSystem->sUnknown3);
 	tohex(starSystem->sUnknown4, sizeof starSystem->sUnknown4);
 	tohex(starSystem->sUnknown5, sizeof starSystem->sUnknown5);
 
+	//Displaying Homeworld info
+	for ( i = 0; i != 5; i++ ) {
+	
+		if (starSystem->aPlanet[i] != 0xffff) {
+			
+			ptrPlanet = &aPlanets[starSystem->aPlanet[i]];
+			printf("\nPlanet #%d\n", i); 
+			printf("nColonyID: %.2X\n", ptrPlanet->nColonyID);
+			printf("nStarID: %.2X\n", ptrPlanet->nStarID);
+			printf("nOrbit: %.2X\n", ptrPlanet->nOrbit);
+			printf("nPlanetType: %.2X\n", ptrPlanet->nPlanetType);
+			printf("nPlanetSize: %.2X\n", ptrPlanet->nPlanetSize);
+			printf("nPlanetGravity: %.2X\n", ptrPlanet->nPlanetGravity);
+			printf("nUnknown: %.2X\n", ptrPlanet->nUnknown);
+			printf("nEnvClass: %.2X\n", ptrPlanet->nEnvClass);
+			printf("nDrawingID: %.2X\n", ptrPlanet->nDrawingID);
+			printf("nMineralClass: %.2X\n", ptrPlanet->nMineralClass);
+			printf("nFoodBase: %.2X\n", ptrPlanet->nFoodBase);
+			printf("nTerraformsDone: %.2X\n", ptrPlanet->nTerraformsDone);
+			printf("nUnknown2: %.2X\n", ptrPlanet->nUnknown2);
+			printf("nUnknown3: %.2X\n", ptrPlanet->nUnknown3);
+			printf("nPlanetSpecial: %.2X\n", ptrPlanet->nPlanetSpecial);
+			printf("nFlags: %.2X\n", ptrPlanet->nFlags);
+		}
+	}
 }
 
 struct starSystem createStarSystem(int i) {
@@ -59,7 +87,7 @@ void getFileData(void *storage, unsigned long length, unsigned long offset, FILE
 	fread(storage, length, 1, fp);
 }
 
-void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars, unsigned char verbose) {
+void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars, struct planet *aPlanets, unsigned char verbose) {
 
 	unsigned char i;
 
@@ -75,7 +103,7 @@ void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates
 			if (verbose) {
 
 				printf("HomeWorld:\n");
-				printSystem(&aStarSystems[i]);
+				printSystem(&aStarSystems[i], aPlanets);
 			}
 		}
 	}
@@ -108,7 +136,6 @@ void terraform(struct planet *aPlanets, unsigned short nPlanets, unsigned int fl
 void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned int nSystemID, unsigned int flags) {
 	
 	unsigned char i, nDonePlanets = 0, nHwGravity;
-	struct planet *aHwPlanets;
 	struct planet *ptrPlanet;
 	char nSetGravity = 0;
 
@@ -138,8 +165,11 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 					ptrPlanet->nEnvClass = 2;
 
 				//Make gaias terrain
-				if (ptrPlanet->nEnvClass == 9)
+				if (ptrPlanet->nEnvClass == 9) {
+
 					ptrPlanet->nEnvClass = 8;
+					ptrPlanet->nFoodBase = 2;
+				}
 
 				//Set Gravity
 				if (!nSetGravity) {
@@ -160,17 +190,26 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 				//Make planet Enviroment Class fixed if we have to.
 				if (flags & FLG_FIXEDHW) {
 
-					if (nDonePlanets == 0)
+					if (nDonePlanets == 0) {
+
 						ptrPlanet->nEnvClass = 6;
+						ptrPlanet->nFoodBase = 2;
 
-					else if (nDonePlanets == 1)
+					} else if (nDonePlanets == 1) {
+
 						ptrPlanet->nEnvClass = 4;
+						ptrPlanet->nFoodBase = 1;
 
-					else if (nDonePlanets == 2)
+					} else if (nDonePlanets == 2) {
+
 						ptrPlanet->nEnvClass = 7;
+						ptrPlanet->nFoodBase = 1;
 
-					else if (nDonePlanets == 3)
+					} else if (nDonePlanets == 3) {
+
 						ptrPlanet->nEnvClass = 3;
+						ptrPlanet->nFoodBase = 1;
+					}
 				}
 
 				nDonePlanets++;
