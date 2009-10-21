@@ -1,4 +1,4 @@
-#define MAPGEN_VERSION "0.1"
+#define MAPGEN_VERSION "0.11"
 #include "mapgen.h"
 
 struct starSystem aStarSystems[MAX_SYSTEMS];
@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
 					"                   it become the same gravity as occupied planet, size is set in order\n"
 					"                   Large, Large again, Medium, Small untill\n"
 					"                   there are no more planets to modify. Gaias become Terrain.\n"
-					"                   fixedhw - Used only with `flathw`. Planets become: Large Swamp, Large Tundra, Medium Arid, Small Desert.\n\n"
+					"                   fixedhw - Implies `flathw`. Planets become: Large Swamp, Large Tundra, Medium Arid, Small Desert.\n\n"
 
 					"  -f file          Edit 'file' instead of SAVE10.GAM\n\n"
 
@@ -112,7 +112,7 @@ int main(int argc, char *argv[]) {
 	getFileData(&nNumOfPlanets, sizeof nNumOfPlanets, NUM_OF_PLANETS_OFFSET, fp);
 	getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
 
-	calcPlanetsNum(aStarSystems, aHwCoordinates, nNumOfStars, verbose);
+	calcPlanetsNum(aStarSystems, aHwCoordinates, nNumOfStars, aPlanets, verbose);
 
 	if (terraformFlags != 0) 
 		terraform(aPlanets, nNumOfPlanets, terraformFlags);
