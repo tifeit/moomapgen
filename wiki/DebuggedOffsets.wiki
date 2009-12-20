@@ -68,5 +68,7 @@ for 12 starting pics.
 ||Heavy Fighter||`cseg01:0003E170  64 6B C0 `*0A*` EB 19 0F BF  C2 E8 E1 86 01 00 98 6B`||
 
 = `Pop Racepic Bonus` =
+
+dseg02:001751FC byte_1751FC     db 0                    ; DATA XREF: RACEOPT_Convert_Player_To_Flags_EM_:loc_5B526
 ||*-50%* *+50%* *+100%*||
 ||*CE* *32* *64* FF 02 04 FF 01  02 FF 01 02 FF 01 02 EC||
