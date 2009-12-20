@@ -66,3 +66,7 @@ for 12 starting pics.
 ||Shuttle||`cseg01:0003E180  C0 0F 0F BF 80 42 76 00  00 83 C0 64 6B C0 `*06*` B9`||
 ||Bomber||`cseg01:0003E130  0F 0F BF 80 42 76 00 00  83 C0 64 6B C0 `*08*` EB 4F`||
 ||Heavy Fighter||`cseg01:0003E170  64 6B C0 `*0A*` EB 19 0F BF  C2 E8 E1 86 01 00 98 6B`||
+
+= `Pop Racepic Bonus` =
+||*-50%* *+50%* *+100%*||
+||*CE* *32* *64* FF 02 04 FF 01  02 FF 01 02 FF 01 02 EC||
