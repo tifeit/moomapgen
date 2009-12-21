@@ -105,11 +105,11 @@ dseg02:001751FC byte_1751FC     db 0                    ; DATA XREF: RACEOPT_Con
 = `CMBTFIR2_Damage_From_Ship_Exploding_` =
 
 ||Basic drive explode multiplier||`0003867C  66 6B 83 2A 80 17 00 `*05*`  66 85 D2 74 03 6B C0 03`||
-||Quantum detonator explode multiplier||`0003867C  66 6B 83 2A 80 17 00 05  66 85 D2 74 03 6B C0 `*03*||
+||Quantum detonator explode multiplier||`0003867C  66 6B 83 2A 80 17 00 05  66 85 D2 74 03 6B C0 ` *03* ||
+
 
 = `CMBTFIR2_Capture_Ship_` =
+||Quantum detonator probability||`000383A7  83 F8 `*06*` 7D 16 B9 04 00  00 00 0F BF DB 0F BF D7`||
 
-||Quantum detonator probability||`000383A7  83 F8 `*06*` 7D 16 B9 04 00  00 00 0F BF DB 
-0F BF D7`||
 
 Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 to 11 to give 100% detonation probability.
