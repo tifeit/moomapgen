@@ -111,4 +111,5 @@ dseg02:001751FC byte_1751FC     db 0                    ; DATA XREF: RACEOPT_Con
 
 ||Quantum detonator probability||`000383A7  83 F8 `*06*` 7D 16 B9 04 00  00 00 0F BF DB 
 0F BF D7`||
-* Formula is IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 to 11 to give 100% detonation probability.
+
+Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 to 11 to give 100% detonation probability.
