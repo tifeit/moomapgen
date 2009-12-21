@@ -67,8 +67,37 @@ for 12 starting pics.
 ||Bomber||`cseg01:0003E130  0F 0F BF 80 42 76 00 00  83 C0 64 6B C0 `*08*` EB 4F`||
 ||Heavy Fighter||`cseg01:0003E170  64 6B C0 `*0A*` EB 19 0F BF  C2 E8 E1 86 01 00 98 6B`||
 
-= `Pop Racepic Bonus` =
+= `Racepic_bonuses` =
 
 dseg02:001751FC byte_1751FC     db 0                    ; DATA XREF: RACEOPT_Convert_Player_To_Flags_EM_:loc_5B526
-||*-50%* *+50%* *+100%*||
-||*CE* *32* *64* FF 02 04 FF 01  02 FF 01 02 FF 01 02 EC||
+
+||`CE 32 64 FF 02 04 FF 01  02 FF 01 02 FF 01 02 EC`||
+||`19 32 EC 14 32 F6 0A 14  F6 0A 14 00 01 00 00 00`||
+
+ * CE - "-50% Population Growth"
+ * 32 - "+50% Population Growth"
+ * 64 - "+100% Population Growth"
+ * FF - "-1/2 Food"
+ * 02 - "+1 Food"
+ * 04 - "+2 Food"
+ * FF - "-1 Production"
+ * 01 - "+1 Production"
+ * 02 - "+2 Production"
+ * FF - "-1 Science"
+ * 01 - "+1 Science"
+ * 02 - "+2 Science"
+ * FF - "-0.5 BC"
+ * 01 - "+0.5 BC"
+ * 02 - "+1 BC"
+ * EC - "-20 Ship Defence"
+ * 19 - "+25 Ship Defence"
+ * 32 - "+50 Ship Defence"
+ * EC - "-20 Ship Attack"
+ * 19 - "+20 Ship Attack"
+ * 32 - "+50 Ship Attack"
+ * F6 - "-10 Ground Combat"
+ * 0A - "+10 Ground Combat"
+ * 14 - "+20 Ground Combat"
+ * F6 - "-10 Spying"
+ * 0A - "+10 Spying"
+ * 14 - "+20 Spying"
