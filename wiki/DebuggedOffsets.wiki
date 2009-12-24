@@ -104,8 +104,8 @@ dseg02:001751FC byte_1751FC     db 0                    ; DATA XREF: RACEOPT_Con
 
 = `CMBTFIR2_Damage_From_Ship_Exploding_` =
 
-||Basic drive explode multiplier||`0003867C  66 6B 83 2A 80 17 00 `*05*`  66 85 D2 74 03 6B C0 03`||
-||Quantum detonator explode multiplier||`0003867C  66 6B 83 2A 80 17 00 05  66 85 D2 74 03 6B C0 ` *03* ||
+||Basic drive explode multiplier||`0003867C  66 6B 83 2A 80 00 00 `*05*`  66 85 D2 74 03 6B C0 03`||
+||Quantum detonator explode multiplier||`0003867C  66 6B 83 2A 80 00 00 05  66 85 D2 74 03 6B C0 ` *03* ||
 
 
 = `CMBTFIR2_Capture_Ship_` =
