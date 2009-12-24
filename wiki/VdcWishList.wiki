@@ -24,4 +24,4 @@
  # Feudalism science penalty;
  # Scoutlabs;
  # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
- # Add shield piercing stopping effect to class XX shield (like hard shields does), analogy: xentronium armor has armor piercing stopping effect. 
+ # Add shield piercing stopping effect to class XX shield (like hard shields does), analogy: xentronium armor has armor piercing stopping effect on base. 
