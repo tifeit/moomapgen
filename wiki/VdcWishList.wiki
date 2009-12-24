@@ -16,7 +16,7 @@
  # ~~Damper field - увеличить смертность при использованиии транспортеров до 80% или 100%.~~
  # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
- New Priority List:
+= New Priority List:=
  # Nano Disassemblers;
  # Матрица прихода лидеров во времени;
  # Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
