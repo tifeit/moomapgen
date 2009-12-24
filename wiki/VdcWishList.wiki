@@ -16,12 +16,12 @@
  # ~~Damper field - увеличить смертность при использованиии транспортеров до 80% или 100%.~~
  # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
-New Priority List:
-# Nano Disassemblers;
-# Матрица прихода лидеров во времени;
-# Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
-# Battle station, Star Fortress command points;
-# Feudalism science penalty;
-# Scoutlabs;
-# AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
-# Add shields piercing stopping effect to class XX shield (like hard shields), analogy: xentronium armor has armor piercing stopping effect. 
+ # New Priority List:
+ # Nano Disassemblers;
+ # Матрица прихода лидеров во времени;
+ # Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
+ # Battle station, Star Fortress command points;
+ # Feudalism science penalty;
+ # Scoutlabs;
+ # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
+ # Add shields piercing stopping effect to class XX shield (like hard shields), analogy: xentronium armor has armor piercing stopping effect. 
