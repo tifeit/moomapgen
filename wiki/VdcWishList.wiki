@@ -17,6 +17,7 @@
  # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
 = New Priority List:=
+ # Subterrenean farms food bonus; 
  # Nano Disassemblers;
  # Матрица прихода лидеров во времени;
  # Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
