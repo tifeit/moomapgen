@@ -17,11 +17,11 @@
  # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
 New Priority List:
-1. Nano Disassemblers;
-2. Матрица прихода лидеров во времени;
-3. Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
-4. Battle station, Star Fortress command points;
-5. Feudalism science penalty;
-6. Scoutlabs;
-7. AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
-8. Add shields piercing stopping effect to class XX shield (like hard shields), analogy: xentronium armor has armor piercing stopping effect. 
+# ~~Nano Disassemblers;
+# ~~Матрица прихода лидеров во времени;
+# ~~Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
+# ~~Battle station, Star Fortress command points;
+# ~~Feudalism science penalty;
+# ~~Scoutlabs;
+# ~~AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
+# ~~Add shields piercing stopping effect to class XX shield (like hard shields), analogy: xentronium armor has armor piercing stopping effect. 
