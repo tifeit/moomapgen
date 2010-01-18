@@ -114,6 +114,6 @@ dseg02:001751FC byte_1751FC     db 0                    ; DATA XREF: RACEOPT_Con
 
 Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 to 11 to give 100% detonation probability.
 
-= `OLCALC_Colony_Industry_Production_` =
+= `COLCALC_Colony_Industry_Production_` =
 
 ||Nano disassemblers|| `000DEFD2  D1 65 5E 80 BE 56 `*01*` 00  00 00 74 0A 8D 43 01 99`|| Warning! Offset used in formula k=2^01^ so if you would change 01 to 02 k = 2^02^ = 4||
