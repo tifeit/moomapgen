@@ -16,8 +16,8 @@
  # ~~Damper field - увеличить смертность при использованиии транспортеров до 80% или 100%.
  # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
-= Altered Priority List:=
- # Mutation Bug (desynch issue) fixing;
+= Altered New Priority List:=
+ # Mutation Bug (desynch issue);
  # Damper Field moving to shields place (to be able to choose damper field there);
  # Add Hard Shields effect to class XX shield.
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
