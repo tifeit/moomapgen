@@ -16,13 +16,15 @@
  # ~~Damper field - увеличить смертность при использованиии транспортеров до 80% или 100%.
  # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
-= New Priority List:=
- # Subterranean farms food output; 
- # ~~Nano Disassemblers;~~ [DebuggedOffsets#COLCALC_Colony_Industry_Production_]
- # Матрица прихода лидеров во времени;
+= Altered Priority List:=
+ # Mutation Bug (desynch issue) fixing;
+ # Damper Field moving to shields place (to be able to choose damper field there);
+ # Add Hard Shields effect to class XX shield.
  # Рейд. Вычисления рейда. Баги с рейдом (десинхронизация в некоторых случаях, zero marines raid bug);
+ # ~~Nano Disassemblers;~~ [DebuggedOffsets#COLCALC_Colony_Industry_Production_]
+ # Матрица прихода лидеров во времени; 
  # Battle Station, Star Fortress command points;
  # ~~Feudalism science penalty;~~
  # Scoutlabs;
  # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
- # Add shield piercing stopping effect to class XX shield (like hard shields does), analogy: xentronium armor has armor piercing stopping effect on base. 
+ 
