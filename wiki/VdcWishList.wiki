@@ -14,7 +14,7 @@
  # Матрица дизайна кораблей AI. По ходу после изменения объема вместимости кораблей, напр: Battleship space 250 ->280 и т.д. AI не учитывает новую вместимость. Необходимо это исправить...
  # ~~Damper field - увеличить смертность при использованиии транспортеров до 80% или 100%.
  # ~~Начальный бонус феодолизма - уменьшить штраф на науку с 50% до 33%.
- # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]
+ # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
 = Altered New Priority List:=
  # Mutation Bug (desynch issue);
