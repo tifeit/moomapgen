@@ -20,7 +20,7 @@
  # Mutation Bug (desynch issue) fixing;
  # Damper Field moving to shields place (to be able to choose damper field there);
  # Add Hard Shields effect to class XX shield.
- # Raid. Raid calculations. Bug with the raid (desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug);
+ # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug;
  # ~~Nano Disassemblers;~~ [DebuggedOffsets#COLCALC_Colony_Industry_Production_]
  # Матрица прихода лидеров во времени; 
  # Battle Station, Star Fortress command points;
