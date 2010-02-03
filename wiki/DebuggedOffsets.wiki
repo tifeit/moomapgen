@@ -116,10 +116,8 @@ Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 
 
 = `COLCALC_Colony_Industry_Production_` =
 
-||ND From IDA|| `D1 65 5E 80 BE  56 01 00 00 00 74 0A 8D 43 01 99 2B C2 D1 F8 89  C3 80 BE 3B 01 00 00 00 74 0E 8D 43 03 99 C1 E2  02 1B C2 C1 F8 02 89 C3`||
-||Nano disassemblers|| `D1 65 5E 80 BE 56 01 00 00 00 74 0A 8D 43 01 99 29 D0 D1 F8 89 C3 80 BE 3B 01 00 00 00 C3`||
-||Nano disassemblers 1.40|| `D1 65 5E 80 BE 56 01 00 00 00 74 0A 8D 43 01 99 2B C2 D1 F8 89 C3 80 BE 3B 01 00 00 00 74`||
-||New nano disassemblers|| `C1 65 5E `*03*` 80 BE 56 01 00 00 00 74 09 8D 43 01 99 90 D1 F8 89 C3 80 BE 3B 01 00 00 00 C3`||
+||Nano disassemblers|| `D1 65 5E 80 BE  56 01 00 00 00 74 0A 8D 43 01 99 2B C2 D1 F8 89  C3 80 BE 3B 01 00 00 00`||
+||New nano disassemblers|| `C1 65 5E `*03*` 80 BE 56 01 00 00 00 74 09 8D 43 01 99 90 D1 F8 89 C3 80 BE 3B 01 00 00 00`||
  Warning! Offset used in formula k=2^01^ so if you would change 01 to 02 k = 2^02^ = 4||
 
 = Planet pollution bonus =
