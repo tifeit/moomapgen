@@ -124,9 +124,15 @@ Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 
 
 ||Planet pollution bonus || `000DD4E1  02 04 06 08 0A 00 00 01  02 03 19 19 19 23 23 23`||
 
-= FAST FADE =
+= Fast fade =
 
-||FIND|| `B9 `*64*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
-||REPLACE|| `B9 `*10*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
+||Find   || `B9 `*64*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
+||Replace|| `B9 `*10*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
+
+= Disable vsync =
+
+||Find   || `E8 FA 0A 00 00 8B 5D F0  8B 55 EC 8B 4D EC C1 E1` ||
+||Replace|| `90 90 90 90 90 8B 5D F0  8B 55 EC 8B 4D EC C1 E1` ||
+
 
 To enable fast fade, replace 00 with 01
