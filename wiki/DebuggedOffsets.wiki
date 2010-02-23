@@ -124,9 +124,9 @@ Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 
 
 ||Planet pollution bonus || `000DD4E1  02 04 06 08 0A 00 00 01  02 03 19 19 19 23 23 23`||
 
-= ERIC_Fast_Fade_In_ & ERIC_Fast_Fade_Out_ =
+= FAST FADE =
 
-||Fast fade in|| `80 3D 9C B1 00 00 `*00*` 74  2A E8 12 EF 05 00 66 0F` ||
-||Fast fade out|| `80 3D 9C B1 00 00 `*00*` 75  6C E8 8C EF 05 00 66 0F` ||
+||FIND|| `B9 `*64*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
+||REPLACE|| `B9 `*10*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
 
 To enable fast fade, replace 00 with 01
