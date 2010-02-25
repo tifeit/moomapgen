@@ -132,19 +132,17 @@ fade in
 ||Replace|| `83 EA `*64*` 66 85 D2 7D E5  E8 8B EF 05 00 5A C3 A2` ||
 
 fade out
-||Find   || `B9 `*64*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
-||Replace|| `B9 `*0A*` 00 00 00 80 3D 9C  B1 00 00 00 75 6C E8 8C` ||
-
-
+||Find   || *0A* `00 00 00 00 00 00 00  00 00 00 00 00 00 00 FF FF 00 00 FF FF 00 00 00  00 00 A0 A3 A4 A5 A6 A7` ||
+||Replace|| *64* `00 00 00 00 00 00 00  00 00 00 00 00 00 00 FF FF 00 00 FF FF 00 00 00  00 00 A0 A3 A4 A5 A6 A7` ||
 
 = Disable vsync =
 
 Simple vsync
-||Find   || *E8 FA 0A 00 00* `8B 5D F0  8B 55 EC 8B 4D EC C1 E1` ||
-||Replace|| *90 90 90 90 90*  `8B 5D F0  8B 55 EC 8B 4D EC C1 E1` ||
+||Find   || *75 10* `60 66 BA DA 03 EC  24 08 75 FB EC 24 08 74` ||
+||Replace|| *EB 10* `60 66 BA DA 03 EC  24 08 75 FB EC 24 08 74` ||
 
 Forced vsync
-||Find   || *E8 9D FE FF FF* `66 BA C8  03 8B 35 80` ||
-||Replace|| *90 90 90 90 90* `66 BA C8  03 8B 35 80` ||
+||Find   || *60 66* `BA DA 03 EC 24 08  75 FB EC 24 08 74 FB 61` ||
+||Replace|| *EB 0E* `BA DA 03 EC 24 08  75 FB EC 24 08 74 FB 61` || replaced twice ||
 
 ----
