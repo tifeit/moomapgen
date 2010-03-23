@@ -1,8 +1,15 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+#include "functions.h"
+
+extern unsigned char verbose;
+
 void tohex(void *string, unsigned int length) {
 	unsigned char i;
 	unsigned char *point;
 
-	point = string;
+	point = (unsigned char *) string;
 
 	for (i = 0; i != length; i++) {
 
@@ -12,73 +19,38 @@ void tohex(void *string, unsigned int length) {
 }
 
 void printSystem(struct starSystem* starSystem, struct planet *aPlanets) {
-	
+
 	unsigned char i;
 	struct planet *ptrPlanet;
 
-	printf("%s (%d, %d) Size: %d Owner: %d nUnknown: %d nStarType: %d\n", starSystem->sName, starSystem->nXpos, starSystem->nYpos,
-		starSystem->nSize, starSystem->nOwner, starSystem->nUnknown, starSystem->nStarType);
+	printf( "%s (%d, %d) nSize: %d nOwner: %d nPicture: %d nStarType: %d nSpecial: %d nBlockaded: %d bvBlocadedBy: %d nVisited: %d \n"
+			"nJustVisited: %d nStarOwner: %d\n", starSystem->sName, starSystem->nXpos, starSystem->nYpos, starSystem->nSize, starSystem->nOwner,
+			starSystem->nPicture, starSystem->nStarType, starSystem->nSpecial, starSystem->nBlocaded, starSystem->bvBlockadedBy[0], starSystem->nVisited,
+			starSystem->nJustVisited, starSystem->nStarOwner);
 
-	tohex(starSystem->sUnknown, sizeof starSystem->sUnknown);
-	tohex(starSystem->sUnknown2, sizeof starSystem->sUnknown2);
-	tohex(starSystem->sUnknown3, sizeof starSystem->sUnknown3);
-	tohex(starSystem->sUnknown4, sizeof starSystem->sUnknown4);
-	tohex(starSystem->sUnknown5, sizeof starSystem->sUnknown5);
 
 	//Displaying Homeworld info
 	for ( i = 0; i != 5; i++ ) {
-	
+
 		if (starSystem->aPlanet[i] != 0xffff) {
-			
+
 			ptrPlanet = &aPlanets[starSystem->aPlanet[i]];
-			printf("\nPlanet #%d\n", i); 
+			printf("\nPlanet #%d\n", i);
 			printf("nColonyID: %.2X\n", ptrPlanet->nColonyID);
 			printf("nStarID: %.2X\n", ptrPlanet->nStarID);
 			printf("nOrbit: %.2X\n", ptrPlanet->nOrbit);
 			printf("nPlanetType: %.2X\n", ptrPlanet->nPlanetType);
 			printf("nPlanetSize: %.2X\n", ptrPlanet->nPlanetSize);
 			printf("nPlanetGravity: %.2X\n", ptrPlanet->nPlanetGravity);
-			printf("nUnknown: %.2X\n", ptrPlanet->nUnknown);
 			printf("nEnvClass: %.2X\n", ptrPlanet->nEnvClass);
 			printf("nDrawingID: %.2X\n", ptrPlanet->nDrawingID);
 			printf("nMineralClass: %.2X\n", ptrPlanet->nMineralClass);
 			printf("nFoodBase: %.2X\n", ptrPlanet->nFoodBase);
 			printf("nTerraformsDone: %.2X\n", ptrPlanet->nTerraformsDone);
-			printf("nUnknown2: %.2X\n", ptrPlanet->nUnknown2);
-			printf("nUnknown3: %.2X\n", ptrPlanet->nUnknown3);
 			printf("nPlanetSpecial: %.2X\n", ptrPlanet->nPlanetSpecial);
 			printf("nFlags: %.2X\n", ptrPlanet->nFlags);
 		}
 	}
-}
-
-struct starSystem createStarSystem(int i) {
-
-	struct starSystem star;
-	unsigned char c = 0;
-
-	sprintf(star.sName, "Star_%d", i);
-	star.nXpos = 1+rand()%300;
-	star.nYpos = 1+rand()%300;
-	star.nSize = rand()%3;
-	star.nOwner = 0;
-	star.nStarType = 0;
-	star.nSpecial = 0;
-	star.nWormSystem = 0xff;
-	star.nWarpIdict = 0;
-	star.nArtemisNet = 0;
-	star.aPlanet[0] = star.aPlanet[1]=star.aPlanet[2]=star.aPlanet[3]=star.aPlanet[4]=0xffff;
-		
-	//Fill unknown with nulls
-	star.nUnknown = 0x00;
-	for (c=0; c!=17; c++) star.sUnknown[c] = 0;
-	for (c=0; c!=15; c++) star.sUnknown2[c] = 15;
-	for (c=0; c!=5; c++) star.sUnknown3[c] = 5;
-	for (c=0; c!=10; c++) star.sUnknown4[c] = 10;
-	for (c=0; c!=29; c++) star.sUnknown5[c] = 29;
-
-
-	return star;
 }
 
 void getFileData(void *storage, unsigned long length, unsigned long offset, FILE *fp) {
@@ -87,54 +59,138 @@ void getFileData(void *storage, unsigned long length, unsigned long offset, FILE
 	fread(storage, length, 1, fp);
 }
 
-void calcPlanetsNum(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars, struct planet *aPlanets, unsigned char verbose) {
+void getHwCoords(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][3], unsigned char nNumOfStars, struct planet *aPlanets) {
 
 	unsigned char i;
 
 	//Finding HomeWorlds
 	for (i = 0; i != nNumOfStars; i++) {
 
-		if(aStarSystems[i].sUnknown2[13] != 0xff) {
+		if(aStarSystems[i].nStarOwner != 0xff) {
 
-			aHwCoordinates[aStarSystems[i].sUnknown2[13]][0] = aStarSystems[i].nXpos;
-			aHwCoordinates[aStarSystems[i].sUnknown2[13]][1] = aStarSystems[i].nYpos;
-			aHwCoordinates[aStarSystems[i].sUnknown2[13]][2] = i;
+			aHwCoordinates[aStarSystems[i].nStarOwner][0] = aStarSystems[i].nXpos;
+			aHwCoordinates[aStarSystems[i].nStarOwner][1] = aStarSystems[i].nYpos;
+			aHwCoordinates[aStarSystems[i].nStarOwner][2] = i;
 
 			if (verbose) {
 
 				printf("HomeWorld:\n");
 				printSystem(&aStarSystems[i], aPlanets);
+				printf("--------\n");
 			}
 		}
 	}
 }
 
-void terraform(struct planet *aPlanets, unsigned short nPlanets, unsigned int flags) {
+void terraform(struct starSystem *aStarSystems, struct planet *aPlanets, struct ship *aShips, unsigned short nPlanets, unsigned short nStars,
+	unsigned int flags, unsigned int specialsFlags, unsigned int monsterFlags) {
 
-	unsigned int i;
-		
+	unsigned int i, j;
+	struct planet *ptrPlanet;
+
 	for (i = 0; i!= nPlanets; i++) {
+
 		if (flags & FLG_NOTOXIC && aPlanets[i].nEnvClass == 0)
 			aPlanets[i].nEnvClass = 1;
+
 		if (flags & FLG_NOUPOOR && aPlanets[i].nMineralClass == 0)
 			aPlanets[i].nMineralClass = 1;
+
 		if (flags & FLG_NOLG && aPlanets[i].nPlanetGravity == 0)
 			aPlanets[i].nPlanetGravity = 1;
+
 		if (flags & FLG_NOHG && aPlanets[i].nPlanetGravity == 2)
 			aPlanets[i].nPlanetGravity = 1;
+
 		if (flags & FLG_NOTINY && aPlanets[i].nPlanetSize == 0) {
+
 			if (flags & FLG_NOSMALL)
 				aPlanets[i].nPlanetSize = 2;
+
 			else
 				aPlanets[i].nPlanetSize = 1;
 		}
+
 		if (flags & FLG_NOSMALL && aPlanets[i].nPlanetSize == 1)
 			aPlanets[i].nPlanetSize = 2;
+
+		if (specialsFlags) {
+
+			if (specialsFlags & FLG_SPLINT && aPlanets[i].nPlanetSpecial == SPLINTER_COLONY) {
+
+				aPlanets[i].nPlanetSpecial = GEM_DEPOSITS;
+
+				if (verbose) printf("%s | Splinter\n", aStarSystems[aPlanets[i].nStarID].sName);
+			}
+
+			if (specialsFlags & FLG_ARTI && aPlanets[i].nPlanetSpecial == ANCIENT_ARTIFACTS) {
+
+				aStarSystems[aPlanets[i].nStarID].bArtifactsGaveApp = 1;
+
+				if (verbose) printf("%s | Arti\n", aStarSystems[aPlanets[i].nStarID].sName);
+			}
+		}
+	}
+
+	if (monsterFlags) {
+
+		unsigned char location = 0;
+
+		for (i = 0; i != MAX_SHIPS; i++) {
+
+			if (aShips[i].d.name[0] != 0 && aShips[i].owner > 8) {
+
+				location = aShips[i].location;
+
+				if (verbose) {
+
+			 		printf("%s at %s\n",aShips[i].d.name, aStarSystems[location].sName);
+				}
+
+				//For each planet in this system.
+				for (j = 0; j != 5; j++ ) {
+
+					//If planet exist
+					if (aStarSystems[location].aPlanet[j] != 0xffff) {
+
+						ptrPlanet = &aPlanets[aStarSystems[location].aPlanet[j]];
+
+						if (monsterFlags & FLG_GRAV && ptrPlanet->nMineralClass != ULTRA_RICH) {
+
+							ptrPlanet->nPlanetGravity = 1;
+
+							if (verbose) printf("%s | Gravity\n", aStarSystems[aShips[i].location].sName);
+						}
+
+						if (monsterFlags & FLG_TERRAFORM) {
+
+							if (ptrPlanet->nMineralClass == RICH || ptrPlanet->nMineralClass == ULTRA_RICH) {
+
+								if (ptrPlanet->nEnvClass == TOXIC || ptrPlanet->nEnvClass == RADIATED) {
+
+									ptrPlanet->nEnvClass = BARREN;
+
+									if (verbose) printf("%s | Terraform\n", aStarSystems[aShips[i].location].sName);
+								}
+
+								else if (ptrPlanet->nEnvClass == DESERT) {
+
+									ptrPlanet->nEnvClass = TUNDRA;
+
+									if (verbose) printf("%s | Terraform Tundra\n", aStarSystems[aShips[i].location].sName);
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
 	}
 }
 
-void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned int nSystemID, unsigned int flags) {
-	
+void modifyHW(struct planet *aPlanets, struct starSystem *ptrSystem, unsigned int nSystemID, unsigned int flags) {
+
 	unsigned char i, nDonePlanets = 0, nHwGravity;
 	struct planet *ptrPlanet;
 	char nSetGravity = 0;
@@ -143,18 +199,18 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 
 
 		//Finding HomeWorld planet gravity
-		for ( i = 0; i != 5; i++ ) {
-		
+		for (i = 0; i != 5; i++ ) {
+
 			if ( ptrSystem->aPlanet[i] != 0xffff )
 				if (aPlanets[ptrSystem->aPlanet[i]].nColonyID != 0xffff)
 					nHwGravity = aPlanets[ptrSystem->aPlanet[i]].nPlanetGravity;
 		}
 
 		//Flatting HomeWorld
-		for ( i = 0; i != 5; i++ ) {
-		
+		for (i = 0; i != 5; i++ ) {
+
 			if (ptrSystem->aPlanet[i] != 0xffff && aPlanets[ptrSystem->aPlanet[i]].nColonyID == 0xffff) {
-				
+
 				ptrPlanet = &aPlanets[ptrSystem->aPlanet[i]];
 
 				//Make them abundant
@@ -216,4 +272,9 @@ void modifyHW(struct planet *aPlanets, struct starSystem* ptrSystem, unsigned in
 			}
 		}
 	}
+}
+
+void balanceGalaxy(struct galaxy *galaxy) {
+
+
 }
