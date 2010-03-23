@@ -41,16 +41,16 @@ int main(int argc, char *argv[]) {
 					"			   it become the same gravity as occupied planet, size is set in order\n"
 					"			   Large, Large again, Medium, Small untill\n"
 					"			   there are no more planets to modify. Gaias become Terrain.\n"
-					"			  fixedhw - Implies `flathw`. Planets become: Large Swamp, Large Tundra, Medium Arid, Small Desert."
-					"			  monster - Does the same thing as -sgrav and -sterraform.\n\n"
+					"			  fixedhw - Implies `flathw`. Planets become: Large Swamp, Large Tundra, Medium Arid, Small Desert.\n\n"
 
 					"  -s		Specials Change\n"
 					"			  splint - Splinter replaced by gem deposits.\n"
 					"			  arti - Arti planets still exist, but don't give techs anymore.\n\n"
 
 					"  -m		Monsters Change\n"
-					"  			  grav - Planets, guarded by monster become normal gravity if they are not ultrarich.\n."
-					"			  terraform - Guarded rich & urich planets are terraformed. Toxics and Rads become Barren, Deserts become Tundra\n\n"
+					"  			  grav - Planets, guarded by monster become normal gravity if they are not ultrarich.\n"
+					"			  terraform - Guarded rich & urich planets are terraformed. Toxics and Rads become Barren, Deserts become Tundra.\n"
+					"			  monst - Does the same thing as -mgrav and -mterraform.\n\n"
 
 					"  -b		Balance Galaxy\n"
 					"			  cell - Currently does nothing.\n\n"
