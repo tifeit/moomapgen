@@ -82,12 +82,6 @@ int main(int argc, char *argv[]) {
 				else if (strstr(optarg, "small"))
 							terraformFlags |= FLG_NOSMALL;
 
-				else if (strstr(optarg, "monster")) {
-
-							monsterFlags |= FLG_GRAV;
-							monsterFlags |= FLG_TERRAFORM;
-				}
-
 				else if (strstr(optarg, "flathw"))
 							hwFlags |= FLG_FLATHW;
 
@@ -102,6 +96,7 @@ int main(int argc, char *argv[]) {
 			case 's':
 				if		(strstr(optarg, "splint"))
 							specialsFlags |= FLG_SPLINT;
+
 				else if (strstr(optarg, "arti"))
 							specialsFlags |= FLG_ARTI;
 				else {
@@ -112,9 +107,17 @@ int main(int argc, char *argv[]) {
 			case 'm':
 				if		(strstr(optarg, "grav"))
 							monsterFlags |= FLG_GRAV;
+
 				else if (strstr(optarg, "terraform"))
 							monsterFlags |= FLG_TERRAFORM;
-				else {
+
+				else if (strstr(optarg, "monst")) {
+
+							monsterFlags |= FLG_GRAV;
+							monsterFlags |= FLG_TERRAFORM;
+
+				} else {
+
 						fprintf(stderr, "Unknown Monster parameter %s\n", optarg);
 						exit(1);
 				}
