@@ -1,0 +1,1290 @@
+int variables are 4 bytes
+short int variables are 2 bytes
+
+Buildings                       ID#
+----------                      ---
+"No Building",                  0
+"Alien Control Center",         1
+"Armor Barracks",               2
+"Artemis System Net",           3
+"Astro University",             4
+"Atmosphere Renewer",           5
+"Autolab",                      6
+"Automated Factory",            7
+"Battlestation",                8
+"Capitol",                      9
+"Cloning Center",               10
+"Colony Base",                  11
+"Deep Core Mine",               12
+"Core Waste Dump",              13
+"Dimensional Portal",           14
+"Biospheres",                   15
+"Food Replicators",             16
+"Gaia Transformation",          17
+"Currency Exchange",            18
+"Galactic Cybernet",            19
+"Holo Simulator",               20
+"Hydroponic Farm",              21
+"Marine Barracks",              22
+"Barrier Shield",               23
+"Flux Shield",                  24
+"Gravity Generator",            25
+"Missile Base",                 26
+"Ground Batteries",             27
+"Radiation Shield",             28
+"Stock Exchange",               29
+"Supercomputer",                30
+"Pleasure Dome",                31
+"Pollution Processor",          32
+"Recyclotron",                  33
+"Robotic Factory",              34
+"Research Lab",                 35
+"Robo Miner Plant",             36
+"Soil Enrichment",              37
+"Space Academy",                38
+"Spaceport",                    39
+"Star Base",                    40
+"Star Fortress",                41
+"Stellar Converter",            42
+"Subterranean Farms",           43
+"Terraforming",                 44
+"Warp Interdictor",             45
+"Weather Controller",           46
+"Fighter Garrison",             47
+"Artificial Planet",            48
+
+#define MAX_BUILDINGS           49
+
+
+
+
+//
+// planet climate
+//
+#define TOXIC         0
+#define RADIATED      1
+#define BARREN        2
+#define DESERT        3
+#define TUNDRA        4
+#define OCEAN         5
+#define SWAMP         6
+#define ARID          7
+#define TERRAN        8
+#define GAIA          9
+	
+//
+// planet type
+//
+#define  not_used          0
+#define  ASTEROID          1
+#define  GAS_GIANT         2
+#define  PLANET            3
+#define  not_used          4
+#define  not_used          5
+#define  not_used          6
+#define  not_used          7
+#define  not_used          8
+#define  not_used          9
+#define  MAX_PLANET_TYPES 10
+
+
+#define TINY_PLANET_SIZE      0
+#define SMALL_PLANET_SIZE     1
+#define MEDIUM_PLANET_SIZE    2
+#define LARGE_PLANET_SIZE     3
+#define HUGE_PLANET_SIZE      4
+#define MAX_PLANET_SIZES      5
+
+//
+// mineral resources
+//
+#define ULTRA_POOR            0
+#define POOR                  1
+#define ABUNDANT              2
+#define RICH                  3
+#define ULTRA_RICH            4
+#define MAX_MINERAL_CLASSES   5
+//
+// planet gravity
+//             
+#define LOW_G                 0
+#define NORMAL_G              1
+#define HEAVY_G               2
+#define MAX_PLANET_GRAVITIES  3  
+
+
+//
+// Star spectral class
+//
+#define  B_CLASS                0
+#define  F_CLASS                1
+#define  G_CLASS                2
+#define  K_CLASS                3
+#define  M_CLASS                4
+#define  DWARF_CLASS            5
+#define  BLACK_HOLE_CLASS       6
+#define  MAX_SPECTRAL_CLASSES   7
+
+
+#define NO_SPECIAL                       0
+#define STABLE_WORMHOLE                  1
+#define SPACE_DEBRIS                     2
+#define PIRATE_CACHE                     3
+#define GOLD_DEPOSITS                    4
+#define GEM_DEPOSITS                     5
+#define NATIVES                          6
+#define SPLINTER_COLONY                  7
+#define MAROONED_HERO                    8
+#define SPACE_MONSTER                    9
+#define ANCIENT_ARTIFACTS                10
+#define ORION_STAR_SYSTEM_SPECIAL        11
+#define MAX_SYSTEM_AND_PLANET_SPECIALS   12
+#define MAX_PLANET_SPECIALS              (MAX_SYSTEM_AND_PLANET_SPECIALS)
+
+
+//------------------------------------------
+
+#define MAX_POPS        42
+#define MAX_PLAYERS      8
+#define MAX_RACES       14           
+
+
+#define N_POP_PLAYERS (MAX_PLAYERS+2)
+#define N_POP_RACES (MAX_RACES+2)
+
+// the regular races, plus following:
+
+#define PLAYER_ANDROID  MAX_PLAYERS
+#define PLAYER_NATIVE   (MAX_PLAYERS+1)
+// players are referneced for russ arrays, 
+
+
+#define RACE_ANDROID  MAX_RACES
+#define RACE_NATIVE   (MAX_RACES+1)
+// Races are referenced for the actual values assigned to pop in colony stuff(eric) (display stuff, pictures)
+
+
+LEADER SKILLS
+================
+
+//General Skills                
+#define ASSASSIN                1            
+#define ASSASSIN2               2            
+#define COMMANDO                4                
+#define COMMANDO2               8    
+#define DIPLOMAT                16           
+#define DIPLOMAT2               32           
+#define FAMOUS                  64           
+#define FAMOUS2                 128          
+#define MEGAWEALTH              256          
+#define MEGAWEALTH2             512          
+#define OPERATIONS              1024         
+#define OPERATIONS2             2048         
+#define RESEARCHER              4096         
+#define RESEARCHER2             8192         
+#define SPY_MASTER              16384        
+#define SPY_MASTER2             32768        
+#define TELEPATH                65536         
+#define TELEPATH2               131072        
+#define TRADER                  262144        
+#define TRADER2                 524288        
+
+
+// Ship leader special skills
+#define ENGINEER                1               
+#define ENGINEER2               2               
+#define FIGHTER_PILOT           4      
+#define FIGHTER_PILOT2          8      
+#define GALACTIC_LORE           16    
+#define GALACTIC_LORE2          32    
+#define HELMSMAN                64             
+#define HELMSMAN2               128             
+#define NAVIGATOR               256
+#define NAVIGATOR2              512
+#define ORDNANCE                1024   
+#define ORDNANCE2               2048    
+#define SECURITY                4096        
+#define SECURITY2               8192        
+#define WEAPONRY                16384      
+#define WEAPONRY2               32768      
+                                
+
+//Colony leader Special skills
+#define ENVIRONMENTALIST       1      
+#define ENVIRONMENTALIST2      2      
+#define FARMING_LEADER         4         
+#define FARMING_LEADER2        8         
+#define FINANCIAL_LEADER       16        
+#define FINANCIAL_LEADER2      32        
+#define INSTRUCTOR             64            
+#define INSTRUCTOR2            128           
+#define LABOR_LEADER           256       
+#define LABOR_LEADER2          512       
+#define MEDICINE               1024      
+#define MEDICINE2              2048      
+#define SCIENCE_LEADER         4096      
+#define SCIENCE_LEADER2        8192      
+#define SPIRITUAL_LEADER       16384     
+#define SPIRITUAL_LEADER2      32768     
+#define TACTICS                65536        
+#define TACTICS2               131072       
+
+
+//Leader status
+#define OFFICER_DEAD            (-2)
+#define OFFICER_NOT_IN_USE      (-1)  //an unassigned mercenary
+#define OFFICER_IN_POOL          0
+#define OFFICER_ASSIGNED         1
+#define OFFICER_UNASSIGNED       2      //in limbo between pool and ship 
+#define OFFICER_BEING_CLONED     3      //not used
+#define OFFICER_WAITING          4      //in queue, not in pool or assigned...no maintenance 
+#define OFFICER_MAROONED         5      //assigned to a planet , or, in the case of SHIP heroes, just not assigned.
+
+
+Player struct
+
+//current government
+-------------------------------------
+#define  FEUDAL_GOVT                0
+#define  CONFEDERATION_GOVT         1
+#define  DICTATORSHIP_GOVT          2
+#define  IMPERIUM_GOVT              3
+#define  DEMOCRACY_GOVT             4
+#define  FEDERATION_GOVT            5
+#define  UNIFICATION_GOVT           6
+#define  GALACTIC_UNIFICATION_GOVT  7
+
+
+#define  XENOPHOBIC_PERSONALITY  0
+#define  RUTHLESS_PERSONALITY    1
+#define  AGGRESSIVE_PERSONALITY  2
+#define  ERRATIC_PERSONALITY     3
+#define  HONORABLE_PERSONALITY   4
+#define  PACIFISTIC_PERSONALITY  5
+#define  DISHONORED_PERSONALITY  6
+
+#define  DIPLOMAT_OBJECTIVE      0
+#define  MILITARIST_OBJECTIVE    1
+#define  EXPANSIONIST_OBJECTIVE  2
+#define  TECHNOLOGIST_OBJECTIVE  3
+#define  INDUSTRIALIST_OBJECTIVE 4
+#define  ECOLOGIST_OBJECTIVE     5
+#define  HUMAN_PLAYER            100
+
+
+enum {
+   maintenance_building,
+   maintenance_freighter,
+   maintenance_ship,
+   maintenance_spy,
+   maintenance_tribute,
+   maintenance_leader,
+   n_maintenance_classes
+};
+
+
+TECHNOLOGY FIELDS
+
+"Starting Tech",                        0
+"Advanced Biology",                     1
+"Advanced Chemistry",                   2
+"Advanced Construction",                3
+"Advanced Engineering",                 4
+"Advanced Fusion",                      5
+"Advanced Governments",                 6
+"Advanced Magnetism",                   7
+"Advanced Manufacturing",               8
+"Advanced Metallurgy",                  9
+"Military Tactics",                     10
+"Advanced Robotics",                    11
+"Teaching Methods",                     12
+"Anti-Matter Fission",                  13
+"Artificial Consciousness",             14
+"Artificial Intelligence",              15
+"Artificial Gravity",                   16
+"Artificial Life",                      17
+"Astro Biology",                        18
+"Astro Construction",                   19
+"Astro Engineering",                    20
+"Capsule Construction",                 21
+"Chemistry",                            22
+"Cold Fusion",                          23
+"Cybertechnics",                        24
+"Cybertronics",                         25
+"Distortion Fields",                    26
+"Electromagnetic Refraction",           27
+"Electronics",                          28
+"Engineering",                          29
+"Evolutionary Genetics",                30
+"Fusion Physics",                       31
+"Galactic Economics",                   32
+"Galactic Networking",                  33
+"Genetic Engineering",                  34
+"Genetic Mutations",                    35
+"Gravitic Fields",                      36
+"High Energy Distribution",             37
+"Hyper Dimensional Fission",            38
+"Hyper Dimensional Physics",            39
+"Interphased Fission",                  40
+"Ion Fission",                          41
+"Superscalar Construction",             42
+"Macro Economics",                      43
+"Macro Genetics",                       44
+"Magneto Gravitics",                    45
+"Matter Energy Conversion",             46
+"Molecular Compression",                47
+"Molecular Control",                    48
+"Moleculatronics",                      49
+"Molecular Manipulation",               50
+"Multi-Dimensional Physics",            51
+"Multi-Phased Physics",                 52
+"Nano Technology",                      53
+"Neutrino Physics",                     54
+"Nuclear Fission",                      55
+"Optronics",                            56
+"Physics",                              57
+"Planetoid Construction",               58
+"Plasma Physics",                       59
+"Positronics",                          60
+"Quantum Fields",                       61
+"Robotics",                             62
+"Servo Mechanics",                      63
+"Subspace Fields",                      64
+"Subspace Physics",                     65
+"Tachyon Physics",                      66
+"Tectonic Engineering",                 67
+"Temporal Fields",                      68
+"Temporal Physics",                     69
+"Trans Genetics",                       70
+"Transwarp Fields",                     71
+"Warp Fields",                          72
+"Xeno Relations",                       73
+"Antaran Technology",                   74
+"Hyper Biology",                        75
+"Hyper Power",                          76
+"Hyper Physics",                        77
+"Hyper Construction",                   78
+"Hyper Fields",                         79
+"Hyper Chemistry",                      80
+"Hyper Computers",                      81
+"Hyper Sociology",                      82
+
+#define  MAX_TECH_FIELDS                83
+
+
+TECHNOLOGY APPLICATIONS
+
+"No Tech",                              0
+"Achilles Targeting Unit",              1
+"Adamantium Armor",                     2
+"Advanced City Planning",               3
+"Advanced Damage Control",              4
+"Alien Management Center",              5
+"Android Farmers",                      6
+"Android Scientists",                   7
+"Android Workers",                      8
+"Anti-Grav Harness",                    9
+"Anti-Matter Bomb",                     10
+"Anti-Matter Drive",                    11
+"Anti-Matter Torpedoes",                12
+"Anti-Missile Rockets",                 13
+"Armor Barracks",                       14
+"Artemis System Net",                   15
+"Planet Construction",                  16
+"Assault Shuttles",                     17
+"Astro University",                     18
+"Atmospheric Renewer",                  19
+"Augmented Engines",                    20
+"Autolab",                              21
+"Automated Factories",                  22
+"Automated Repair Unit",                23
+"Battleoids",                           24
+"Battle Pods",                          25
+"Battle Scanner",                       26
+"Battlestation",                        27
+"Bio-Terminator",                       28
+"Biomorphic Fungi",                     29
+"Black Hole Generator",                 30
+"Bomber Bays",                          31
+"Capitol",                              32
+"Class I Shield",                       33
+"Class III Shield",                     34
+"Class V Shield",                       35
+"Class VII Shield",                     36
+"Class X Shield",                       37
+"Cloaking Device",                      38
+"Cloning Center",                       39
+"Colony Base",                          40
+"Colony Ship",                          41
+"Confederation",                        42
+"Cyber-Security Link",                  43
+"Cybertronic Computer",                 44
+"Damper Field",                         45
+"Dauntless Guidance System",            46
+"Death Ray",                            47
+"Death Spores",                         48
+"Deep Core Mining",                     49
+"Core Waste Dumps",                     50
+"Deuterium Fuel Cells",                 51
+"Dimensional Portal",                   52
+"Displacement Device",                  53
+"Disrupter Cannon",                     54
+"Doom Star Construction",               55
+"Reinforced Hull",                      56
+"Ecm Jammer",                           57
+"Electronic Computer",                  58
+"Emissions Guidance System",            59
+"Energy Absorber",                      60
+"Biospheres",                           61
+"Evolutionary Mutation",                62
+"Extended Fuel Tanks",                  63
+"Fast Missile Racks",                   64
+"Federation",                           65
+"Fighter Bays",                         66
+"Fighter Garrison",                     67
+"Food Replicators",                     68
+"Freighters",                           69
+"Fusion Beam",                          70
+"Fusion Bomb",                          71
+"Fusion Drive",                         72
+"Fusion Rifle",                         73
+"Gaia Transformation",                  74
+"Galactic Currency Exchange",           75
+"Galactic Cybernet",                    76
+"Galactic Unification",                 77
+"Gauss Cannon",                         78
+"Graviton Beam",                        79
+"Gyro Destabilizer",                    80
+"Hard Shields",                         81
+"Heavy Armor",                          82
+"Heavy Fighter Bays",                   83
+"Heightened Intelligence",              84
+"High Energy Focus",                    85
+"Holo Simulator",                       86
+"Hydroponic Farm",                      87
+"Hyper Drive",                          88
+"Megafluxers",                          89
+"Hyper-X Capacitors",                   90
+"Hyperspace Communications",            91
+"Imperium",                             92
+"Inertial Nullifier",                   93
+"Inertial Stabilizer",                  94
+"Interphased Drive",                    95
+"Ion Drive",                            96
+"Ion Pulse Cannon",                     97
+"Iridium Fuel Cells",                   98
+"Jump Gate",                            99
+"Laser Cannon",                         100
+"Laser Rifle",                          101
+"Lightning Field",                      102
+"Marine Barracks",                      103
+"Mass Driver",                          104
+"Mauler Device",                        105
+"Merculite Missile",                    106
+"Microbiotics",                         107
+"Microlite Construction",               108
+"Outpost Ship",                         109
+"Moleculartronic Computer",             110
+"Multi-Wave Ecm Jammer",                111
+"Multi-Phased Shields",                 112
+"Nano Disassemblers",                   113
+"Neural Scanner",                       114
+"Neutron Blaster",                      115
+"Neutron Scanner",                      116
+"Neutronium Armor",                     117
+"Neutronium Bomb",                      118
+"Nuclear Bomb",                         119
+"Nuclear Drive",                        120
+"Nuclear Missile",                      121
+"Optronic Computer",                    122
+"Particle Beam",                        123
+"Personal Shield",                      124
+"Phase Shifter",                        125
+"Phasing Cloak",                        126
+"Phasor",                               127
+"Phasor Rifle",                         128
+"Planetary Barrier Shield",             129
+"Planetary Flux Shield",                130
+"Planetary Gravity Generator",          131
+"Planetary Missile Base",               132
+"Ground Batteries",                     133
+"Planetary Radiation Shield",           134
+"Planetary Stock Exchange",             135
+"Planetary Supercomputer",              136
+"Plasma Cannon",                        137
+"Plasma Rifle",                         138
+"Plasma Torpedoes",                     139
+"Plasma Web",                           140
+"Pleasure Dome",                        141
+"Pollution Processor",                  142
+"Positronic Computer",                  143
+"Powered Armor",                        144
+"Pulse Rifle",                          145
+"Proton Torpedoes",                     146
+"Psionics",                             147
+"Pulsar",                               148
+"Pulson Missile",                       149
+"Quantum Detonator",                    150
+"Rangemaster Unit",                     151
+"Recyclotron",                          152
+"Reflection Field",                     153
+"Robotic Factory",                      154
+"Research Laboratory",                  155
+"Robo-Miners",                          156
+"Space Scanner",                        157
+"Scout Lab",                            158
+"Security Stations",                    159
+"Sensors",                              160
+"Shield Capacitors",                    161
+"Soil Enrichment",                      162
+"Space Academy",                        163
+"Spaceport",                            164
+"Spatial Compressor",                   165
+"Spy Network",                          166
+"Standard Fuel Cells",                  167
+"Star Base",                            168
+"Star Fortress",                        169
+"Star Gate",                            170
+"Stasis Field",                         171
+"Stealth Field",                        172
+"Stealth Suit",                         173
+"Stellar Converter",                    174
+"Structural Analyzer",                  175
+"Sub-Space Communications",             176
+"Sub-Space Teleporter",                 177
+"Subterranean Farms",                   178
+"Survival Pods",                        179
+"Tachyon Communications",               180
+"Tachyon Scanner",                      181
+"Telepathic Training",                  182
+"Terraforming",                         183
+"Thorium Fuel Cells",                   184
+"Time Warp Facilitator",                185
+"Titan Construction",                   186
+"Titanium Armor",                       187
+"Tractor Beam",                         188
+"Transport",                            189
+"Transporters",                         190
+"Tritanium Armor",                      191
+"Troop Pods",                           192
+"Universal Antidote",                   193
+"Urridium Fuel Cells",                  194
+"Virtual Reality Network",              195
+"Warp Dissipater",                      196
+"Warp Interdictor",                     197
+"Weather Control System",               198
+"Wide Area Jammer",                     199
+"Xeno Psychology",                      200
+"Xentronium Armor",                     201
+"Zeon Missile",                         202
+"Zortrium Armor",                       203
+"Hyper Biology",                        204
+"Hyper Power",                          205
+"Hyper Physics",                        206
+"Hyper Construction",                   207
+"Hyper Fields",                         208
+"Hyper Chemistry",                      209
+"Hyper Computers",                      210
+"Hyper Sociology",                      211
+
+#define  MAX_TECH_APPLICATIONS         212
+
+
+===================
+----   SHIPS   ----
+===================
+
+//SHIP SIZES
+#define  SMALL_SHIP              0
+#define  MEDIUM_SHIP             1
+#define  LARGE_SHIP              2
+#define  HUGE_SHIP               3
+#define  TITAN_SHIP              4
+#define  DOOM_STAR_SHIP          5
+
+
+// values for ship type field:
+#define  COMBAT_SHIP_TYPE         0
+#define  COLONY_SHIP_TYPE         1
+#define  TRANSPORT_SHIP_TYPE      2
+#define  UNUSED                   3
+#define  OUTPOST_SHIP_TYPE        4
+
+
+Weapon Specials 
+-----------------
+#define  NO_MODS                1     
+#define  HEAVY_MOUNT            2     
+#define  POINT_DEFENSE          4     
+#define  ARMOR_PIERCING         8     
+#define  CONTINUOUS             16    
+#define  NO_RANGE_DISSIPATION   32    
+#define  SHIELD_PIERCING        64    
+#define  AUTO_FIRE              128   
+#define  ENVELOPING             256   
+#define  MIRV                   512   
+#define  ECCM                   1024  
+#define  HEAVILY_ARMORED        2048  
+#define  FAST                   4096  
+#define  EMMISIONS_GUIDANCE     8192  
+#define  OVERLOADED            16384  
+
+
+struct s_ship_weapons {
+   short int  type;
+   char       count;
+   char       current_count;      // damaged if < count
+   char       firing_arc;         // 1-F, 2-FX, 4-Bx, 8-B, 16-360
+   short int  specials;           // bit vector
+   char       ammo;               // valid for missiles only
+};
+
+
+struct s_ship_design {
+   char  name[16];
+   char  size;
+   char  ship_type;
+   char  shield_type;
+   char  ftl_type;
+   char  speed;          
+   char  computer_type;
+   char  armor_type;
+   char  special_device_flags[(MAX_SPECIALS+7)/8];
+   struct s_ship_weapons ship_weapon[MAX_SHIP_WEAPONS];
+   char  picture_num;           
+   char  previous_owner;
+   short int  cost;
+   unsigned char combat_speed;
+   unsigned short int  date_of_design;
+}
+
+
+
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+-----                           SAVE FORMAT START                       -------------
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+
+
+int     version
+char    description[37] - save game description
+int     game type       - 0:Single Player, 1:Hotseat, 2:Network, 3:Modem
+
+
+char  end_of_turn_summary;           
+char  end_of_turn_wait;
+char  random_events;
+char  enemy_moves;
+char  expanding_help;
+char  auto_select_ships;
+char  animations_on;
+char  auto_select_colony;
+char  show_relocation_lines;
+char  show_gnn_report;
+char  auto_delete_tg_housing; 
+char  auto_saves;
+
+char  only_show_serious_turn_summary_reports; 
+
+char  ship_initiative; 
+char  option_14;
+char  option_15;
+char  option_16; 
+
+char sound_fx_on;    
+char sound_fx_level;
+char music_on;       
+char music_level;  
+signed char active_save_slot;
+unsigned char  multi_player_game_type; 
+
+char net_game_name[NET_GAME_NAME_LENGTH + 1]; //9 bytes
+struct s_modem_comm modem_settings;           //131 bytes
+struct s_modem_init_string modem_init_string; //11 bytes
+
+char  combat_speed_flag;
+char  combat_legal_moves_flag;
+char  combat_msl_impact_flag;
+char  combat_shield_arcs_flag;
+char  combat_grid_flag; 
+
+char filler1[25];
+uchar language; 
+char xenons_exist_flag;        
+char game_difficulty;            
+char number_of_players;          
+char galaxy_size;                
+char galaxy_age;     
+char strategic_combat_flag;
+char starting_civilization_level;
+unsigned long start_of_game_seed;
+
+short int  sound_toggle;               
+short int  mouse_driver;          
+
+short int  release_version;
+
+char        dummy[10][20];
+short int   dummy[10];
+short int   dummy[10];
+char        dummy[10];
+uchar       filler2[75];
+
+unsigned long  random_seed
+
+short int current_colony_count;
+
+===========================================
+===========================================
+
+250 Colony records
+
+
+struct s_colony {
+
+   char       owner;                         // 0..NUM_PLAYERS or -1
+   char       allocated_to;                  // bookeeping
+   short int  planet;                        // planet id
+   short int  officer;                       // not used 
+
+   char  outpost_flag;                   // TRUE if an outpost
+
+   char  morale;                       // morale bonus +/-
+   short int  pollution;                     // production lost to pollution
+
+   char  n_pops;                       // total population
+   char  specialty;                    // Colony specialty used in display only
+
+   ----------
+   //   struct Pop_Info {
+   //           unsigned player:4;           // player id or POP_ANDROID or POP_NATIVE
+   //           unsigned loyalty:3;          // player id
+   //           unsigned job:2;              // 0-farmer, 1-worker, 2-scientist
+   //           unsigned employed:1;
+   //           unsigned conquered:1;        // true iff loyalty != colony owner
+   //   };
+   ----------
+   struct Pop_Info pop[MAX_POPS];       //
+
+   short int   pop_roundoff[N_POP_PLAYERS];  // K toward next pop unit for each race
+   short int   pop_growth[N_POP_PLAYERS];    // each race grows independently
+
+   char  n_turns_existed;               // bookeeping
+   char  food2_per_farmer;              // Food per farmer in half-units of food
+   char  industry_per_worker;
+   uchar  research_per_scientist;
+   char  max_farms;                     // 
+   char  max_population;
+   char  climate;
+
+   short int   ground_strength;         // calculated for ai
+   short int   space_strength;          // calculated for ai
+
+   short int   total_production[3];     // gross amount produced  0-food, 1-industry, 2-research
+   char  maintenance[3];                // how much is spent feeding people/androids 0-food, 1-industry, 2-research
+
+   short int   imports[3];              // + means importing, - means surplus
+                                        // (surplus exported only if unblockaded)
+
+   char n_industry_recyclers;           // for recycling pollution reduction
+
+   // for parcelling out food/metal in priority ordering:
+   // counted in half units due to cybernetic woes.
+   char food2_needed_for_our_empire;                   //-------------------------------
+   char food2_needed_for_assimilated;                  //
+   char food2_needed_for_conquered;                    //
+   char food2_needed_for_natives;                      //these are all bookeeping entries
+   char industry2_needed_for_our_empire;               //
+   char industry2_needed_for_androids;                 //
+   char industry2_needed_for_assimilated;              //
+   char industry2_needed_for_conquered;                //
+   char food2_needed_for_empire[MAX_PLAYERS];          //
+   char industry2_needed_for_empire[MAX_PLAYERS];      //
+   char n_food_replicated;                             //
+
+   short int  producing[7];                            // building queue
+   short int  just_produced;                           // if not -1, then colony completed this product last turn
+   short int  production_spent;
+   short int  n_industry_taxed;
+   char       auto_building;
+   short int  production_surplus;                      // for when production is changed
+   short int  bought_outright;                         // amount of production bought
+                                                       //---------------------------
+
+   char occupation_points;                             // 240 points to assimilate 1 pop.
+   char occupation_policy;                             // 0-genocide , 3-normal
+
+   // military
+   short int military[2];                              // 0-infantry, 1-tanks
+   char tank_roundoff;
+   char infantry_roundoff;
+
+   char buildings[MAX_BUILDINGS];
+   unsigned short int last_turn_building_destroyed;
+};
+
+
+===========================================
+===========================================
+
+360 Planet records
+
+struct s_planet_data {  
+   short int  colony_index;             //-1 = NONE
+   char  star_index;                    
+   char  orbit;
+   char  planet_type;   
+   char  size;
+   char  gravity_class;
+   char  group;                         //not used
+   char  climate;
+   char  climate_bg_type;               //display background  (0, 1, or 2)
+   char  mineral_class;                 
+   char  food_per_farmer;
+   char  n_terraforms;
+   char  max_farms;
+   char  max_population;
+   char  planet_special;
+   char  environmental_alterations;     // bitvector permanent planet alterations  
+                                        // 2 - Soil Enrichment is the only one in use.
+};
+
+
+===========================================
+===========================================
+
+72 (MAX_STARS) Star Records
+
+struct s_star_data {
+   char  name[15];
+   short int  x;                                        // x coordinate of star
+   short int  y;                                        // y coordinate of star
+   char  size;                                          //display type (0,1, or 2)
+   char  owner;
+   char  pict_type;                                     
+   char  spectral_class;                                // star color
+   char  last_planet_selected[MAX_PLAYERS];             // bookeeping
+   char  black_hole_blocks[(MAX_STARS + 7) / 8];        // precomputed bitfield if bit is set there is a black hole between the stars.
+   char  system_special;                                // NO_SPECIAL is valid
+   char  wormhole_star_id;                              //NONE is valid
+   char  blockaded;     // bitvector tells whether each player is blockaded
+                        // e.g. TEST_BIT(blockaded, i) tells whether i is blockaded by anyone
+                        // this is NOT superseded by blockaded_by because nonplayer monsters & antarans can also blockade a player
+   char blockaded_by[MAX_PLAYERS]; // indexed by player, bitvector tells whether given player blockades index player
+                                   // e.g. TEST_BIT(blockaded_by[i], j) tells whether i is blockaded by j
+                                   // this is for diplomacy so AI can tell which players are blockading them at a star
+   char visited;                   // bitvector tells whether each player has ever visited
+   char just_visited;              // bitvector tells whether each player 1st visited on prev turn & should get report
+   char ignore_colony_ships; // bitvector tells if each player requested ignore colony ships
+                             // reset each time a new colony ship enters star
+   char ignore_combat_ships; // bitvector tells if each player requested ignore combat ships
+                             // (the much requested "don't make me hit Only Blockade" feature)
+                             // reset each time a new combat ship enters star
+   char colonize_player;     // 0..7 or -1 
+   char has_colony;          // bitvector tells whether each player has a colony
+   char has_warp_field_interdictor; // bitvector tells whether each player has a wfi in system
+   char next_wfi_in_list;           // bookeeping
+   char has_tachyon;                // bitvector tells whether each player has a tachyon
+   char has_subspace;               // bitvector tells whether each player has a subspace
+   char has_stargate;               // bitvector tells whether each player has a stargate
+   char has_jumpgate;               // bitvector tells whether each player has a jumpgate
+   char has_artemis_net;            // bitvector
+   char has_dimensional_portal;     // bitvector
+
+   char is_stagepoint;              // bitvector tells whether star is stagepoint for each AI
+   char officer_index[MAX_PLAYERS]; //officers are now at stars and not colonies
+   int planet_index[5];
+   int relocate_ship_to[MAX_PLAYERS]; //star index all ships will be relocated TO
+   char not_used;                     //
+   char not_used;                     //
+   char not_used;                     //
+   char surrender_to[MAX_PLAYERS];    // normally -1, else player to give colonies to
+   char in_nebula;                    // is this star in a nebula?
+   char artifacts_gave_app;           // has the ancient artifacts app been given out yet?
+};
+
+===========================================
+===========================================
+
+67 leader records
+
+struct s_leader_data {
+        char            name[15];
+        char            title[20];
+        char            type;           //0-ship 1-colony
+        short int       xp;
+        unsigned int    general_skills; //bitvector for general skills
+        unsigned int    special_skills; //bitvector includes either ship || colony skills
+        unsigned char   tech_application[3];    // Application id's of inherent techs
+        char            pict_num;
+
+        short int  skill_value;             //  
+        char       level;                   //
+        short int  location;                //
+        char       eta;                     //
+        char       display_level_popup;     //if TRUE, draw officer-made-level popup
+        char       status;                  //
+        char       player_index;            //
+};
+
+===========================================
+===========================================
+
+8 Player records
+
+struct   s_player
+ {
+   char  picture;
+   char  name[20];
+   char  race_name[15];
+   char  eliminated;
+   char  race;
+   char  color;
+   char  personality;
+   char  objectives;            
+   short int home_planet_id;
+
+   short int network_player_id;         //bookeeping
+   char  player_done_flags;             //bookeeping
+
+   unsigned short int  dead_field;
+   char  research_breakthrough;         // did they complete a field this turn?
+
+   char  tax_rate;                      // taxes are 0,10,20,30,40,50% of industry production
+   int   bc;                            // our current amount of cash
+
+   short int  n_freighters;
+   short int  surplus_freighters;       //bookeeping
+
+   short int command_points;
+   short int command_points_used;
+
+   // sum of following 3 should be <= n_freighters * FREIGHTER_CAPACITY
+   short int  food_freighted;
+   short int  settlers_freighted;       // # settlers enroute, stored in settlers array:
+
+//        struct Settler_Info {
+//              unsigned source_colony:8; // colony id or MAX_COLONIES if already in space (cannot be redirected)
+//              unsigned dest_planet:8;   // planet id
+//              unsigned player:4;        // player id or POP_ANDROID or POP_NATIVE
+//              unsigned eta:4;           // if settler, takes this many turns to arrive
+//              unsigned job:2;
+//        };
+
+
+   struct Settler_Info settlers[25]; // slots < settlers_freighted are current settlers
+
+   short int  total_pop;                  // of all our colonies
+
+   // total amounts produced by all colonies this turn:
+   short int  food_produced;
+   short int  industry_produced;
+   short int  research_produced;
+   short int  bc_produced;
+
+   // following are >0 if we had extra, <0 if we were short, this turn:
+   short int  surplus_food; // only accounting for unblockaded colonies
+   short int  surplus_bc;
+
+   // maintenance bc costs:
+   int total_maintenance;
+   short int maintenance[n_maintenance_classes]; // sum == total_maintenance
+
+   char  tech_fields[MAX_TECH_FIELDS];              // 0-UNRESEARCHABLE, 1-NOT_KNOWN, 2-ON_RESEARCH_LIST, 3-KNOWN            
+   char  tech_applications[MAX_TECH_APPLICATIONS];  // 0-UNRESEARCHABLE, 1-NOT_KNOWN, 2-ON_RESEARCH_LIST, 3-KNOWN  
+
+   int   research_accumulated;
+   char  captured_orion;
+   char  captured_antares;
+   char  won_council_vote;
+   int   player_defeated[MAX_PLAYERS]; //stardate or 0
+   unsigned short int captured_population;
+   char  last_attacker;
+
+   char  ship_design_theme;      //AI FIELDS
+   char  ship_special_theme;     //AI FIELDS
+   char  tech_apps_learned[4];   //bookeeping
+   char  tech_modifiers[17];     //not in use
+
+   char hyper_advanced_tech[8];  // LEVEL of hyper advanced tech achieved.
+
+   int total_known_tech_cost;    // for history display
+
+   char knows_racial_stats;      //not used
+
+   int last_tech_report_date[MAX_PLAYERS];  //not used
+
+   // bitfields, tell whether given player knows the app:
+   uchar player_tech_applications[MAX_PLAYERS][(MAX_TECH_APPLICATIONS + 7) / 8];
+
+
+   char  current_research_field;        // should be > 0, indicating which field
+   char  current_research_application;  // 
+   char  got_new_app;                   // within the last turn; causes AI to redecide field to research
+
+   int   ship_range;
+
+   struct s_ship_design  ship_designs[6];
+   short int  ships_built[6];
+
+   char  contact[MAX_PLAYERS];
+   char just_established_contact;       // bitvector by player index
+   char n_times_established_contact[MAX_PLAYERS];
+   char  within_range[MAX_PLAYERS];     // tells if this player can reach that player
+                                        // (contact is symmetric, within_range is not)
+
+   char do_not_research;        // should the AI quit researching from now on?
+
+   schar offensive_stagepoint;  //AI FIELD
+
+   uchar best_ftl_drive;
+   uchar ship_speed;
+
+   char officer_for_hire;       // -1 or id of available officer this turn
+
+   short int n_trade_pops;
+   short int current_trade_agreement_level[MAX_PLAYERS];
+   short int trade_agreement_goal[MAX_PLAYERS];
+
+   short int n_research_pops;
+   short int current_research_agreement_level[MAX_PLAYERS];
+   short int research_agreement_goal[MAX_PLAYERS];
+
+   char fighter_beam_type; 
+   char fighter_bomb_type; 
+
+
+   short int  total_research;                           //AI Field
+   short int  total_ships;                              //AI Field
+   unsigned long int total_ship_strength[MAX_PLAYERS];  //AI Field
+   short int  total_colonies;                           //AI Field
+   char  failed_to_expand;                              //AI Field
+
+
+//อออออออdiplomacy stuff ออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+   char  first_contact[MAX_PLAYERS];
+   char  relations[MAX_PLAYERS];
+   char  base_relations[MAX_PLAYERS];
+
+   char  treaty[MAX_PLAYERS];  
+   char  trade_treaty[MAX_PLAYERS];
+   char  research_treaty[MAX_PLAYERS];
+   short int  tribute_treaty[MAX_PLAYERS];
+
+   char  diplomacy_incident[MAX_PLAYERS];
+   char  diplomacy_message[MAX_PLAYERS];
+   short int  diplomacy_severity[MAX_PLAYERS];
+   short int  diplomacy_value[MAX_PLAYERS];
+   short int  diplomacy_system[MAX_PLAYERS];
+
+   short int  treaty_modifier[MAX_PLAYERS];
+   short int  trade_modifier[MAX_PLAYERS];
+   short int  tech_exchange_modifier[MAX_PLAYERS];
+   short int  peace_modifier[MAX_PLAYERS];
+
+   char  last_bad_diplomatic_incident[MAX_PLAYERS];
+   char  broken_treaties_modifier[MAX_PLAYERS];
+   char  last_broken_treaty[MAX_PLAYERS];
+   char  last_gift[MAX_PLAYERS];
+
+   short int  ship_war_losses[MAX_PLAYERS];          // 1) small, 2) medium, 3) large, etc.
+   short int  colony_war_losses[MAX_PLAYERS];        // 1/killed or captured colonist + 10/captured or destroyed colony
+   char  biological_weapons_flag[MAX_PLAYERS];       // T/F killed a colonist on one of your colonies
+   char  time_since_last_attack[MAX_PLAYERS];        // when I attack X, set [X] to 0
+
+   char  threats[MAX_PLAYERS];
+   char  dishonored_flag[MAX_PLAYERS];
+   char  peace_duration[MAX_PLAYERS];
+   short int  last_turn_diplomacy_severity[MAX_PLAYERS];
+   char  last_broken_treaty_type[MAX_PLAYERS];
+
+   char  last_turn_treaty[MAX_PLAYERS];
+
+   char  diplomacy_proposal_request[MAX_PLAYERS];          // 0) none, 1) First Offer, 2) Second Offer, 3) First Offer, Better 2nd Offer
+   char  diplomacy_proposal_tribute_bribe[MAX_PLAYERS];    // 0) none, 1) 5%/year,     2) 10%/year      10% tribute for better offer
+   char  diplomacy_proposal_tech_bribe1[MAX_PLAYERS];      //
+   char  diplomacy_proposal_tech_bribe2[MAX_PLAYERS];      // better offer technology or
+   short int  diplomacy_proposal_gold_bribe[MAX_PLAYERS];       // +50% for better offer
+   char  diplomacy_proposal_war_player[MAX_PLAYERS];
+   int   diplomacy_proposal_exchange_max_value[MAX_PLAYERS]; // tech exchange max value
+   char  diplomacy_proposal_exchange_tech[MAX_PLAYERS];      // tech exchange max value
+   short int  diplomacy_proposal_system_bribe[MAX_PLAYERS];   
+
+   short int  sneak_attack_planet;
+   char  sneak_attack_message;
+   char  sneak_attack_player; // planet's ownership could have changed before we arrive
+
+   char  council_threat;
+   short int  reward_amount[MAX_PLAYERS];
+   char  reward_tech[MAX_PLAYERS];
+   char  reward_attack_player[MAX_PLAYERS];
+
+
+   short int  food_shortage_duration;
+
+   char  trust_worthiness[MAX_PLAYERS];
+   char  trust_breaker_player[MAX_PLAYERS];
+   char  trust_breaker_treaty[MAX_PLAYERS];
+
+   char  stop_spying_duration[MAX_PLAYERS];
+   char  stop_blockading_duration[MAX_PLAYERS];
+   char  war_buildup_duration; // nonzero means prepare for starting war in future
+
+   short int  last_diplomacy_proposal_turn[MAX_PLAYERS];
+   short int  diplomacy_proposal_rejection[MAX_PLAYERS];
+
+   short int  opportunity_planet_num[MAX_PLAYERS];
+   short int  opportunity_planet_value[MAX_PLAYERS];
+   int  opportunity_actual_attacker_ratio[MAX_PLAYERS];
+
+      
+   //these are padding...
+   short int  temp_diplomacy_dummy1[MAX_PLAYERS];
+
+   char  diplomacy_demand_rejection_message[MAX_PLAYERS];
+
+   char  last_diplomacy_threat_turn[MAX_PLAYERS];
+
+   schar delayed_diplomacy_orders[MAX_PLAYERS]; // 10/9 by Russ
+         // can be NONE, or DELAYED_DECLARE_WAR, DELAYED_MAKE_PEACE, DELAYED_BREAK_ALLIANCE
+
+//ออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออ
+   char current_government;
+   char pop_growth_bonus;
+   char food_bonus;
+   char production_bonus;
+   char research_bonus;
+   char tax_bonus;
+   char ship_defense;
+   char ship_attack;
+   char ground_combat_bonus;
+   char spying_bonus;
+
+   char  low_g_world;
+   char  heavy_g_world;
+   char  aquatic;
+   char  subterranean;
+   char  large_home_world;
+   char  rich_home_world;
+   char  ancient_home_world;
+   char  cybernetic;
+   char  eats_minerals;
+   char  repulsive;
+   char  charismatic;
+   char  uncreative;
+   char  creative;
+   char  environment_immune;
+   char  fantastic_traders;
+   char  telepathic;
+   char  lucky;
+   char  omniscience;
+   char  stealthy_ships;
+   char  trans_dimensional;
+   char  warlord;
+
+   // when they get evolution tech, players will interact with race screen
+   // during start-o-turn reports, then during the next turn calc the
+   // selected changes will be applied:  Meanwhile, they are briefly stored here:
+   char   evolutionary_upgrade[31];
+   char   picked_evolutionary_upgrade;  // false until they get evolution tech and pick new racial stats
+   char   applied_evolutionary_upgrade; // false until they get evolution tech and new racial stats are actually applied
+
+// Elemental history arrays:
+   unsigned char  fleet_history[350];
+   unsigned char  tech_history[350];
+   unsigned char  population_history[350];
+   unsigned char  production_history[350];
+
+   uchar  spies[MAX_PLAYERS]; 
+   char  history_btns;         //1-bit flags for history graph buttons
+   char  ignoring;             //Set a bit to ignore a player
+
+   char  peace_flags[MAX_PLAYERS];
+   uchar cheated;                       //bitfield
+   uint  stardate_last_offered_hero;
+   char  current_zoom_level;            //
+   sint  cur_map_x;                     // for hotseat games to restore mainscrn map
+   sint  cur_map_y;                     //
+   char council_voted_for;
+   schar surrender_to;                  // normally -1, else a player id
+   short int time_since_last_lucky_event;
+   char  has_galactic_lore;
+   uchar warned_about_cheating_player;  //BITFIELD based on player num
+   uchar cheated_this_turn;             //0 == didn;t cheat this turn
+   int tribute_income;
+   char filler[45];                     // not used
+} ;
+
+
+
+===========================================
+===========================================
+
+
+
+500 ship records
+
+
+struct s_ship_data { 
+
+   struct s_ship_design d;
+   char       owner;
+   char       status;
+   short int  location;
+   short int  x;
+   short int  y;
+   char       group_has_navigator; // does the moving group have navigator?
+   char       travelling_speed;    // possibly less than ftl_type
+   char       turns_left;          // until arrival 
+
+   char       shield_damage_percent;
+   char       drive_damage_percent;
+   char       computer_damage;
+
+
+   char       crew_quality;
+   short int  crew_experience;
+   short int  officer_index;
+   char       special_device_damage_flags[5];  //bit vector Set if Special is damaged
+   short int  armor_damage;
+   short int  structural_damage;
+   char       mission;                  // AI Field
+   char       just_built;
+};	s
+
+
+===========================================
+===========================================
+
+3316 bytes of miscellaneous bookeeping stuff
+
+===========================================
+===========================================
+
+   short int  council_flag;
+   short int  next_council_meeting_turn;
+
+   short int  not_used[5];
+
+   struct s_antarans
+   {
+        sint invasion_chance;                          
+
+        sint off_resource_level;                       //resources used to buy new ships
+        sint def_resource_level;                       //2-Sml, 5-Med, 12-Lrg, 30-Huge, 75-Titan
+
+        sint n_def_ships[9];                           //Ship counts by size
+        sint n_off_ships[9];                           //0-Sml, 1-Med, 2-Lrg, 3-Huge, 4-Titan, 5-8 not used
+        sint n_off_ships_deployed[9];
+
+        bool conquered;                                 //set to TRUE when antarans are dead
+        int last_invasion_date;                         //stardate
+        uchar displayed_report;                         //bookeeping
+   } antarans;
+
+
+=============================================================
+
+   The rest of the file is miscellaneous bookeeping variables
+
