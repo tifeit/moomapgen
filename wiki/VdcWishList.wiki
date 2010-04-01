@@ -28,7 +28,3 @@
  # Scoutlabs;
  # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
  
-= Mapgenerator Improvement List:=
-
- # -tsplinter - new switch, which removes splinters completely;
- # -tarti     - new switch, making all arti planets "visited", i.e. no free techs
