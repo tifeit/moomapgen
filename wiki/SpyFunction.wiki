@@ -1,11 +1,12 @@
 {{{
+
 void __fastcall SPY_Resolve_Player_Spies_(int a1)
 {
   int v1; // edx@3
   int v2; // ecx@3
   int nOffenderSpyBonus; // ebx@3
   int nOffenderSpies; // edi@3
-  int v5; // esi@3
+  int ptrOffend3; // esi@3
   int ptrPlayer; // esi@3
   int nBonusesDifference; // ebx@4
   int randDefence; // eax@4
@@ -50,7 +51,7 @@ void __fastcall SPY_Resolve_Player_Spies_(int a1)
   int nNumOfPlayers; // [sp+44h] [bp-18h]@1
   int nNumOfSpies; // [sp+48h] [bp-14h]@1
   unsigned int nUnknown; // [sp+4Ch] [bp-10h]@1
-  int ptrPlayer4; // [sp+50h] [bp-Ch]@1
+  int ptrOffend2; // [sp+50h] [bp-Ch]@1
   int ptrOffender; // [sp+54h] [bp-8h]@1
   int v52; // [sp+58h] [bp-4h]@21
 
@@ -60,35 +61,35 @@ void __fastcall SPY_Resolve_Player_Spies_(int a1)
   nDefenderSpyBonus = SPY_N_Spies_Bonus_(nNumOfSpies);
   nNumOfPlayers = MOX__NUM_PLAYERS;
   PtrDefenderTechArray = 4 * ptrDef;
-  ptrPlayer4 = 3753 * MOX__NUM_PLAYERS;
+  ptrOffend2 = 3753 * MOX__NUM_PLAYERS;
   nUnknown = 0;
   ptrOffender = 4 * MOX__NUM_PLAYERS;
   while ( nNumOfPlayers > 0 )
   {
     --nNumOfPlayers;
-    ptrPlayer4 -= 3753;
+    ptrOffend2 -= 3753;
     ptrOffender -= 4;
-    if ( nNumOfPlayers != ptrDef )              // Åñëè ýòî ìû ñàìè
+    if ( nNumOfPlayers != ptrDef )              // Если это мы сами
     {
       ptrPlayer = MOX__player;
       nOffenderSpies = BILL_Get_Their_Spy_Number_(nNumOfPlayers, ptrDef);
-      v5 = ptrPlayer4 + ptrPlayer;
+      ptrOffend3 = ptrOffend2 + ptrPlayer;
       nOffenderSpyBonus = SPY_N_Spies_Bonus_(nOffenderSpies);
       nOffenderSpyBonus2 = nOffenderSpyBonus;
       if ( nOffenderSpies )
       {
-        randDefence = random_Random(100, v1, nOffenderSpyBonus, v2);// Ðàíäîìíîå ÷èñëî îò 0 äî 100, îñòàëüíûå ÷èñëà çíà÷åíèÿ íå íåñóò.
-        randOffence = random_Random(100, v9, nOffenderSpyBonus, randDefence);// Îïÿòü ðàíäîìíîå ÷èñëî îí 0 äî 100
-        nDefenderTechBonus = *(SPY__spy_bonuses + ptrOffender);
-        nOffenderTotalBonus = nDefenderTechBonus + randOffence2__ + nOffenderSpyBonus;// randOffence è randOffence2__ ýòî îäíî ÷èñëî, (ñóäÿ ïî ðåãèöòðó öõ) ïðîñòî äåêîìïèëÿòîð îøèáñÿ, â òîì, ÷òî äóìàåò ÷òî ýòî äâà ÷èñëà. ò.å. randOffence2___ ýòî ñëó÷àéíîå ÷èñëî îò 0 äî 100
-        nDefenderTechBonus = *(&word_1A4E7A + PtrDefenderTechArray);
+        randDefence = random_Random(100, v1, nOffenderSpyBonus, v2);// Рандомное число от 0 до 100, остальные числа значения не несут.
+        randOffence = random_Random(100, v9, nOffenderSpyBonus, randDefence);// Опять рандомное число он 0 до 100
+        nDefenderTechBonus = *(__int16 *)((char *)SPY__spy_bonuses + ptrOffender);
+        nOffenderTotalBonus = nDefenderTechBonus + randOffence2__ + nOffenderSpyBonus;// randOffence и randOffence2__ это одно число, (судя по регицтру цх) просто декомпилятор ошибся, в том, что думает что это два числа. т.е. randOffence2___ это случайное число от 0 до 100
+        nDefenderTechBonus = *(__int16 *)((char *)&word_1A4E7A + PtrDefenderTechArray);
         nBonusesDifference = nOffenderTotalBonus - (nDefenderSpyBonus + nDefenderTechBonus + randOffence);
-        if ( *(v5 + 40) != 100 )
+        if ( *(_BYTE *)(ptrOffend3 + 40) != 100 )
         {
-          if ( *(ptrDefenderPlayer + 40) == 100 )
-            nBonusesDifference += byte_191CB0 - 2;
+          if ( *(_BYTE *)(ptrDefenderPlayer + 40) == 100 )
+            nBonusesDifference += (unsigned __int8)byte_191CB0 - 2;
         }
-        v12 = BILL_Get_Their_Spy_Mission_(nNumOfPlayers, ptrDef, nBonusesDifference);
+        v12 = BILL_Get_Their_Spy_Mission_((signed __int16)nNumOfPlayers, (signed __int16)ptrDef, nBonusesDifference);
         if ( v12 < 1u )
         {
           if ( !v12 )
@@ -100,8 +101,8 @@ void __fastcall SPY_Resolve_Player_Spies_(int a1)
                 v15 = 0;
                 if ( nBonusesDifference >= 90 || v14 == 100 )
                   v15 = 1;
-                nBonusesDifference = v15;
-                SPY_Steal_App_(v5, ptrDefenderPlayer, v15);
+                nBonusesDifference = (unsigned __int8)v15;
+                SPY_Steal_App_(ptrOffend3, ptrDefenderPlayer, v15);
               }
             }
           }
@@ -114,9 +115,9 @@ void __fastcall SPY_Resolve_Player_Spies_(int a1)
             {
               v52 = nNumOfPlayers;
               if ( nBonusesDifference >= 90 || v14 == 100 )
-                SPY_Frame_Another_(nNumOfPlayers, ptrDef, &v52, -1);
-              nBonusesDifference = v52;
-              SPY_Destroy_Random_Building_(nNumOfPlayers, ptrDef, v52);
+                SPY_Frame_Another_((signed __int16)nNumOfPlayers, (signed __int16)ptrDef, &v52, -1);
+              nBonusesDifference = (signed __int16)v52;
+              SPY_Destroy_Random_Building_((signed __int16)nNumOfPlayers, (signed __int16)ptrDef, (signed __int16)v52);
             }
           }
         }
@@ -124,19 +125,22 @@ void __fastcall SPY_Resolve_Player_Spies_(int a1)
         v18 = v19;
         v20 = random_Random(100, ptrOffender, v19, v16);
         v17 = nOffenderSpyBonus2
-            + *(SPY__spy_bonuses + v21)
+            + *(__int16 *)((char *)SPY__spy_bonuses + v21)
             + v19
             - (nDefenderSpyBonus
-             + *(&word_1A4E7A + PtrDefenderTechArray)
+             + *(__int16 *)((char *)&word_1A4E7A + PtrDefenderTechArray)
              + v20
              + 20);
-        if ( BILL_Get_Their_Spy_Mission_(nNumOfPlayers, ptrDef, v17) == 2 )
+        if ( (unsigned __int16)BILL_Get_Their_Spy_Mission_((signed __int16)nNumOfPlayers, (signed __int16)ptrDef, v17) == 2 )
           v17 += 20;
         if ( v17 >= 80 || v18 == 100 )
           ++nUnknown;
         if ( v17 <= -80 || v16 == 100 )
         {
-          BILL_Set_Their_Spy_Number_(nNumOfPlayers, ptrDef, (nOffenderSpies - 1));
+          BILL_Set_Their_Spy_Number_(
+            (signed __int16)nNumOfPlayers,
+            (signed __int16)ptrDef,
+            (signed __int16)(nOffenderSpies - 1));
           set386_memset_(&v35, 0, 18);
           v35 = 10;
           v36 = ptrDef;
@@ -146,19 +150,21 @@ void __fastcall SPY_Resolve_Player_Spies_(int a1)
       }
     }
   }
-  JUMPOUT(nUnknown, 0, *locret_101195);
+  JUMPOUT(nUnknown, 0, *(unsigned int *)locret_101195);
   v23 = nNumOfSpies - nUnknown;
-  if ( (nNumOfSpies - nUnknown) < 0 )
+  if ( (signed int)(nNumOfSpies - nUnknown) < 0 )
     v23 = 0;
-  BILL_Set_Their_Spy_Number_(ptrDef, ptrDef, v23);
+  BILL_Set_Their_Spy_Number_((signed __int16)ptrDef, (signed __int16)ptrDef, (signed __int16)v23);
   v24 = nNumOfSpies - v23;
   v25 = nNumOfSpies - v23;
-  JUMPOUT(v24, 0, *locret_101195);
+  JUMPOUT(v24, 0, *(unsigned int *)locret_101195);
   set386_memset_(&v29, 0, 18);
   v30 = v25;
   v29 = 11;
   LOWORD(v27) = v34;
   MSG_Add_Msg_(11, v31, v32, v33, v27, v26);
-  JUMPOUT(*locret_101195);
+  JUMPOUT(*(unsigned int *)locret_101195);
 }
+
+
 }}}
