@@ -3,7 +3,7 @@
 ||90||83 FB *5A* 7D 05 83 F9 64  75 02 B0 01 8B 55 A4 0F||
 
 ||70||83 FB *46* 7D 05 83 F9 64  75 36 8B 45 E8 89 45 FC|| для саботажа||
-
+||90||83 FB *5A* 7D 05 83 F9 64  75 15 0F BF 55 E0 0F BF|| для саботажа||
 {{{
 
 void __fastcall SPY_Resolve_Player_Spies_(int a1)
