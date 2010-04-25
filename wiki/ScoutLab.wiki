@@ -1,0 +1,21 @@
+{{{
+tf8@k138-2:~/games/MooStuff/AsmTest$ hd before4.hex 
+00000000  b8 01 00 00 00 0f b6 4e  10 d3 e0 01 45 fc        |.......N....E.|
+0000000e
+tf8@k138-2:~/games/MooStuff/AsmTest$ ndisasm before4.hex 
+00000000  B80100            mov ax,0x1
+00000003  0000              add [bx+si],al
+00000005  0FB64E10          movzx cx,[bp+0x10]
+00000009  D3E0              shl ax,cl
+0000000B  0145FC            add [di-0x4],ax
+tf8@k138-2:~/games/MooStuff/AsmTest$ hd after4.hex
+00000000  8b 4e 10 0f af c9 6b c1  04 40 01 45 fc 90        |.N....k..@.E..|
+0000000e
+tf8@k138-2:~/games/MooStuff/AsmTest$ ndisasm after4.hex
+00000000  8B4E10            mov cx,[bp+0x10]
+00000003  0FAFC9            imul cx,cx
+00000006  6BC104            imul ax,cx,byte +0x4
+00000009  40                inc ax
+0000000A  0145FC            add [di-0x4],ax
+0000000D  90                nop
+}}}
