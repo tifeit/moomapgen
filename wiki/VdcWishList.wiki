@@ -1,29 +1,13 @@
 = VDC Wishlist =
 
- # ~~Скорость базовая торпед, ракет, файтеров.~~ [DebuggedOffsets#CMBTMIS_Missile_Speed_]
- # ~~Количество доступных очков расовых настроек: Начальных (+10); отрицательных (10). Бразеновский свич picks=x непосредственно задает начальное количество очков. Это можно использовать в качестве подсказки, чтобы найти местонахождение этой константы в .exe~~ [Max negative pics] [Starting Positive pics]
- # ~~Радиус действия системы космической коммуникации.~~[DebuggedOffsets#SHIPMOVE_Can_Order_Ship_]
- # ~~Количество командых очков, поставляемых системой космической коммуникации.~~[DebuggedOffsets#COLCALC_Compute_Player_Maintenance_]
  # Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130. INITSHIP_Get_Design_Combat_Bonuses_
  # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
- # Research-бонусы Scoutlab-ов Текущие значения: Frigate -1 Destroyer -2 Cruiser -4, Battleship -8, Titan -16, Doom Star -32. COLCALC_Update_Player_Stats_
- # Бонус командных очков старбаз: Tech168 : "Star Base": +1; Tech27 : "Battlestation": +2; Tech169 : "Star Fortress": +3.  
- # ~~Бонус технологии Tech113 "Nano Disassemblers" (k =2). формула полюшна: (prod - 2*planetsize)/2 с нанодизассемблерами будет: (prod - k*2*planetsize)/2. Нас интересует увеличить это k=2... ~~ [DebuggedOffsets#COLCALC_Colony_Industry_Production_]
- # Матрица прихода лидеров во времени в зависимости от хода игры. Влияние харизматика и репульсива.
  # Распределение ресурсов старбаз (оружия): hvmount beam, normal beam, pd beam, missiles. Сделать вставку для торпед - напопалам с ракетами, а также, чтобы любой тип оружия использовал все имеющиеся модификации. 
- # Матрица дизайна кораблей AI. По ходу после изменения объема вместимости кораблей, напр: Battleship space 250 ->280 и т.д. AI не учитывает новую вместимость. Необходимо это исправить...
- # ~~Damper field - увеличить смертность при использованиии транспортеров до 80% или 100%.
- # ~~Начальный бонус феодолизма - уменьшить штраф на науку с 50% до 33%.
- # ~~Pop Racepic Bonus [DebuggedOffsets#Pop Racepic Bonus]~~
 
 = Altered New Priority List:=
  # Add Hard Shields effect to class XX shield.
  # Damper Field moving to shields place (to be able to choose damper field there);
  # Mutation Bug (desynch issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
- # ~~Nano Disassemblers;~~ [DebuggedOffsets#COLCALC_Colony_Industry_Production_]
  # Матрица прихода лидеров во времени; 
- # Battle Station, Star Fortress command points;
- # ~~Feudalism science penalty;~~
- # Scoutlabs;
  # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
