@@ -1,6 +1,7 @@
 = Altered New Priority List:=
  # Security stations bonus (now is +20);
  # Add Hard Shields effect to class XX shield.
+ # Починить навык телепатии у лидеров (сейчас он дает половину бонуса от заявленного); увеличить расовый бонус шпионажа телепатика с 10 до 20. Практика показывает, что за 8 очков его никто не берет, с +20 шпонажем станет привлекательным.                       
  # Damper Field moving to shields place (to be able to choose damper field from there);
  # Displacement Device special's bonus (currently is 30%);
  # Уменьшение количество раундов боя с 50 до 20;
