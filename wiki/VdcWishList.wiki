@@ -1,11 +1,5 @@
-= VDC Wishlist =
-
- # Security stations bonus (now is +20);
- # Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130. INITSHIP_Get_Design_Combat_Bonuses_
- # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
- # Распределение ресурсов старбаз (оружия): hvmount beam, normal beam, pd beam, missiles. Сделать вставку для торпед - напопалам с ракетами, а также, чтобы любой тип оружия использовал все имеющиеся модификации. 
-
 = Altered New Priority List:=
+ # Security stations bonus (now is +20);
  # Add Hard Shields effect to class XX shield.
  # Damper Field moving to shields place (to be able to choose damper field there);
  # Уменьшение количество раундов боя с 50 до 20;
@@ -13,4 +7,7 @@
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
- # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
+ # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы; Сделать вставку для торпед - напопалам с ракетами, а также, чтобы любой тип оружия использовал все имеющиеся модификации. 
+ # Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130. INITSHIP_Get_Design_Combat_Bonuses_
+ # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
+ 
