@@ -8,6 +8,7 @@
 = Altered New Priority List:=
  # Add Hard Shields effect to class XX shield.
  # Damper Field moving to shields place (to be able to choose damper field there);
+ # Уменьшение количество раундов боя с 50 до 20;
  # Матрица прихода лидеров во времени;
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
