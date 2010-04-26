@@ -6,9 +6,10 @@
 
 = Altered New Priority List:=
  # Add Hard Shields effect to class XX shield.
+ # Security stations bonus (now is +20);
  # Damper Field moving to shields place (to be able to choose damper field there);
+ # Матрица прихода лидеров во времени;
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
- # Матрица прихода лидеров во времени;
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
  # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
