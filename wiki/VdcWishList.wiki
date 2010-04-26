@@ -2,6 +2,7 @@
  # Security stations bonus (now is +20);
  # Add Hard Shields effect to class XX shield.
  # Damper Field moving to shields place (to be able to choose damper field there);
+ # Displacement Device special's bonus (currently is 30%);
  # Уменьшение количество раундов боя с 50 до 20;
  # Матрица прихода лидеров во времени;
  # Mutation Bug (desynch issue);
