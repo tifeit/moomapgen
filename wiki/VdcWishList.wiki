@@ -2,10 +2,10 @@
  # Security stations bonus (now is +20);
  # Add Hard Shields effect to class XX shield.
  # Починить навык телепатии у лидеров (сейчас он дает половину бонуса от заявленного); увеличить бонус шпионажа расы телепатика с 10 до 20. Практика показывает, что за 8 очков его никто не берет, с +20 шпонажем станет привлекательным.                       
+ # Матрица прихода лидеров во времени;
  # Damper Field moving to shields place (to be able to choose damper field from there);
  # Displacement Device special's bonus (currently is 30%);
  # Уменьшение количество раундов боя с 50 до 20;
- # Матрица прихода лидеров во времени;
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
