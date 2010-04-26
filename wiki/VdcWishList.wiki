@@ -1,12 +1,12 @@
 = VDC Wishlist =
 
+ # Security stations bonus (now is +20);
  # Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130. INITSHIP_Get_Design_Combat_Bonuses_
  # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
  # Распределение ресурсов старбаз (оружия): hvmount beam, normal beam, pd beam, missiles. Сделать вставку для торпед - напопалам с ракетами, а также, чтобы любой тип оружия использовал все имеющиеся модификации. 
 
 = Altered New Priority List:=
  # Add Hard Shields effect to class XX shield.
- # Security stations bonus (now is +20);
  # Damper Field moving to shields place (to be able to choose damper field there);
  # Матрица прихода лидеров во времени;
  # Mutation Bug (desynch issue);
