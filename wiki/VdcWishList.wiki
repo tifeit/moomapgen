@@ -8,7 +8,7 @@
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
- # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
+ # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации ( например на augmented engiens, battle scanner, reinforced hull, lightning field....);  
  # Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130. INITSHIP_Get_Design_Combat_Bonuses_
  # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
