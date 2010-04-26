@@ -9,5 +9,6 @@
  # Damper Field moving to shields place (to be able to choose damper field there);
  # Mutation Bug (desynch issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
- # Матрица прихода лидеров во времени; 
+ # Матрица прихода лидеров во времени;
+ # Feudal Bug (ships costs issue);
  # AI ship designing; %распределения оружия, учет новой вместимости кораблей, флаги на некоторые спешалсы;
