@@ -9,7 +9,7 @@
  # Displacement Device special's bonus (currently is 30%);
  # Матрица прихода лидеров во времени;
  # Уменьшение количество раундов боя с 50 до 20;
- # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 20 соответственно (после этого я смогу уменьшить space consumption);
+ # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 24 соответственно (после этого я смогу уменьшить space consumption);
  # Damper Field moving to shields place (to be able to choose damper field from there);
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
