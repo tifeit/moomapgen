@@ -156,3 +156,7 @@ INITSHIP_Get_Design_Combat_Bonuses_
 || +130|| `81 C3 `*82*` 00 00 00 8B 85  80 00 00 00 66 89 08 8B` ||
 
 Первый бонус возможно от чего-то другого.
+
+= Security stations bonus =
+CMBTFIR2_Resolve_Raid_
+|| +20 || `6B C0 `*14*` 01 C6 89 C8 E8  C5 E8 FF FF 8B 15 64 A8`||
