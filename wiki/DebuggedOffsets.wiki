@@ -146,7 +146,7 @@ Forced vsync
 ||Replace|| *EB 0E* `BA DA 03 EC 24 08  75 FB EC 24 08 74 FB 61` || replaced twice ||
 
 = Jammer bonuses =
-INITSHIP_Get_Design_Combat_Bonuses_
+`INITSHIP_Get_Design_Combat_Bonuses_`
 
 || +50 || `83 C6 `*32*` BA 02 00 00 00  8D 45 2F 66 0F B6 4D 78` ||
 || +70 || `83 C3 `*46*` BA 11 00 00 00  8D 45 2F E8 05 29 0D 00` ||
@@ -158,5 +158,5 @@ INITSHIP_Get_Design_Combat_Bonuses_
 Первый бонус возможно от чего-то другого.
 
 = Security stations bonus =
-CMBTFIR2_Resolve_Raid_
+`CMBTFIR2_Resolve_Raid_`
 || +20 || `6B C0 `*14*` 01 C6 89 C8 E8  C5 E8 FF FF 8B 15 64 A8` ||
