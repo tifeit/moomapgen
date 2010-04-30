@@ -1,7 +1,7 @@
 = Altered New Priority List:=
 
  # ~~Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130.~~ [DebuggedOffsets#Jammer_bonuses]
- # ~Security stations bonus (now is +20);~[DebuggedOffsets#Security_stations_bonus]
+ # ~~Security stations bonus (now is +20);~~ [DebuggedOffsets#Security_stations_bonus]
  # Add Hard Shields effect to class XX shield.
  # Телепатия
   * Починить навык телепатии у лидеров (сейчас, фактически, он дает половину бонуса от объявленного);
