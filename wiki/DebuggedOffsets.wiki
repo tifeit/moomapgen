@@ -162,5 +162,5 @@ Forced vsync
 || +20 || `6B C0 `*14*` 01 C6 89 C8 E8  C5 E8 FF FF 8B 15 64 A8` ||
 
 = Telepathic bonus =
-
+`SPY_Compute_Spy_Bonuses_`
 | +10 || `6B D8 `*0A*` 89 C8 0F BE B9  A8 08 00 00 E8 95 FF FF` ||
