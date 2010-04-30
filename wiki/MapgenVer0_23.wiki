@@ -1,4 +1,3 @@
-
  * Change -fixedhw flag algorithm. The fifth planet must be small Gaia.
  * Fix -ssplint flag, game hungs when visit ex-splinter world.
- * Change -mterraform flag algorithm. Toxics, Rads and Deserts should become Tundra.
+ * Change -mterraform flag algorithm. Toxics, Rads, Barrens and Deserts should become Tundra.
