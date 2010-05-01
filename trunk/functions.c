@@ -74,9 +74,10 @@ void getHwCoords(struct starSystem *aStarSystems, unsigned int aHwCoordinates[][
 
 			if (verbose) {
 
-				printf("HomeWorld:\n");
+/*				printf("HomeWorld:\n");
 				printSystem(&aStarSystems[i], aPlanets);
 				printf("--------\n");
+*/
 			}
 		}
 	}
@@ -118,7 +119,8 @@ void terraform(struct starSystem *aStarSystems, struct planet *aPlanets, struct 
 
 			if (specialsFlags & FLG_SPLINT && aPlanets[i].nPlanetSpecial == SPLINTER_COLONY) {
 
-				aPlanets[i].nPlanetSpecial = GEM_DEPOSITS;
+				aStarSystems[aPlanets[i].nStarID].nSpecial = GEM_DEPOSITS; //Setting gem flag to star.
+				aPlanets[i].nPlanetSpecial = GEM_DEPOSITS; //Setting gem flag to planet.
 
 				if (verbose) printf("%s | Splinter\n", aStarSystems[aPlanets[i].nStarID].sName);
 			}
@@ -142,11 +144,6 @@ void terraform(struct starSystem *aStarSystems, struct planet *aPlanets, struct 
 
 				location = aShips[i].location;
 
-				if (verbose) {
-
-			 		printf("%s at %s\n",aShips[i].d.name, aStarSystems[location].sName);
-				}
-
 				//For each planet in this system.
 				for (j = 0; j != 5; j++ ) {
 
@@ -166,18 +163,12 @@ void terraform(struct starSystem *aStarSystems, struct planet *aPlanets, struct 
 
 							if (ptrPlanet->nMineralClass == RICH || ptrPlanet->nMineralClass == ULTRA_RICH) {
 
-								if (ptrPlanet->nEnvClass == TOXIC || ptrPlanet->nEnvClass == RADIATED) {
-
-									ptrPlanet->nEnvClass = BARREN;
-
-									if (verbose) printf("%s | Terraform\n", aStarSystems[aShips[i].location].sName);
-								}
-
-								else if (ptrPlanet->nEnvClass == DESERT) {
+								if (ptrPlanet->nEnvClass == TOXIC || ptrPlanet->nEnvClass == RADIATED
+									|| ptrPlanet->nEnvClass == DESERT || ptrPlanet->nEnvClass == BARREN) {
 
 									ptrPlanet->nEnvClass = TUNDRA;
 
-									if (verbose) printf("%s | Terraform Tundra\n", aStarSystems[aShips[i].location].sName);
+									if (verbose) printf("%s | Monster Terraform\n", aStarSystems[aShips[i].location].sName);
 
 								}
 							}
@@ -263,8 +254,8 @@ void modifyHW(struct planet *aPlanets, struct starSystem *ptrSystem, unsigned in
 
 					} else if (nDonePlanets == 3) {
 
-						ptrPlanet->nEnvClass = 3;
-						ptrPlanet->nFoodBase = 1;
+						ptrPlanet->nEnvClass = GAIA;
+						ptrPlanet->nFoodBase = 3;
 					}
 				}
 
