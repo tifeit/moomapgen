@@ -12,14 +12,13 @@
 
 СТАЛО:
 {{{
-00000000  8b 4e 10 0f af c9 6b c1  04 40 01 45 fc 90        |.N....k..@.E..|
+00000000  0f b6 4e 10 0f af c9 6b  c1 04 40 01 45 fc        |..N....k..@.E.|
 
 ACM код:
 
-00000000  8B4E10            mov ecx,[esi+0x10]
-00000003  0FAFC9            imul ecx,ecx
-00000006  6BC104            imul eax,ecx,byte +0x4
-00000009  40                inc eax
-0000000A  0145FC            add [ebp-0x4],eax
-0000000D  90                nop
+00000000  0FB64E10          movzx ecx,byte [esi+0x10]
+00000004  0FAFC9            imul ecx,ecx
+00000007  6BC104            imul eax,ecx,byte +0x4
+0000000A  40                inc eax
+0000000B  0145FC            add [ebp-0x4],eax
 }}}
