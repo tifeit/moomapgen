@@ -80,6 +80,12 @@
 #define TERRAN        8
 #define GAIA          9
 
+//Gravity
+#define LOW_G                 0
+#define NORMAL_G              1
+#define HEAVY_G               2
+#define MAX_PLANET_GRAVITIES  3
+
 STRUCT_TYPE starSystem {
 
 	char sName[15];									//Star System Name										00-0E	15	bytes

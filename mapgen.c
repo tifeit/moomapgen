@@ -27,39 +27,42 @@ int main(int argc, char *argv[]) {
 					"Example: %s -t toxic -t upoor -t lowg -t heavyg -t tiny -t small -f SAVE10.GAM\n\n"
 
 					"Options:\n"
-					"  -h [-H]	This help.\n\n"
+					"  -h [-H] This help.\n\n"
 
-					"  -t		Terraform\n"
-					"			  toxic - Toxic planets become radiated\n"
-					"			  upoor - Ultra Poor planets become poor\n"
-					"			  lowg - Low Gravity planets become Normal Gravity\n"
-					"			  heavyg - Heavy Gravity planets become Normal Gravity\n"
-					"			  tiny - Tiny planets become small\n"
-					"			  small - Small planets become medium\n"
-					"			  flathw - Flattens unoccupied planets in HomeWorlds:\n"
-					"			   They become Abundant, Toxics and Rads become Barren, gravity become Normal except for one planet,\n"
-					"			   it become the same gravity as occupied planet, size is set in order\n"
-					"			   Large, Large again, Medium, Small untill\n"
-					"			   there are no more planets to modify. Gaias become Terrain.\n"
-					"			  fixedhw - Implies `flathw`. Planets become: Large Swamp, Large Tundra, Medium Arid, Small Desert.\n\n"
+					"  -t Terraform\n"
+					"      toxic - Toxic planets become radiated\n"
+					"      upoor - Ultra Poor planets become poor\n"
+					"      lowg - Low Gravity planets become Normal Gravity\n"
+					"      heavyg - Heavy Gravity planets become Normal Gravity\n"
+					"      tiny - Tiny planets become small\n"
+					"      small - Small planets become medium\n"
+					"      flathw - Flattens unoccupied planets in HomeWorlds:\n"
+					"        They become Abundant, Toxics and Rads become Barren,\n"
+					"        gravity become Normal except for one planet,\n"
+					"        it become the same gravity as occupied planet, size is set in order\n"
+					"        Large, Large again, Medium, Small untill\n"
+					"        there are no more planets to modify. Gaias become Terrain.\n"
+					"      fixedhw - Implies `flathw`. Planets become:\n"
+					"        Large Swamp, Large Tundra, Medium Arid, Small Gaia. All abundant.\n\n"
 
-					"  -s		Specials Change\n"
-					"			  splint - Splinter replaced by gem deposits.\n"
-					"			  arti - Arti planets still exist, but don't give techs anymore.\n\n"
+					"  -s Specials Change\n"
+					"      splint - Splinter replaced by gem deposits.\n"
+					"      arti - Arti planets still exist, but don't give techs anymore.\n\n"
 
-					"  -m		Monsters Change\n"
-					"  			  grav - Planets, guarded by monster become normal gravity if they are not ultrarich.\n"
-					"			  terraform - Guarded rich & urich planets are terraformed. Toxics and Rads become Barren, Deserts become Tundra.\n"
-					"			  monst - Does the same thing as -mgrav and -mterraform.\n\n"
+					"  -m Monsters Change\n"
+					"      grav - Guarded planets become normal gravity if they are not ultrarich.\n"
+					"      terraform - Guarded rich & urich planets are terraformed.\n"
+					"        Toxics, Rads, Barrens, Deserts become Tundra.\n"
+					"      monst - Does the same thing as -mgrav and -mterraform.\n\n"
 
-					"  -b		Balance Galaxy\n"
-					"			  cell - Currently does nothing.\n\n"
+/*					"  -b Balance Galaxy\n"
+					"      cell - Currently does nothing.\n\n"
+*/
+					"  -v Verbose debugging output(CHEAT!)\n\n"
 
-					"  -v		Verbose debugging output(CHEAT!)\n\n"
+					"  -V Print Version and exit\n\n"
 
-					"  -V		Print Version and exit\n\n"
-
-					"  -f file	Edit 'file' instead of SAVE10.GAM\n\n", argv[0], argv[0]);
+					"  -f file Edit 'file' instead of SAVE10.GAM\n\n", argv[0], argv[0]);
 
 					exit(0);
 			break;
@@ -100,9 +103,10 @@ int main(int argc, char *argv[]) {
 				else if (strstr(optarg, "arti"))
 							specialsFlags |= FLG_ARTI;
 				else {
-						fprintf(stderr, "Unknown Splinter parameter %s\n", optarg);
+						fprintf(stderr, "Unknown Special parameter %s\n", optarg);
 						exit(1);
 				}
+
 			break;
 			case 'm':
 				if		(strstr(optarg, "grav"))
@@ -179,11 +183,11 @@ int main(int argc, char *argv[]) {
 	}
 
 	//All planets terraformation.
-	if (terraformFlags)
+	if (terraformFlags || specialsFlags || monsterFlags)
 		terraform(aStarSystems, aPlanets, aShips, nNumOfPlanets, nNumOfStars, terraformFlags, specialsFlags, monsterFlags);
 
 	//Homeworld modification.
-	if (hwFlags || specialsFlags) {
+	if (hwFlags) {
 
 		for (i = 0; i != nNumOfPlayers; i++) {
 
