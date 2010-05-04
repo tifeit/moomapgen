@@ -9,9 +9,9 @@
  # ~~~Displacement Device special's bonus (currently is 30%);~~ [DebuggedOffsets#Displacement_device]
  # Матрица прихода лидеров во времени;
  # Уменьшение количество раундов боя с 50 до 20;
+ # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships; 
  # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 24 соответственно (после этого я смогу уменьшить space consumption);
  # Damper Field moving to shields place (to be able to choose damper field from there);
- # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
