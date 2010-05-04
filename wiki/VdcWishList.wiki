@@ -10,6 +10,7 @@
  # Матрица прихода лидеров во времени;
  # Уменьшение количество раундов боя с 50 до 20;
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships; 
+ # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
  # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 24 соответственно (после этого я смогу уменьшить space consumption);
  # Damper Field moving to shields place (to be able to choose damper field from there);
  # Mutation Bug (desynch issue);
@@ -17,7 +18,7 @@
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
  # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
- # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
+ 
 
 ----
 Hard Shields bonus
