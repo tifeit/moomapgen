@@ -1,4 +1,255 @@
 {{{
+int __fastcall CMBTFIRE_Fire_Beam_Weapon_(int a1, int a2, int a3, __int16 a4, __int16 a5, int a6, int a7, int a8)
+{
+  __int16 ptrDefendingShip; // di@1
+  __int16 v9; // ax@1
+  int v10; // eax@7
+  __int16 v11; // ax@8
+  int v12; // ecx@8
+  int v13; // eax@12
+  int v14; // edx@12
+  int v15; // ecx@12
+  int v16; // eax@18
+  int v17; // eax@20
+  int v18; // eax@22
+  unsigned int v19; // ebx@25
+  int v20; // ebx@28
+  int v21; // eax@35
+  int v22; // eax@41
+  __int16 v23; // bx@48
+  __int16 v24; // ST0C_2@48
+  __int16 v25; // ax@48
+  int v26; // eax@48
+  __int16 v27; // bx@50
+  __int16 bHasAchiles; // ST0C_2@50
+  __int16 v29; // ax@50
+  int v30; // eax@50
+  int v31; // eax@55
+  int v33; // [sp+8h] [bp-68h]@10
+  __int16 v34; // [sp+Ch] [bp-64h]@10
+  int v35; // [sp+10h] [bp-60h]@48
+  int v36; // [sp+14h] [bp-5Ch]@1
+  int v37; // [sp+18h] [bp-58h]@1
+  int v38; // [sp+1Ch] [bp-54h]@14
+  int v39; // [sp+20h] [bp-50h]@7
+  int v40; // [sp+24h] [bp-4Ch]@55
+  int v41; // [sp+28h] [bp-48h]@37
+  int v42; // [sp+2Ch] [bp-44h]@1
+  int v43; // [sp+30h] [bp-40h]@54
+  int v44; // [sp+34h] [bp-3Ch]@47
+  int v45; // [sp+38h] [bp-38h]@20
+  int v46; // [sp+3Ch] [bp-34h]@1
+  int v47; // [sp+40h] [bp-30h]@11
+  int v48; // [sp+44h] [bp-2Ch]@7
+  int v49; // [sp+48h] [bp-28h]@1
+  int v50; // [sp+4Ch] [bp-24h]@24
+  __int16 v51; // [sp+50h] [bp-20h]@1
+  int v52; // [sp+54h] [bp-1Ch]@52
+  int v53; // [sp+58h] [bp-18h]@24
+  __int16 v54; // [sp+5Ch] [bp-14h]@1
+  int v55; // [sp+60h] [bp-10h]@22
+  int v56; // [sp+64h] [bp-Ch]@22
+  int v57; // [sp+68h] [bp-8h]@1
+  int v58; // [sp+6Ch] [bp-4h]@22
+
+  v49 = a1;
+  ptrDefendingShip = a2;
+  v57 = a3;
+  v51 = a4;
+  v37 = 0;
+  v36 = 0;
+  *(_WORD *)a6 = 0;
+  *(_WORD *)a8 = 0;
+  *(_WORD *)a7 = 0;
+  v42 = 0;
+  v9 = word_177815[14 * (signed __int16)a3];
+  v46 = 0;
+  v54 = v9;
+  v37 = 0;
+  if ( HIBYTE(v9) & 1 )
+    LOBYTE(v51) = v51 | 0x40;
+  if ( HIBYTE(v54) & 2 )
+    HIBYTE(v51) |= 1u;
+  if ( v54 & 0x40 )
+    LOBYTE(v51) = v51 | 0x10;
+  v10 = 28 * (signed __int16)v57;
+  LOWORD(a2) = *(__int16 *)((char *)&word_177819 + v10);
+  LOWORD(v10) = *(__int16 *)((char *)&word_177817 + v10);
+  v48 = a2;
+  v39 = v10;
+  if ( a5 )
+  {
+    CMBTAI_Range_To_Missile_((signed __int16)v49, ptrDefendingShip);
+  }
+  else
+  {
+    v11 = CMBTDRW1_Relative_Bearing_(ptrDefendingShip, (signed __int16)v49, ptrDefendingShip);
+    v42 = CMBTFIRE_Facing_Shield_(v11);
+    CMBTAI_Range_To_Ship_(v12, ptrDefendingShip);
+  }
+  v33 = (signed __int16)v49;
+  CMBTFIRE_Get_Beam_Weapon_Modifiers_(&v34, &v37);
+  if ( a5 )
+  {
+    v13 = CMBTMIS_Missile_Dcv_(
+            *(_WORD *)(MOX__missile + 26 * ptrDefendingShip),
+            *(_BYTE *)(313 * *(_WORD *)(MOX__missile + 26 * ptrDefendingShip + 4) + MOX__combat_data + 32),
+            MOX__combat_data,
+            MOX__combat_data + 313 * v33);
+    LOWORD(v14) = *(_WORD *)(v15 + 52);
+    v47 = v14 - v13;
+  }
+  else
+  {
+    v47 = 313 * v33;
+  }
+  if ( v51 & 0x80 )
+  {
+    v38 = 3;
+    v47 -= 20;
+  }
+  else
+  {
+    v38 = 1;
+  }
+  if ( v51 & 0x10 )
+    v47 += 25;
+  v16 = ((signed __int16)v39
+       * ((signed __int16)v37 + MOX__ordnance_bonus[*(_BYTE *)(313 * (signed __int16)v49 + MOX__combat_data + 32)] - 100)
+       + 50)
+      / 100;
+  if ( v16 <= 1 )
+    v16 = 1;
+  v45 = v16;
+  v17 = ((MOX__ordnance_bonus[*(_BYTE *)(MOX__combat_data + 313 * (signed __int16)v49 + 32)] - 100 + (signed __int16)v37)
+       * (signed __int16)v48
+       + 50)
+      / 100;
+  if ( v17 < (signed __int16)v45 )
+    v17 = (signed __int16)v45;
+  v58 = v17;
+  v56 = v17 - v45;
+  v55 = 1;
+  v18 = 40 - v34;
+  if ( v18 > 95 )
+    v18 = 95;
+  v50 = 0;
+  v53 = v18;
+  while ( (_WORD)v50 < (_WORD)v38 && (_WORD)v55 )
+  {
+    v19 = random_Random(100);
+    if ( HIBYTE(v54) & 4 )                      // Mauler
+      v19 = 100;
+    if ( (_WORD)v19 > 95 || (v20 = v47 + v19, (_WORD)v20 > 100) )
+      LOWORD(v20) = 100;
+    if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrDefendingShip, 8) )
+    {
+      if ( (signed int)random_Random(100) <= 30 )// displacement device
+        LOWORD(v20) = -1000;
+    }
+    if ( (_WORD)v20 >= (_WORD)v53 )
+    {
+      if ( (_WORD)v56 <= 0 )
+        v21 = v45;
+      else
+        v21 = (signed __int16)v45
+            + ((signed __int16)v20 - (signed __int16)v53) * ((signed __int16)v56 + 1) / (100 - (signed __int16)v53);
+      v41 = v21;
+      if ( (_WORD)v21 > (_WORD)v58 )
+        v41 = v58;
+      if ( a5 )
+      {
+        v46 = 2;
+        if ( HIBYTE(v51) & 1 )
+          v52 = 4;
+        else
+          v52 = 1;
+        v43 = 0;
+        while ( (_WORD)v43 < (_WORD)v52 )
+        {
+          v40 = v41;
+          CMBTFIRE_Apply_Damage_To_Missile_(ptrDefendingShip, &v40, v51, v54);
+          v31 = MOX__missile + 26 * ptrDefendingShip;
+          if ( *(_WORD *)(v31 + 15) <= 0 || !*(_WORD *)v31 )
+            v55 = 0;
+          ++v43;
+          *(_WORD *)a6 += v40;
+        }
+      }
+      else
+      {
+        if ( !ptrDefendingShip )
+        {
+          HIWORD(v22) = HIWORD(v41);
+          LOWORD(v22) = (_WORD)v41 / 2;
+          v41 = v22;
+        }
+        if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrDefendingShip, 26) )
+        {
+          if ( (signed int)random_Random((signed __int16)(v41 + 15)) > (signed __int16)v41 )
+          {
+            *(_WORD *)a8 += v41;
+            v41 = 0;
+          }
+        }
+        if ( (_WORD)v41 > 0 )
+        {
+          if ( HIBYTE(v51) & 1 )
+          {
+            v44 = 0;
+            do
+            {
+              v23 = v49;
+              v35 = v41;
+              v24 = COMBINIT_Does_Combat_Ship_Have_Special_(v49, 1);
+              v25 = COMBINIT_Does_Combat_Ship_Have_Special_(v23, 32);
+              v26 = CMBTFIRE_Apply_Ship_Damage_(
+                      ptrDefendingShip,
+                      (int)&v35,
+                      (int)&v36,
+                      (signed __int16)v44,
+                      v51,
+                      v54,
+                      v25,
+                      v24,
+                      0);
+              v46 |= v26;
+              *(_WORD *)a6 += v35;
+              ++v44;
+              *(_WORD *)a7 += v36;
+            }
+            while ( (_WORD)v44 < 4 );
+          }
+          else
+          {
+            v27 = v49;
+            bHasAchiles = COMBINIT_Does_Combat_Ship_Have_Special_(v49, 1);
+            v29 = COMBINIT_Does_Combat_Ship_Have_Special_(v27, 32);
+            v30 = CMBTFIRE_Apply_Ship_Damage_(
+                    ptrDefendingShip,
+                    (int)&v41,
+                    (int)&v36,
+                    (signed __int16)v42,
+                    v51,
+                    v54,
+                    v29,
+                    bHasAchiles,
+                    0);
+            v46 |= v30;
+            *(_WORD *)a6 += v41;
+            *(_WORD *)a7 += v36;
+          }
+        }
+      }
+    }
+    ++v50;
+  }
+  return v46;
+}
+}}}
+
+
+{{{
 int __fastcall CMBTFIRE_Apply_Ship_Damage_(__int16 a1, int a2, int a3, int a4, __int16 weaponFlags, int a6, __int16 a7, __int16 bHasAchiles, __int16 a9)
 {
   __int16 ptrShip; // di@1
