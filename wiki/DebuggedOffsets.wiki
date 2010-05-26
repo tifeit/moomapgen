@@ -176,7 +176,7 @@ Forced vsync
 
 || 30% chance|| `83 F8 `*1E*` 7F 05 BB 18 FC  FF FF 66 3B 5D E8 0F 8C` ||
 
-= Microbiotics & antidote =
+= Microbiotics & Antidote =
 
 ||50% growth||`83 C6 `*32*` EB 0C 80 B8 82  01 00 00 03 75 03 83 C6` || 
 
