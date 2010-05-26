@@ -178,6 +178,6 @@ Forced vsync
 
 = Microbiotics & antidote =
 
-83 C6 `32` EB 0C 80 B8 82  01 00 00 03 75 03 83 C6 50% 
+83 C6 *32* EB 0C 80 B8 82  01 00 00 03 75 03 83 C6 50% 
 
-83 C6 `19` 83 7D E4 FF 74  36 6B 45 E4 3B 8B 15 DC  25% 
+83 C6 *19* 83 7D E4 FF 74  36 6B 45 E4 3B 8B 15 DC  25% 
