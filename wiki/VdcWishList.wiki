@@ -21,8 +21,9 @@
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
 
 Letter to LB:
- 
+
 Dear LB,
+
 VDC practice showed the necessity of having counters to stealth field technology other than mutating into Omni. I had an idea of giving a certain tech the ability to block stealth field's and cloaking device's stealth bonus. Hence I have a question, how did you fix stealth field in 1.40, afaik in 1.31 it was corrupted (didn't work). Is there a way to block or disable your correction code for stealth field, based on availability of certain tech, e.g. sensors? I would really like to see it implemented in my mod, because of balance purposes. I will ask tf8 to do all the necessary coding. Please provide me (tf8) with information on how you did the stealth field fixing.
 Edit: tf8 still can't figure out how you did jump-links on your code. Please explain how to do them too.
 
