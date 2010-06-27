@@ -30,6 +30,7 @@ Edit: tf8 still can't figure out how you did jump-links on your code. Please exp
 Irakly
 
 Reply:
+
 The Stealth code is around offset 0xE32BB in the exe file. My patch inserts a jump around there which leads to the fixed stealth check code at offset 0x17A3B0. Once the fixed code is executed, it jumps back to resume the original game code (code immediately after the first jump).
 
 ----
