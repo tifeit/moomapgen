@@ -1,3 +1,4 @@
+{{{
 int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
 {
   __int16 v2; // cx@1
@@ -69,3 +70,4 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
   *(_BYTE *)(v3 + 93) = 10;
   return result;
 }
+}}}
