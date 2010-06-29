@@ -122,6 +122,87 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
 }
 }}}
 
+= crystal =
+
+{{{
+
+char __fastcall INITSHIP_Load_Crystal_Ship_Design_(int a1, int a2)
+{
+  __int16 v2; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  char result; // al@4
+  int v8; // esi@4
+  int v9; // eax@4
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A670;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  *(_BYTE *)(v3 + 17) = 0;
+  *(_BYTE *)(v3 + 18) = 0;
+  *(_BYTE *)(v3 + 21) = 5;
+  if ( v2 )
+  {
+    *(_BYTE *)(v3 + 16) = 4;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(11);
+    v8 = 46 * *(_BYTE *)(v3 + 19);
+    *(_BYTE *)(v3 + 20) = 1;
+    *(_WORD *)(v3 + 28) = 42;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 2;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 1;
+    *(_BYTE *)(v3 + 31) = 1;
+    *(_WORD *)(v3 + 36) = 26;
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_WORD *)(v3 + 41) = 0;
+    *(_BYTE *)(v3 + 43) = 10;
+    *(_BYTE *)(v3 + 38) = 5;
+    v9 = *(_BYTE *)(v3 + 16);
+    *(_BYTE *)(v3 + 39) = 5;
+    result = *(&byte_177E90[v8] + v9);
+    *(_BYTE *)(v3 + 92) = 9;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = 0;
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 42;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 1;
+    *(_BYTE *)(v3 + 31) = 1;
+    *(_WORD *)(v3 + 36) = 25;
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_BYTE *)(v3 + 43) = 10;
+    *(_BYTE *)(v3 + 38) = 5;
+    *(_BYTE *)(v3 + 39) = 5;
+    *(_WORD *)(v3 + 33) = 0;
+    *(_WORD *)(v3 + 41) = 0;
+    result = *(&byte_177E90[46 * (signed __int16)INITSHIP_Best_Warp_Drive_(11)] + *(_BYTE *)(v3 + 16));
+    *(_BYTE *)(v3 + 92) = 21;
+  }
+  *(_BYTE *)(v3 + 96) = result;
+  *(_WORD *)(v3 + 94) = 0;
+  *(_BYTE *)(v3 + 93) = 11;
+  return result;
+}
+
+
+}}}
+
 = marauder =
 {{{
       struct_Clear_Structure_(a1, 99, a1, a4);
