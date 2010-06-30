@@ -60,13 +60,13 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
     *(_BYTE *)(v3 + 22) = 0;
     *(_BYTE *)(v3 + 20) = 1;
     *(_WORD *)(v3 + 28) = 45;//Caustic Slime
-    *(_BYTE *)(v3 + 32) = 15;
+    *(_BYTE *)(v3 + 32) = 15;//firing arc
     *(_WORD *)(v3 + 33) = 0;
     *(_BYTE *)(v3 + 35) = 0;
     *(_BYTE *)(v3 + 30) = 2;
     *(_BYTE *)(v3 + 31) = 2;
     *(_WORD *)(v3 + 36) = 23;//Anti-Matter Bomb
-    *(_BYTE *)(v3 + 40) = 15;//firing arc
+    *(_BYTE *)(v3 + 40) = 15;
     *(_WORD *)(v3 + 41) = 0;
     *(_BYTE *)(v3 + 43) = 10;
     *(_BYTE *)(v3 + 38) = 5;
