@@ -1,4 +1,6 @@
 = amoeba =
+
+== amoeba hex ==
 {{{
 Big amoeba:
 
@@ -24,7 +26,7 @@ FA 0C 00 66 C7 43 5E 00  00 C6 43 5D 0A 5F 5E 59
 
 }}}
 
-
+== amoeba C ==
 {{{
 int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
 {
@@ -49,12 +51,12 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
   while ( v6 );
   if ( v2 )
   {
-    *(_BYTE *)(v3 + 16) = 3;//(hull type)
+    *(_BYTE *)(v3 + 16) = 3;
     *(_BYTE *)(v3 + 17) = 0;
     *(_BYTE *)(v3 + 18) = 0;
     *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(10);
     v8 = 46 * *(_BYTE *)(v3 + 19);
-    *(_BYTE *)(v3 + 21) = 2;//computer type
+    *(_BYTE *)(v3 + 21) = 2;
     *(_BYTE *)(v3 + 22) = 0;
     *(_BYTE *)(v3 + 20) = 1;
     *(_WORD *)(v3 + 28) = 45;//Caustic Slime
@@ -64,7 +66,7 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
     *(_BYTE *)(v3 + 30) = 2;
     *(_BYTE *)(v3 + 31) = 2;
     *(_WORD *)(v3 + 36) = 23;//Anti-Matter Bomb
-    *(_BYTE *)(v3 + 40) = 15;//firing arc (360)
+    *(_BYTE *)(v3 + 40) = 15;
     *(_WORD *)(v3 + 41) = 0;
     *(_BYTE *)(v3 + 43) = 10;
     *(_BYTE *)(v3 + 38) = 5;
@@ -98,7 +100,10 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
   return result;
 }
 }}}
-crystal
+
+= crystal =
+
+== crystal hex ==
 {{{
 one for all:
 C6 43 11 00 C6 43 12 00  C6 43 15 05 66 85 C9 74
@@ -122,7 +127,8 @@ C0 2E 0F B6 73 10 8A 84  06 90 7E 17 00 C6 43 5C
 15 88 43 60 66 C7 43 5E  00 00 C6 43 5D 0B 5F 5E
 
 }}}
-= crystal =
+
+== crystal C ==
 
 {{{
 
@@ -202,9 +208,32 @@ char __fastcall INITSHIP_Load_Crystal_Ship_Design_(int a1, int a2)
 
 
 }}}
-eel
-
 = eel =
+
+== eel hex ==
+{{{
+
+big
+C6 43 11 00 C6 43 12 00  8D 4B 17 C6 43 15 04 66
+83 7D FC 00 74 5C B8 0D  00 00 00 C6 43 10 03 E8
+C5 E9 FF FF C6 43 16 00  BA 13 00 00 00 88 43 13
+89 C8 C6 43 14 01 E8 9A  F9 0C 00 0F B6 4B 13 6B
+F1 2E 66 C7 43 1C 2C 00  C6 43 20 0F 66 C7 43 21
+00 00 C6 43 23 00 C6 43  1E 02 0F B6 4B 10 C6 43
+1F 02 8A 8C 31 90 7E 17  00 80 C1 08 C6 43 5C 0B
+
+small
+C6 43 10 02 C6 43 16 00  BA 13 00 00 00 C6 43 13
+00 89 C8 C6 43 14 00 E8  47 F9 0C 00 66 C7 43 1C
+2C 00 C6 43 20 0F 66 C7  43 21 00 00 C6 43 23 00
+C6 43 1E 01 B8 0D 00 00  00 C6 43 1F 01 E8 35 E9
+FF FF 0F BF C8 6B F1 2E  0F B6 4B 10 8A 8C 31 90
+7E 17 00 80 C1 08 C6 43  5C 17 88 4B 60 66 C7 43
+
+}}}
+
+== eel C ==
+
 {{{
 void __fastcall INITSHIP_Load_Eel_Ship_Design_(int a1, __int16 a2, int a3, int a4)
 {
@@ -274,6 +303,205 @@ void __fastcall INITSHIP_Load_Eel_Ship_Design_(int a1, __int16 a2, int a3, int a
   JUMPOUT(*(unsigned int *)locret_56580);
 }
 }}}
+
+= dragon =
+
+== dragon hex ==
+{{{
+big
+
+C6 43 11 00 C6 43 12 00  8D 53 08 C6 43 15 05 66
+85 C9 74 6C C6 43 10 04  C6 43 16 00 B8 0C 00 00
+00 C6 43 14 01 E8 D6 EC  FF FF 66 C7 43 1C 29 00
+C6 43 20 0F 66 C7 43 21  04 00 C6 43 23 00 C6 43
+1E 14 C6 43 1F 14 88 43  13 66 C7 42 1C 28 00 C6
+42 20 0F 66 C7 42 21 00  40 C6 42 23 00 C6 42 1E
+
+small
+
+C6 43 10 02 C6 43 16 00  C6 43 14 00 66 C7 43 1C
+29 00 C6 43 20 0F 66 C7  43 21 04 00 C6 43 23 00
+C6 43 1E 08 C6 43 1F 08  66 C7 42 1C 28 00 C6 42
+20 0F C6 42 23 00 C6 42  1F 01 C6 42 1E 01 B8 0C
+00 00 00 66 89 4A 21 E8  34 EC FF FF 0F BF D0 6B
+F2 2E 0F B6 53 10 8A 94  32 90 7E 17 00 80 C2 04
+}}}
+
+== dragon C ==
+
+{{{
+signed int __fastcall INITSHIP_Load_Dragon_Ship_Design_(int a1, int a2)
+{
+  __int16 bBlocingMonster; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  signed int result; // eax@4
+  char v8; // dl@4
+  int v9; // edx@4
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A674;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  *(_BYTE *)(v3 + 17) = 0;
+  *(_BYTE *)(v3 + 18) = 0;
+  *(_BYTE *)(v3 + 21) = 5;
+  if ( bBlocingMonster )
+  {
+    *(_BYTE *)(v3 + 16) = 4;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 20) = 1;
+    result = INITSHIP_Best_Warp_Drive_(12);
+    *(_WORD *)(v3 + 28) = 41;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 4;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 20;
+    *(_BYTE *)(v3 + 31) = 20;
+    *(_BYTE *)(v3 + 19) = result;
+    *(_WORD *)(v9 + 28) = 40;
+    *(_BYTE *)(v9 + 32) = 15;
+    *(_WORD *)(v9 + 33) = 16384;
+    *(_BYTE *)(v9 + 35) = 0;
+    *(_BYTE *)(v9 + 30) = 1;
+    *(_BYTE *)(v9 + 31) = 1;
+    v8 = *(&byte_177E90[46 * *(_BYTE *)(v3 + 19)] + *(_BYTE *)(v3 + 16)) + 4;
+    *(_BYTE *)(v3 + 92) = 10;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 41;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 4;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 8;
+    *(_BYTE *)(v3 + 31) = 8;
+    *(_WORD *)(v3 + 36) = 40;
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_BYTE *)(v3 + 43) = 0;
+    *(_BYTE *)(v3 + 39) = 1;
+    *(_BYTE *)(v3 + 38) = 1;
+    *(_WORD *)(v3 + 41) = 0;
+    result = INITSHIP_Best_Warp_Drive_(12);
+    v8 = *(&byte_177E90[46 * (signed __int16)result] + *(_BYTE *)(v3 + 16)) + 4;
+    *(_BYTE *)(v3 + 92) = 22;
+  }
+  *(_BYTE *)(v3 + 96) = v8;
+  *(_BYTE *)(v3 + 93) = 12;
+  *(_WORD *)(v3 + 94) = 0;
+  return result;
+}
+
+}}}
+
+= hydra =
+
+== hydra hex ==
+{{{
+small
+
+C6 43 11 00 C6 43 12 00  C6 43 15 02 66 85 C9 74
+4D C6 43 10 04 B8 0E 00  00 00 C6 43 16 00 E8 C3
+EB FF FF 88 43 13 0F B6  43 13 6B F0 2E C6 43 14
+01 66 C7 43 1C 2B 00 C6  43 20 0F 66 C7 43 21 02
+00 C6 43 23 00 C6 43 1E  05 0F B6 43 10 C6 43 1F
+05 8A 84 06 90 7E 17 00  C6 43 5C 0C EB 4E B8 0E
+00 00 00 C6 43 10 02 E8  B3 EC FF FF C6 43 14 00
+
+big
+
+B8 0E 00 00 00 C6 43 10  02 E8 B3 EC FF FF C6 43
+14 00 66 C7 43 1C 2B 00  C6 43 20 0F C6 43 23 00
+C6 43 1E 03 C6 43 1F 03  88 43 16 B8 0E 00 00 00
+66 89 4B 21 E8 4F EB FF  FF 0F BF F0 6B F6 2E 0F
+B6 43 10 8A 84 06 90 7E  17 00 C6 43 5C 18 88 43
+60 BA 0A 00 00 00 8D 43  17 E8 16 FB 0C 00 66 C7
+}}}
+
+== hydra C ==
+
+{{{
+int __fastcall INITSHIP_Load_Hydra_Ship_Design_(int a1, int a2)
+{
+  __int16 v2; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  char v7; // al@4
+  int v8; // esi@4
+  int v9; // eax@4
+  char v10; // al@5
+  __int16 v11; // cx@5
+  int result; // eax@6
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A67C;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  *(_BYTE *)(v3 + 17) = 0;
+  *(_BYTE *)(v3 + 18) = 0;
+  *(_BYTE *)(v3 + 21) = 2;
+  if ( v2 )
+  {
+    *(_BYTE *)(v3 + 16) = 4;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(14);
+    v8 = 46 * *(_BYTE *)(v3 + 19);
+    *(_BYTE *)(v3 + 20) = 1;
+    *(_WORD *)(v3 + 28) = 43;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 2;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 5;
+    v9 = *(_BYTE *)(v3 + 16);
+    *(_BYTE *)(v3 + 31) = 5;
+    v7 = *(&byte_177E90[v8] + v9);
+    *(_BYTE *)(v3 + 92) = 12;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;
+    INITSHIP_Best_Armor_(14);
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 43;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 3;
+    *(_BYTE *)(v3 + 31) = 3;
+    *(_BYTE *)(v3 + 22) = v10;
+    *(_WORD *)(v3 + 33) = v11;
+    v7 = *(&byte_177E90[46 * (signed __int16)INITSHIP_Best_Warp_Drive_(14)] + *(_BYTE *)(v3 + 16));
+    *(_BYTE *)(v3 + 92) = 24;
+  }
+  *(_BYTE *)(v3 + 96) = v7;
+  result = struct_Set_Bit_Field_(v3 + 23, 10);
+  *(_WORD *)(v3 + 94) = 0;
+  *(_BYTE *)(v3 + 93) = 14;
+  return result;
+}
+
+}}}
+
+
+
 = marauder =
 {{{
       struct_Clear_Structure_(a1, 99, a1, a4);
