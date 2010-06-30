@@ -88,7 +88,7 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
     *(_BYTE *)(v3 + 35) = 0;
     *(_BYTE *)(v3 + 30) = 1;
     *(_BYTE *)(v3 + 31) = 1;
-    *(_BYTE *)(v3 + 92) = 20;
+    *(_BYTE *)(v3 + 92) = 20;//вот эту 20ку
     *(_WORD *)(v3 + 33) = 0;
     v7 = 46 * (signed __int16)INITSHIP_Best_Warp_Drive_(10);
     v8 = *(_BYTE *)(v3 + 16);
