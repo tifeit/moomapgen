@@ -54,7 +54,7 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
     *(_BYTE *)(v3 + 18) = 0;
     *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(10);
     v8 = 46 * *(_BYTE *)(v3 + 19);
-    *(_BYTE *)(v3 + 21) = 2;
+    *(_BYTE *)(v3 + 21) = 2;//computer type
     *(_BYTE *)(v3 + 22) = 0;
     *(_BYTE *)(v3 + 20) = 1;
     *(_WORD *)(v3 + 28) = 45;//Caustic Slime
