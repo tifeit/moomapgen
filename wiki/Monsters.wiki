@@ -49,7 +49,7 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
   while ( v6 );
   if ( v2 )
   {
-    *(_BYTE *)(v3 + 16) = 3;
+    *(_BYTE *)(v3 + 16) = 3;//(hull type)
     *(_BYTE *)(v3 + 17) = 0;
     *(_BYTE *)(v3 + 18) = 0;
     *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(10);
