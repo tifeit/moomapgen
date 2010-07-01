@@ -59,7 +59,7 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
     *(_BYTE *)(v3 + 21) = 2;
     *(_BYTE *)(v3 + 22) = 0;
     *(_BYTE *)(v3 + 20) = 1;
-    *(_WORD *)(v3 + 28) = 45;//Caustic Slime
+    *(_WORD *)(v3 + 28) = 45;//Weapon type (Caustic Slime)
     *(_BYTE *)(v3 + 32) = 15;//firing arc
     *(_WORD *)(v3 + 33) = 0;
     *(_BYTE *)(v3 + 35) = 0;
