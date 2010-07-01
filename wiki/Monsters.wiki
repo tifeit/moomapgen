@@ -576,16 +576,16 @@ signed int __fastcall INITSHIP_Best_Warp_Drive_(__int16 a1)
     switch ( v2 )
     {
       case 8:
-      case 12:
-      case 13:
+      case 12://12=dragon??
+      case 13://13=eel
         result = 6;
         break;
-      case 9:
-      case 11:
+      case 9://9??
+      case 11://11=cristal
         result = 4;
         break;
       case 10://monster type; 10=ameoba
-      case 14:
+      case 14://14=Hydra
         result = 2;//drive type; 2=fusion drive
         break;
       default:
