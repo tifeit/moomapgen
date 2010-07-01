@@ -86,7 +86,7 @@ int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
     *(_WORD *)(v3 + 28) = 45;//Caustic Slime
     *(_BYTE *)(v3 + 32) = 15;//firing arc
     *(_BYTE *)(v3 + 35) = 0;
-    *(_BYTE *)(v3 + 30) = 1;
+    *(_BYTE *)(v3 + 30) = 1;//number of weapons
     *(_BYTE *)(v3 + 31) = 1;
     *(_BYTE *)(v3 + 92) = 20;//ameoba picture
     *(_WORD *)(v3 + 33) = 0;
