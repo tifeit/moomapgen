@@ -239,23 +239,25 @@ void modifyHW(struct planet *aPlanets, struct starSystem *ptrSystem, unsigned in
 
 					if (nDonePlanets == 0) {
 
-						ptrPlanet->nEnvClass = 6;
+						ptrPlanet->nEnvClass = SWAMP;
 						ptrPlanet->nFoodBase = 2;
 
 					} else if (nDonePlanets == 1) {
 
-						ptrPlanet->nEnvClass = 4;
+						ptrPlanet->nEnvClass = ARID;
 						ptrPlanet->nFoodBase = 1;
 
 					} else if (nDonePlanets == 2) {
 
-						ptrPlanet->nEnvClass = 7;
+						ptrPlanet->nEnvClass = TUNDRA;
 						ptrPlanet->nFoodBase = 1;
+						ptrPlanet->nMineralClass = POOR;
 
 					} else if (nDonePlanets == 3) {
 
 						ptrPlanet->nEnvClass = GAIA;
 						ptrPlanet->nFoodBase = 3;
+						ptrPlanet->nMineralClass = POOR;
 					}
 				}
 

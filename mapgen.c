@@ -43,7 +43,7 @@ int main(int argc, char *argv[]) {
 					"        Large, Large again, Medium, Small untill\n"
 					"        there are no more planets to modify. Gaias become Terrain.\n"
 					"      fixedhw - Implies `flathw`. Planets become:\n"
-					"        Large Swamp, Large Tundra, Medium Arid, Small Gaia. All abundant.\n\n"
+					"        Large Abundant Swamp, Large Abundant Arid, Medium Poor Tundra, Small Poor Gaia.\n\n"
 
 					"  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
