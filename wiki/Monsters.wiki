@@ -581,12 +581,12 @@ signed int __fastcall INITSHIP_Best_Warp_Drive_(__int16 a1)
   {
     switch ( v2 )
     {
-      case 8:
+      case 8://8=ANTARANS!
       case 12://12=dragon??
       case 13://13=eel
         result = 6;
         break;
-      case 9://9??
+      case 9://9?? 9=Guardian!
       case 11://11=cristal
         result = 4;
         break;
