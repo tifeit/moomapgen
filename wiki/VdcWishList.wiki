@@ -1,4 +1,4 @@
-= Altered New Priority List:=
+= New Altered Priority List:=
  # Reduce Damper Field's damping bonus from 75% to 66% (e.g. make division of damage not by 4, but by 3);
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Add Hard Shields effect to class XX shield.
