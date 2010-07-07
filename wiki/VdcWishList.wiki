@@ -2,6 +2,7 @@
  # Reduce Damper Field's damping bonus from 75% to 66%;
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Add Hard Shields effect to class XX shield.
+ # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
  # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
  # Reduce number of combat rounds from 50 to 20;
  # Find the Leaders offering time matrix;
