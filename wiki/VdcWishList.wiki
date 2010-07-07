@@ -1,37 +1,20 @@
 = Altered New Priority List:=
-
- # ~~Бонусы от Jammer-ов Текущие значения: Tech57 : "Ecm Jammer" – 70 Tech111 : "Multi-Wave Ecm Jammer" – 100 Tech199 : "Wide Area Jammer" - 130.~~ [DebuggedOffsets#Jammer_bonuses]
- # ~~Security stations bonus (now is +20);~~ [DebuggedOffsets#Security_stations_bonus]
- # ~~Find Microbiotics and Universal Antidote bonus;~~ [DebuggedOffsets#Microbiotics&Antidote]
+ # Reduce Damper Field's damping bonus from 75% to 66%;
+ # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Add Hard Shields effect to class XX shield.
- # Телепатия
-  * Починить навык телепатии у лидеров (сейчас, фактически, он дает половину бонуса от объявленного);
-  * ~~Увеличить бонус шпионажа расы телепатика с 10 до 20. Практика показывает, что за 8 очков его никто не берет, с +20 шпонажем станет привлекательным.~~ [DebuggedOffsets#Telepathic_bonus]
- # ~~~Displacement Device special's bonus (currently is 30%);~~ [DebuggedOffsets#Displacement_device]
- # Матрица прихода лидеров во времени;
- # Уменьшение количество раундов боя с 50 до 20;
- # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships; 
- # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
- # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 24 соответственно (после этого я смогу уменьшить space consumption);
- # Damper Field moving to shields place (to be able to choose damper field from there);
+ # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
+ # Reduce number of combat rounds from 50 to 20;
+ # Find the Leaders offering time matrix;
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
- # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
- # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
-
-Letter to LB:
-
-Dear LB,
-
-VDC practice showed the necessity of having counters to stealth field technology other than mutating into Omni. I had an idea of giving a certain tech the ability to block stealth field's and cloaking device's stealth bonus. Hence I have a question, how did you fix stealth field in 1.40, afaik in 1.31 it was corrupted (didn't work). Is there a way to block or disable your correction code for stealth field, based on availability of certain tech, e.g. sensors? I would really like to see it implemented in my mod, because of balance purposes. I will ask tf8 to do all the necessary coding. Please provide me (tf8) with information on how you did the stealth field fixing.
-Edit: tf8 still can't figure out how you did jump-links on your code. Please explain how to do them too.
-
-Irakly
-
-Reply:
-
-The Stealth code is around offset 0xE32BB in the exe file. My patch inserts a jump around there which leads to the fixed stealth check code at offset 0x17A3B0. Once the fixed code is executed, it jumps back to resume the original game code (code immediately after the first jump).
+ # Damper Field moving to shields place (to be able to choose damper field from there);  
+ # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 24 соответственно (после этого я смогу уменьшить space consumption);
+  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
+  # Telepathy
+  * Fix telepathy skills of the leaders (now they add only half bonus they should);
+  # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
+ 
 
 ----
 Hard Shields bonus
