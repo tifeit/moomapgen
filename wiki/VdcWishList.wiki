@@ -1,5 +1,5 @@
 = New Altered Priority List:=
- # ~~Reduce Damper Field's damping bonus from 75% to 66% (e.g. make division of damage not by 4, but by 3);~~
+ # ~~Reduce Damper Field's damping bonus from 75% to 66% (e.g. make division of damage not by 4, but by 3);~~no need anymore
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Add Hard Shields effect to class XX shield.
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
