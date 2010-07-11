@@ -1,6 +1,6 @@
 = New Altered Priority List:=
- # ~~Reduce Damper Field's damping bonus from 75% to 66% (e.g. make division of damage not by 4, but by 3);~~no need anymore
- # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
+  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
+ # Disable requirement to click OK for raid confirmation window. Example: When you hit autobattle when the same window appears it stays for about 5-7 seconds, then AI removes it. But when you are controlling your ships, you have to press OK or battle doesn't go futher this point. Would be good if it was the same as in autobattle - message dissapeared automatically after a short pause, and no need of confirmation.   
  # Add Hard Shields effect to class XX shield.
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
  # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
