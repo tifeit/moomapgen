@@ -8,8 +8,8 @@
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
- # Movу Damper Field special graphically to shields place (to be able to choose damper field from there);
- # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed...
+  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed...
+ # Move Damper Field special graphically to shields place (to be able to choose damper field from there); 
  # Тракторы. Увеличить количество лучей, необходимых для иммобилизации Титана и Думстара до 12 и 24 соответственно (после этого я смогу уменьшить space consumption);
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
  # Telepathy
