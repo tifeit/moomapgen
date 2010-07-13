@@ -5,8 +5,8 @@
  # Star bases, % распределения оружия на старбазах (тяжелые бимы, обычный, поиндефенс, ракеты). Сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
  # Reduce number of combat rounds from 50 to 20;
  # Find the Leaders offering time matrix;
-  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed...
- # Add Hard shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
+  # Add Hard shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
+ # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
  # Move Damper Field special graphically to shields place (to be able to choose damper field from there); 
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
  # Mutation Bug (desynch issue);
