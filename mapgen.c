@@ -50,7 +50,7 @@ int main(int argc, char *argv[]) {
 					"      arti - Arti planets still exist, but don't give techs anymore.\n\n"
 
 					"  -m Monsters Change\n"
-					"      grav - Guarded planets become normal gravity if they are not ultrarich.\n"
+					"      grav - Guarded planets become normal gravity, even ultrarich now.\n"
 					"      terraform - Guarded rich & urich planets are terraformed.\n"
 					"        Toxics, Rads, Barrens, Deserts become Tundra.\n"
 					"      monst - Does the same thing as -mgrav and -mterraform.\n\n"

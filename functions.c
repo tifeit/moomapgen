@@ -152,7 +152,7 @@ void terraform(struct starSystem *aStarSystems, struct planet *aPlanets, struct 
 
 						ptrPlanet = &aPlanets[aStarSystems[location].aPlanet[j]];
 
-						if (monsterFlags & FLG_GRAV && ptrPlanet->nMineralClass != ULTRA_RICH) {
+						if (monsterFlags & FLG_GRAV) {
 
 							ptrPlanet->nPlanetGravity = 1;
 
