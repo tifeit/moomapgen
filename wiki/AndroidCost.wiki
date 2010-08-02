@@ -39,7 +39,7 @@ signed int __fastcall COLCALC_Colony_Product_Cost_(int a1, unsigned __int16 a2)
         DESIGN_Cost_Reduction_For_Govt_Type_(v4, &v8);
         return v8;
       }
-      if ( a2 < 0xFFF9u )
+      if ( a2 < 0xFFF9u ) //если а2 строго меньше -7, т.е. =-8, -9, -10 и т.д.
       {
         if ( a2 == -11 )
         {
@@ -50,7 +50,7 @@ signed int __fastcall COLCALC_Colony_Product_Cost_(int a1, unsigned __int16 a2)
         }
         return v2;
       }
-      if ( a2 <= 0xFFF9u )
+      if ( a2 <= 0xFFF9u ) //если а2 меньше равно -7, т.е. =-7
         return 100;
       if ( a2 > 0xFFFCu )
         return v2;
