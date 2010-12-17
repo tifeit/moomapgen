@@ -161,7 +161,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	//Backup file.
-	fp2 = fopen(sBakFile, "w+");
+	fp2 = fopen(sBakFile, "wb+");
 
 	if (fp2 == NULL) {
 
