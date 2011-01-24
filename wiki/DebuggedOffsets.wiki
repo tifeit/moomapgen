@@ -24,13 +24,13 @@
 
 = `Max negative pics` =
 
-Signatures for VDCGM2.EXE:
-
+Includes:
+Max negative Picks:
 ||`05 6C 37 02 00 83 F8 `*F6*` 7D 41 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 FC E7 FF FF 8D 45 F6 E8 09 CD 01 00 E8 4B A6`||
 ||`F8 `*F6*` 7D 46 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 3A E9 FF FF 8D 45 F6 E8 47 CE 01 00 E8 89 A7 0C 00 E8 0F EB FF`||
 ||`F8 `*F6*` 7D 48 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 9E E8 FF FF 8D 45 F6 E8 AB CD 01 00 E8 ED A6 0C 00 E8 73 EA FF`||
 
-Signatures for ORION2.EXE (1.31):
+Graphical representation on race selection screen:
 ||`cseg01:00059870  02 0F BF 15 6C 37 02 00  01 D0 83 F8 `*F6*` 7D 1C 89`||
 ||`cseg01:00059990  83 F8 `*F6*` 7C 3C 0F BF 15  66 37 02 00 0F BF C7 29`||
 ||`cseg01:00059E30  83 F8 `*F6*` 7D 1C 0F BF 45  6E 66 8B 44 45 2E 0F BF`||
@@ -39,7 +39,7 @@ Signatures for ORION2.EXE (1.31):
 ||`cseg01:00059C60  02 00 01 D0 83 F8 `*F6*` 7C  15 0F BF 45 52 0F BF 15`||
 
 
-Mutation:
+Mutation connection:
 
 ||`cseg01:0005B920  01 D0 83 F8 `*F6*` 7D 4C BB  50 00 00 00 8D 95 0E FF`||
 ||`cseg01:0005BA30  04 83 F8 `*F6*` 7D 47 BB 50  00 00 00 8D 95 0E FF FF`||
