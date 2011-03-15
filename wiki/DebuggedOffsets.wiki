@@ -188,4 +188,4 @@ Forced vsync
 
 2 missiles = 10, 5 missiles = 20, 10 missiles = 30, 15 missiles = 35, 20 missiles = 40
 *(3 times)*
-||Hard Shields bonus|| `66 83 2E ` *03* ` 66 83 3E 00  7D 05 66 C7 06 00 00 66` ||
+||Hard Shields bonus|| `66 83 2E ` *03* ` 66 83 3E 00  7D 05 66 C7 06 00 00 66`||
