@@ -184,7 +184,7 @@ Forced vsync
 
 =`DESIGN_Weapon_Cost_`=
 
-|| missiles base cost/space|| `B8 `*0A*` 00 00 00 EB 1A B8 `*14*` 00 00 00 EB 13 B8 `*1E*` 00 00 00 EB 0C B8 `*23*` 00 00 00 EB 05 B8 `*28*` 00 00 00`||
+|| missiles base cost/space|| `B8 `*0A*` 00 00 00 EB 1A B8 `*14*` 00 00 00 EB 13 B8 `*1E*` 00 00 00 EB 0C B8 `*23*` 00 00 00 EB 05 B8 `*28*` 00`||
 
 2 missiles = 10, 5 missiles = 20, 10 missiles = 30, 15 missiles = 35, 20 missiles = 40
 *(3 times)*
