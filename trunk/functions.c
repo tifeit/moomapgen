@@ -1,7 +1,4 @@
-#include <stdio.h>
-#include <stdlib.h>
-
-#include "functions.h"
+#include "mapgen.h"
 
 extern unsigned char verbose;
 
@@ -27,7 +24,6 @@ void printSystem(struct star* starSystem, struct planet *aPlanets) {
 			"nJustVisited: %d nStarOwner: %d\n", starSystem->sName, starSystem->nXpos, starSystem->nYpos, starSystem->nSize, starSystem->nOwner,
 			starSystem->nPicture, starSystem->nStarType, starSystem->nSpecial, starSystem->nBlocaded, starSystem->bvBlockadedBy[0], starSystem->nVisited,
 			starSystem->nJustVisited, starSystem->nStarOwner);
-
 
 	//Displaying Homeworld info
 	for ( i = 0; i != 5; i++ ) {
@@ -97,10 +93,13 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 		if (flags & FLG_NOUPOOR && aPlanets[i].nMineralClass == 0)
 			aPlanets[i].nMineralClass = 1;
 
-		if (flags & FLG_NOLG && aPlanets[i].nPlanetGravity == 0)
-			aPlanets[i].nPlanetGravity = 1;
+		if (flags & FLG_NOLG && aPlanets[i].nPlanetGravity == 0) {
+			if (aPlanets[i].nColonyID == 0xffff)
+				aPlanets[i].nPlanetGravity = 1;
+		}
 
 		if (flags & FLG_NOHG && aPlanets[i].nPlanetGravity == 2)
+			if (aPlanets[i].nColonyID == 0xffff)
 			aPlanets[i].nPlanetGravity = 1;
 
 		if (flags & FLG_NOTINY && aPlanets[i].nPlanetSize == 0) {
@@ -166,6 +165,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 								if (ptrPlanet->nEnvClass == TOXIC || ptrPlanet->nEnvClass == RADIATED
 									|| ptrPlanet->nEnvClass == DESERT || ptrPlanet->nEnvClass == BARREN) {
 
+									ptrPlanet->nFoodBase = 1;
 									ptrPlanet->nEnvClass = TUNDRA;
 
 									if (verbose) printf("%s | Monster Terraform\n", aStarSystems[aShips[i].location].sName);
@@ -266,7 +266,7 @@ void modifyHW(struct planet *aPlanets, struct star *ptrSystem, unsigned int nSys
 
 					} else if (nDonePlanets == 3) {
 
-						ptrPlanet->nEnvClass = GAIA;
+						ptrPlanet->nEnvClass = flags & FLG_GAIA ? GAIA : TERRAN;
 						ptrPlanet->nFoodBase = 3;
 						ptrPlanet->nMineralClass = POOR;
 					}
@@ -280,11 +280,68 @@ void modifyHW(struct planet *aPlanets, struct star *ptrSystem, unsigned int nSys
 
 void balanceGalaxy(struct galaxy *galaxy) {
 
-	int i;
-	struct star *ptrHW;
+	int i, j, k, sum, parsec;
+	struct star *ptrHW, *ptrStar;
+	struct planet *ptrPlanet;
+
+	int aPoorPlanets[9][4] = {
+/*toxic*/		{1, 1, 1, 1},
+/*radiated*/	{1, 1, 1, 1},
+/*barren*/	{1, 1, 1, 1},
+/*desert*/	{1, 1, 1, 1},
+/*radiated*/	{1, 1, 1, 1},
+/*radiated*/	{1, 1, 1, 1},
+/*radiated*/	{1, 1, 1, 1},
+/*radiated*/	{1, 1, 1, 1},
+/*radiated*/	{1, 1, 1, 1},
+	};
+
+	int points, totalPoints;
+
 	for (i = 0; i != 8; i++) {
 
+		totalPoints = 0;
+
 		ptrHW = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[i].home_planet_id].nStarID];
-		printf("%s; %s | x:%d y:%d;\n", galaxy->aPlayers[i].name, ptrHW->sName, ptrHW->nXpos, ptrHW->nYpos);
+		if (galaxy->aPlayers[i].home_planet_id == 0)
+			continue;
+
+		printf("%s; %s\n", galaxy->aPlayers[i].name, ptrHW->sName);
+
+		for (j = 0; j!=MAX_SYSTEMS; j++) {
+
+			points = 0;
+
+			ptrStar = &galaxy->aStars[j];
+			if (ptrStar->sName[0] == 0 || ptrStar == ptrHW)
+				continue;
+
+			sum = (ptrHW->nXpos - ptrStar->nXpos)*(ptrHW->nXpos - ptrStar->nXpos) +
+				(ptrHW->nYpos - ptrStar->nYpos)*(ptrHW->nYpos - ptrStar->nYpos);
+
+			parsec = (int)sqrt(sum/900);
+
+			if (parsec*900 < sum) parsec++;
+
+			//printf("%d: %s %d\n",j , galaxy->aStars[j].sName, parsec);
+
+			if (parsec <= 6) {
+
+				for (k = 0; k != 5; k++) {
+
+					if (ptrStar->aPlanet[k] == 0xffff)
+						continue;
+
+					ptrPlanet = &galaxy->aPlanets[ptrStar->aPlanet[k]];
+
+					if (ptrPlanet->nMineralClass == POOR) {
+
+						points+=aPoorPlanets[ptrPlanet->nEnvClass][ptrPlanet->nPlanetSize];
+					}
+				}
+			}
+		}
+
+		printf("totalPoints: %d\n", totalPoints);
 	}
 }
