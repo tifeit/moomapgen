@@ -1,9 +1,6 @@
 #ifndef FUNCTIONS_H_
 #define FUNCTIONS_H_
 
-#include "struct.h"
-#include "string.h"
-
 // Outputs variable in hexademical form.
 void tohex(void *string, unsigned int length);
 

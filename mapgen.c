@@ -49,9 +49,10 @@ int main(int argc, char *argv[]) {
 					"        Large, Large again, Medium, Small untill\n"
 					"        there are no more planets to modify. Gaias become Terrain.\n"
 					"      fixedhw - Implies `flathw`. Planets become:\n"
-					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra, Small Poor Gaia, all normalG.\n"
+					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra, Small Poor Terrain, all normalG.\n"
 					"		 If your homeworld is lowG, than all other planets except Arid become lowG.\n"
-					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n\n"
+					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n"
+					"      gaia - Implies 'fixedhw, but fifth planet becomes Gaia instead of Terrain\n\n"
 
 					"  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
@@ -97,6 +98,10 @@ int main(int argc, char *argv[]) {
 
 				else if (strstr(optarg, "fixedhw"))
 							hwFlags |= FLG_FIXEDHW;
+
+				else if (strstr(optarg, "gaia"))
+							hwFlags |= (FLG_FIXEDHW | FLG_GAIA);
+
 
 				else {
 						fprintf(stderr, "Unknown Terraform parameter %s\n", optarg);
@@ -152,6 +157,8 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
+	printf("Visit http://code.google.com/p/moomapgen/ for adding feature requests.\n");
+
 	fp = fopen(sSaveFile, "rb+");
 
 	if (fp == NULL) {
@@ -205,7 +212,6 @@ int main(int argc, char *argv[]) {
 
 	getHwCoords(galaxy.aStars, aHwCoordinates, nNumOfStars, galaxy.aPlanets);
 	galaxy.aHwCoordinates = (unsigned int *) aHwCoordinates;
-
 
 	//Map generation.
 	if (balanceFlags) {
