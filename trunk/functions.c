@@ -241,7 +241,7 @@ void modifyHW(struct planet *aPlanets, struct star *ptrSystem, unsigned int nSys
 						else
 							ptrPlanet->nPlanetGravity = NORMAL_G;
 
-						ptrPlanet->nPlanetSize = SMALL;
+						ptrPlanet->nPlanetSize = flags & FLG_GAIA ? SMALL : MEDIUM;
 					break;
 				}
 
@@ -267,7 +267,7 @@ void modifyHW(struct planet *aPlanets, struct star *ptrSystem, unsigned int nSys
 					} else if (nDonePlanets == 3) {
 
 						ptrPlanet->nEnvClass = flags & FLG_GAIA ? GAIA : TERRAN;
-						ptrPlanet->nFoodBase = 3;
+						ptrPlanet->nFoodBase = flags & FLG_GAIA ? 3 : 2;
 						ptrPlanet->nMineralClass = POOR;
 					}
 				}
