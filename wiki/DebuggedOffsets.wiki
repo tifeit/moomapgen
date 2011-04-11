@@ -121,7 +121,7 @@ Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 
  Warning! Offset used in formula k=2^01^ so if you would change 01 to 02 k = 2^02^ = 4||
 
 = Planet pollution bonus =
-Nano disassemblers increase no-pollution prod by k=2^x^ times where x can be 1, 2, 3...
+Nano disassemblers increase no-pollution prod by k=2^x^ times where x can be 01, 02, 03 in the above offset...
 ||Planet no-pollution prod || `000DD4E1  `*02 04 06 08 0A*` 00 00 01  02 03 19 19 19 23 23 23`||
 
 ----
