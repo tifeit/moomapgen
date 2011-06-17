@@ -18,7 +18,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 	unsigned int flags, unsigned int splinterFlags, unsigned int monsterFlags);
 
 //Terraforms homeworld according to given flags.
-void modifyHW(struct planet *aPlanets, struct star* ptrSystem, unsigned int nSystemID, unsigned int flags);
+void modifyHW(struct galaxy *galaxy, unsigned int flags);
 
 //BalanceGalaxy.
 void balanceGalaxy(struct galaxy *galaxy);

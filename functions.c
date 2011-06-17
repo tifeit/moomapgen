@@ -180,99 +180,113 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 	}
 }
 
-void modifyHW(struct planet *aPlanets, struct star *ptrSystem, unsigned int nSystemID, unsigned int flags) {
+void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
-	unsigned char i, nDonePlanets = 0, nHwGravity;
+	unsigned char i, j, nDonePlanets = 0, nHwGravity;
 	struct planet *ptrPlanet;
+	struct star *ptrSystem;
 
-	if (flags & FLG_FLATHW || flags & FLG_FIXEDHW) {
+	for (j = 0; j != *galaxy->nNumOfPlayers; j++) {
 
+		ptrSystem = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[j].home_planet_id].nStarID];
 
-		//Finding HomeWorld planet gravity
-		for (i = 0; i != 5; i++ ) {
+		if (flags & FLG_FLATHW || flags & FLG_FIXEDHW) {
 
-			if ( ptrSystem->aPlanet[i] != 0xffff )
-				if (aPlanets[ptrSystem->aPlanet[i]].nColonyID != 0xffff)
-					nHwGravity = aPlanets[ptrSystem->aPlanet[i]].nPlanetGravity;
-		}
+			//Finding HomeWorld planet gravity
+			for (i = 0; i != 5; i++ ) {
 
-		//Flatting HomeWorld
-		for (i = 0; i != 5; i++ ) {
+				if ( ptrSystem->aPlanet[i] != 0xffff )
+					if (galaxy->aPlanets[ptrSystem->aPlanet[i]].nColonyID != 0xffff)
+						nHwGravity = galaxy->aPlanets[ptrSystem->aPlanet[i]].nPlanetGravity;
+			}
 
-			if (ptrSystem->aPlanet[i] != 0xffff && aPlanets[ptrSystem->aPlanet[i]].nColonyID == 0xffff) {
+			//Flatting HomeWorld
+			for (i = 0; i != 5; i++ ) {
 
-				ptrPlanet = &aPlanets[ptrSystem->aPlanet[i]];
+				if (ptrSystem->aPlanet[i] != 0xffff && galaxy->aPlanets[ptrSystem->aPlanet[i]].nColonyID == 0xffff) {
 
-				//Make them abundant
-				ptrPlanet->nMineralClass = 2;
+					ptrPlanet = &galaxy->aPlanets[ptrSystem->aPlanet[i]];
 
-				//Make toxics and radioactive barren
-				if (ptrPlanet->nEnvClass < 2)
-					ptrPlanet->nEnvClass = 2;
+					//Make them abundant
+					ptrPlanet->nMineralClass = 2;
 
-				//Make gaias terrain
-				if (ptrPlanet->nEnvClass == 9) {
+					//Make toxics and radioactive barren
+					if (ptrPlanet->nEnvClass < 2)
+						ptrPlanet->nEnvClass = 2;
 
-					ptrPlanet->nEnvClass = 8;
-					ptrPlanet->nFoodBase = 2;
-				}
+					//Make gaias terrain
+					if (ptrPlanet->nEnvClass == 9) {
 
-				//Set Gravity & Size
-				switch (nDonePlanets) {
-					case 0: //Swamp
-						ptrPlanet->nPlanetGravity = nHwGravity;
-						ptrPlanet->nPlanetSize = LARGE;
-					break;
-					case 1: //Arid
-						ptrPlanet->nPlanetGravity = NORMAL_G;
-						ptrPlanet->nPlanetSize = LARGE;
-					break;
-					case 2: //Tundra
-						if (nHwGravity == LOW_G)
-							ptrPlanet->nPlanetGravity = LOW_G;
-						else
-							ptrPlanet->nPlanetGravity = NORMAL_G;
-
-						ptrPlanet->nPlanetSize = LARGE;
-					break;
-					case 3: //Gaia
-						if (nHwGravity == LOW_G)
-							ptrPlanet->nPlanetGravity = LOW_G;
-						else
-							ptrPlanet->nPlanetGravity = NORMAL_G;
-
-						ptrPlanet->nPlanetSize = flags & FLG_GAIA ? SMALL : MEDIUM;
-					break;
-				}
-
-				//Make planet Enviroment Class fixed if we have to.
-				if (flags & FLG_FIXEDHW) {
-
-					if (nDonePlanets == 0) {
-
-						ptrPlanet->nEnvClass = SWAMP;
+						ptrPlanet->nEnvClass = 8;
 						ptrPlanet->nFoodBase = 2;
-
-					} else if (nDonePlanets == 1) {
-
-						ptrPlanet->nEnvClass = ARID;
-						ptrPlanet->nFoodBase = 1;
-
-					} else if (nDonePlanets == 2) {
-
-						ptrPlanet->nEnvClass = TUNDRA;
-						ptrPlanet->nFoodBase = 1;
-						ptrPlanet->nMineralClass = POOR;
-
-					} else if (nDonePlanets == 3) {
-
-						ptrPlanet->nEnvClass = flags & FLG_GAIA ? GAIA : TERRAN;
-						ptrPlanet->nFoodBase = flags & FLG_GAIA ? 3 : 2;
-						ptrPlanet->nMineralClass = POOR;
 					}
-				}
 
-				nDonePlanets++;
+					//Set Gravity & Size
+					switch (nDonePlanets) {
+						case 0: //Swamp
+							ptrPlanet->nPlanetGravity = nHwGravity;
+							ptrPlanet->nPlanetSize = LARGE;
+						break;
+						case 1: //Arid
+							ptrPlanet->nPlanetGravity = NORMAL_G;
+							ptrPlanet->nPlanetSize = LARGE;
+						break;
+						case 2: //Tundra
+							if (nHwGravity == LOW_G)
+								ptrPlanet->nPlanetGravity = LOW_G;
+							else
+								ptrPlanet->nPlanetGravity = NORMAL_G;
+
+							ptrPlanet->nPlanetSize = LARGE;
+						break;
+						case 3: //Gaia
+							if (nHwGravity == LOW_G)
+								ptrPlanet->nPlanetGravity = LOW_G;
+							else
+								ptrPlanet->nPlanetGravity = NORMAL_G;
+
+							ptrPlanet->nPlanetSize = flags & FLG_GAIA ? SMALL : MEDIUM;
+						break;
+					}
+
+					//Make planet Enviroment Class fixed if we have to.
+					if (flags & FLG_FIXEDHW) {
+
+						if (nDonePlanets == 0) {
+
+							ptrPlanet->nEnvClass = SWAMP;
+							ptrPlanet->nFoodBase = 2;
+
+						} else if (nDonePlanets == 1) {
+
+							ptrPlanet->nEnvClass = ARID;
+							ptrPlanet->nFoodBase = 1;
+
+						} else if (nDonePlanets == 2) {
+
+							ptrPlanet->nEnvClass = TUNDRA;
+							ptrPlanet->nFoodBase = 1;
+							ptrPlanet->nMineralClass = POOR;
+
+						} else if (nDonePlanets == 3) {
+
+							ptrPlanet->nEnvClass = flags & FLG_GAIA ? GAIA : TERRAN;
+
+							if (galaxy->aPlayers[j].subterranean ||
+									(galaxy->aPlayers[j].subterranean == 0
+											&& galaxy->aPlayers[j].aquatic == 0
+											&& galaxy->aPlayers[j].environment_immune == 0 )) {
+
+								ptrPlanet->nEnvClass = GAIA;
+							}
+
+							ptrPlanet->nFoodBase = flags & FLG_GAIA ? 3 : 2;
+							ptrPlanet->nMineralClass = POOR;
+						}
+					}
+
+					nDonePlanets++;
+				}
 			}
 		}
 	}
