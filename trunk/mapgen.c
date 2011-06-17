@@ -52,6 +52,7 @@ int main(int argc, char *argv[]) {
 					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra, Medium Poor Terrain, all normalG.\n"
 					"		 If your homeworld is lowG, than all other planets except Arid become lowG.\n"
 					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n"
+					"        If you have subterranean population modifier or don't have any population modifier than last planet become Gaia\n"
 					"      gaia - Implies 'fixedhw, but fifth planet becomes Small Gaia instead of Medium Terrain\n\n"
 
 					"  -s Specials Change\n"
@@ -226,11 +227,7 @@ int main(int argc, char *argv[]) {
 	//Homeworld modification.
 	if (hwFlags) {
 
-		for (i = 0; i != nNumOfPlayers; i++) {
-
-			ptrSystem = &galaxy.aStars[aHwCoordinates[i][2]];
-			modifyHW(galaxy.aPlanets, ptrSystem, aHwCoordinates[i][2], hwFlags);
-		}
+		modifyHW(&galaxy, hwFlags);
 	}
 
 	//Writing Planets information.
