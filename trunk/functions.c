@@ -270,14 +270,22 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 						} else if (nDonePlanets == 3) {
 
-							ptrPlanet->nEnvClass = flags & FLG_GAIA ? GAIA : TERRAN;
-
-							if (galaxy->aPlayers[j].subterranean ||
-									(galaxy->aPlayers[j].subterranean == 0
-											&& galaxy->aPlayers[j].aquatic == 0
-											&& galaxy->aPlayers[j].environment_immune == 0 )) {
+							if (flags & FLG_GAIA) {
 
 								ptrPlanet->nEnvClass = GAIA;
+
+							} else {
+
+								ptrPlanet->nEnvClass = TERRAN;
+
+								if (galaxy->aPlayers[j].subterranean ||
+										(galaxy->aPlayers[j].subterranean == 0
+												&& galaxy->aPlayers[j].aquatic == 0
+												&& galaxy->aPlayers[j].environment_immune == 0 )) {
+
+									ptrPlanet->nEnvClass = GAIA;
+									ptrPlanet->nPlanetSize = SMALL;
+								}
 							}
 
 							ptrPlanet->nFoodBase = flags & FLG_GAIA ? 3 : 2;
