@@ -186,7 +186,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 	struct planet *ptrPlanet;
 	struct star *ptrSystem;
 
-	for (j = 0; j != *galaxy->nNumOfPlayers; j++) {
+	for (j = 0; j != *galaxy->nNumOfPlayers; j++, nDonePlanets = 0) {
 
 		ptrSystem = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[j].home_planet_id].nStarID];
 
