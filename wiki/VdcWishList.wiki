@@ -12,7 +12,7 @@
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
-  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
+ # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
