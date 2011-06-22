@@ -2,8 +2,8 @@
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3
  # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it);
  # Increase the frequency of Fighters restoration on fighter Garrison from 10 rounds to 3(or 4) rounds.
+ # Find offset for the number of tractor beams required for each type of the hulls.  
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
- # Find offset for the number of tractor beams required for each type of the hulls. 
  # Disable requirement to click OK every time on raid confirmation window. Example: When you hit autobattle then when the same window appears it stays for about 5-7 seconds, then AI removes it automatically. But when you are controlling your ships, you have to press OK or battle doesn't go futher from this point(opponent will see the screen: waiting for opponent message till the it was confirmed by pressing on OK button). Would be good if it was the same as in autobattle - message dissapeared automatically after a short pause, and no need for confirmation.   
   # Cost of building of Androids: 50 pp, need to increase this number to 100 pp.
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
