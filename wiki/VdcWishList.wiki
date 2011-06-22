@@ -1,6 +1,6 @@
 = New Altered Priority List:= 
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3
- # Weapons allocation percentage on starbases/battlestation/star fortresses. 
+ # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it);
  # Increase the frequency of fighters restoration on fighter Garrison from 10 rounds to 3 rounds.
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Find offset for the number of tractor beams required for each type of the hulls. 
