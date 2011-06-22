@@ -273,10 +273,12 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 							if (flags & FLG_GAIA) {
 
 								ptrPlanet->nEnvClass = GAIA;
+								ptrPlanet->nFoodBase = 3;
 
 							} else {
 
 								ptrPlanet->nEnvClass = TERRAN;
+								ptrPlanet->nFoodBase = 2;
 
 								if (galaxy->aPlayers[j].subterranean ||
 										(galaxy->aPlayers[j].subterranean == 0
@@ -284,11 +286,11 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 												&& galaxy->aPlayers[j].environment_immune == 0 )) {
 
 									ptrPlanet->nEnvClass = GAIA;
+									ptrPlanet->nFoodBase = 3;
 									ptrPlanet->nPlanetSize = SMALL;
 								}
 							}
 
-							ptrPlanet->nFoodBase = flags & FLG_GAIA ? 3 : 2;
 							ptrPlanet->nMineralClass = POOR;
 						}
 					}
