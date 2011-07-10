@@ -272,8 +272,6 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 							if (flags & FLG_GAIA) {
 
-								ptrPlanet->nEnvClass = GAIA;
-								ptrPlanet->nFoodBase = 3;
 								if (galaxy->aPlayers[j].subterranean ||
 									(galaxy->aPlayers[j].aquatic == 0 && galaxy->aPlayers[j].environment_immune == 0 )) {
 
