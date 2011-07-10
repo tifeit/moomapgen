@@ -270,6 +270,10 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 						} else if (nDonePlanets == 3) {
 
+							ptrPlanet->nEnvClass = TERRAN;
+							ptrPlanet->nFoodBase = 2;
+							ptrPlanet->nMineralClass = POOR;
+
 							if (flags & FLG_GAIA) {
 
 								if (galaxy->aPlayers[j].subterranean ||
@@ -279,15 +283,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 									ptrPlanet->nFoodBase = 3;
 									ptrPlanet->nPlanetSize = SMALL;
 								}
-
-							} else {
-
-								ptrPlanet->nEnvClass = TERRAN;
-								ptrPlanet->nFoodBase = 2;
-
 							}
-
-							ptrPlanet->nMineralClass = POOR;
 						}
 					}
 
