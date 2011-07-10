@@ -9,7 +9,7 @@ unsigned char verbose = 0;
 
 int main(int argc, char *argv[]) {
 
-	unsigned int i, opt;
+	unsigned int opt;
 	FILE *fp, *fp2;
 	unsigned int terraformFlags = 0, hwFlags = 0, specialsFlags = 0, monsterFlags = 0, balanceFlags = 0;
 
@@ -52,8 +52,8 @@ int main(int argc, char *argv[]) {
 					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra, Medium Poor Terrain, all normalG.\n"
 					"		 If your homeworld is lowG, than all other planets except Arid become lowG.\n"
 					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n"
-					"        If you have subterranean population modifier or don't have any population modifier than last planet become Gaia\n"
-					"      gaia - Implies 'fixedhw, but fifth planet becomes Small Gaia instead of Medium Terrain\n\n"
+					"      gaia - Implies 'fixedhw, but if you have subterranean population modifier\n"
+					"        or don't have any population modifier than last planet become small poor Gaia\n\n"
 
 					"  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
