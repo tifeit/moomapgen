@@ -8,7 +8,7 @@
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset.
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
  # Star bases: сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
- # Reduce number of combat rounds from 50 to 20;
+ # Reduce number of combat rounds from 50 to 20; Alternatively make combat end automatically as long as no damage is done for 10 rounds.
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
