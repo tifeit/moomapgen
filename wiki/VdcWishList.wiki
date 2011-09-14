@@ -1,7 +1,7 @@
 = Altered Priority List (14/09/2011):= 
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
  # Fix Lightning Field - remove ability to jamm torpedoes. Alternatively reduce efficiency factor from 50 to 40%
- # Reduce number of combat rounds from 50 to 20; Alternatively make combat end automatically as long as no damage is done for 10 rounds.
+ # Reduce number of combat rounds from 50 to 20;
  # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it);
  # Increase the frequency of restoration of fighters on Fighter Garrison from 10 rounds to 3(or 4) rounds.
  # Find offset for the number of tractor beams required for each type of the hulls.  
