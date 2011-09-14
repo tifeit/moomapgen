@@ -1,5 +1,5 @@
 = Altered Priority List (14/09/2011):= 
- # Global FIX - Add ability to save (dump) combat data when it stalls showing - waiting for opponent - message. Add ability to restore combat data by pressing on special button or key, for instance ALT+F12.
+ # Global FIX - Add ability to save (dump) combat data when it stalls (hangs) showing - waiting for opponent - message. Add ability to restore combat data by pressing on special button or key, for instance ALT+F12.
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
  # Fix Lightning Field - remove ability to jamm torpedoes. Alternatively reduce efficiency factor from 50 to 40%
  # Reduce number of combat rounds from 50 to 20;
