@@ -1,6 +1,7 @@
 = New Altered Priority List:= 
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
  # Fix Lightning Field - remove ability to jamm torpedoes. Alternatively reduce efficiency factor from 50 to 40%
+ # Reduce number of combat rounds from 50 to 20; Alternatively make combat end automatically as long as no damage is done for 10 rounds.
  # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it);
  # Increase the frequency of restoration of fighters on Fighter Garrison from 10 rounds to 3(or 4) rounds.
  # Find offset for the number of tractor beams required for each type of the hulls.  
@@ -9,7 +10,6 @@
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
  # Star bases: сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
- # Reduce number of combat rounds from 50 to 20; Alternatively make combat end automatically as long as no damage is done for 10 rounds.
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
