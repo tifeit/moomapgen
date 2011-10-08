@@ -331,9 +331,13 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 	int aPlanetWeight[10][5];
 
-	FILE *fpWeight = fopen("mgweight.txt", "rb");
+	int points, totalPoints;
+
+	FILE *fpWeight;
 
 	char str[100];
+
+	fpWeight = fopen("mgweight.txt", "rb");
 
 	if (fpWeight == NULL) {
 
@@ -348,8 +352,6 @@ void balanceGalaxy(struct galaxy *galaxy) {
 			sscanf(str, "%*s %d %d %d %d %d", &aPlanetWeight[i][0], &aPlanetWeight[i][1], &aPlanetWeight[i][2], &aPlanetWeight[i][3], &aPlanetWeight[i][4]);
 		}
 	}
-
-	int points, totalPoints;
 
 	for (i = 0; i != 8; i++) {
 
