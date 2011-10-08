@@ -52,8 +52,8 @@ int main(int argc, char *argv[]) {
 					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra, Medium Poor Terrain, all normalG.\n"
 					"		 If your homeworld is lowG, than all other planets except Arid become lowG.\n"
 					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n"
-					"      gaia - Implies 'fixedhw, but if you have subterranean population modifier\n"
-					"        or don't have any population modifier than last planet become small poor Gaia\n"
+					"      gaia - DOES NOT imply fixedhw. Last planet become small poor gaia unless you are creative or aquatic or tolerant.\n"
+					"        elswise you get small poor terrain\n"
 					"      richhw - Makes first unoccupied planet rich\n"
 					"      hugehw - Makes first unoccupied planet huge\n"
 					"      goodhw - Implies richw & hugehw. Makes first unoccupied planet terrain.\n\n"
@@ -104,7 +104,7 @@ int main(int argc, char *argv[]) {
 							hwFlags |= FLG_FIXEDHW;
 
 				else if (strstr(optarg, "gaia"))
-							hwFlags |= (FLG_FIXEDHW | FLG_GAIA);
+							hwFlags |= FLG_GAIA;
 
 				else if (strstr(optarg, "richhw"))
 							hwFlags |= FLG_RICHHW;
@@ -117,7 +117,8 @@ int main(int argc, char *argv[]) {
 
 
 				else {
-						fprintf(stderr, "Unknown Terraform parameter %s\n", optarg);
+						fprintf(stderr, "Unknown Terraform parameter %s.\nPress any key to continue.\n", optarg);
+						getc(stdin);
 						exit(1);
 				}
 			break;
@@ -128,7 +129,8 @@ int main(int argc, char *argv[]) {
 				else if (strstr(optarg, "arti"))
 							specialsFlags |= FLG_ARTI;
 				else {
-						fprintf(stderr, "Unknown Special parameter %s\n", optarg);
+						fprintf(stderr, "Unknown Special parameter %s.\nPress any key to continue.\n", optarg);
+						getc(stdin);
 						exit(1);
 				}
 
@@ -147,7 +149,8 @@ int main(int argc, char *argv[]) {
 
 				} else {
 
-						fprintf(stderr, "Unknown Monster parameter %s\n", optarg);
+						fprintf(stderr, "Unknown Monster parameter %s.\nPress any key to continue.\n", optarg);
+						getc(stdin);
 						exit(1);
 				}
 			break;
@@ -164,7 +167,8 @@ int main(int argc, char *argv[]) {
 					balanceFlags |= FLG_CALC;
 			break;
 			default:
-				fprintf(stderr, "Usage: %s [-h] [-t terraform_type] [-f file]\n", argv[0]);
+				fprintf(stderr, "Usage: %s [-h] [-t terraform_type] [-f file]\nPress any key to continue.\n", argv[0]);
+				getc(stdin);
 				exit(1);
 			break;
 		}
@@ -176,8 +180,9 @@ int main(int argc, char *argv[]) {
 
 	if (fp == NULL) {
 
-		fprintf(stderr, "Can not open %s", sSaveFile);
-		return 1;
+		fprintf(stderr, "Can not open %s.\nPress any key to continue.", sSaveFile);
+		getc(stdin);
+		exit(1);
 	}
 
 	//Backup file.
@@ -185,9 +190,9 @@ int main(int argc, char *argv[]) {
 
 	if (fp2 == NULL) {
 
-		fprintf(stderr, "Can not open/create %s", sBakFile);
-		fclose(fp2);
-		return 1;
+		fprintf(stderr, "Can not open/create %s.\nPress any key to continue.", sBakFile);
+		getc(stdin);
+		exit(1);
 	}
 
 	while(!feof(fp)) {
@@ -259,5 +264,5 @@ int main(int argc, char *argv[]) {
 
 	fclose(fp);
 
-	return 0;
+	exit(0);
 }

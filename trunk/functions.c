@@ -239,7 +239,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 							ptrPlanet->nPlanetSize = LARGE;
 						break;
-						case 3: //Gaia
+						case 3: //Terrain
 							if (nHwGravity == LOW_G)
 								ptrPlanet->nPlanetGravity = LOW_G;
 							else
@@ -275,17 +275,24 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 						ptrPlanet->nFoodBase = 2;
 						ptrPlanet->nMineralClass = POOR;
 
-						if (flags & FLG_GAIA) {
+					}
+				}
 
-							if (!galaxy->aPlayers[j].creative
-								&& (galaxy->aPlayers[j].subterranean ||
-								   (galaxy->aPlayers[j].aquatic == 0 && galaxy->aPlayers[j].environment_immune == 0 ))) {
+				//Makes last planet gaia if we have to.
+				if (flags & FLG_GAIA) {
 
-								ptrPlanet->nEnvClass = GAIA;
-								ptrPlanet->nFoodBase = 3;
-								ptrPlanet->nPlanetSize = SMALL;
-							}
-						}
+					if (galaxy->aPlayers[j].creative || galaxy->aPlayers[j].aquatic || galaxy->aPlayers[j].environment_immune) {
+
+						ptrPlanet->nEnvClass = TERRAN;
+						ptrPlanet->nFoodBase = 2;
+						ptrPlanet->nMineralClass = POOR;
+
+					} else {
+
+						ptrPlanet->nEnvClass = GAIA;
+						ptrPlanet->nFoodBase = 3;
+						ptrPlanet->nMineralClass = POOR;
+						ptrPlanet->nPlanetSize = SMALL;
 					}
 				}
 
