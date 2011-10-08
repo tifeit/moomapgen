@@ -66,6 +66,9 @@ typedef signed int sint;
 #define FLG_FLATHW		1
 #define FLG_FIXEDHW		2
 #define FLG_GAIA		4
+#define FLG_RICHHW		8
+#define FLG_HUGEHW		16
+#define FLG_GOODHW		32
 
 //Splinter flags
 #define FLG_SPLINT		1
@@ -106,7 +109,7 @@ typedef signed int sint;
 #define	SMALL	1
 #define	MEDIUM	2
 #define	LARGE	3
-//#define HUGE	4
+#define HUGEPLANET	4
 
 STRUCT_TYPE star {
 

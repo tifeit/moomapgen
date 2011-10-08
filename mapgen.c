@@ -53,7 +53,10 @@ int main(int argc, char *argv[]) {
 					"		 If your homeworld is lowG, than all other planets except Arid become lowG.\n"
 					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n"
 					"      gaia - Implies 'fixedhw, but if you have subterranean population modifier\n"
-					"        or don't have any population modifier than last planet become small poor Gaia\n\n"
+					"        or don't have any population modifier than last planet become small poor Gaia\n"
+					"      richhw - Makes first unoccupied planet rich\n"
+					"      hugehw - Makes first unoccupied planet huge\n"
+					"      goodhw - Implies richw & hugehw. Makes first unoccupied planet terrain.\n\n"
 
 					"  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
@@ -102,6 +105,15 @@ int main(int argc, char *argv[]) {
 
 				else if (strstr(optarg, "gaia"))
 							hwFlags |= (FLG_FIXEDHW | FLG_GAIA);
+
+				else if (strstr(optarg, "richhw"))
+							hwFlags |= FLG_RICHHW;
+
+				else if (strstr(optarg, "hugehw"))
+							hwFlags |= FLG_HUGEHW;
+
+				else if (strstr(optarg, "goodhw"))
+							hwFlags |= (FLG_GOODHW | FLG_RICHHW | FLG_HUGEHW);
 
 
 				else {
