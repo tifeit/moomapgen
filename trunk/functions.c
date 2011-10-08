@@ -190,22 +190,22 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 		ptrSystem = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[j].home_planet_id].nStarID];
 
-		if (flags & FLG_FLATHW || flags & FLG_FIXEDHW) {
+		//Finding HomeWorld planet gravity
+		for (i = 0; i != 5; i++ ) {
 
-			//Finding HomeWorld planet gravity
-			for (i = 0; i != 5; i++ ) {
+			if ( ptrSystem->aPlanet[i] != 0xffff )
+				if (galaxy->aPlanets[ptrSystem->aPlanet[i]].nColonyID != 0xffff)
+					nHwGravity = galaxy->aPlanets[ptrSystem->aPlanet[i]].nPlanetGravity;
+		}
 
-				if ( ptrSystem->aPlanet[i] != 0xffff )
-					if (galaxy->aPlanets[ptrSystem->aPlanet[i]].nColonyID != 0xffff)
-						nHwGravity = galaxy->aPlanets[ptrSystem->aPlanet[i]].nPlanetGravity;
-			}
+		//Flatting HomeWorld
+		for (i = 0; i != 5; i++ ) {
 
-			//Flatting HomeWorld
-			for (i = 0; i != 5; i++ ) {
+			if (ptrSystem->aPlanet[i] != 0xffff && galaxy->aPlanets[ptrSystem->aPlanet[i]].nColonyID == 0xffff) {
 
-				if (ptrSystem->aPlanet[i] != 0xffff && galaxy->aPlanets[ptrSystem->aPlanet[i]].nColonyID == 0xffff) {
+				ptrPlanet = &galaxy->aPlanets[ptrSystem->aPlanet[i]];
 
-					ptrPlanet = &galaxy->aPlanets[ptrSystem->aPlanet[i]];
+				if (flags & FLG_FLATHW || flags & FLG_FIXEDHW) {
 
 					//Make them abundant
 					ptrPlanet->nMineralClass = 2;
@@ -248,47 +248,76 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 							ptrPlanet->nPlanetSize = MEDIUM;
 						break;
 					}
+				}
 
-					//Make planet Enviroment Class fixed if we have to.
-					if (flags & FLG_FIXEDHW) {
+				//Make planet Enviroment Class fixed if we have to.
+				if (flags & FLG_FIXEDHW) {
 
-						if (nDonePlanets == 0) {
+					if (nDonePlanets == 0) {
 
-							ptrPlanet->nEnvClass = SWAMP;
-							ptrPlanet->nFoodBase = 2;
+						ptrPlanet->nEnvClass = SWAMP;
+						ptrPlanet->nFoodBase = 2;
 
-						} else if (nDonePlanets == 1) {
+					} else if (nDonePlanets == 1) {
 
-							ptrPlanet->nEnvClass = ARID;
-							ptrPlanet->nFoodBase = 1;
+						ptrPlanet->nEnvClass = ARID;
+						ptrPlanet->nFoodBase = 1;
 
-						} else if (nDonePlanets == 2) {
+					} else if (nDonePlanets == 2) {
 
-							ptrPlanet->nEnvClass = TUNDRA;
-							ptrPlanet->nFoodBase = 1;
-							ptrPlanet->nMineralClass = POOR;
+						ptrPlanet->nEnvClass = TUNDRA;
+						ptrPlanet->nFoodBase = 1;
+						ptrPlanet->nMineralClass = POOR;
 
-						} else if (nDonePlanets == 3) {
+					} else if (nDonePlanets == 3) {
 
-							ptrPlanet->nEnvClass = TERRAN;
-							ptrPlanet->nFoodBase = 2;
-							ptrPlanet->nMineralClass = POOR;
+						ptrPlanet->nEnvClass = TERRAN;
+						ptrPlanet->nFoodBase = 2;
+						ptrPlanet->nMineralClass = POOR;
 
-							if (flags & FLG_GAIA) {
+						if (flags & FLG_GAIA) {
 
-								if (galaxy->aPlayers[j].subterranean ||
-									(galaxy->aPlayers[j].aquatic == 0 && galaxy->aPlayers[j].environment_immune == 0 )) {
+							if (!galaxy->aPlayers[j].creative
+								&& (galaxy->aPlayers[j].subterranean ||
+								   (galaxy->aPlayers[j].aquatic == 0 && galaxy->aPlayers[j].environment_immune == 0 ))) {
 
-									ptrPlanet->nEnvClass = GAIA;
-									ptrPlanet->nFoodBase = 3;
-									ptrPlanet->nPlanetSize = SMALL;
-								}
+								ptrPlanet->nEnvClass = GAIA;
+								ptrPlanet->nFoodBase = 3;
+								ptrPlanet->nPlanetSize = SMALL;
 							}
 						}
 					}
-
-					nDonePlanets++;
 				}
+
+				//Make first planet rich if we have to.
+				if (flags & FLG_RICHHW) {
+
+					if (nDonePlanets == 0) {
+
+						ptrPlanet->nMineralClass = RICH;
+					}
+				}
+
+				//Make first planet huge if we have to.
+				if (flags & FLG_HUGEHW) {
+
+					if (nDonePlanets == 0) {
+
+						ptrPlanet->nPlanetSize = HUGEPLANET;
+					}
+				}
+
+				//Make first planet good if we have to.
+				if (flags & FLG_GOODHW) {
+
+					if (nDonePlanets == 0) {
+
+						ptrPlanet->nEnvClass = TERRAN;
+						ptrPlanet->nFoodBase = 2;
+					}
+				}
+
+				nDonePlanets++;
 			}
 		}
 	}
@@ -300,17 +329,25 @@ void balanceGalaxy(struct galaxy *galaxy) {
 	struct star *ptrHW, *ptrStar;
 	struct planet *ptrPlanet;
 
-	int aPoorPlanets[9][4] = {
-/*toxic*/		{1, 1, 1, 1},
-/*radiated*/	{1, 1, 1, 1},
-/*barren*/	{1, 1, 1, 1},
-/*desert*/	{1, 1, 1, 1},
-/*radiated*/	{1, 1, 1, 1},
-/*radiated*/	{1, 1, 1, 1},
-/*radiated*/	{1, 1, 1, 1},
-/*radiated*/	{1, 1, 1, 1},
-/*radiated*/	{1, 1, 1, 1},
-	};
+	int aPlanetWeight[10][5];
+
+	FILE *fpWeight = fopen("mgweight.txt", "rb");
+
+	char str[100];
+
+	if (fpWeight == NULL) {
+
+		fprintf(stderr, "Can not open mgweight.txt");
+
+	} else {
+
+		fgets(str, 100, fpWeight); //skip line
+		for (i = 0; i != 10; i++) {
+
+			fgets(str, 100, fpWeight);
+			sscanf(str, "%*s %d %d %d %d %d", &aPlanetWeight[i][0], &aPlanetWeight[i][1], &aPlanetWeight[i][2], &aPlanetWeight[i][3], &aPlanetWeight[i][4]);
+		}
+	}
 
 	int points, totalPoints;
 
@@ -339,8 +376,6 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 			if (parsec*900 < sum) parsec++;
 
-			//printf("%d: %s %d\n",j , galaxy->aStars[j].sName, parsec);
-
 			if (parsec <= 6) {
 
 				for (k = 0; k != 5; k++) {
@@ -350,14 +385,16 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 					ptrPlanet = &galaxy->aPlanets[ptrStar->aPlanet[k]];
 
-					if (ptrPlanet->nMineralClass == POOR) {
+					points+=aPlanetWeight[ptrPlanet->nEnvClass][ptrPlanet->nPlanetSize];
 
-						points+=aPoorPlanets[ptrPlanet->nEnvClass][ptrPlanet->nPlanetSize];
-					}
 				}
+
+				printf("System: %s Parsec: %d Points: %d\n", galaxy->aStars[j].sName, parsec, points);
 			}
+
+			totalPoints += points;
 		}
 
-		printf("totalPoints: %d\n", totalPoints);
+		printf("Total points: %d\n", totalPoints);
 	}
 }
