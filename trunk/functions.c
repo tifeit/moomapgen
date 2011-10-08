@@ -281,18 +281,21 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 				//Makes last planet gaia if we have to.
 				if (flags & FLG_GAIA) {
 
-					if (galaxy->aPlayers[j].creative || galaxy->aPlayers[j].aquatic || galaxy->aPlayers[j].environment_immune) {
+					if (nDonePlanets == 3) {
 
-						ptrPlanet->nEnvClass = TERRAN;
-						ptrPlanet->nFoodBase = 2;
-						ptrPlanet->nMineralClass = POOR;
+						if (galaxy->aPlayers[j].creative || galaxy->aPlayers[j].aquatic || galaxy->aPlayers[j].environment_immune) {
 
-					} else {
+							ptrPlanet->nEnvClass = TERRAN;
+							ptrPlanet->nFoodBase = 2;
+							ptrPlanet->nMineralClass = POOR;
 
-						ptrPlanet->nEnvClass = GAIA;
-						ptrPlanet->nFoodBase = 3;
-						ptrPlanet->nMineralClass = POOR;
-						ptrPlanet->nPlanetSize = SMALL;
+						} else {
+
+							ptrPlanet->nEnvClass = GAIA;
+							ptrPlanet->nFoodBase = 3;
+							ptrPlanet->nMineralClass = POOR;
+							ptrPlanet->nPlanetSize = SMALL;
+						}
 					}
 				}
 
