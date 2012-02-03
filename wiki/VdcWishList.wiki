@@ -11,11 +11,14 @@
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
  # Star bases: сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
+ # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1).
+ Planetary Damper field would reduce damage against planet by 3/4.
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
  # Make Autorepair Unit an achievement - so that it not required to put it as a special on a ship, but it works automatically, like cybernetic.
  # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively.
+ # Add Death Ray Rifle - additional rifle, which is given, when you research Death Ray beam technology (2 in 1). 
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
