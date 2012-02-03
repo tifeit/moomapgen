@@ -1,12 +1,12 @@
 = Altered Priority List (14/09/2011):= 
  # Global FIX - Add ability to save (dump) combat data when it stalls (hangs) showing - waiting for opponent - message. Add ability to restore combat data by pressing on special button or key, for instance ALT+F12.
- # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
- # Fix Lightning Field - remove ability to jamm torpedoes. Alternatively reduce efficiency factor from 50 to 40%
- # Reduce number of combat rounds from 50 to 20;  - DONE
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
+ # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it); 
+ # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
+  # Reduce number of combat rounds from 50 to 20;  - DONE
  # Disable requirement to click OK every time on raid confirmation window. Example: When you hit autobattle then when the same window pops up it stays for about 5-7 seconds, then AI removes it automatically. But when you are controlling your ships, you have to press OK or battle doesn't go futher from this point(opponent will see the screen: waiting for opponent message till it is confirmed by pressing OK button). Would be good if it was the same as in autobattle - message dissapeared automatically after a short pause, and no need for confirmation.   
- # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it);
- # Increase the frequency of restoration of fighters on Fighter Garrison from 10 rounds to 3(or 4) rounds.
+  # Increase the frequency of restoration of fighters on Fighter Garrison from 10 rounds to 3(or 4) rounds.
+ # Increase range for heavy mount beam by 50%. Currently it's 50 squares.
  # Find offset for the number of tractor beams required for each type of the hulls.  
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
@@ -14,14 +14,16 @@
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
- # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
+ # Make Autorepair Unit an achievement - so that it not required to put it as a special on a ship, but it works automatically, like a cybernetic.
+ # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively.
+  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил их, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);  
  # Telepathy
   * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.
  # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.
- 
+  # Fix Lightning Field - remove ability to jamm torpedoes. Alternatively reduce efficiency factor from 50 to 40% - NO NEED.
 
 ----
 
