@@ -3,7 +3,7 @@
  # Find offsets for the weapons miniaturization coefficients.
  # Global FIX - Add ability to save (dump) combat data when it stalls (hangs) showing - waiting for opponent - message. Add ability to restore combat data by pressing a special key, for instance ALT+F12.
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
- # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it); 
+ # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 25%, want to increase it);   - DONE
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
  # Reduce number of combat rounds from 50 to 20;  - DONE
  # Disable requirement to click OK every time on raid confirmation window. Example: When you hit autobattle then when the same window pops up it stays for about 5-7 seconds, then AI removes it automatically. But when you are controlling your ships, you have to press OK or battle doesn't go futher from this point(opponent will see the screen: waiting for opponent message till it is confirmed by pressing OK button). Would be good if it was the same as in autobattle - message dissapeared automatically after a short pause, and no need for confirmation.   
