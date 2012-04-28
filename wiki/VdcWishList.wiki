@@ -1,5 +1,5 @@
 = Altered Priority List (03/02/2012):= 
- # Disable enveloping mod of torpeodes vs planets. I.e. it shouldn't multiply damage if torpedo by 4 with this mod installed. Explanation - how a torpedo can envelop the whole planet!!!
+ # Disable enveloping mod of torpeodes vs planets. i.e. it shouldn't multiply damage if torpedo by 4 with this mod installed. Explanation - how a torpedo can envelop the whole planet!!!
  # Global FIX - Add ability to save (dump) combat data when it stalls (hangs) showing - waiting for opponent - message. Add ability to restore combat data by pressing a special key, for instance ALT+F12.
  # Add to Sensors ability to decloak the stealth field and cloaking device equipped ships;
  # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 20%, want to increase it); 
