@@ -11,7 +11,8 @@
  # Find offset for the number of tractor beams required for each type of the hulls.  
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180
- # Star bases: сделать вставку для торпед - напопалам с ракетами (либо выбор в пользу торпед при определенных условиях, а именно, выбирать по принципу наибольшего урона: так plasma torps> Protons> Zeons> antimattertorps > pulsons > mercs> nukes), а также, чтобы любой тип оружия использовал все имеющиеся модификации.
+ # Star bases: add torpedoes instead of the missiles when torpedo tech becomes available 
+ # Allow starbases to use all available modifications for the beams and torpedoes.
  # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4.
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
