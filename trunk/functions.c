@@ -335,23 +335,40 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 void balanceGalaxy(struct galaxy *galaxy) {
 
-	int i, j, k, sum, parsec;
+	int i, j, k, sum, parsec, capModifier, raceSpecial, numOfPlanets, rangeFromHW, z, monster;
 	struct star *ptrHW, *ptrStar;
-	struct planet *ptrPlanet;
+	struct planet *ptrPlanet[5];
 
 	int aPlanetWeight[10][5];
 
 	int points, totalPoints;
 
-	FILE *fpWeight;
+	FILE *fpWeight, *fpCsv;
 
 	char str[100];
 
+
 	fpWeight = fopen("mgweight.txt", "rb");
+	fpCsv = fopen("autosave.csv", "w");
+
+	if (fpCsv != NULL) {
+		fprintf(fpCsv,"player number; capacity modifier; race special; star name; number of planets; range from hw; monster; special;"
+		"planet 1 size; planet 2 climate; planet 1 richness;"
+		"planet 2 size; planet 3 climate; planet 2 richness;"
+		"planet 3 size; planet 4 climate; planet 3 richness;"
+		"planet 4 size; planet 5 climate; planet 4 richness;"
+		"planet 5 size; planet 5 climate; planet 5 richness;\n");
+
+	} else {
+
+		fprintf(stderr, "Can not open autosava.cs");
+		exit(1);
+	}
 
 	if (fpWeight == NULL) {
 
 		fprintf(stderr, "Can not open mgweight.txt");
+		exit(1);
 
 	} else {
 
@@ -367,11 +384,17 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 		totalPoints = 0;
 
-		ptrHW = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[i].home_planet_id].nStarID];
 		if (galaxy->aPlayers[i].home_planet_id == 0)
 			continue;
 
-		printf("%s; %s\n", galaxy->aPlayers[i].name, ptrHW->sName);
+		ptrHW = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[i].home_planet_id].nStarID];
+
+		/*printf("%s Aquatic: %d Subterr: %d Tolerant: %d Cyber: %d %s\n", galaxy->aPlayers[i].race_name,
+				galaxy->aPlayers[i].aquatic,
+				galaxy->aPlayers[i].subterranean,
+				galaxy->aPlayers[i].environment_immune,
+				galaxy->aPlayers[i].cybernetic,
+				ptrHW->sName);*/
 
 		for (j = 0; j!=MAX_SYSTEMS; j++) {
 
@@ -388,25 +411,89 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 			if (parsec*900 < sum) parsec++;
 
-			if (parsec <= 6) {
+			if (parsec <= 14) {
 
-				for (k = 0; k != 5; k++) {
+				for (k = 0, numOfPlanets = 0; k != 5; k++) {
 
-					if (ptrStar->aPlanet[k] == 0xffff)
+					ptrPlanet[k] = NULL;
+
+					if (ptrStar->aPlanet[k] == 0xffff) {
 						continue;
+					}
 
-					ptrPlanet = &galaxy->aPlanets[ptrStar->aPlanet[k]];
+					numOfPlanets++;
 
-					points+=aPlanetWeight[ptrPlanet->nEnvClass][ptrPlanet->nPlanetSize];
+					ptrPlanet[k] = &galaxy->aPlanets[ptrStar->aPlanet[k]];
+
+					//points+=aPlanetWeight[ptrPlanet->nEnvClass][ptrPlanet->nPlanetSize];
 
 				}
 
-				printf("System: %s Parsec: %d Points: %d\n", galaxy->aStars[j].sName, parsec, points);
-			}
+				capModifier = 0;
+				capModifier |= galaxy->aPlayers[i].aquatic ? 1 : 0;
+				capModifier |= galaxy->aPlayers[i].subterranean ? 2 : 0;
+				capModifier |= galaxy->aPlayers[i].environment_immune ? 4 : 0;
 
-			totalPoints += points;
+				raceSpecial = 0;
+				raceSpecial = galaxy->aPlayers[i].eats_minerals ? 0 : 2;
+				raceSpecial = galaxy->aPlayers[i].cybernetic ? 1 : 2;
+
+				if (parsec == 0) rangeFromHW = 0;
+				else if (parsec <= 6) rangeFromHW = 1;
+				else if (parsec <= 12) rangeFromHW = 2;
+				else if (parsec <= 14) rangeFromHW = 3;
+
+				for (z = 0; z != MAX_SHIPS; z++) {
+
+					if (galaxy->aShips[z].d.name[0] != 0 && galaxy->aShips[z].owner > 8 && galaxy->aShips[z].location == j) {
+
+						monster = 1;
+
+					} else {
+
+						monster = 0;
+					}
+				}
+
+				fprintf(fpCsv,"%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
+						i, //player number
+						capModifier, //capacify modifier
+						raceSpecial, //race slecial
+						ptrStar->sName, //star name
+						numOfPlanets, //number of planets
+						rangeFromHW, //range from hw
+						monster, //monster
+						ptrStar->nSpecial, //special
+						ptrPlanet[0] != NULL ? ptrPlanet[0]->nPlanetSize : 0, //planet 1 climate
+						ptrPlanet[0] != NULL ? ptrPlanet[0]->nEnvClass : 0, //planet 1 climate
+						ptrPlanet[0] != NULL ? ptrPlanet[0]->nMineralClass : 0, //planet 1 richness
+
+						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetSize : 0, //planet 1 climate
+						ptrPlanet[1] != NULL ? ptrPlanet[1]->nEnvClass : 0, //planet 1 climate
+						ptrPlanet[1] != NULL ? ptrPlanet[1]->nMineralClass : 0, //planet 1 richness
+
+						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetSize : 0, //planet 1 climate
+						ptrPlanet[2] != NULL ? ptrPlanet[2]->nEnvClass : 0, //planet 1 climate
+						ptrPlanet[2] != NULL ? ptrPlanet[2]->nMineralClass : 0, //planet 1 richness
+
+						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetSize : 0, //planet 1 climate
+						ptrPlanet[3] != NULL ? ptrPlanet[3]->nEnvClass : 0, //planet 1 climate
+						ptrPlanet[3] != NULL ? ptrPlanet[3]->nMineralClass : 0, //planet 1 richness
+
+						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetSize : 0, //planet 1 climate
+						ptrPlanet[4] != NULL ? ptrPlanet[4]->nEnvClass : 0, //planet 1 climate
+						ptrPlanet[4] != NULL ? ptrPlanet[4]->nMineralClass : 0 //planet 1 richness
+				);
+
+				//printf("System: %s Parsec: %d Points: %d\n", galaxy->aStars[j].sName, parsec, points);
+			}
+			//totalPoints += points;
 		}
 
-		printf("Total points: %d\n", totalPoints);
+		//printf("Total points: %d\n", totalPoints);
+
+		fclose(fpWeight);
+		fclose(fpCsv);
+		return;
 	}
 }
