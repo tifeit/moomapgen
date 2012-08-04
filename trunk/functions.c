@@ -353,11 +353,11 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 	if (fpCsv != NULL) {
 		fprintf(fpCsv,"player number; capacity modifier; race special; star name; number of planets; range from hw; monster; special;"
-		"planet 1 size; planet 2 climate; planet 1 richness;"
-		"planet 2 size; planet 3 climate; planet 2 richness;"
-		"planet 3 size; planet 4 climate; planet 3 richness;"
-		"planet 4 size; planet 5 climate; planet 4 richness;"
-		"planet 5 size; planet 5 climate; planet 5 richness;\n");
+		"planet 1 size; planet 2 climate; planet 1 richness; planet 1 gravity;"
+		"planet 2 size; planet 3 climate; planet 2 richness; planet 1 gravity;"
+		"planet 3 size; planet 4 climate; planet 3 richness; planet 1 gravity;"
+		"planet 4 size; planet 5 climate; planet 4 richness; planet 1 gravity;"
+		"planet 5 size; planet 5 climate; planet 5 richness; planet 1 gravity;\n");
 
 	} else {
 
