@@ -361,7 +361,7 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 	} else {
 
-		fprintf(stderr, "Can not open autosava.csv");
+		fprintf(stderr, "Can not open autosav.csv");
 		exit(1);
 	}
 
@@ -472,22 +472,22 @@ void balanceGalaxy(struct galaxy *galaxy) {
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[0] != NULL ? ptrPlanet[1]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetGravity : 0, //planet 1 gravity
 
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[0] != NULL ? ptrPlanet[2]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetGravity : 0, //planet 1 gravity
 
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[0] != NULL ? ptrPlanet[3]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetGravity : 0, //planet 1 gravity
 
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[0] != NULL ? ptrPlanet[4]->nPlanetGravity : 0 //planet 1 gravity
+						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetGravity : 0 //planet 1 gravity
 				);
 
 				//printf("System: %s Parsec: %d Points: %d\n", galaxy->aStars[j].sName, parsec, points);
