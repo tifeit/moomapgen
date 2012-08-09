@@ -335,7 +335,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 void balanceGalaxy(struct galaxy *galaxy) {
 
-	int i, j, k, sum, parsec, capModifier, raceSpecial, numOfPlanets, rangeFromHW, z, monster;
+	int i, j, k, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster;
 	struct star *ptrHW, *ptrStar;
 	struct planet *ptrPlanet[5];
 
@@ -352,7 +352,7 @@ void balanceGalaxy(struct galaxy *galaxy) {
 	fpCsv = fopen("autosave.csv", "w");
 
 	if (fpCsv != NULL) {
-		fprintf(fpCsv,"player number; capacity modifier; race special; star name; number of planets; range from hw; monster; special;"
+		fprintf(fpCsv,"player number; capacity modifier; race special; race gravity; star name; number of planets; range from hw; monster; special;"
 		"planet 1 size; planet 1 climate; planet 1 richness; planet 1 gravity;"
 		"planet 2 size; planet 2 climate; planet 2 richness; planet 2 gravity;"
 		"planet 3 size; planet 3 climate; planet 3 richness; planet 3 gravity;"
@@ -437,6 +437,12 @@ void balanceGalaxy(struct galaxy *galaxy) {
 				raceSpecial = 0;
 				raceSpecial = galaxy->aPlayers[i].eats_minerals ? 0 : 2;
 				raceSpecial = galaxy->aPlayers[i].cybernetic ? 1 : 2;
+        
+        raceGravity = 0;
+        if (galaxy->aPlayers[i].low_g_world)
+          raceGravity = -1;
+        if (galaxy->aPlayers[i].heavy_g_world)
+          raceGravity = 1;
 
 				if (parsec == 0) rangeFromHW = 0;
 				else if (parsec <= 6) rangeFromHW = 1;
@@ -458,7 +464,8 @@ void balanceGalaxy(struct galaxy *galaxy) {
 				fprintf(fpCsv,"%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
 						i, //player number
 						capModifier, //capacify modifier
-						raceSpecial, //race slecial
+						raceSpecial, //race special
+						raceGravity, //race gravity
 						ptrStar->sName, //star name
 						numOfPlanets, //number of planets
 						rangeFromHW, //range from hw
