@@ -461,7 +461,7 @@ void balanceGalaxy(struct galaxy *galaxy) {
 					}
 				}
 
-				fprintf(fpCsv,"%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
+				fprintf(fpCsv,"%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
 						i, //player number
 						capModifier, //capacify modifier
 						raceSpecial, //race special
