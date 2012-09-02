@@ -501,11 +501,9 @@ void balanceGalaxy(struct galaxy *galaxy) {
 			}
 			//totalPoints += points;
 		}
-
 		//printf("Total points: %d\n", totalPoints);
-
-		fclose(fpWeight);
-		fclose(fpCsv);
-		return;
 	}
+	fclose(fpWeight);
+	fclose(fpCsv);
+	return;
 }
