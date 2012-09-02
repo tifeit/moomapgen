@@ -401,7 +401,7 @@ void balanceGalaxy(struct galaxy *galaxy) {
 			points = 0;
 
 			ptrStar = &galaxy->aStars[j];
-			if (ptrStar->sName[0] == 0 || ptrStar == ptrHW)
+			if (ptrStar->sName[0] == 0 /*|| ptrStar == ptrHW*/)
 				continue;
 
 			sum = (ptrHW->nXpos - ptrStar->nXpos)*(ptrHW->nXpos - ptrStar->nXpos) +
@@ -446,18 +446,15 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 				if (parsec == 0) rangeFromHW = 0;
 				else if (parsec <= 6) rangeFromHW = 1;
-				else if (parsec <= 12) rangeFromHW = 2;
-				else if (parsec <= 14) rangeFromHW = 3;
+				else if (parsec <= 13) rangeFromHW = 2;
+				else if (parsec <= 15) rangeFromHW = 3;
 
+				monster = 0;
 				for (z = 0; z != MAX_SHIPS; z++) {
 
 					if (galaxy->aShips[z].d.name[0] != 0 && galaxy->aShips[z].owner > 8 && galaxy->aShips[z].location == j) {
 
 						monster = 1;
-
-					} else {
-
-						monster = 0;
 					}
 				}
 

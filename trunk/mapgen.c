@@ -231,12 +231,6 @@ int main(int argc, char *argv[]) {
 	getHwCoords(galaxy.aStars, aHwCoordinates, nNumOfStars, galaxy.aPlanets);
 	galaxy.aHwCoordinates = (unsigned int *) aHwCoordinates;
 
-	//Map generation.
-	if (balanceFlags) {
-
-		balanceGalaxy(&galaxy);
-	}
-
 	//All planets terraformation.
 	if (terraformFlags || specialsFlags || monsterFlags)
 		terraform(galaxy.aStars, galaxy.aPlanets, galaxy.aShips, nNumOfPlanets, nNumOfStars, terraformFlags, specialsFlags, monsterFlags);
@@ -245,6 +239,12 @@ int main(int argc, char *argv[]) {
 	if (hwFlags) {
 
 		modifyHW(&galaxy, hwFlags);
+	}
+
+	//Map generation.
+	if (balanceFlags) {
+
+		balanceGalaxy(&galaxy);
 	}
 
 	//Writing Planets information.
