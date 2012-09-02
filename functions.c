@@ -353,11 +353,11 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 	if (fpCsv != NULL) {
 		fprintf(fpCsv,"player number; capacity modifier; race special; race gravity; star name; number of planets; range from hw; monster; special;"
-		"planet 1 size; planet 1 climate; planet 1 richness; planet 1 gravity;"
-		"planet 2 size; planet 2 climate; planet 2 richness; planet 2 gravity;"
-		"planet 3 size; planet 3 climate; planet 3 richness; planet 3 gravity;"
-		"planet 4 size; planet 4 climate; planet 4 richness; planet 4 gravity;"
-		"planet 5 size; planet 5 climate; planet 5 richness; planet 5 gravity;\n");
+		"planet 1 size; planet 1 climate; planet 1 richness; planet 1 gravity;planet 1 special;"
+		"planet 2 size; planet 2 climate; planet 2 richness; planet 2 gravity;planet 2 special;"
+		"planet 3 size; planet 3 climate; planet 3 richness; planet 3 gravity;planet 3 special;"
+		"planet 4 size; planet 4 climate; planet 4 richness; planet 4 gravity;planet 4 special;"
+		"planet 5 size; planet 5 climate; planet 5 richness; planet 5 gravity;planet 5 special;\n");
 
 	} else {
 
@@ -461,7 +461,7 @@ void balanceGalaxy(struct galaxy *galaxy) {
 					}
 				}
 
-				fprintf(fpCsv,"%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
+				fprintf(fpCsv,"%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
 						i, //player number
 						capModifier, //capacify modifier
 						raceSpecial, //race special
@@ -475,26 +475,31 @@ void balanceGalaxy(struct galaxy *galaxy) {
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nMineralClass : 0, //planet 1 richness
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[0] != NULL ? ptrPlanet[0]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nMineralClass : 0, //planet 1 richness
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nMineralClass : 0, //planet 1 richness
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nMineralClass : 0, //planet 1 richness
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetGravity : 0 //planet 1 gravity
+						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetSpecial :0 //planet special
 				);
 
 				//printf("System: %s Parsec: %d Points: %d\n", galaxy->aStars[j].sName, parsec, points);
