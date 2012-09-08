@@ -87,22 +87,22 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 
 	for (i = 0; i!= nPlanets; i++) {
 
-		if (flags & FLG_NOTOXIC && aPlanets[i].nEnvClass == 0)
+		if ((flags & FLG_NOTOXIC) && aPlanets[i].nEnvClass == 0)
 			aPlanets[i].nEnvClass = 1;
 
-		if (flags & FLG_NOUPOOR && aPlanets[i].nMineralClass == 0)
+		if ((flags & FLG_NOUPOOR) && aPlanets[i].nMineralClass == 0)
 			aPlanets[i].nMineralClass = 1;
 
-		if (flags & FLG_NOLG && aPlanets[i].nPlanetGravity == 0) {
+		if ((flags & FLG_NOLG) && aPlanets[i].nPlanetGravity == 0) {
 			if (aPlanets[i].nColonyID == 0xffff)
 				aPlanets[i].nPlanetGravity = 1;
 		}
 
-		if (flags & FLG_NOHG && aPlanets[i].nPlanetGravity == 2)
+		if ((flags & FLG_NOHG) && aPlanets[i].nPlanetGravity == 2)
 			if (aPlanets[i].nColonyID == 0xffff)
 			aPlanets[i].nPlanetGravity = 1;
 
-		if (flags & FLG_NOTINY && aPlanets[i].nPlanetSize == 0) {
+		if ((flags & FLG_NOTINY) && aPlanets[i].nPlanetSize == 0) {
 
 			if (flags & FLG_NOSMALL)
 				aPlanets[i].nPlanetSize = 2;
@@ -111,12 +111,12 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 				aPlanets[i].nPlanetSize = 1;
 		}
 
-		if (flags & FLG_NOSMALL && aPlanets[i].nPlanetSize == 1)
+		if ((flags & FLG_NOSMALL) && aPlanets[i].nPlanetSize == 1)
 			aPlanets[i].nPlanetSize = 2;
 
 		if (specialsFlags) {
 
-			if (specialsFlags & FLG_SPLINT && aPlanets[i].nPlanetSpecial == SPLINTER_COLONY) {
+			if ((specialsFlags & FLG_SPLINT) && aPlanets[i].nPlanetSpecial == SPLINTER_COLONY) {
 
 				aStarSystems[aPlanets[i].nStarID].nSpecial = GEM_DEPOSITS; //Setting gem flag to star.
 				aPlanets[i].nPlanetSpecial = GEM_DEPOSITS; //Setting gem flag to planet.
@@ -124,7 +124,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 				if (verbose) printf("%s | Splinter\n", aStarSystems[aPlanets[i].nStarID].sName);
 			}
 
-			if (specialsFlags & FLG_ARTI && aPlanets[i].nPlanetSpecial == ANCIENT_ARTIFACTS) {
+			if ((specialsFlags & FLG_ARTI) && aPlanets[i].nPlanetSpecial == ANCIENT_ARTIFACTS) {
 
 				aStarSystems[aPlanets[i].nStarID].bArtifactsGaveApp = 1;
 
@@ -205,7 +205,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 				ptrPlanet = &galaxy->aPlanets[ptrSystem->aPlanet[i]];
 
-				if (flags & FLG_FLATHW || flags & FLG_FIXEDHW) {
+				if ((flags & FLG_FLATHW) || (flags & FLG_FIXEDHW)) {
 
 					//Make them abundant
 					ptrPlanet->nMineralClass = 2;
@@ -335,13 +335,11 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 void balanceGalaxy(struct galaxy *galaxy) {
 
-	int i, j, k, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster;
-	struct star *ptrHW, *ptrStar;
+	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster;
+	struct star *ptrHW[8], *ptrStar;
 	struct planet *ptrPlanet[5];
 
 	int aPlanetWeight[10][5];
-
-	int points, totalPoints;
 
 	FILE *fpWeight, *fpCsv;
 
@@ -382,12 +380,16 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 	for (i = 0; i != 8; i++) {
 
-		totalPoints = 0;
-
 		if (galaxy->aPlayers[i].home_planet_id == 0)
 			continue;
 
-		ptrHW = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[i].home_planet_id].nStarID];
+		ptrHW[i] = &galaxy->aStars[galaxy->aPlanets[galaxy->aPlayers[i].home_planet_id].nStarID];
+	}
+
+	for (i = 0; i != 8; i++) {
+
+		if (galaxy->aPlayers[i].home_planet_id == 0)
+			continue;
 
 		/*printf("%s Aquatic: %d Subterr: %d Tolerant: %d Cyber: %d %s\n", galaxy->aPlayers[i].race_name,
 				galaxy->aPlayers[i].aquatic,
@@ -398,20 +400,18 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 		for (j = 0; j!=MAX_SYSTEMS; j++) {
 
-			points = 0;
-
 			ptrStar = &galaxy->aStars[j];
 			if (ptrStar->sName[0] == 0 /*|| ptrStar == ptrHW*/)
 				continue;
 
-			sum = (ptrHW->nXpos - ptrStar->nXpos)*(ptrHW->nXpos - ptrStar->nXpos) +
-				(ptrHW->nYpos - ptrStar->nYpos)*(ptrHW->nYpos - ptrStar->nYpos);
+			sum = (ptrHW[i]->nXpos - ptrStar->nXpos)*(ptrHW[i]->nXpos - ptrStar->nXpos) +
+				(ptrHW[i]->nYpos - ptrStar->nYpos)*(ptrHW[i]->nYpos - ptrStar->nYpos);
 
 			parsec = (int)sqrt(sum/900);
 
 			if (parsec*900 < sum) parsec++;
 
-			if (parsec <= 14) {
+			if (parsec <= 15) {
 
 				for (k = 0, numOfPlanets = 0; k != 5; k++) {
 
@@ -438,16 +438,37 @@ void balanceGalaxy(struct galaxy *galaxy) {
 				raceSpecial = galaxy->aPlayers[i].eats_minerals ? 0 : 2;
 				raceSpecial = galaxy->aPlayers[i].cybernetic ? 1 : 2;
         
-        raceGravity = 0;
-        if (galaxy->aPlayers[i].low_g_world)
-          raceGravity = -1;
-        if (galaxy->aPlayers[i].heavy_g_world)
-          raceGravity = 1;
+				raceGravity = 0;
+
+				if (galaxy->aPlayers[i].low_g_world)
+					raceGravity = -1;
+
+				if (galaxy->aPlayers[i].heavy_g_world)
+					raceGravity = 1;
 
 				if (parsec == 0) rangeFromHW = 0;
 				else if (parsec <= 6) rangeFromHW = 1;
 				else if (parsec <= 13) rangeFromHW = 2;
 				else if (parsec <= 15) rangeFromHW = 3;
+
+				for (l = 0; l != 8; l++) {
+
+					if (i == l) continue;
+
+				if (galaxy->aPlayers[l].home_planet_id == 0)
+					continue;
+
+					sum = (ptrHW[l]->nXpos - ptrStar->nXpos)*(ptrHW[l]->nXpos - ptrStar->nXpos) +
+						(ptrHW[l]->nYpos - ptrStar->nYpos)*(ptrHW[l]->nYpos - ptrStar->nYpos);
+
+					parsec = (int)sqrt(sum/900);
+
+					if (parsec*900 < sum) parsec++;
+
+					if (parsec <= 20)
+						rangeFromHW = 4;
+
+				}
 
 				monster = 0;
 				for (z = 0; z != MAX_SHIPS; z++) {
