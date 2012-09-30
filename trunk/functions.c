@@ -451,13 +451,13 @@ void balanceGalaxy(struct galaxy *galaxy) {
 					rangeFromHW = 1;
 
 					ptrStar->nVisited |= (char)pow(2,i);
-					printf("%s %d\n",ptrStar->sName, ptrStar->nVisited);
+
 				}
 
 				else if (parsec <= 10) {
 
 					ptrStar->nVisited |= (char)pow(2,i);
-					printf("%s %d\n",ptrStar->sName, ptrStar->nVisited);
+
 				}
 
 
