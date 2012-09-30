@@ -77,6 +77,8 @@ int main(int argc, char *argv[]) {
 					"      monst - Does the same thing as -mgrav and -mterraform.\n\n"
 
 					"  -b Balance Galaxy\n"
+					"	   showring1 - Make planets in 6 parsecs distance visible to players\n"
+					"      showring2 - Make planets in 10 parsecs distance visible to players\n"
 					"	   calc - Calculate opponent starts and print out results\n\n"
 					"  -v Verbose debugging output(CHEAT!)\n\n"
 
@@ -173,6 +175,14 @@ int main(int argc, char *argv[]) {
 				exit(0);
 			case 'b':
 					balanceFlags |= FLG_CALC;
+
+					if (strstr(optarg, "showring1")) {
+						balanceFlags |= FLG_RING1;
+					}
+
+					if (strstr(optarg, "showring1")) {
+						balanceFlags |= FLG_RING1;
+					}
 			break;
 			default:
 				fprintf(stderr, "Usage: %s [-h] [-t terraform_type] [-f file]\nPress any key to continue.\n", argv[0]);
