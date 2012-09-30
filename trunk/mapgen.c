@@ -47,17 +47,25 @@ int main(int argc, char *argv[]) {
 					"        gravity become Normal except for one planet,\n"
 					"        it become the same gravity as occupied planet, size is set in order\n"
 					"        Large, Large again, Medium, Small untill\n"
-					"        there are no more planets to modify. Gaias become Terrain.\n"
+					"        there are no more planets to modify. Gaias become Terrain.\n", argv[0], argv[0]);
+				getchar();
+				printf(
 					"      fixedhw - Implies `flathw`. Planets become:\n"
-					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra, Medium Poor Terrain, all normalG.\n"
-					"		 If your homeworld is lowG, than all other planets except Arid become lowG.\n"
-					"		 If your homeworld is heavyG, than Swamp becomes heavyG, others become normalG\n"
-					"      gaia - DOES NOT imply fixedhw. Last planet become small poor gaia unless you are creative or aquatic or tolerant.\n"
+					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra,\n"
+					"        Medium Poor Terrain, all normalG.\n"
+					"        If your homeworld is lowG, than all other planets except Arid\n"
+					"        it becomes lowG.\n"
+					"        If your homeworld is heavyG, than Swamp becomes heavyG, others\n"
+					"        become normalG\n"
+					"      gaia - DOES NOT imply fixedhw. Last planet become small poor gaia\n"
+					"        unless you are creative or aquatic or tolerant.\n"
 					"        elswise you get small poor terrain\n"
 					"      richhw - Makes first unoccupied planet rich\n"
 					"      hugehw - Makes first unoccupied planet huge\n"
 					"      goodhw - Implies richw & hugehw. Makes first unoccupied planet terrain.\n\n"
-
+						);
+				getchar();
+				printf(
 					"  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
 					"      arti - Arti planets still exist, but don't give techs anymore.\n\n"
@@ -74,7 +82,7 @@ int main(int argc, char *argv[]) {
 
 					"  -V Print Version and exit\n\n"
 
-					"  -f file Edit 'file' instead of SAVE10.GAM\n\n", argv[0], argv[0]);
+					"  -f file Edit 'file' instead of SAVE10.GAM\n\n");
 
 					exit(0);
 			break;
