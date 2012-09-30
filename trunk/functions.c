@@ -447,7 +447,20 @@ void balanceGalaxy(struct galaxy *galaxy) {
 					raceGravity = 1;
 
 				if (parsec == 0) rangeFromHW = 0;
-				else if (parsec <= 6) rangeFromHW = 1;
+				else if (parsec <= 6) {
+					rangeFromHW = 1;
+
+					ptrStar->nVisited |= (char)pow(2,i);
+					printf("%s %d\n",ptrStar->sName, ptrStar->nVisited);
+				}
+
+				else if (parsec <= 10) {
+
+					ptrStar->nVisited |= (char)pow(2,i);
+					printf("%s %d\n",ptrStar->sName, ptrStar->nVisited);
+				}
+
+
 				else if (parsec <= 13) rangeFromHW = 2;
 				else if (parsec <= 15) rangeFromHW = 3;
 
@@ -465,8 +478,10 @@ void balanceGalaxy(struct galaxy *galaxy) {
 
 					if (parsec*900 < sum) parsec++;
 
-					if (parsec <= 20)
+					if (parsec <= 20) {
+
 						rangeFromHW = 4;
+					}
 
 				}
 
