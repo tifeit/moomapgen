@@ -21,6 +21,6 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 void modifyHW(struct galaxy *galaxy, unsigned int flags);
 
 //BalanceGalaxy.
-void balanceGalaxy(struct galaxy *galaxy);
+void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags);
 
 #endif /*FUNCTIONS_H_*/

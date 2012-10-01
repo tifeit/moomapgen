@@ -262,7 +262,7 @@ int main(int argc, char *argv[]) {
 	//Map generation.
 	if (balanceFlags) {
 
-		balanceGalaxy(&galaxy);
+		balanceGalaxy(&galaxy, balanceFlags);
 	}
 
 	//Writing Planets information.
