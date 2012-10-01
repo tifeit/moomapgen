@@ -455,7 +455,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags) {
 
 				}
 
-				else if (parsec <= 10 && (balanceFlags & FLG_RING1)) {
+				else if (parsec <= 10 && (balanceFlags & FLG_RING2)) {
 
 					ptrStar->nVisited |= (char)pow(2,i);
 

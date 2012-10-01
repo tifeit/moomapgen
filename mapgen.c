@@ -180,8 +180,8 @@ int main(int argc, char *argv[]) {
 						balanceFlags |= FLG_RING1;
 					}
 
-					if (strstr(optarg, "showring1")) {
-						balanceFlags |= FLG_RING1;
+					if (strstr(optarg, "showring2")) {
+						balanceFlags |= FLG_RING2;
 					}
 			break;
 			default:
