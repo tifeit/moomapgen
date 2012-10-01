@@ -333,7 +333,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 	}
 }
 
-void balanceGalaxy(struct galaxy *galaxy) {
+void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags) {
 
 	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster;
 	struct star *ptrHW[8], *ptrStar;
@@ -450,11 +450,12 @@ void balanceGalaxy(struct galaxy *galaxy) {
 				else if (parsec <= 6) {
 					rangeFromHW = 1;
 
-					ptrStar->nVisited |= (char)pow(2,i);
+					if (balanceFlags & FLG_RING1)
+						ptrStar->nVisited |= (char)pow(2,i);
 
 				}
 
-				else if (parsec <= 10) {
+				else if (parsec <= 10 && (balanceFlags & FLG_RING1)) {
 
 					ptrStar->nVisited |= (char)pow(2,i);
 
