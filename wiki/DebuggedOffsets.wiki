@@ -193,4 +193,4 @@ Forced vsync
 
 ||Basic antaran resource bonus = 100||`BE `*64*` 00 00 00 80 3D B0  1C 19 00 03 75 07 BE 96`||
 ||Hard resource bonus = 150||`BE `*96*` 00 00 00 EB 0E 80  3D B0 1C 19 00 04 75 05`||
-||Impossible resource bonus = 200||`BE `C8*` 00 00 00 98 0F AF  C3 83 C0 63 BB 64 00 00`||
+||Impossible resource bonus = 200||`BE `*C8*` 00 00 00 98 0F AF  C3 83 C0 63 BB 64 00 00`||
