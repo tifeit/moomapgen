@@ -7,29 +7,59 @@ signed int __cdecl ANTARANS_Increment_Antaran_Resource_Level_()
   signed __int16 v3; // ax@3
   __int16 v4; // cx@7
 
-  result = ANTARANS_Antaran_Delay_();
-  v1 = v2 - 35000 - (signed __int16)result;
-  if ( v1 > 0 )
+  result = ANTARANS_Antaran_Delay_(); //Returns 100 or 200 depending on starting tech
+  v1 = MOX__stardate - 35000 - (signed __int16)result; //v2 - CURRENT STAR DATE
+  if ( v1 > 0 ) //If it's time to attack, meaning delay is ended
   {
     result = v1 / 25;
-    if ( !(v1 % 25) )
+/*Если разница текущей даты и старовой даты с учетом задержки на флот антарян делится на 25 без отстатка, т.е. если читать по-русски каждый 25 ход с момента первой атаки антарян происходит увеличение можности флота антарян на величину, равную:
+Целое от деления кол-ва ходов с первой атаки антарян на 25 уможить на силу в зависимости от уровня сложности плюс 99 и все поделить на 100
+Т.е. для первой атаки антарян:
+1/25 = 0
+0*200 = 0
+0+99=99
+99/100 = 0
+
+для второй атаки
+
+25/25 = 1
+
+1*200 = 200
+
+200 + 99 = 299
+299/100 = 2
+
+для третей атаки
+
+50/25 = 2
+
+2*200 = 400
+
+400+99 = 499
+
+499/100 = 4
+
+и так далее.
+*/
+
+    if ( !(v1 % 25) ) 
     {
       v3 = 100;
-      if ( byte_191CB0 == 3 )
+      if ( byte_191CB0 == 3 ) //HARD LEVEL
       {
         v3 = 150;
       }
       else
       {
-        if ( byte_191CB0 == 4 )
+        if ( byte_191CB0 == 4 ) //IMPOSSIBLE LEVEL
           v3 = 200;
       }
-      word_191176 += (v1 / 25 * v3 + 99) / 100;
+      word_191176 += (v1 / 25 * v3 + 99) / 100; //Offensive
       result = ANTARANS_Antaran_Defensive_Force_At_Maximum_();
-      if ( (_BYTE)result )
-        word_191176 += v4;
+      if ( (_BYTE)result ) //Если оборона максимальная?
+        word_191176 += v4; //Увеличить Offensive ships
       else
-        word_191178 += v4;
+        word_191178 += v4; //Defensieve ships
     }
   }
   return result;
