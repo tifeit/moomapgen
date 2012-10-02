@@ -1,0 +1,37 @@
+{{{
+signed int __cdecl ANTARANS_Increment_Antaran_Resource_Level_()
+{
+  signed int result; // eax@1
+  signed int v1; // edx@1
+  int v2; // edx@1
+  signed __int16 v3; // ax@3
+  __int16 v4; // cx@7
+
+  result = ANTARANS_Antaran_Delay_();
+  v1 = v2 - 35000 - (signed __int16)result;
+  if ( v1 > 0 )
+  {
+    result = v1 / 25;
+    if ( !(v1 % 25) )
+    {
+      v3 = 100;
+      if ( byte_191CB0 == 3 )
+      {
+        v3 = 150;
+      }
+      else
+      {
+        if ( byte_191CB0 == 4 )
+          v3 = 200;
+      }
+      word_191176 += (v1 / 25 * v3 + 99) / 100;
+      result = ANTARANS_Antaran_Defensive_Force_At_Maximum_();
+      if ( (_BYTE)result )
+        word_191176 += v4;
+      else
+        word_191178 += v4;
+    }
+  }
+  return result;
+}
+}}}
