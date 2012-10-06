@@ -10,6 +10,8 @@ unsigned char verbose = 0;
 int main(int argc, char *argv[]) {
 
 	unsigned int opt;
+
+	int rings = 0;
 	FILE *fp, *fp2;
 	unsigned int terraformFlags = 0, hwFlags = 0, specialsFlags = 0, monsterFlags = 0, balanceFlags = 0;
 
@@ -77,8 +79,7 @@ int main(int argc, char *argv[]) {
 					"      monst - Does the same thing as -mgrav and -mterraform.\n\n"
 
 					"  -b Balance Galaxy\n"
-					"	   showring1 - Make planets in 6 parsecs distance visible to players\n"
-					"      showring2 - Make planets in 10 parsecs distance visible to players\n"
+					"	   showringX - Make planets in X parsecs distance from HW visible to players\n"
 					"	   calc - Calculate opponent starts and print out results\n\n"
 					"  -v Verbose debugging output(CHEAT!)\n\n"
 
@@ -176,13 +177,10 @@ int main(int argc, char *argv[]) {
 			case 'b':
 					balanceFlags |= FLG_CALC;
 
-					if (strstr(optarg, "showring1")) {
-						balanceFlags |= FLG_RING1;
+					if (strstr(optarg, "showring") && sscanf(optarg, "showring%d",&rings)) {
+						balanceFlags |= FLG_RING;
 					}
 
-					if (strstr(optarg, "showring2")) {
-						balanceFlags |= FLG_RING2;
-					}
 			break;
 			default:
 				fprintf(stderr, "Usage: %s [-h] [-t terraform_type] [-f file]\nPress any key to continue.\n", argv[0]);
@@ -262,7 +260,7 @@ int main(int argc, char *argv[]) {
 	//Map generation.
 	if (balanceFlags) {
 
-		balanceGalaxy(&galaxy, balanceFlags);
+		balanceGalaxy(&galaxy, balanceFlags, rings);
 	}
 
 	//Writing Planets information.
