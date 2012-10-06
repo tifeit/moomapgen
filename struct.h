@@ -61,8 +61,7 @@ typedef signed int sint;
 #define	FLG_NOSMALL		32
 
 #define FLG_CALC		1
-#define FLG_RING1		2
-#define FLG_RING2		4
+#define FLG_RING		2
 
 //Homeworld flags
 #define FLG_FLATHW		1
