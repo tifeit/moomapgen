@@ -29,7 +29,7 @@
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);   - DONE
  # Telepathy
   * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.
- # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70. 
+ # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
 ----
 
  
