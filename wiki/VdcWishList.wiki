@@ -1,5 +1,5 @@
 = Altered Priority List (09/06/2012):= 
- [color=red]# Disable enveloping mod of torpeodoes vs planets. i.e. it shouldn't multiply damage by 4 if torpedo got this mod installed. Explanation - how a torpedo can possibly envelop the whole planet?!!![/color] addition: not only for torpedoes, but for stellar converter too!
+ [colour=red]# Disable enveloping mod of torpeodoes vs planets. i.e. it shouldn't multiply damage by 4 if torpedo got this mod installed. Explanation - how a torpedo can possibly envelop the whole planet?!!![/color] addition: not only for torpedoes, but for stellar converter too!
  # Find offsets for the weapons miniaturization coefficients. - DONE.
  # Fix bug with HEF to give correct bonuses to the different beam-mods.
  # Fix Structural Analyzer bonus (decrease multiplier from 2.0 to 1.6); - DONE.
