@@ -17,7 +17,7 @@
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180  - DONE
  # Star bases: add torpedoes instead of the missiles, when torpedo tech becomes available.
  # Allow starbases to use all available modifications for the beams and torpedoes.
- # FindScanners bonuses for reducing missile evasion: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
+ # Find Scanners bonuses for reducing missile evasion: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 100% without need to have a multiphased shield special installed... 
