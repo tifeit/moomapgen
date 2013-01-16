@@ -1,4 +1,5 @@
-= Altered Priority List (09/06/2012):= 
+= Altered Priority List (16/01/2013):= 
+ # Fix plasma torpedoes dissipation bug for the speed higher than 23(25).
  # Disable enveloping mod of torpeodoes vs planets. i.e. it shouldn't multiply damage by 4 if torpedo got this mod installed. Explanation - how a torpedo can possibly envelop the whole planet?!!! addition: not only for torpedoes, but for stellar converter too!
  # Find offsets for the weapons miniaturization coefficients. - DONE.
  # Fix bug with HEF to give correct bonuses to the different beam-mods.
@@ -16,20 +17,23 @@
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180  - DONE
  # Star bases: add torpedoes instead of the missiles, when torpedo tech becomes available.
  # Allow starbases to use all available modifications for the beams and torpedoes.
- # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4.
+ # FindScanners bonuses for reducing missile evasion: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
- # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 50% without need to have a multiphased shield special installed... 
+ # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 100% without need to have a multiphased shield special installed... 
+ # Add +50% hp increase to the shields for Shield Capacitor tech. 
  # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race.
+ # Research and associate Regeneration special (#39) to the tech called Advanced Damage Control.
  # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively.
- # Add Death Ray Rifle - additional rifle, which is given, when you research Death Ray beam technology (2 in 1). 
- # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines);
+ # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^classs; remove miniaturization to tractor beams.
+ # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines); - partly Done.
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);   - DONE
  # Telepathy
   * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.
- # Бонусы сканеров по уменьшению действия систем радиоэлектронного подавления ECM: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
+ # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4.
+ # Add Death Ray Rifle - additional rifle, which is given, when you research Death Ray beam technology (2 in 1). 
 ----
 
  
