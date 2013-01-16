@@ -14,7 +14,7 @@
  # Fix amount of fighters in replacement to full value after the first wave was partly destroyed and managed to get back to the base (it starts sending broken number of fighters after that).
  # Increase range for heavy mount beams by 50%. Currently it's 50 squares. Rather increase the range for ground installations and starbases.
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
- # Reprogram cost of androids in the following way: Farmers - 50 BC, scientists - 75 BC, Workers - 100 BC.
+ # Reprogram cost of androids in the following way: Farmers - 50 BC, Scientists - 75 BC, Workers - 100 BC.
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180  - DONE
  # Star bases: add torpedoes instead of the missiles, when torpedo tech becomes available.
  # Allow starbases to use all available modifications for the beams and torpedoes.
