@@ -22,7 +22,7 @@
  # Find the Leaders offering time matrix;
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 100% without need to have a multiphased shield special installed... 
- # Add +50% hp increase to the shields for Shield Capacitor tech. 
+ # Add +50% hp increase for the shields when Shield Capacitor special is installed. 
  # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race.
  # Research and associate Regeneration special (#39) to the tech called Advanced Damage Control.
  # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively.
