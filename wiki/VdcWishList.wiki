@@ -13,7 +13,6 @@
  # Increase the frequency of restoration of fighters in Fighter Garrison from 10 rounds to 3(or 4) rounds. -  DONE.
  # Fix amount of fighters in replacement to full value after the first wave was partly destroyed and managed to get back to the base (it starts sending broken number of fighters after that).
  # Increase range for heavy mount beams by 50%. Currently it's 50 squares. Rather increase the range for ground installations and starbases.
- # Find offset for the number of tractor beams required for each type of the hulls.  
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180  - DONE
  # Star bases: add torpedoes instead of the missiles, when torpedo tech becomes available.
@@ -30,7 +29,7 @@
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines); - partly Done.
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
- # AI ship designing; %распределения оружия в его дизайнах, учет новой вместимости кораблей, установить флаги на некоторые спешалсы, чтобы АИ всегда их ставил, когда они имеются в наличии, вне зависимо от ситуации (например, augmented engines, battle scanner, reinforced hull, lightning field....);   - DONE
+ # AI ship designing; weapons allocation on AI ships in %, Defining specials AI for the AI ships to be placed invariably, when they are available  - DONE;
  # Telepathy
   * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.
  # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4.
