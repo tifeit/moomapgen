@@ -26,7 +26,7 @@
  # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race.
  # Research and associate Regeneration special (#39) to the tech called Advanced Damage Control.
  # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively.
- # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^classs; remove miniaturization to tractor beams.
+ # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^class; remove miniaturization to tractor beams.
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines); - partly Done.
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
