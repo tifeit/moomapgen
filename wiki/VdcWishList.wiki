@@ -1,5 +1,5 @@
 = Altered Priority List (16/01/2013):= 
- # Fix plasma torpedoes dissipation bug for the speed higher than 23(25).
+ # Fix plasma torpedoes dissipation bug for the speed higher than 23(24). - partly fixed.
  # Disable enveloping mod of torpeodoes vs planets. i.e. it shouldn't multiply damage by 4 if torpedo got this mod installed. Explanation - how a torpedo can possibly envelop the whole planet?!!! addition: not only for torpedoes, but for stellar converter too!
  # Find offsets for the weapons miniaturization coefficients. - DONE.
  # Fix bug with HEF to give correct bonuses to the different beam-mods.
