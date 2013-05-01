@@ -32,7 +32,7 @@
  # AI ship designing; weapons allocation on AI ships in %, defining specials for the AI ships to be placed invariably, when they are available  - DONE;
  # Telepathy
   * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.
- # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4.
+ # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4. - DONE
  # Add Death Ray Rifle - additional rifle, which is given, when you research Death Ray beam technology (2 in 1). 
 ----
 
