@@ -124,12 +124,27 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 				if (verbose) printf("%s | Splinter\n", aStarSystems[aPlanets[i].nStarID].sName);
 			}
 
+			if ((specialsFlags & FLG_NONATIVES) && aPlanets[i].nPlanetSpecial == NATIVES) {
+
+				aStarSystems[aPlanets[i].nStarID].nSpecial = GOLD_DEPOSITS; //Setting gold flag to star.
+				aPlanets[i].nPlanetSpecial = GOLD_DEPOSITS; //Setting gold flag to planet.
+
+				if (verbose) printf("%s | Natives\n", aStarSystems[aPlanets[i].nStarID].sName);
+			}
+
 			if ((specialsFlags & FLG_ARTI) && aPlanets[i].nPlanetSpecial == ANCIENT_ARTIFACTS) {
 
 				aStarSystems[aPlanets[i].nStarID].bArtifactsGaveApp = 1;
 
 				if (verbose) printf("%s | Arti\n", aStarSystems[aPlanets[i].nStarID].sName);
 			}
+		}
+
+		if ((monsterFlags & FLG_LEADERS) && aStarSystems[aPlanets[i].nStarID].nSpecial == MAROONED_HERO) {
+
+			aStarSystems[aPlanets[i].nStarID].nSpecial = PIRATE_CACHE;
+
+			if (verbose) printf("%s | Marooned hero\n", aStarSystems[aPlanets[i].nStarID].sName);
 		}
 	}
 
@@ -139,6 +154,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 
 		for (i = 0; i != MAX_SHIPS; i++) {
 
+			//Search for monster ships
 			if (aShips[i].d.name[0] != 0 && aShips[i].owner > 8) {
 
 				location = aShips[i].location;
@@ -174,6 +190,11 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 							}
 						}
 					}
+				}
+
+				if ((monsterFlags & FLG_LEADERS) && (aStarSystems[location].nSpecial == PIRATE_CACHE || aStarSystems[location].nSpecial == SPACE_DEBRIS)) {
+					aStarSystems[location].nSpecial = MAROONED_HERO;
+					if (verbose) printf("%s | Pirate cache or debris\n", aStarSystems[aShips[i].location].sName);
 				}
 			}
 		}
@@ -335,7 +356,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) {
 
-	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster;
+	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster, government;
 	struct star *ptrHW[8], *ptrStar;
 	struct planet *ptrPlanet[5];
 
@@ -350,7 +371,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 	fpCsv = fopen("autosave.csv", "w");
 
 	if (fpCsv != NULL) {
-		fprintf(fpCsv,"player number; capacity modifier; race special; race gravity; star name; number of planets; range from hw; monster; special;"
+		fprintf(fpCsv,"player number; government; capacity modifier; race special; race gravity; star name; number of planets; range from hw; monster; special;"
 		"planet 1 size; planet 1 climate; planet 1 richness; planet 1 gravity;planet 1 special;"
 		"planet 2 size; planet 2 climate; planet 2 richness; planet 2 gravity;planet 2 special;"
 		"planet 3 size; planet 3 climate; planet 3 richness; planet 3 gravity;planet 3 special;"
@@ -437,6 +458,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				raceSpecial = 0;
 				raceSpecial = galaxy->aPlayers[i].eats_minerals ? 0 : 2;
 				raceSpecial = galaxy->aPlayers[i].cybernetic ? 1 : 2;
+				government = galaxy->aPlayers[i].current_government;
         
 				raceGravity = 0;
 
@@ -488,8 +510,9 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 					}
 				}
 
-				fprintf(fpCsv,"%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
+				fprintf(fpCsv,"%d;%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
 						i, //player number
+						government, //race government
 						capModifier, //capacify modifier
 						raceSpecial, //race special
 						raceGravity, //race gravity

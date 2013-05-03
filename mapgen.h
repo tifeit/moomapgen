@@ -1,7 +1,7 @@
 #ifndef MAPGEN_H_
 #define MAPGEN_H_
 
-#define MAPGEN_VERSION "0.38"
+#define MAPGEN_VERSION "0.39"
 
 #include <stdio.h>
 #include <stdlib.h>

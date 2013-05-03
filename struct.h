@@ -74,10 +74,12 @@ typedef signed int sint;
 //Splinter flags
 #define FLG_SPLINT		1
 #define FLG_ARTI		2
+#define FLG_NONATIVES	4
 
 //Monster flags
 #define FLG_GRAV		1
 #define FLG_TERRAFORM	2
+#define FLG_LEADERS		4
 
 //Mineral richness
 #define ULTRA_POOR            0
