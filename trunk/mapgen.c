@@ -51,8 +51,9 @@ int main(int argc, char *argv[]) {
 					"        Large, Large again, Medium, Small untill\n"
 					"        there are no more planets to modify. Gaias become Terrain.\n", argv[0], argv[0]);
 				getchar();
+
 				printf(
-					"      fixedhw - Implies `flathw`. Planets become:\n"
+					"\n      fixedhw - Implies `flathw`. Planets become:\n"
 					"        Large Abundant Swamp, Large Abundant Arid, Large Poor Tundra,\n"
 					"        Medium Poor Terrain, all normalG.\n"
 					"        If your homeworld is lowG, than all other planets except Arid\n"
@@ -68,12 +69,15 @@ int main(int argc, char *argv[]) {
 						);
 				getchar();
 				printf(
-					"  -s Specials Change\n"
+					"\n  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
+					"      nonatives - Natives are replaced by gold deposits.\n"
 					"      arti - Arti planets still exist, but don't give techs anymore.\n\n"
 
 					"  -m Monsters Change\n"
 					"      grav - Guarded planets become normal gravity, even ultrarich now.\n"
+					//"      leaders - Marooned heroes under nonguarded planets become pirate stash.\n"
+					"        Pirate stash and space debris under guarded planets become marooned heroes.\n"
 					"      terraform - Guarded rich & urich planets are terraformed.\n"
 					"        Toxics, Rads, Barrens, Deserts become Tundra.\n"
 					"      monst - Does the same thing as -mgrav and -mterraform.\n\n"
@@ -139,6 +143,8 @@ int main(int argc, char *argv[]) {
 
 				else if (strstr(optarg, "arti"))
 							specialsFlags |= FLG_ARTI;
+				else if (strstr(optarg, "nonatives"))
+							specialsFlags |= FLG_NONATIVES;
 				else {
 						fprintf(stderr, "Unknown Special parameter %s.\nPress any key to continue.\n", optarg);
 						getc(stdin);
@@ -149,6 +155,10 @@ int main(int argc, char *argv[]) {
 			case 'm':
 				if		(strstr(optarg, "grav"))
 							monsterFlags |= FLG_GRAV;
+
+				//Leaders must be pregenerated to be shown on planets
+				/*if		(strstr(optarg, "leaders"))
+							monsterFlags |= FLG_LEADERS;*/
 
 				else if (strstr(optarg, "terraform"))
 							monsterFlags |= FLG_TERRAFORM;
