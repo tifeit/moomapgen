@@ -455,9 +455,11 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				capModifier |= galaxy->aPlayers[i].subterranean ? 2 : 0;
 				capModifier |= galaxy->aPlayers[i].environment_immune ? 4 : 0;
 
-				raceSpecial = 0;
-				raceSpecial = galaxy->aPlayers[i].eats_minerals ? 0 : 2;
-				raceSpecial = galaxy->aPlayers[i].cybernetic ? 1 : 2;
+				raceSpecial = 1;
+				if (galaxy->aPlayers[i].eats_minerals)
+					raceSpecial = 0;
+				if (galaxy->aPlayers[i].cybernetic)
+					raceSpecial = 2;
 				government = galaxy->aPlayers[i].current_government;
         
 				raceGravity = 0;
