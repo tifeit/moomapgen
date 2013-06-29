@@ -470,17 +470,17 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				if (galaxy->aPlayers[i].heavy_g_world)
 					raceGravity = 1;
 
-				if (parsec == 0) rangeFromHW = 0;
-				else if (parsec <= 6) {
-					rangeFromHW = 1;
-				}
-
 				if ((balanceFlags & FLG_RING) && rings >= parsec )
 					ptrStar->nVisited |= (char)pow(2,i);
 
+				if (parsec == 0) rangeFromHW = 0;
 
-				else if (parsec <= 13) rangeFromHW = 2;
-				else if (parsec <= 15) rangeFromHW = 3;
+				else if ( parsec !=0 && parsec <= 6) {
+					rangeFromHW = 1;
+				}
+
+				else if (parsec >6 && parsec <= 13) rangeFromHW = 2;
+				else if (parsec > 13 && parsec <= 15) rangeFromHW = 3;
 
 				for (l = 0; l != 8; l++) {
 
