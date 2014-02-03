@@ -30,7 +30,7 @@
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # AI ship designing; weapons allocation on AI ships in %, defining specials for the AI ships to be placed invariably, when they are available  - DONE;
- # Telepathy- Fix telepathy skills of the leaders (the add wrong bonus); - DONE.
+ # Telepathy- Fix telepathy skills of the leaders (adds wrong bonus); - DONE.
  # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4. - DONE
  # Add Death Ray Rifle - additional rifle, which is given, when you research Death Ray beam technology (2 in 1). 
 ----
