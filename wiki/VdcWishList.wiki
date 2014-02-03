@@ -1,4 +1,4 @@
-= Altered Priority List (01/05/2013):= 
+= Altered Priority List (03/02/2014):= 
  # Fix plasma torpedoes dissipation bug for the speed higher than 23(24). - partly fixed.
  # Disable enveloping mod of torpeodoes vs planets. i.e. it shouldn't multiply damage by 4 if torpedo got this mod installed. Explanation - how a torpedo can possibly envelop the whole planet?!!! addition: not only for torpedoes, but for stellar converter too! - ADDED damper field to planetary defense, working on fixing recharge issue of plsma torps;
  # Find offsets for the weapons miniaturization coefficients. - DONE.
@@ -9,7 +9,7 @@
  # Weapons allocation percentage on starbases/battlestation/star fortresses. (Heavy mount is 25%, want to increase it);   - DONE
  # Re-arrange Terafoming progressive cost for flat cost or even decreasing cost with cost multiplier=2/3 - DONE
  # Reduce number of combat rounds from 50 to 20;  - DONE
- # Disable requirement to click OK every time on raid confirmation window. Example: When you hit autobattle then when the same window pops up it stays for about 5-7 seconds, then AI removes it automatically. But when you are controlling your ships, you have to press OK or battle doesn't go futher from this point(opponent will see the screen: waiting for opponent message till it is confirmed by pressing OK button). Would be good if it was the same as in autobattle - message dissapeared automatically after a short pause, and no need for confirmation.   
+ # Disable requirement to click OK every time on raid confirmation window. Example: When you hit autobattle then when the same window pops up it stays for about 5-7 seconds, then AI removes it automatically. But when you are controlling your ships, you have to press OK or battle doesn't go futher from this point(opponent will see the screen: waiting for opponent message till it is confirmed by pressing OK button). Would be good if it was the same as in autobattle - message dissapeared automatically after a short pause, and no need for confirmation. - DONE.  
  # Increase the frequency of restoration of fighters in Fighter Garrison from 10 rounds to 3(or 4) rounds. -  DONE.
  # Fix amount of fighters in replacement to full value after the first wave was partly destroyed and managed to get back to the base (it starts sending broken number of fighters after that).
  # Increase the range for ground batteries installation and starbases.
@@ -25,13 +25,13 @@
  # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race. Definitely needed.
  # Research and associate Regeneration special (#39) to the tech called Advanced Damage Control. Make regeneration to repair destroyed internals and ship specials.
  # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively.
- # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^class; remove miniaturization to tractor beams.
+ # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^class; remove miniaturization to tractor beams.- DONE.
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines); - partly Done.
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
  # AI ship designing; weapons allocation on AI ships in %, defining specials for the AI ships to be placed invariably, when they are available  - DONE;
  # Telepathy
-  * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.
+  * Fix telepathy skills of the leaders (now they add only half bonus they should); Increase basic bonus of the leaders telepathy skill.- DONE.
  # Add New type of planetary defense fields - Planetary Damper Field, which would be given additionally to Damper field technology (2 in 1). Planetary Damper field would reduce damage against planet by 3/4. - DONE
  # Add Death Ray Rifle - additional rifle, which is given, when you research Death Ray beam technology (2 in 1). 
 ----
