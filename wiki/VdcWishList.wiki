@@ -20,7 +20,7 @@
 
 ----
  
- Implemented features:= 
+ Implemented features
  # Fix plasma torpedoes dissipation bug for the speed higher than 23(24). - partly fixed.
  # Find offsets for the weapons miniaturization coefficients. - DONE.
  # Fix bug with HEF to give correct bonuses to the different beam-mods.
