@@ -1,5 +1,5 @@
 = New Priority List (20/10/2014):= 
- # Add new interface features - 1)Add a function, which can copy building queue of one planet to all the rest planets;  2) Add an info output how much the planet got stored production (retrieve this number and display it); 3) Add an info output how many colonists a planet is expecting to arrive next turn; 4)Add in info output about remaining shield's hp.
+ # Add new interface features - 1)Add a function, which can copy building queue of one planet to all the rest planets;  2) Add an info output how much the planet got stored production (retrieve this number and display it); 3) Add an info output how many colonists a planet is expecting to arrive next turn; 4)Add an info output about remaining shield's hp.
  # Fix Autobuild function in a way to allow your own buildings priority list;
  # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively - partly done.
  # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race. Definitely needed.
