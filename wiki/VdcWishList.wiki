@@ -33,12 +33,11 @@
  # Increase the frequency of restoration of fighters in Fighter Garrison from 10 rounds to 3(or 4) rounds. -  DONE.
  # Fix amount of fighters in replacement to full value after the first wave was partly destroyed and managed to get back to the base (it starts sending broken number of fighters after that).
  # Find a way to seperate cost of building of Androids (50 pp)from the cost of freighters, since they use the same offset. - DONE
-  # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180  - DONE
+ # Make the Antarans attack earlier. There is almost certainly a delay that has been set to stop them attacking before approx. turn 180  - DONE
  # Star bases: add torpedoes instead of the missiles, when torpedo tech becomes available.
-  # Find Scanners bonuses for reducing missile evasion: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
+ # Find Scanners bonuses for reducing missile evasion: tachyon scanner -20; neutronium scanner -40; sensors -70.  - DONE
  # Find the Leaders offering time matrix; - DONE
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
- # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 100% without need to have a multiphased shield special installed...dubious decision, but more needed than not; 
  # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^class; remove miniaturization to tractor beams.- DONE.
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines); - partly Done.
  # AI ship designing; weapons allocation on AI ships in %, defining specials for the AI ships to be placed invariably, when they are available  - DONE;
