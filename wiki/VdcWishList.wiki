@@ -39,7 +39,7 @@
  # Find the Leaders offering time matrix; - DONE
  # Add Hard Shields effect to class XX shield, so that it becomes naturally immune to SP effects and transporters; 
  # Make multiphased shields tech an achievement: all ships shields automatically increase strength by 100% without need to have a multiphased shield special installed...dubious decision, but more needed than not; 
-  # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^class; remove miniaturization to tractor beams.- DONE.
+ # Tractor beams. Fix number of beams required to stop different classes of ships in the following manner: Num of beams=2^class; remove miniaturization to tractor beams.- DONE.
  # Raid. Raid calculations. Bugs with the raid: desynch on raiding starbase with no marines (killed by neutron blaster); Zero Marines Raid bug (game stalls in MP, when you raid with zero marines); - partly Done.
  # AI ship designing; weapons allocation on AI ships in %, defining specials for the AI ships to be placed invariably, when they are available  - DONE;
  # Telepathy- Fix telepathy skills of the leaders (adds wrong bonus); - DONE.
