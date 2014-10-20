@@ -5,7 +5,7 @@
  # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race. Definitely needed.
  # Make shield recharge special (i.e. multiphased shileds in VDC v55) an achievement - automatically installed on all ships;
  # Make Quantum Detonator special an achievement;
- # Fine out about Regeneration special (#39) if it can be used to repair destroyed internals and ship specials in combat.
+ # Regeneration special (#39) find out if it can be used to repair destroyed internals and ship specials in combat.
  # Global FIX - Add ability to save (dump) combat data when it stalls (hangs) showing - waiting for opponent - message. Add ability to restore combat data by pressing a special key, for instance ALT+F12.
  # Mutation Bug (desynch issue);
  # Feudal Bug (ships costs issue);
