@@ -1,13 +1,16 @@
-= New Priority List (20/10/2014):= 
+= New Priority List (04.05.2015); previous upd(20/10/2014):= 
+ # Fix TIME WARP FACILITATOR BUG: Phasing Cloak, Cloaking Device? and Black Hole Generator works incorrectly when TWF is present on the battlefield;
+ # Fix Stasis Field mechanics - ships released from the stasis trap should be able to move in the round they were released; now they lose their turn until next round of combat;
+ # Make Quantum Detonator special an achievement - very high priority!
+ # Fix BHG bug - it should immobilize only in round 2. 
+ # Make shield recharge special (i.e. multiphased shileds in VDC v55) an achievement - automatically installed on all ships;
+ # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively - partly done.
+ # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race. Definitely needed.  
+ # Regeneration special (#39) find out if it can be used to repair destroyed internals and ship specials in combat.
  # Add new interface features - 1)Add a function, which can copy building queue of one planet to all the rest planets;  2) Add an info output how much the planet got stored production (retrieve this number and display it); 3) Add an info output how many colonists a planet is expecting to arrive next turn; 4)Add an info output about remaining shield's hp; 5) Add possibility to save and load ship designs in ship construction window;
  # Fix Autobuild function in a way to allow your own buildings priority list;
- # Find offsets for autorepair and cybernetic restoration percentages, especially for repairment of internals. Current values are 20 (10) and 10 (5) for structure and internals for autorepair and cybernetic respectively - partly done.
- # Make Autorepair Unit an achievement - so that not required to put it as a special on a ship, but it works automatically, like cybernetic race. Definitely needed.
- # Make shield recharge special (i.e. multiphased shileds in VDC v55) an achievement - automatically installed on all ships;
- # Make Quantum Detonator special an achievement;
- # Regeneration special (#39) find out if it can be used to repair destroyed internals and ship specials in combat.
  # Global FIX - Add ability to save (dump) combat data when it stalls (hangs) showing - waiting for opponent - message. Add ability to restore combat data by pressing a special key, for instance ALT+F12.
- # Mutation Bug (desynch issue);
+ # Mutation Bug (desynch issue); - Done
  # Feudal Bug (ships costs issue);
  # Allow starbases to use all available modifications for the beams and torpedoes - actually level 1 mods will be enough!
  # Star bases: add torpedoes instead of the missiles, when torpedo tech becomes available.
