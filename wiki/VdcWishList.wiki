@@ -1,5 +1,5 @@
 = New Priority List (04.05.2015); previous upd (20/10/2014):= 
- # Fix TIME WARP FACILITATOR BUG: Phasing Cloak, Cloaking Device? and Black Hole Generator works incorrectly when TWF is present on the battlefield;
+ # Fix TIME WARP FACILITATOR BUG: Phasing Cloak, Cloaking Device? and Black Hole Generator works incorrectly when TWF is present in combat;
  # Fix Stasis Field mechanics - ships released from the stasis trap should be able to move in the round they were released; now they lose their turn until next round of combat;
  # Make Quantum Detonator special an achievement - very high priority!
  # Fix BHG bug - it should immobilize only in round 2. 
