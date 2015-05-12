@@ -17,6 +17,7 @@ typedef signed int sint;
 //Save Data
 #define MAX_POPS        42
 #define MAX_PLAYERS      8
+#define MAX_LEADERS     67
 #define MAX_RACES       14
 #define N_POP_PLAYERS (MAX_PLAYERS+2)
 #define N_POP_RACES (MAX_RACES+2)
@@ -25,12 +26,14 @@ typedef signed int sint;
 #define MAX_PLANETS 360
 #define MAX_PLAYERS 8
 #define MAX_SHIPS 500
+#define MAX_COLONIES 250
 #define  MAX_TECH_FIELDS                83
 #define  MAX_TECH_APPLICATIONS         212
 #define STAR_OFFSET 0x17ad3
 #define PLANET_OFFSET 0x162e9
 #define SHIP_OFFSET 0x21F58
 #define PLAYER_OFFSET 0x1aa0e
+#define LEADER_OFFSET 0x19a9b
 
 #define NUM_OF_STARS_OFFSET 0x17ad1
 #define NUM_OF_PLANETS_OFFSET 0x162e7
@@ -109,9 +112,9 @@ typedef signed int sint;
 
 //Size
 #define TINY	0
-#define	SMALL	1
-#define	MEDIUM	2
-#define	LARGE	3
+#define	 SMALL	1
+#define	 MEDIUM	2
+#define	 LARGE	3
 #define HUGEPLANET	4
 
 STRUCT_TYPE star {
@@ -187,6 +190,25 @@ STRUCT_TYPE Pop_Info {
            unsigned job:2;              // 0-farmer, 1-worker, 2-scientist
            unsigned employed:1;
            unsigned conquered:1;        // true iff loyalty != colony owner
+} STRUCT_TYPE_END
+
+STRUCT_TYPE s_leader_data {
+        char            name[15];
+        char            title[20];
+        char            type;           //0-ship 1-colony
+        short int       xp;
+        unsigned int    general_skills; //bitvector for general skills
+        unsigned int    special_skills; //bitvector includes either ship || colony skills
+        unsigned char   tech_application[3];    // Application id's of inherent techs
+        char            pict_num;
+
+        short int  skill_value;             //
+        char       level;                   //
+        short int  location;                //
+        char       eta;                     //
+        char       display_level_popup;     //if TRUE, draw officer-made-level popup
+        char       status;                  //
+        char       player_index;            //
 } STRUCT_TYPE_END
 
 STRUCT_TYPE s_colony {
@@ -719,6 +741,8 @@ STRUCT_TYPE galaxy {
 	struct planet aPlanets[360];
 
 	struct star aStars[MAX_SYSTEMS];
+
+	struct s_leader_data aLeaders[MAX_LEADERS];
 
 	struct ship aShips[500];
 
