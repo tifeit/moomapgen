@@ -1,0 +1,19 @@
+#ifndef MAPGEN_H_
+#define MAPGEN_H_
+
+#define MAPGEN_VERSION "0.40"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <string.h>
+#include <time.h>
+#include <math.h>
+#include "struct.h"
+#include "functions.h"
+
+#ifndef NULL
+#define NULL   ((void *) 0)
+#endif
+
+#endif /*MAPGEN_H_*/

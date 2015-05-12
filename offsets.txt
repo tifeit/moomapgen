@@ -1,0 +1,115 @@
+Players:
+
+#Players @0x1aa0c 1Byte
+Race offset: @0x1aa0f to @0x21f55
+
+#Stars @0x17ad1
+
+Star table @ offset 0x17ad3 in save game (0x71 bytes per star)
+
+Index    function
+------    ---------
+
+00-0E     Star System Name (Null terminated string)
+0f-10     X-position (lo/hi)
+11-12     Y-position (lo/hi)
+13        Star size (0-3=Large-Tiny)
+14        System Primary Owner (0-7=player #, FF=unowned)
+15        Unknown 												Принимает значения 0, 1, 2. Для не существующих планет всегда 0
+16        Star type
+               0=Blue
+               1=White
+               2=Yellow
+               3=Orange
+               4=Red
+               5=Brown
+               6=Black Hole
+17-27     Unknown												Все нули
+28        System Special
+               0=none
+               2=Space Debris
+               3=Pirate Cache
+               4=Gold Deposites
+               5=Gem Deposits
+               6=Natives
+               7=Splinter Colony
+               8=Hero
+               A=Artifacts world
+               B=Orion
+29        Wormhole leads to (0-7f=system #, FF = no wormhole)
+2A-36     Unknown
+37        #Player
+38        Unknown
+39        System has Warp Indictor (0=none, 1-8=owner player 0-7)
+3A-3E     Unknown
+3F        System has Artimis Net (0=none, 1-8=owner player 0-7)
+40-49     Unknown
+4A-4B     Link to planets table - 1st orbit (planet # 0-1ff, FFFF=none) - closest to sun
+4C-4D     Link to planets table - 2nd orbit (planet # 0-1ff, FFFF=none)
+4E-4F     Link to planets table - 3rd orbit (planet # 0-1ff, FFFF=none)
+50-51     Link to planets table - 4th orbit (planet # 0-1ff, FFFF=none)
+52-53     Link to planets table - 5th orbit (planet # 0-1ff, FFFF=none) - furthest sun
+54-70     Unknown
+
+Planets Table @ offset 0x162E9 in save game (0x11 bytes per planet)
+
+offset    function
+------    --------
+
+00-01     Link to Colony table (0-1fff=colony #, FFFF=not colonized)
+02        Link to Star table - Parent star (0-7f = system #)
+03        Orbit # (0 - 4)
+04        Planet Type
+               1=Asteroid
+               2=Gas Giant
+               3=Planet
+05        Planet Size
+               0=tiny
+               1=small
+               2=medium
+               3=large
+               4=huge
+06        Planet G
+               0=Low G
+               1=Normal G
+               2=Heavy G
+07        Unknown
+08        Planet environment class
+               0=toxic
+               1=radiated
+               2=baren
+               3=desert
+               4=tundra
+               5=ocean
+               6=swamp
+               7=arid
+               8=terran
+               9=gaia
+09        Drawing number - Background image on colony screen (0-5=image in planets.lbx)
+0A        Planet mineral class
+               0=Ultra Poor
+               1=Poor
+               2=Abundant
+               3=Rich
+               4=Ultra Rich
+0B        Food Base
+0C        Number of Terraforms done (effects cost of next one)
+0D        Unknown (Initial value is based on Planet Size but changes if colonized)
+               2=tiny
+               4=small
+               5=med
+               7=large
+               A=huge
+0E        Unknown
+0F        Planet special
+               0=none
+               2=Space Debris
+               3=Pirate Cache
+               4=Gold Deposites
+               5=Gem Deposits
+               6=Natives
+               7=Splinter Colony
+               8=Hero
+               A=Artifacts world
+               B=Orion
+10        Flags (bit 2 = Soil Enhancement) 
