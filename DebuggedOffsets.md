@@ -1,0 +1,224 @@
+# `CMBTMIS_Missile_Speed_` #
+
+|Shuttles|`cseg01:0003CE00  FF 01 00 EB A4 BA `**06**` 00  00 00 66 83 FB 08 7D 1E`|
+|:-------|:------------------------------------------------------------------------|
+|Heavy Fighter|`cseg01:0003CDE0  00 00 74 4A BA 0E 00 00  00 EB 43 BA `**08**` 00 00 00`|
+|Bomber|`cseg01:0003CD80  E9 A9 00 00 00 BA 18 00  00 00 EB F2 BA `**08**` 00 00`|
+|Fighter|`cseg01:0003CDC0  00 BA `**0A**` 00 00 00 66 83  FB 08 7D 62 0F BF C3 69`|
+|Anti-Matter Torpedo|`cseg01:0003CD70  00 0F 82 B7 00 00 00 EB  3E BA `**14**` 00 00 00 31 C9`|
+|Plasma Torpedo|`cseg01:0003CD80  E9 A9 00 00 00 BA `**18**` 00  00 00 EB F2 BA `|
+|Shuttle + Transdimmensional|`cseg01:0003CE20  BC 06 BC 08 00 00 00 74  05 BA `**0A**` 00 00 00 66 85`|
+|Missile AND Td Bomber AND Td Hvy Fighter|`cseg01:0003CDB0  00 0F 84 77 00 00 00 BA  `**0C**` 00 00 00 E9 6D 00 00`|
+|Td Fighter|`cseg01:0003CDE0  00 00 74 4A BA `**0E**` 00 00  00 EB 43 BA`|
+|Fst Mod Bonus|`cseg01:0003CE40  F6 45 FD 10 74 03 83 C2  `**04**` 89 D0 C9 5E 59 C3 53`|
+
+# `SHIPMOVE_Can_Order_Ship_` #
+
+|Tachyon Communications|`cseg01:000FF770  57 3C 85 CA 75 83 83 F8  `**02**` 7F 0C 0F B6 47 3B 85`|
+|:---------------------|:------------------------------------------------------------------------|
+|Sub-Space Communications|`cseg01:000FF760  E8 14 C7 FE FF 83 F8 `**05**`  7F 1D 0F B6 4D F8 0F B6`|
+
+# `COLCALC_Compute_Player_Maintenance_` #
+
+|Tachyon Communications|`cseg01:000E21E0  00 00 C7 45 D8 `**01**` 00 00  00 8B 55 D8 0F AF D0 89`|
+|:---------------------|:------------------------------------------------------------------------|
+|Sub-Space Communications|`cseg01:000E21C0  75 10 C7 45 EC B0 00 00  00 C7 45 D8 `**02**` 00 00 00`|
+|Hyperspace Communications|`cseg01:000E21B0  C7 45 D8 `**03**` 00 00 00 EB  30 80 B9 C7 01 00 00 03`|
+
+# `Max negative pics` #
+
+Includes:
+Max negative Picks:
+|`05 6C 37 02 00 83 F8 `**F6**` 7D 41 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 FC E7 FF FF 8D 45 F6 E8 09 CD 01 00 E8 4B A6`|
+|:---------------------------------------------------------------------------------------------------------------------------|
+|`F8 `**F6**` 7D 46 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 3A E9 FF FF 8D 45 F6 E8 47 CE 01 00 E8 89 A7 0C 00 E8 0F EB FF`|
+|`F8 `**F6**` 7D 48 BB 50 00 00 00 8D 55 F6 B8 4A 00 00 00 E8 9E E8 FF FF 8D 45 F6 E8 AB CD 01 00 E8 ED A6 0C 00 E8 73 EA FF`|
+
+Graphical representation on race selection screen:
+|`cseg01:00059870  02 0F BF 15 6C 37 02 00  01 D0 83 F8 `**F6**` 7D 1C 89`|
+|:------------------------------------------------------------------------|
+|`cseg01:00059990  83 F8 `**F6**` 7C 3C 0F BF 15  66 37 02 00 0F BF C7 29`|
+|`cseg01:00059E30  83 F8 `**F6**` 7D 1C 0F BF 45  6E 66 8B 44 45 2E 0F BF`|
+|`cseg01:00059E70  00 0F BE 54 32 F5 01 DA  83 FA `**F6**` 7C 1F 0F BF 5D`|
+|`cseg01:00059BB0  BE 04 02 0F BF 15 6C 37  02 00 01 D0 83 F8 `**F6**` 7D`|
+|`cseg01:00059C60  02 00 01 D0 83 F8 `**F6**` 7C  15 0F BF 45 52 0F BF 15`|
+
+
+Mutation connection:
+
+|`cseg01:0005B920  01 D0 83 F8 `**F6**` 7D 4C BB  50 00 00 00 8D 95 0E FF`|
+|:------------------------------------------------------------------------|
+|`cseg01:0005BA30  04 83 F8 `**F6**` 7D 47 BB 50  00 00 00 8D 95 0E FF FF`|
+
+F6 is one byte signed char. So F6 = -10, F5 = -11, F4 = -12 ... EC = -20
+
+# `Starting Positive pics` #
+
+Signatures for VDCGM2.EXE:
+
+|`53 51 52 56 57 C8 04 00 00 `**E8 F2 BC 09 00**` 31 F6 31 D2 0F BF`|
+|:------------------------------------------------------------------|
+Replace with
+|`53 51 52 56 57 C8 04 00 00 `**BB 0C 00 00 00**` 31 F6 31 D2 0F BF`|
+for 12 starting pics.
+
+
+# `CMBTMISS_Get_Missile_Hits_` #
+
+|Nuclear|`cseg01:0003E0F0  0F 85 A3 00 00 00 B9 `**04**`  00 00 00 E9 `|
+|:------|:-------------------------------------------------------------|
+|Merculite|`cseg01:0003E100  E9 99 00 00 00 B9 `**08**` 00 00 00 E9 8F`|
+|Pulson|`cseg01:0003E100  8F 00  00 00 B9 `**0C**` 00 00 00 E9 85`|
+|Zeon|`cseg01:0003E110  85 00 00 00 B9 `**10**` 00 00  00 E9 7B 00 00 00 B9 05`|
+|Fighter|`cseg01:0003E150  76 00 00 83 C0 64 6B C0  `**04**` EB 34 0F BF C2 E8 FC`|
+|Shuttle|`cseg01:0003E180  C0 0F 0F BF 80 42 76 00  00 83 C0 64 6B C0 `**06**` B9`|
+|Bomber|`cseg01:0003E130  0F 0F BF 80 42 76 00 00  83 C0 64 6B C0 `**08**` EB 4F`|
+|Heavy Fighter|`cseg01:0003E170  64 6B C0 `**0A**` EB 19 0F BF  C2 E8 E1 86 01 00 98 6B`|
+
+# `Racepic_bonuses` #
+
+dseg02:001751FC byte\_1751FC     db 0                    ; DATA XREF: RACEOPT\_Convert\_Player\_To\_Flags\_EM_:loc\_5B526_
+
+|`CE 32 64 FF 02 04 FF 01  02 FF 01 02 FF 01 02 EC`|
+|:-------------------------------------------------|
+|`19 32 EC 14 32 F6 0A 14  F6 0A 14 00 01 00 00 00`|
+
+  * CE - "-50% Population Growth"
+  * 32 - "+50% Population Growth"
+  * 64 - "+100% Population Growth"
+  * FF - "-1/2 Food"
+  * 02 - "+1 Food"
+  * 04 - "+2 Food"
+  * FF - "-1 Production"
+  * 01 - "+1 Production"
+  * 02 - "+2 Production"
+  * FF - "-1 Science"
+  * 01 - "+1 Science"
+  * 02 - "+2 Science"
+  * FF - "-0.5 BC"
+  * 01 - "+0.5 BC"
+  * 02 - "+1 BC"
+  * EC - "-20 Ship Defence"
+  * 19 - "+25 Ship Defence"
+  * 32 - "+50 Ship Defence"
+  * EC - "-20 Ship Attack"
+  * 14 - "+20 Ship Attack"
+  * 32 - "+50 Ship Attack"
+  * F6 - "-10 Ground Combat"
+  * 0A - "+10 Ground Combat"
+  * 14 - "+20 Ground Combat"
+  * F6 - "-10 Spying"
+  * 0A - "+10 Spying"
+  * 14 - "+20 Spying"
+
+# `CMBTFIR2_Damage_From_Ship_Exploding_` #
+
+|Basic drive explode multiplier|`0003867C  66 6B 83 2A 80 00 00 `**05**`  66 85 D2 74 03 6B C0 03`|
+|:-----------------------------|:-----------------------------------------------------------------|
+|Quantum detonator explode multiplier|`0003867C  66 6B 83 2A 80 00 00 05  66 85 D2 74 03 6B C0 ` **03** |
+
+
+# `CMBTFIR2_Capture_Ship_` #
+|Quantum detonator probability|`000383A7  83 F8 `**06**` 7D 16 B9 04 00  00 00 0F BF DB 0F BF D7`|
+|:----------------------------|:-----------------------------------------------------------------|
+
+
+Formula is: IF (rand(0,10) < 6) DETONATE(); ELSE CAPTURE(); So you can change 6 to 11 to give 100% detonation probability.
+
+# `COLCALC_Colony_Industry_Production_` #
+
+|Nano disassemblers| `75 03 D1 65 5E 80 BE  56 01 00 00 00 74 0A 8D 43 01 99 2B C2 D1 F8 89  C3 80 BE 3B 01 00 00 00`|
+|:-----------------|:------------------------------------------------------------------------------------------------|
+|New nano disassemblers| `75 04 C1 65 5E `**03**` 80 BE 56 01 00 00 00 74 09 8D 43 01 99 90 D1 F8 89 C3 80 BE 3B 01 00 00 00`|
+> Warning! Offset used in formula k=2<sup>01</sup> so if you would change 01 to 02 k = 2<sup>02</sup> = 4
+
+# Planet pollution bonus #
+Nano disassemblers increase no-pollution prod by k=2<sup>x</sup> times where x can be 01, 02, 03 in the above offset...
+|Planet no-pollution prod | `000DD4E1  `**02 04 06 08 0A**` 00 00 01  02 03 19 19 19 23 23 23`|
+|:------------------------|:------------------------------------------------------------------|
+
+
+---
+
+
+# Fast fade #
+fade in
+|Find   | `83 EA `**0A**` 66 85 D2 7D E5  E8 8B EF 05 00 5A C3 A2` |
+|:------|:---------------------------------------------------------|
+|Replace| `83 EA `**64**` 66 85 D2 7D E5  E8 8B EF 05 00 5A C3 A2` |
+
+fade out
+|Find   | **0A** `00 00 00 00 00 00 00  00 00 00 00 00 00 00 FF FF 00 00 FF FF 00 00 00  00 00 A0 A3 A4 A5 A6 A7` |
+|:------|:--------------------------------------------------------------------------------------------------------|
+|Replace| **64** `00 00 00 00 00 00 00  00 00 00 00 00 00 00 FF FF 00 00 FF FF 00 00 00  00 00 A0 A3 A4 A5 A6 A7` |
+
+# Disable vsync #
+
+Simple vsync
+|Find   | **75 10** `60 66 BA DA 03 EC  24 08 75 FB EC 24 08 74` |
+|:------|:-------------------------------------------------------|
+|Replace| **EB 10** `60 66 BA DA 03 EC  24 08 75 FB EC 24 08 74` |
+
+Forced vsync
+|Find   | **60 66** `BA DA 03 EC 24 08  75 FB EC 24 08 74 FB 61` |
+|:------|:-------------------------------------------------------|
+|Replace| **EB 0E** `BA DA 03 EC 24 08  75 FB EC 24 08 74 FB 61` | replaced twice |
+
+# Jammer bonuses #
+
+`INITSHIP_Get_Design_Combat_Bonuses_`
+
+| +50 | `83 C6 `**32**` BA 02 00 00 00  8D 45 2F 66 0F B6 4D 78` |
+|:----|:---------------------------------------------------------|
+| +70 | `83 C3 `**46**` BA 11 00 00 00  8D 45 2F E8 05 29 0D 00` |
+| +50 | `83 C1 64 83 C3 `**32**` BA 12  00 00 00 8D 45 2F E8 ED` |
+| +25 | `83 C3 `**19**` BA 15 00 00 00  8D 45 2F E8 D5 28 0D 00` |
+| +100| `83 C3 `**64**` BA 26 00 00 00  8D 45 2F E8 C0 28 0D 00` |
+| +130| `81 C3 `**82**` 00 00 00 8B 85  80 00 00 00 66 89 08 8B` |
+
+Первый бонус возможно от чего-то другого.
+
+# Security stations bonus #
+
+`CMBTFIR2_Resolve_Raid_`
+
+| +20 | `6B C0 `**14**` 01 C6 89 C8 E8  C5 E8 FF FF 8B 15 64 A8` |
+|:----|:---------------------------------------------------------|
+
+# Telepathic Race bonus #
+
+`SPY_Compute_Spy_Bonuses_`
+
+| +10 | `6B D8 `**0A**` 89 C8 0F BE B9  A8 08 00 00 E8 95 FF FF` |
+|:----|:---------------------------------------------------------|
+
+# Displacement device #
+
+`CMBTFIRE_Fire_Beam_Weapon_`
+
+| 30% chance| `83 F8 `**1E**` 7F 05 BB 18 FC  FF FF 66 3B 5D E8 0F 8C` |
+|:----------|:---------------------------------------------------------|
+
+# Microbiotics & Antidote #
+
+|50% growth|`83 C6 `**32**` EB 0C 80 B8 82  01 00 00 03 75 03 83 C6` |
+|:---------|:--------------------------------------------------------|
+
+|25% growth|`83 C6 `**19**` 83 7D E4 FF 74  36 6B 45 E4 3B 8B 15 DC` |
+|:---------|:--------------------------------------------------------|
+
+# `DESIGN_Weapon_Cost_` #
+
+| missiles cost/space| `B8 `**0A**` 00 00 00 EB 1A B8 `**14**` 00 00 00 EB 13 B8 `**1E**` 00 00 00 EB 0C B8 `**23**` 00 00 00 EB 05 B8 `**28**` 00 00`|
+|:-------------------|:-------------------------------------------------------------------------------------------------------------------------------|
+
+2 missiles = 10, 5 missiles = 20, 10 missiles = 30, 15 missiles = 35, 20 missiles = 40 **(3 times)**
+|Hard Shields bonus| `66 83 2E ` **03** ` 66 83 3E 00  7D 05 66 C7 06 00 00 66`|
+|:-----------------|:----------------------------------------------------------|
+
+# Antarans #
+
+|Basic antaran resource bonus = 100|`BE `**64**` 00 00 00 80 3D B0  1C 19 00 03 75 07 BE 96`|
+|:---------------------------------|:-------------------------------------------------------|
+|Hard resource bonus = 150|`BE `**96**` 00 00 00 EB 0E 80  3D B0 1C 19 00 04 75 05`|
+|Impossible resource bonus = 200|`BE `**C8**` 00 00 00 98 0F AF  C3 83 C0 63 BB 64 00 00`|

@@ -1,0 +1,24 @@
+БЫЛО:
+```
+00000000  b8 01 00 00 00 0f b6 4e  10 d3 e0 01 45 fc        |.......N....E.|
+
+АСМ код:
+
+00000000  B801000000        mov eax,0x1
+00000005  0FB64E10          movzx ecx,byte [esi+0x10]
+00000009  D3E0              shl eax,cl
+0000000B  0145FC            add [ebp-0x4],eax
+```
+
+СТАЛО:
+```
+00000000  0f b6 4e 10 0f af c9 6b  c1 04 40 01 45 fc        |..N....k..@.E.|
+
+ACM код:
+
+00000000  0FB64E10          movzx ecx,byte [esi+0x10]
+00000004  0FAFC9            imul ecx,ecx
+00000007  6BC104            imul eax,ecx,byte +0x4
+0000000A  40                inc eax
+0000000B  0145FC            add [ebp-0x4],eax
+```

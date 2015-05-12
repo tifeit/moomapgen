@@ -1,0 +1,437 @@
+
+```
+int __fastcall CMBTFIRE_Fire_Beam_Weapon_(int a1, int a2, int a3, __int16 a4, __int16 a5, int a6, int a7, int a8)
+{
+  __int16 ptrDefendingShip; // di@1
+  __int16 v9; // ax@1
+  int v10; // eax@7
+  __int16 v11; // ax@8
+  int v12; // ecx@8
+  int v13; // eax@12
+  int v14; // edx@12
+  int v15; // ecx@12
+  int v16; // eax@18
+  int v17; // eax@20
+  int v18; // eax@22
+  unsigned int v19; // ebx@25
+  int v20; // ebx@28
+  int v21; // eax@35
+  int v22; // eax@41
+  __int16 v23; // bx@48
+  __int16 v24; // ST0C_2@48
+  __int16 v25; // ax@48
+  int v26; // eax@48
+  __int16 v27; // bx@50
+  __int16 bHasAchiles; // ST0C_2@50
+  __int16 v29; // ax@50
+  int v30; // eax@50
+  int v31; // eax@55
+  int v33; // [sp+8h] [bp-68h]@10
+  __int16 v34; // [sp+Ch] [bp-64h]@10
+  int v35; // [sp+10h] [bp-60h]@48
+  int v36; // [sp+14h] [bp-5Ch]@1
+  int v37; // [sp+18h] [bp-58h]@1
+  int v38; // [sp+1Ch] [bp-54h]@14
+  int v39; // [sp+20h] [bp-50h]@7
+  int v40; // [sp+24h] [bp-4Ch]@55
+  int v41; // [sp+28h] [bp-48h]@37
+  int v42; // [sp+2Ch] [bp-44h]@1
+  int v43; // [sp+30h] [bp-40h]@54
+  int v44; // [sp+34h] [bp-3Ch]@47
+  int v45; // [sp+38h] [bp-38h]@20
+  int v46; // [sp+3Ch] [bp-34h]@1
+  int v47; // [sp+40h] [bp-30h]@11
+  int v48; // [sp+44h] [bp-2Ch]@7
+  int v49; // [sp+48h] [bp-28h]@1
+  int v50; // [sp+4Ch] [bp-24h]@24
+  __int16 v51; // [sp+50h] [bp-20h]@1
+  int v52; // [sp+54h] [bp-1Ch]@52
+  int v53; // [sp+58h] [bp-18h]@24
+  __int16 v54; // [sp+5Ch] [bp-14h]@1
+  int v55; // [sp+60h] [bp-10h]@22
+  int v56; // [sp+64h] [bp-Ch]@22
+  int v57; // [sp+68h] [bp-8h]@1
+  int v58; // [sp+6Ch] [bp-4h]@22
+
+  v49 = a1;
+  ptrDefendingShip = a2;
+  v57 = a3;
+  v51 = a4;
+  v37 = 0;
+  v36 = 0;
+  *(_WORD *)a6 = 0;
+  *(_WORD *)a8 = 0;
+  *(_WORD *)a7 = 0;
+  v42 = 0;
+  v9 = word_177815[14 * (signed __int16)a3];
+  v46 = 0;
+  v54 = v9;
+  v37 = 0;
+  if ( HIBYTE(v9) & 1 )
+    LOBYTE(v51) = v51 | 0x40;
+  if ( HIBYTE(v54) & 2 )
+    HIBYTE(v51) |= 1u;
+  if ( v54 & 0x40 )
+    LOBYTE(v51) = v51 | 0x10;
+  v10 = 28 * (signed __int16)v57;
+  LOWORD(a2) = *(__int16 *)((char *)&word_177819 + v10);
+  LOWORD(v10) = *(__int16 *)((char *)&word_177817 + v10);
+  v48 = a2;
+  v39 = v10;
+  if ( a5 )
+  {
+    CMBTAI_Range_To_Missile_((signed __int16)v49, ptrDefendingShip);
+  }
+  else
+  {
+    v11 = CMBTDRW1_Relative_Bearing_(ptrDefendingShip, (signed __int16)v49, ptrDefendingShip);
+    v42 = CMBTFIRE_Facing_Shield_(v11);
+    CMBTAI_Range_To_Ship_(v12, ptrDefendingShip);
+  }
+  v33 = (signed __int16)v49;
+  CMBTFIRE_Get_Beam_Weapon_Modifiers_(&v34, &v37);
+  if ( a5 )
+  {
+    v13 = CMBTMIS_Missile_Dcv_(
+            *(_WORD *)(MOX__missile + 26 * ptrDefendingShip),
+            *(_BYTE *)(313 * *(_WORD *)(MOX__missile + 26 * ptrDefendingShip + 4) + MOX__combat_data + 32),
+            MOX__combat_data,
+            MOX__combat_data + 313 * v33);
+    LOWORD(v14) = *(_WORD *)(v15 + 52);
+    v47 = v14 - v13;
+  }
+  else
+  {
+    v47 = 313 * v33;
+  }
+  if ( v51 & 0x80 )
+  {
+    v38 = 3;
+    v47 -= 20;
+  }
+  else
+  {
+    v38 = 1;
+  }
+  if ( v51 & 0x10 )
+    v47 += 25;
+  v16 = ((signed __int16)v39
+       * ((signed __int16)v37 + MOX__ordnance_bonus[*(_BYTE *)(313 * (signed __int16)v49 + MOX__combat_data + 32)] - 100)
+       + 50)
+      / 100;
+  if ( v16 <= 1 )
+    v16 = 1;
+  v45 = v16;
+  v17 = ((MOX__ordnance_bonus[*(_BYTE *)(MOX__combat_data + 313 * (signed __int16)v49 + 32)] - 100 + (signed __int16)v37)
+       * (signed __int16)v48
+       + 50)
+      / 100;
+  if ( v17 < (signed __int16)v45 )
+    v17 = (signed __int16)v45;
+  v58 = v17;
+  v56 = v17 - v45;
+  v55 = 1;
+  v18 = 40 - v34;
+  if ( v18 > 95 )
+    v18 = 95;
+  v50 = 0;
+  v53 = v18;
+  while ( (_WORD)v50 < (_WORD)v38 && (_WORD)v55 )
+  {
+    v19 = random_Random(100);
+    if ( HIBYTE(v54) & 4 )                      // Mauler
+      v19 = 100;
+    if ( (_WORD)v19 > 95 || (v20 = v47 + v19, (_WORD)v20 > 100) )
+      LOWORD(v20) = 100;
+    if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrDefendingShip, 8) )
+    {
+      if ( (signed int)random_Random(100) <= 30 )// displacement device
+        LOWORD(v20) = -1000;
+    }
+    if ( (_WORD)v20 >= (_WORD)v53 )
+    {
+      if ( (_WORD)v56 <= 0 )
+        v21 = v45;
+      else
+        v21 = (signed __int16)v45
+            + ((signed __int16)v20 - (signed __int16)v53) * ((signed __int16)v56 + 1) / (100 - (signed __int16)v53);
+      v41 = v21;
+      if ( (_WORD)v21 > (_WORD)v58 )
+        v41 = v58;
+      if ( a5 )
+      {
+        v46 = 2;
+        if ( HIBYTE(v51) & 1 )
+          v52 = 4;
+        else
+          v52 = 1;
+        v43 = 0;
+        while ( (_WORD)v43 < (_WORD)v52 )
+        {
+          v40 = v41;
+          CMBTFIRE_Apply_Damage_To_Missile_(ptrDefendingShip, &v40, v51, v54);
+          v31 = MOX__missile + 26 * ptrDefendingShip;
+          if ( *(_WORD *)(v31 + 15) <= 0 || !*(_WORD *)v31 )
+            v55 = 0;
+          ++v43;
+          *(_WORD *)a6 += v40;
+        }
+      }
+      else
+      {
+        if ( !ptrDefendingShip )
+        {
+          HIWORD(v22) = HIWORD(v41);
+          LOWORD(v22) = (_WORD)v41 / 2;
+          v41 = v22;
+        }
+        if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrDefendingShip, 26) )
+        {
+          if ( (signed int)random_Random((signed __int16)(v41 + 15)) > (signed __int16)v41 )
+          {
+            *(_WORD *)a8 += v41;
+            v41 = 0;
+          }
+        }
+        if ( (_WORD)v41 > 0 )
+        {
+          if ( HIBYTE(v51) & 1 )
+          {
+            v44 = 0;
+            do
+            {
+              v23 = v49;
+              v35 = v41;
+              v24 = COMBINIT_Does_Combat_Ship_Have_Special_(v49, 1);
+              v25 = COMBINIT_Does_Combat_Ship_Have_Special_(v23, 32);
+              v26 = CMBTFIRE_Apply_Ship_Damage_(
+                      ptrDefendingShip,
+                      (int)&v35,
+                      (int)&v36,
+                      (signed __int16)v44,
+                      v51,
+                      v54,
+                      v25,
+                      v24,
+                      0);
+              v46 |= v26;
+              *(_WORD *)a6 += v35;
+              ++v44;
+              *(_WORD *)a7 += v36;
+            }
+            while ( (_WORD)v44 < 4 );
+          }
+          else
+          {
+            v27 = v49;
+            bHasAchiles = COMBINIT_Does_Combat_Ship_Have_Special_(v49, 1);
+            v29 = COMBINIT_Does_Combat_Ship_Have_Special_(v27, 32);
+            v30 = CMBTFIRE_Apply_Ship_Damage_(
+                    ptrDefendingShip,
+                    (int)&v41,
+                    (int)&v36,
+                    (signed __int16)v42,
+                    v51,
+                    v54,
+                    v29,
+                    bHasAchiles,
+                    0);
+            v46 |= v30;
+            *(_WORD *)a6 += v41;
+            *(_WORD *)a7 += v36;
+          }
+        }
+      }
+    }
+    ++v50;
+  }
+  return v46;
+}
+```
+
+
+```
+int __fastcall CMBTFIRE_Apply_Ship_Damage_(__int16 a1, int a2, int a3, int a4, __int16 weaponFlags, int a6, __int16 a7, __int16 bHasAchiles, __int16 a9)
+{
+  __int16 ptrShip; // di@1
+  int nWeaponDamage; // esi@1
+  signed int v11; // eax@4
+  __int16 bHasHardShields; // kr00_2@10
+  int ShipArray; // eax@11
+  __int16 v14; // cx@13
+  int v15; // eax@28
+  int v16; // eax@29
+  int v17; // edx@29
+  signed int bDamageToInternals; // ecx@39
+  int nWeaponActualDamage; // eax@43
+  int v20; // eax@48
+  int v21; // ebx@48
+  int v23; // [sp+18h] [bp-20h]@1
+  int DamagingInternal; // [sp+1Ch] [bp-1Ch]@52
+  int v25; // [sp+20h] [bp-18h]@1
+  int bShieldsActive; // [sp+24h] [bp-14h]@1
+  int v27; // [sp+28h] [bp-10h]@43
+  int v28; // [sp+2Ch] [bp-Ch]@1
+  int v29; // [sp+30h] [bp-8h]@1
+  int nHowMuchDamageToInternals; // [sp+34h] [bp-4h]@52
+
+  ptrShip = a1;
+  nWeaponDamage = a2;
+  v28 = a4;
+  v23 = 0;
+  v25 = 0;
+  v29 = 0;
+  LOWORD(bShieldsActive) = 0;
+  *(_WORD *)a3 = 0;
+  if ( a1 )
+  {
+    if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(a1, 10) )
+    {
+      v11 = (signed int)(*(_WORD *)nWeaponDamage
+                       - (__MKCSHL__((unsigned __int64)*(_WORD *)nWeaponDamage >> 32, 2)
+                        + 4 * ((unsigned __int64)*(_WORD *)nWeaponDamage >> 32))) >> 2;
+      if ( v11 <= 1 )
+        LOWORD(v11) = 1;
+      *(_WORD *)nWeaponDamage -= v11;
+      *(_WORD *)(MOX__combat_data + 313 * ptrShip + 69) += v11;
+    }
+    if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 7) == 1 )
+      *(_WORD *)nWeaponDamage = (signed __int16)(*(_WORD *)nWeaponDamage
+                                               - (__MKCSHL__((unsigned int)*(_WORD *)nWeaponDamage >> 16, 2)
+                                                + 4 * ((unsigned int)*(_WORD *)nWeaponDamage >> 16))) >> 2;
+    if ( weaponFlags & 0x40 )
+      bHasHardShields = COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 13);
+    ShipArray = 313 * ptrShip + MOX__combat_data;
+    if ( *(_BYTE *)(ShipArray + 38) )
+    {
+      if ( *(_WORD *)(ShipArray + 308) > 0 )
+      {
+        if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 13) )
+        {
+          if ( weaponFlags & 0x40 )
+            LOBYTE(weaponFlags) = weaponFlags ^ 0x40;
+        }
+        if ( !(weaponFlags & 0x40) )
+        {
+          if ( !MOX__in_nebula_flag || (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 13) )
+          {
+            *(_WORD *)nWeaponDamage -= *(__int16 *)((char *)&word_1776C1
+                                                  + 59 * *(_BYTE *)(313 * ptrShip + MOX__combat_data + 38));
+            if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 13) )
+              *(_WORD *)nWeaponDamage -= 3;     // ololo
+          }
+        }
+        if ( *(_WORD *)nWeaponDamage < 0 )
+          *(_WORD *)nWeaponDamage = 0;
+        if ( *(_WORD *)nWeaponDamage > 0 )
+        {
+          if ( !MOX__in_nebula_flag || (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 13) )
+            LOWORD(bShieldsActive) = 1;
+        }
+        if ( v14 <= *(_WORD *)nWeaponDamage )
+        {
+          v16 = MOX__combat_data;
+          *(_WORD *)nWeaponDamage -= v14;
+          v17 = (signed __int16)v28;
+          *(_WORD *)a3 = v14;
+          *(_WORD *)(313 * ptrShip + v16 + 2 * v17 + 41) -= v14;
+        }
+        else
+        {
+          v15 = 313 * ptrShip + MOX__combat_data + 2 * (signed __int16)v28;
+          *(_WORD *)(v15 + 41) -= *(_WORD *)nWeaponDamage;
+          *(_WORD *)a3 = *(_WORD *)nWeaponDamage;
+          *(_WORD *)nWeaponDamage = 0;
+        }
+      }
+    }
+    if ( a6 & 1 )
+      *(_WORD *)nWeaponDamage = 0;
+    if ( a6 & 0x10 )
+    {
+      if ( !(unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 7) )
+      {
+        if ( *(_BYTE *)(MOX__combat_data + 313 * ptrShip + 175) < 0xFFu )
+          CMBTFIR2_Kill_Crew_(ptrShip, *(_WORD *)nWeaponDamage / 5, ptrShip, 5);
+      }
+    }
+    if ( a7 )
+      *(_WORD *)nWeaponDamage *= 2;
+    if ( bHasAchiles )
+    {
+      bDamageToInternals = 1;
+    }
+    else
+    {
+      if ( (unsigned __int16)COMBINIT_Does_Combat_Ship_Have_Special_(ptrShip, 14)// heavy armor
+        || *(_BYTE *)(MOX__combat_data + 313 * ptrShip + 51) == 6 )
+        bDamageToInternals = 0;
+    }
+    HIWORD(nWeaponActualDamage) = HIWORD(a6);
+    LOWORD(nWeaponActualDamage) = a6 & 8;
+    v27 = nWeaponActualDamage;
+    if ( (_WORD)nWeaponActualDamage )
+    {
+      nWeaponActualDamage = 313 * ptrShip;
+      if ( *(_BYTE *)(MOX__combat_data + nWeaponActualDamage + 32) > 9u )
+        *(_WORD *)nWeaponDamage = (signed __int16)(*(_WORD *)nWeaponDamage
+                                                 - (__MKCSHL__((unsigned int)*(_WORD *)nWeaponDamage >> 16, 2)
+                                                  + 4 * ((unsigned int)*(_WORD *)nWeaponDamage >> 16))) >> 2;
+    }
+    if ( *(_WORD *)nWeaponDamage > 0 )
+    {
+      LOBYTE(bShieldsActive) = bShieldsActive | 2;
+      if ( a6 & 0x20 )
+      {
+        v21 = 313 * ptrShip + MOX__combat_data;
+        *(_WORD *)(v21 + 192) += *(_WORD *)nWeaponDamage / 2;
+        LOWORD(v20) = *(_WORD *)(v21 + 170);
+        if ( (_WORD)v20 > *(_WORD *)(v21 + 192) )
+        {
+          v20 = *(_WORD *)nWeaponDamage / 2 + *(_WORD *)(v21 + 192);
+          *(_WORD *)(v21 + 192) = v20;
+        }
+        *(_WORD *)(MOX__combat_data + 313 * ptrShip + 192) = v20;
+        nWeaponActualDamage = *(_WORD *)nWeaponDamage / 2;
+        v29 = *(_WORD *)nWeaponDamage / 2;
+      }
+      if ( (_WORD)bDamageToInternals )
+      {
+        LOWORD(nWeaponActualDamage) = *(_WORD *)nWeaponDamage;
+        nHowMuchDamageToInternals = nWeaponActualDamage;
+        for ( DamagingInternal = nWeaponActualDamage;
+              (_WORD)DamagingInternal > 0;
+              CMBTFIR2_Apply_Internal_Damage_(ptrShip, (int)&DamagingInternal, v23, (signed __int16)v25, 1) )
+        {
+          nWeaponActualDamage = CMBTFIRE_Is_Combat_Ship_Dead_(ptrShip);
+          if ( (_WORD)nWeaponActualDamage )
+            break;
+          CMBTFIR2_Select_Internal_(ptrShip, (int)&v23, (int)&v25, bHasAchiles, v27, 1, a9);
+          if ( (signed __int16)v23 == -1 )
+            DamagingInternal = 0;
+        }
+      }
+      else
+      {
+        nHowMuchDamageToInternals = bDamageToInternals;
+      }
+      LOWORD(nWeaponActualDamage) = *(_WORD *)nWeaponDamage;
+      for ( DamagingInternal = nWeaponActualDamage - nHowMuchDamageToInternals;
+            (_WORD)DamagingInternal > 0 && !(unsigned __int16)CMBTFIRE_Is_Combat_Ship_Dead_(ptrShip);
+            CMBTFIR2_Apply_Internal_Damage_(ptrShip, (int)&DamagingInternal, v23, (signed __int16)v25, 1) )
+      {
+        CMBTFIR2_Select_Internal_(ptrShip, (int)&v23, (int)&v25, bHasAchiles, v27, 0, a9);
+        if ( (signed __int16)v23 == -1 )
+          DamagingInternal = 0;
+      }
+    }
+  }
+  else
+  {
+    LOWORD(bShieldsActive) = CMBTFIRE_Apply_Damage_To_Planet_(a2, weaponFlags, (signed __int16)a6);
+  }
+  *(_WORD *)nWeaponDamage += v29;
+  return bShieldsActive;
+}
+
+```

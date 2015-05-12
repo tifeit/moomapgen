@@ -1,0 +1,107 @@
+
+```
+signed int __fastcall COLCALC_Colony_Product_Cost_(int a1, unsigned __int16 a2)
+{
+  int v2; // ebx@1
+  __int16 v3; // ax@40
+  __int16 v4; // ax@41
+  __int16 v5; // ax@42
+  int v7; // [sp+0h] [bp-Ch]@40
+  int v8; // [sp+4h] [bp-8h]@41
+  int v9; // [sp+8h] [bp-4h]@42
+
+  v2 = 0;
+  if ( (signed __int16)a2 <= 0 || (signed __int16)a2 >= 49 )
+  {
+    if ( (signed __int16)a2 <= -100 )
+      return *(_WORD *)(-129 * ((signed __int16)a2 + 100) + MOX__ship + 94);
+    if ( (signed __int16)a2 > -100 && (signed __int16)a2 <= -50 )
+      return *(_WORD *)(-99 * ((signed __int16)a2 + 50) + 3753 * *(_BYTE *)a1 + MOX__player + 900);
+    if ( a2 < 0xFFF4u )
+    {
+      if ( a2 < 0xFFEFu )
+        return v2;
+      if ( a2 <= 0xFFEFu )
+      {
+        v5 = *(_BYTE *)a1;
+        v9 = 100;
+        DESIGN_Cost_Reduction_For_Govt_Type_(v5, &v9);
+        return v9;
+      }
+      if ( a2 != -15 )
+        return v2;
+    }
+    else
+    {
+      if ( a2 <= 0xFFF4u )
+      {
+        v4 = *(_BYTE *)a1;
+        v8 = 500;
+        DESIGN_Cost_Reduction_For_Govt_Type_(v4, &v8);
+        return v8;
+      }
+      if ( a2 < 0xFFF9u ) //если а2 строго меньше -7, т.е. =-8, -9, -10 и т.д.
+      {
+        if ( a2 == -11 )
+        {
+          v3 = *(_BYTE *)a1;
+          v7 = 100;
+          DESIGN_Cost_Reduction_For_Govt_Type_(v3, &v7);
+          v2 = v7;
+        }
+        return v2;
+      }
+      if ( a2 <= 0xFFF9u ) //если а2 меньше равно -7, т.е. =-7 Вот здесь нужно знак поменять на строго меньше
+        return 100;
+      if ( a2 > 0xFFFCu ) // если а2 больше -4, т.е. -3, -2, -1
+        return v2;
+    }
+    return 50;          //, а если -4, -5, -6 тогда android 
+  }
+  v2 = *(int *)((char *)&dword_176B45 + 19 * (signed __int16)a2);
+  if ( a2 < 0x17u )
+  {
+    if ( a2 >= 8u && a2 <= 8u )
+    {
+LABEL_17:
+      if ( *(_BYTE *)(a1 + 350) )
+        v2 -= dword_176E3D;
+      return v2;
+    }
+  }
+  else
+  {
+    if ( a2 <= 0x17u )
+    {
+      if ( *(_BYTE *)(a1 + 334) )
+      {
+        v2 -= dword_176D0D;
+        return v2;
+      }
+    }
+    else
+    {
+      if ( a2 >= 0x29u )
+      {
+        if ( a2 > 0x29u )
+        {
+          if ( a2 == 44 )
+            v2 += 250 * *(_BYTE *)(MOX__planet + 17 * *(_WORD *)(a1 + 2) + 12);
+          return v2;
+        }
+        if ( *(_BYTE *)(a1 + 318) )
+        {
+          v2 -= dword_176BDD;
+          return v2;
+        }
+        goto LABEL_17;
+      }
+      if ( a2 != 24 )
+        return v2;
+    }
+    if ( *(_BYTE *)(a1 + 338) )
+      v2 -= dword_176D59;
+  }
+  return v2;
+}
+```

@@ -1,0 +1,709 @@
+# amoeba #
+
+## amoeba hex ##
+```
+Big amoeba:
+
+C6 43 10 03 C6 43 11 00 B8 0A 00 00 00 C6 43 12
+00 E8 DC EA FF FF 88 43 13 0F B6 43 13 6B F0 2E
+C6 43 15 02 C6 43 16 00 C6 43 14 01 66 C7 43 1C
+2D 00 C6 43 20 0F 66 C7 43 21 00 00 C6 43 23 00
+C6 43 1E 02 C6 43 1F 02 66 C7 43 24 17 00 C6 43
+28 0F 66 C7 43 29 00 00 C6 43 2B 0A C6 43 26 05
+C6 43 27 05 0F B6 43 10 C6 43 5C 08 EB 4C C6 43
+10 02 C6 43 11 00 C6 43 12 00 C6 43 15 02 C6 43
+16 00 C6 43 13 00 C6 43 14 00 66 C7 43 1C 2D 00
+
+small amoeba:
+
+C6 43 10 02 C6 43 11 00 C6 43 12 00 C6 43 15 02
+C6 43 16 00 C6 43 13 00 C6 43 14 00 66 C7 43 1C
+2D 00 C6 43 20 0F C6 43 23 00 C6 43 1E 01 C6 43
+1F 01 C6 43 5C 14 B8 0A 00 00 00 66 89 4B 21 E8
+40 EA FF FF 98 6B C0 2E 0F B6 73 10 8A 84 06 90
+7E 17 00 88 43 60 BA 27 00 00 00 8D 43 17 E8 0D
+FA 0C 00 66 C7 43 5E 00 00 C6 43 5D 0A 5F 5E 59
+
+```
+
+## amoeba C ##
+```
+int __fastcall INITSHIP_Load_Amoeba_Ship_Design_(int a1, int a2)
+{
+  __int16 v2; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  int v7; // eax@4
+  int v8; // esi@4
+  int result; // eax@6
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A66C;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  if ( v2 )
+  {
+    *(_BYTE *)(v3 + 16) = 3;
+    *(_BYTE *)(v3 + 17) = 0;
+    *(_BYTE *)(v3 + 18) = 0;
+    *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(10);
+    v8 = 46 * *(_BYTE *)(v3 + 19);
+    *(_BYTE *)(v3 + 21) = 2;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 20) = 1;
+    *(_WORD *)(v3 + 28) = 45;//Weapon type (Caustic Slime)
+    *(_BYTE *)(v3 + 32) = 15;//Firing arc
+    *(_WORD *)(v3 + 33) = 0;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 2;
+    *(_BYTE *)(v3 + 31) = 2;
+    *(_WORD *)(v3 + 36) = 23;//Anti-Matter Bomb
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_WORD *)(v3 + 41) = 0;
+    *(_BYTE *)(v3 + 43) = 10;
+    *(_BYTE *)(v3 + 38) = 5;
+    *(_BYTE *)(v3 + 39) = 5;
+    v7 = *(_BYTE *)(v3 + 16);
+    *(_BYTE *)(v3 + 92) = 8;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;//hull type
+    *(_BYTE *)(v3 + 17) = 0;
+    *(_BYTE *)(v3 + 18) = 0;
+    *(_BYTE *)(v3 + 21) = 2;//computer type
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = 0;
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 45;//Weapon type (Caustic Slime)
+    *(_BYTE *)(v3 + 32) = 15;//Firing arc
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 1;//Number of weapons
+    *(_BYTE *)(v3 + 31) = 1;
+    *(_BYTE *)(v3 + 92) = 20;//Ameoba picture(21-cristal;22-dragon; etc)
+    *(_WORD *)(v3 + 33) = 0;
+    v7 = 46 * (signed __int16)INITSHIP_Best_Warp_Drive_(10);
+    v8 = *(_BYTE *)(v3 + 16);
+  }
+  *(_BYTE *)(v3 + 96) = *(&byte_177E90[v8] + v7);
+  result = struct_Set_Bit_Field_(v3 + 23, 39);
+  *(_WORD *)(v3 + 94) = 0;
+  *(_BYTE *)(v3 + 93) = 10;
+  return result;
+}
+```
+
+# crystal #
+
+## crystal hex ##
+```
+one for all:
+C6 43 11 00 C6 43 12 00  C6 43 15 05 66 85 C9 74
+
+big:
+C6 43 10 04 B8 0B 00 00  00 C6 43 16 00 E8 C4 E8
+FF FF 88 43 13 0F B6 43  13 6B F0 2E C6 43 14 01
+66 C7 43 1C 2A 00 C6 43  20 0F 66 C7 43 21 02 00
+C6 43 23 00 C6 43 1E 01  C6 43 1F 01 66 C7 43 24
+1A 00 C6 43 28 0F 66 C7  43 29 00 00 C6 43 2B 0A
+C6 43 26 05 0F B6 43 10  C6 43 27 05 8A 84 06 90
+7E 17 00 C6 43 5C 09 EB  61 C6 43 10 02 C6 43 16
+
+small:
+C6 43 10 02 C6 43 16 00  C6 43 13 00 C6 43 14 00
+66 C7 43 1C 2A 00 C6 43  20 0F C6 43 23 00 C6 43
+1E 01 C6 43 1F 01 66 C7  43 24 19 00 C6 43 28 0F
+C6 43 2B 0A C6 43 26 05  C6 43 27 05 66 89 4B 21
+B8 0B 00 00 00 66 89 4B  29 E8 1F E8 FF FF 98 6B
+C0 2E 0F B6 73 10 8A 84  06 90 7E 17 00 C6 43 5C
+15 88 43 60 66 C7 43 5E  00 00 C6 43 5D 0B 5F 5E
+
+```
+
+## crystal C ##
+
+```
+
+char __fastcall INITSHIP_Load_Crystal_Ship_Design_(int a1, int a2)
+{
+  __int16 v2; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  char result; // al@4
+  int v8; // esi@4
+  int v9; // eax@4
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A670;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  *(_BYTE *)(v3 + 17) = 0;
+  *(_BYTE *)(v3 + 18) = 0;
+  *(_BYTE *)(v3 + 21) = 5;
+  if ( v2 )
+  {
+    *(_BYTE *)(v3 + 16) = 4;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(11);
+    v8 = 46 * *(_BYTE *)(v3 + 19);
+    *(_BYTE *)(v3 + 20) = 1;
+    *(_WORD *)(v3 + 28) = 42;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 2;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 1;
+    *(_BYTE *)(v3 + 31) = 1;
+    *(_WORD *)(v3 + 36) = 26;
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_WORD *)(v3 + 41) = 0;
+    *(_BYTE *)(v3 + 43) = 10;
+    *(_BYTE *)(v3 + 38) = 5;
+    v9 = *(_BYTE *)(v3 + 16);
+    *(_BYTE *)(v3 + 39) = 5;
+    result = *(&byte_177E90[v8] + v9);
+    *(_BYTE *)(v3 + 92) = 9;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = 0;
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 42;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 1;
+    *(_BYTE *)(v3 + 31) = 1;
+    *(_WORD *)(v3 + 36) = 25;
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_BYTE *)(v3 + 43) = 10;
+    *(_BYTE *)(v3 + 38) = 5;
+    *(_BYTE *)(v3 + 39) = 5;
+    *(_WORD *)(v3 + 33) = 0;
+    *(_WORD *)(v3 + 41) = 0;
+    result = *(&byte_177E90[46 * (signed __int16)INITSHIP_Best_Warp_Drive_(11)] + *(_BYTE *)(v3 + 16));
+    *(_BYTE *)(v3 + 92) = 21;
+  }
+  *(_BYTE *)(v3 + 96) = result;
+  *(_WORD *)(v3 + 94) = 0;
+  *(_BYTE *)(v3 + 93) = 11;
+  return result;
+}
+
+
+```
+# eel #
+
+## eel hex ##
+```
+
+big
+C6 43 11 00 C6 43 12 00  8D 4B 17 C6 43 15 04 66
+83 7D FC 00 74 5C B8 0D  00 00 00 C6 43 10 03 E8
+C5 E9 FF FF C6 43 16 00  BA 13 00 00 00 88 43 13
+89 C8 C6 43 14 01 E8 9A  F9 0C 00 0F B6 4B 13 6B
+F1 2E 66 C7 43 1C 2C 00  C6 43 20 0F 66 C7 43 21
+00 00 C6 43 23 00 C6 43  1E 02 0F B6 4B 10 C6 43
+1F 02 8A 8C 31 90 7E 17  00 80 C1 08 C6 43 5C 0B
+
+small
+C6 43 10 02 C6 43 16 00  BA 13 00 00 00 C6 43 13
+00 89 C8 C6 43 14 00 E8  47 F9 0C 00 66 C7 43 1C
+2C 00 C6 43 20 0F 66 C7  43 21 00 00 C6 43 23 00
+C6 43 1E 01 B8 0D 00 00  00 C6 43 1F 01 E8 35 E9
+FF FF 0F BF C8 6B F1 2E  0F B6 4B 10 8A 8C 31 90
+7E 17 00 80 C1 08 C6 43  5C 17 88 4B 60 66 C7 43
+
+```
+
+## eel C ##
+
+```
+void __fastcall INITSHIP_Load_Eel_Ship_Design_(int a1, __int16 a2, int a3, int a4)
+{
+  int v4; // ebx@1
+  int v5; // edi@1
+  int v6; // esi@1
+  char v7; // al@2
+  char v8; // cl@4
+  char v9; // al@4
+  int v10; // ecx@4
+  int v11; // esi@4
+  int v12; // ecx@4
+  __int16 v13; // [sp+0h] [bp-4h]@1
+
+  v4 = a1;
+  v13 = a2;
+  struct_Clear_Structure_(a1, 99, a1, a4);
+  v5 = v4;
+  v6 = dword_18A678;
+  do
+  {
+    v7 = *(_BYTE *)v6++;
+    *(_BYTE *)v5++ = v7;
+  }
+  while ( v7 );
+  *(_BYTE *)(v4 + 17) = 0;
+  *(_BYTE *)(v4 + 18) = 0;
+  *(_BYTE *)(v4 + 21) = 4;
+  if ( v13 )
+  {
+    *(_BYTE *)(v4 + 16) = 3;
+    v9 = INITSHIP_Best_Warp_Drive_(13);
+    *(_BYTE *)(v4 + 22) = 0;
+    *(_BYTE *)(v4 + 19) = v9;
+    *(_BYTE *)(v4 + 20) = 1;
+    struct_Set_Bit_Field_(v10, 19);
+    v11 = 46 * *(_BYTE *)(v4 + 19);
+    *(_WORD *)(v4 + 28) = 44;
+    *(_BYTE *)(v4 + 32) = 15;
+    *(_WORD *)(v4 + 33) = 0;
+    *(_BYTE *)(v4 + 35) = 0;
+    *(_BYTE *)(v4 + 30) = 2;
+    v12 = *(_BYTE *)(v4 + 16);
+    *(_BYTE *)(v4 + 31) = 2;
+    v8 = *(&byte_177E90[v12] + v11) + 8;
+    *(_BYTE *)(v4 + 92) = 11;
+  }
+  else
+  {
+    *(_BYTE *)(v4 + 16) = 2;
+    *(_BYTE *)(v4 + 22) = 0;
+    *(_BYTE *)(v4 + 19) = 0;
+    *(_BYTE *)(v4 + 20) = 0;
+    struct_Set_Bit_Field_(v4 + 23, 19);
+    *(_WORD *)(v4 + 28) = 44;
+    *(_BYTE *)(v4 + 32) = 15;
+    *(_WORD *)(v4 + 33) = 0;
+    *(_BYTE *)(v4 + 35) = 0;
+    *(_BYTE *)(v4 + 30) = 1;
+    *(_BYTE *)(v4 + 31) = 1;
+    v8 = *(&byte_177E90[46 * (signed __int16)INITSHIP_Best_Warp_Drive_(13)] + *(_BYTE *)(v4 + 16)) + 8;
+    *(_BYTE *)(v4 + 92) = 23;
+  }
+  *(_BYTE *)(v4 + 96) = v8;
+  *(_WORD *)(v4 + 94) = 0;
+  *(_BYTE *)(v4 + 93) = 13;
+  JUMPOUT(*(unsigned int *)locret_56580);
+}
+```
+
+# dragon #
+
+## dragon hex ##
+```
+big
+
+C6 43 11 00 C6 43 12 00  8D 53 08 C6 43 15 05 66
+85 C9 74 6C C6 43 10 04  C6 43 16 00 B8 0C 00 00
+00 C6 43 14 01 E8 D6 EC  FF FF 66 C7 43 1C 29 00
+C6 43 20 0F 66 C7 43 21  04 00 C6 43 23 00 C6 43
+1E 14 C6 43 1F 14 88 43  13 66 C7 42 1C 28 00 C6
+42 20 0F 66 C7 42 21 00  40 C6 42 23 00 C6 42 1E
+
+small
+
+C6 43 10 02 C6 43 16 00  C6 43 14 00 66 C7 43 1C
+29 00 C6 43 20 0F 66 C7  43 21 04 00 C6 43 23 00
+C6 43 1E 08 C6 43 1F 08  66 C7 42 1C 28 00 C6 42
+20 0F C6 42 23 00 C6 42  1F 01 C6 42 1E 01 B8 0C
+00 00 00 66 89 4A 21 E8  34 EC FF FF 0F BF D0 6B
+F2 2E 0F B6 53 10 8A 94  32 90 7E 17 00 80 C2 04
+```
+
+## dragon C ##
+
+```
+signed int __fastcall INITSHIP_Load_Dragon_Ship_Design_(int a1, int a2)
+{
+  __int16 bBlocingMonster; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  signed int result; // eax@4
+  char v8; // dl@4
+  int v9; // edx@4
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A674;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  *(_BYTE *)(v3 + 17) = 0;
+  *(_BYTE *)(v3 + 18) = 0;
+  *(_BYTE *)(v3 + 21) = 5;
+  if ( bBlocingMonster )
+  {
+    *(_BYTE *)(v3 + 16) = 4;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 20) = 1;
+    result = INITSHIP_Best_Warp_Drive_(12);
+    *(_WORD *)(v3 + 28) = 41;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 4;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 20;
+    *(_BYTE *)(v3 + 31) = 20;
+    *(_BYTE *)(v3 + 19) = result;
+    *(_WORD *)(v9 + 28) = 40;
+    *(_BYTE *)(v9 + 32) = 15;
+    *(_WORD *)(v9 + 33) = 16384;
+    *(_BYTE *)(v9 + 35) = 0;
+    *(_BYTE *)(v9 + 30) = 1;
+    *(_BYTE *)(v9 + 31) = 1;
+    v8 = *(&byte_177E90[46 * *(_BYTE *)(v3 + 19)] + *(_BYTE *)(v3 + 16)) + 4;
+    *(_BYTE *)(v3 + 92) = 10;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 41;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 4;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 8;
+    *(_BYTE *)(v3 + 31) = 8;
+    *(_WORD *)(v3 + 36) = 40;
+    *(_BYTE *)(v3 + 40) = 15;
+    *(_BYTE *)(v3 + 43) = 0;
+    *(_BYTE *)(v3 + 39) = 1;
+    *(_BYTE *)(v3 + 38) = 1;
+    *(_WORD *)(v3 + 41) = 0;
+    result = INITSHIP_Best_Warp_Drive_(12);
+    v8 = *(&byte_177E90[46 * (signed __int16)result] + *(_BYTE *)(v3 + 16)) + 4;
+    *(_BYTE *)(v3 + 92) = 22;
+  }
+  *(_BYTE *)(v3 + 96) = v8;
+  *(_BYTE *)(v3 + 93) = 12;
+  *(_WORD *)(v3 + 94) = 0;
+  return result;
+}
+
+```
+
+# hydra #
+
+## hydra hex ##
+```
+small
+
+C6 43 11 00 C6 43 12 00  C6 43 15 02 66 85 C9 74
+4D C6 43 10 04 B8 0E 00  00 00 C6 43 16 00 E8 C3
+EB FF FF 88 43 13 0F B6  43 13 6B F0 2E C6 43 14
+01 66 C7 43 1C 2B 00 C6  43 20 0F 66 C7 43 21 02
+00 C6 43 23 00 C6 43 1E  05 0F B6 43 10 C6 43 1F
+05 8A 84 06 90 7E 17 00  C6 43 5C 0C EB 4E B8 0E
+00 00 00 C6 43 10 02 E8  B3 EC FF FF C6 43 14 00
+
+big
+
+B8 0E 00 00 00 C6 43 10  02 E8 B3 EC FF FF C6 43
+14 00 66 C7 43 1C 2B 00  C6 43 20 0F C6 43 23 00
+C6 43 1E 03 C6 43 1F 03  88 43 16 B8 0E 00 00 00
+66 89 4B 21 E8 4F EB FF  FF 0F BF F0 6B F6 2E 0F
+B6 43 10 8A 84 06 90 7E  17 00 C6 43 5C 18 88 43
+60 BA 0A 00 00 00 8D 43  17 E8 16 FB 0C 00 66 C7
+```
+
+## hydra C ##
+
+```
+int __fastcall INITSHIP_Load_Hydra_Ship_Design_(int a1, int a2)
+{
+  __int16 v2; // cx@1
+  int v3; // ebx@1
+  int v4; // edi@1
+  int v5; // esi@1
+  char v6; // al@2
+  char v7; // al@4
+  int v8; // esi@4
+  int v9; // eax@4
+  char v10; // al@5
+  __int16 v11; // cx@5
+  int result; // eax@6
+
+  v3 = a1;
+  struct_Clear_Structure_(a1, 99, a1, a2);
+  v4 = v3;
+  v5 = dword_18A67C;
+  do
+  {
+    v6 = *(_BYTE *)v5++;
+    *(_BYTE *)v4++ = v6;
+  }
+  while ( v6 );
+  *(_BYTE *)(v3 + 17) = 0;
+  *(_BYTE *)(v3 + 18) = 0;
+  *(_BYTE *)(v3 + 21) = 2;
+  if ( v2 )
+  {
+    *(_BYTE *)(v3 + 16) = 4;
+    *(_BYTE *)(v3 + 22) = 0;
+    *(_BYTE *)(v3 + 19) = INITSHIP_Best_Warp_Drive_(14);
+    v8 = 46 * *(_BYTE *)(v3 + 19);
+    *(_BYTE *)(v3 + 20) = 1;
+    *(_WORD *)(v3 + 28) = 43;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_WORD *)(v3 + 33) = 2;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 5;
+    v9 = *(_BYTE *)(v3 + 16);
+    *(_BYTE *)(v3 + 31) = 5;
+    v7 = *(&byte_177E90[v8] + v9);
+    *(_BYTE *)(v3 + 92) = 12;
+  }
+  else
+  {
+    *(_BYTE *)(v3 + 16) = 2;
+    INITSHIP_Best_Armor_(14);
+    *(_BYTE *)(v3 + 20) = 0;
+    *(_WORD *)(v3 + 28) = 43;
+    *(_BYTE *)(v3 + 32) = 15;
+    *(_BYTE *)(v3 + 35) = 0;
+    *(_BYTE *)(v3 + 30) = 3;
+    *(_BYTE *)(v3 + 31) = 3;
+    *(_BYTE *)(v3 + 22) = v10;
+    *(_WORD *)(v3 + 33) = v11;
+    v7 = *(&byte_177E90[46 * (signed __int16)INITSHIP_Best_Warp_Drive_(14)] + *(_BYTE *)(v3 + 16));
+    *(_BYTE *)(v3 + 92) = 24;
+  }
+  *(_BYTE *)(v3 + 96) = v7;
+  result = struct_Set_Bit_Field_(v3 + 23, 10);
+  *(_WORD *)(v3 + 94) = 0;
+  *(_BYTE *)(v3 + 93) = 14;
+  return result;
+}
+
+```
+
+
+
+# marauder #
+```
+C6 40 20 08 C6 80 38 01  00 00 08 66 C7 40 1E FF
+FF C6 40 26 00 C6 40 32  05 C6 40 31 05 C6 40 25
+01 C6 40 24 00 31 F6 0F  BF C1 69 C0 39 01 00 00
+8B 15 64 A8 18 00 0F BF  DE 01 D0 C6 44 03 4C 00
+46 C6 84 03 B2 00 00 00  00 66 83 FE 05 7C D8 66
+C7 40 52 04 00 C6 40 54  03 C6 40 55 01 66 C7 40
+56 00 00 66 C7 40 58 FF  FF C6 40 5A 01 C6 40 5B
+03 C6 40 5C 00 66 C7 40  5D 04 00 C6 40 5F 01 C6
+40 60 01 66 C7 40 61 02  00 66 C7 40 63 FF FF C6
+40 65 01 C6 40 66 01 C6  40 67 00 66 C7 40 68 18
+00 C6 40 6A 01 C6 40 6B  0F 66 C7 40 6C 00 00 66
+C7 40 6E 0A 00 C6 40 70  01 C6 40 71 01 BE 03 00
+00 00 C6 40 72 00 0F BF  D9 69 DB 39 01 00 00 A1
+64 A8 18 00 8D 14 18 0F  BF C6 6B C0 0B 83 C2 52
+01 D0 BA 0B 00 00 00 46  E8 3D 22 0D 00 66 83 FE
+08 7C D3 A1 64 A8 18 00  01 D8 BA 07 00 00 00 83
+C0 4C E8 BF 21 0D 00 A1  64 A8 18 00 01 D8 BA 18
+00 00 00 83 C0 4C E8 AB  21 0D 00 80 3D B0 1C 19
+00 03 76 0E A1 64 A8 18  00 01 D8 BA 15 00 00 00
+
+```
+```
+      struct_Clear_Structure_(a1, 99, a1, a4);
+      *(_DWORD *)v9 = *(_DWORD *)"Marauder";
+      v9 += 4;
+      *(_DWORD *)v9 = *(_DWORD *)&aMarauder[4];
+      *(_BYTE *)(v9 + 4) = aMarauder[8];
+      *(_BYTE *)(v5 + 17) = 0;
+      *(_BYTE *)(v5 + 18) = 0;
+      *(_BYTE *)(v5 + 21) = 5;
+      *(_BYTE *)(v5 + 16) = 1;
+      *(_BYTE *)(v5 + 22) = 6;
+      *(_BYTE *)(v5 + 20) = 1;
+      *(_BYTE *)(v5 + 19) = 5;
+      *(_WORD *)(v5 + 28) = 4;
+      *(_BYTE *)(v5 + 32) = 1;
+      *(_WORD *)(v5 + 33) = 0;
+      *(_BYTE *)(v5 + 35) = 0;
+      *(_BYTE *)(v5 + 30) = 3;
+      *(_BYTE *)(v5 + 31) = 3;
+      *(_WORD *)(v5 + 36) = 4;
+      *(_BYTE *)(v5 + 40) = 1;
+      *(_WORD *)(v5 + 41) = 2;
+      *(_BYTE *)(v5 + 43) = 0;
+      *(_BYTE *)(v5 + 38) = 1;
+      *(_BYTE *)(v5 + 39) = 1;
+      *(_WORD *)(v5 + 44) = 24;
+      *(_BYTE *)(v5 + 48) = 15;
+      *(_WORD *)(v5 + 49) = 0;
+      *(_BYTE *)(v5 + 51) = 10;
+      *(_BYTE *)(v5 + 46) = 1;
+      *(_BYTE *)(v5 + 47) = 1;
+      struct_Set_Bit_Field_(v5 + 23, 7);
+      struct_Set_Bit_Field_(v8, 24);
+```
+
+# BEST WARP DRIVE HEX #
+```
+ B8 06 00 00 00 5E 5A 59  5B C3 B8 04 00 00 00 5E 
+ 5A 59 5B C3 B8 02 00 00  00 5E 5A 59 5B C3 53 51
+```
+
+# BEST WARP DRIVE #
+
+```
+signed int __fastcall INITSHIP_Best_Warp_Drive_(__int16 a1)
+{
+  signed int result; // eax@1
+  __int16 v2; // bx@1
+  signed int v3; // edx@2
+
+  v2 = a1;
+  result = 0;
+  if ( v2 >= 8 )
+  {
+    switch ( v2 )
+    {
+      case 8://8=ANTARANS!
+      case 12://12=dragon??
+      case 13://13=eel
+        result = 6;
+        break;
+      case 9://9?? 9=Guardian!
+      case 11://11=cristal
+        result = 4;
+        break;
+      case 10://monster type; 10=ameoba
+      case 14://14=Hydra
+        result = 2;//drive type; 2=fusion drive
+        break;
+      default:
+        return result;
+    }
+  }
+
+```
+
+```
+signed int __fastcall INITSHIP_Get_Ship_Structure_(__int16 a1, int a2, int a3, signed int a4)
+{
+  int v4; // esi@1
+  signed int v5; // eax@16
+  char v7; // [sp-70h] [bp-70h]@16
+  int v8; // [sp-6Ch] [bp-6Ch]@16
+  int v9; // [sp-68h] [bp-68h]@16
+  int v10; // [sp-64h] [bp-64h]@16
+  unsigned __int8 v11; // [sp-60h] [bp-60h]@16
+  unsigned int v12; // [sp-5Ch] [bp-5Ch]@16
+  int v13; // [sp-58h] [bp-58h]@16
+  int v14; // [sp-54h] [bp-54h]@16
+  int v15; // [sp-50h] [bp-50h]@16
+  int v16; // [sp-4Ch] [bp-4Ch]@16
+  int v17; // [sp-48h] [bp-48h]@16
+  int v18; // [sp-44h] [bp-44h]@16
+  int v19; // [sp-40h] [bp-40h]@16
+  int v20; // [sp-3Ch] [bp-3Ch]@16
+  int v21; // [sp-38h] [bp-38h]@16
+  int v22; // [sp-34h] [bp-34h]@16
+  int v23; // [sp-30h] [bp-30h]@16
+  int v24; // [sp-2Ch] [bp-2Ch]@16
+  int v25; // [sp-28h] [bp-28h]@16
+  int v26; // [sp-24h] [bp-24h]@16
+  int v27; // [sp-20h] [bp-20h]@16
+  int v28; // [sp-1Ch] [bp-1Ch]@16
+  int v29; // [sp-18h] [bp-18h]@16
+  int v30; // [sp-14h] [bp-14h]@16
+  int v31; // [sp-10h] [bp-10h]@16
+  signed int v32; // [sp-4h] [bp-4h]@1
+
+  v32 = a4;
+  v4 = 129 * a1 + MOX__ship;
+  if ( *(v4 + 99) <= 9 )
+  {
+    memcpy(&v7, v4, 0x63u);
+    LOWORD(v5) = INITSHIP_Get_Design_Structure_(
+                   *&v7,
+                   v8,
+                   v9,
+                   v10,
+                   v11,
+                   v12,
+                   v13,
+                   v14,
+                   v15,
+                   v16,
+                   v17,
+                   v18,
+                   v19,
+                   v20,
+                   v21,
+                   v22,
+                   v23,
+                   v24,
+                   v25,
+                   v26,
+                   v27,
+                   v28,
+                   v29,
+                   v30,
+                   v31);
+    a4 = v5;
+  }
+  else
+  {
+    switch ( *(v4 + 99) )
+    {
+      case 12:
+        if ( !*(v4 + 19) )
+          goto LABEL_5;
+        goto LABEL_4;
+      case 11:
+        if ( !*(v4 + 19) )
+          goto LABEL_5;
+LABEL_4:
+        a4 = 2500;
+        break;
+      case 14:
+        if ( *(v4 + 19) )
+          a4 = 1500;
+        else
+LABEL_5:
+          a4 = 500;
+        break;
+      case 13:
+        if ( *(v4 + 19) )
+          a4 = 1000;
+        else
+          a4 = 300;
+        break;
+      case 10:
+        if ( *(v4 + 19) )
+          a4 = 750;
+        else
+          a4 = 400;
+        break;
+      default:
+        return a4;
+    }
+  }
+  return a4;
+}
+
+```

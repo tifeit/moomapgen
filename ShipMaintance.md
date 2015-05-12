@@ -1,0 +1,128 @@
+|search|`8B 55 D8 0F AF D0 89 D8 05 05 00 00 00 89 55 D8 89 45 F8 8B 45 D4 8B 55 F8 01 C0 01 C2 6B C7 03 01 D0 03 45 D8 8B 55 E8 03 45 DC 01 C2`|totalBonus = fortresses\*3 + bases + 5 + stations\*2 + bonus\*total + leaderBonus + warlordBonus;|
+|:-----|:---------------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------|
+|replace|`89 DA 81 C2 05 00 00 00 89 55 F8 0F AF 45 D8 89 45 D8 01 C2 69 45 D4 03 00 00 00 01 C2 69 C7 05 00 00 00 01 C2 03 55 DC 89 D0 03 55 E8`|totalBonus = bases + 5 + total\*bonus + stations\*3 + fortresses\*5 + leaderBonus + warlordBonus;|
+
+fix summary text:
+|One battlestation| `6A `**02**` FF 35 88 22 03 00  56 E8 55 43 04 00 83 C4` |
+|:----------------|:---------------------------------------------------------|
+|N Battlestations before:| **8B 45 D4 FF 75 D4 01 C0  50** `FF 35 60 22 03 00 56` |
+|N Battlestations after: | **FF 75 D4 6B 45 D4 03 50  90** `FF 35 60 22 03 00 56` |
+|One fortress:| `6A `**03**` FF 35 8C 22 03 00  56 E8 1F 43 04 00 83 C4` |
+|N Fortresses before:| **8D 3C 7F** `57 FF 35 58 22  03 00 56 E8 09 43 04 00` |
+|N Fortresses after: | **8D 3C BF** `57 FF 35 58 22  03 00 56 E8 09 43 04 00` |
+
+previous assembler code:
+```
+;в eax находится общее кол-во командных построек
+;в ebx находится кол-во старбаз
+;в edi находится кол-во фортресов
+mov     edx, [ebp+nCommBonus] ;в edx находится бонус от комм. технологий
+imul    edx, eax ;в edx находится произведение бонуса на общее кол-во баз
+mov     eax, ebx ;в eax находится кол-во старбаз
+add     eax, 5 ; теперь в eax находится бонус от старбаз + базовый бонус
+mov     [ebp+nCommBonus], edx ; сохранили на будущее comm бонус
+mov     [ebp+nBasicPlusStarbase], eax ;;; сохранили на будущее бонус + старбазу
+mov     eax, [ebp+numofBattleStations] ; в eax находится кол-во бэтлстейшнов
+mov     edx, [ebp+nBasicPlusStarbase]
+add     eax, eax ; в eax бонус от бэтлстейшнов
+add     edx, eax
+imul    eax, edi, 3 ; бонус от фортресов
+add     eax, edx ; общее кол-во бонусов
+add     eax, [ebp+nCommBonus]
+mov     edx, [ebp+nTotalWarlordBonus]
+add     eax, [ebp+nLeaderBonus]
+add     edx, eax ;все бонусы, кроме варлорда
+;Результирующая сумма в edx
+
+
+eax = total;
+ebx = bases;
+edi = fortresses;
+
+edx = bonus;
+
+edx = bonus*total;
+
+eax = bases;
+
+eax = bases + 5;
+
+bonus = bonus*total;
+
+basic = bases + 5;
+
+eax = stations;
+
+edx = bases + 5;
+
+eax = stations*2;
+
+edx = bases+5 + stations*2;
+
+eax = fortresses*3;
+
+eax = fortresses*3 + bases + 5 + stations*2;
+
+eax = fortresses*3 + bases + 5 + stations*2 + bonus*total;
+
+edx = warlordBonus;
+
+eax = fortresses*3 + bases + 5 + stations*2 + bonus*total + leaderBonus;
+
+edx = fortresses*3 + bases + 5 + stations*2 + bonus*total + leaderBonus + warlordBonus;
+```
+
+new assembler code:
+
+```
+BITS 32
+nCommBonus equ 0x28
+nBasicPlusStarbase equ 0x8
+numOfBattleStations equ 0x2c
+nTotalWarlordBonus equ 0x18
+nLeaderBonus equ 0x24
+
+mov edx, ebx; bases
+add edx, 0x5; + start bonus
+mov [ebp-nBasicPlusStarbase], edx ; сохранили на будущее бонус + старбазу
+imul eax, [ebp-nCommBonus] ; В eax находится бонус от комм. технологий
+mov [ebp-nCommBonus],eax ; сохранили на будущее comm бонус
+add edx, eax ; скопировали бонус от командных точек в edx
+imul eax,[ebp-numOfBattleStations], 3; бонус от бэтлстейшнов
+add edx,eax ; в edx добавился бонус от бэтлстейшнов
+imul eax,edi, 5 ; бонус от фортресов
+add edx,eax ; в edx добавился бонус от фортресов
+add edx,[ebp-nLeaderBonus]
+mov eax, edx
+add edx,[ebp-nTotalWarlordBonus]
+
+eax = total;
+ebx = bases;
+edi = fortresses;
+
+edx = bases;
+
+edx = bases + 5;
+
+basic = bases + 5;
+
+eax = total*bonus;
+
+bonus = total*bonus;
+
+edx = bases + 5 + total*bonus;
+
+eax = stations*3;
+
+edx = bases + 5 + total*bonus + stations*3;
+
+eax = fortresses*5;
+
+edx = bases + 5 + total*bonus + stations*3 + fortresses*5;
+
+edx = bases + 5 + total*bonus + stations*3 + fortresses*5 + leaderBonus;
+
+eax = bases + 5 + total*bonus + stations*3 + fortresses*5 + leaderBonus;
+
+edx = bases + 5 + total*bonus + stations*3 + fortresses*5 + leaderBonus + warlordBonus;
+```
