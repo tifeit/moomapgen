@@ -1,7 +1,10 @@
 #include "mapgen.h"
 
+
 struct star *ptrSystem;
-struct galaxy galaxy;
+struct galaxy galaxies[4];
+struct galaxy *ptrGalaxy = &galaxies[0];
+
 unsigned char nNumOfPlayers, nNumOfStars;
 unsigned short nNumOfPlanets;
 unsigned int aHwCoordinates[MAX_PLAYERS][3];
@@ -11,14 +14,17 @@ int main(int argc, char *argv[]) {
 
 	unsigned int opt;
 
-	int rings = 0;
+	unsigned char rings = 0;
+	unsigned char nFiles = 1;
+	unsigned char i = 0;
 	FILE *fp, *fp2;
 	unsigned int terraformFlags = 0, hwFlags = 0, specialsFlags = 0, monsterFlags = 0, balanceFlags = 0;
 
 	unsigned char byte;
 
-	char sSaveFile[100] = "SAVE10.GAM";
-	char sBakFile[100] = "MAPGEN.GAM";
+	char sSaveFile[12] = "SAVE10.GAM";
+	char sBakFile[12] = "MAPGEN.GAM";
+	char aMergeFile[4][12] = {"SAVE10.GAM", "PLAYER2.GAM", "PLAYER3.GAM", "PLAYER4.GAM"};
 
 	time_t t;
 	struct tm *tmp;
@@ -26,11 +32,11 @@ int main(int argc, char *argv[]) {
 	tmp = localtime(&t);
 	strftime(sBakFile, sizeof(sBakFile), "%y%m%d%H.GAM", tmp);
 
-	while ((opt = getopt(argc, argv, "ht:s:m:b:f:vV")) != -1) {
+	while ((opt = getopt(argc, argv, "ht:s:m:b:f:r:vV")) != -1) {
 		switch (opt) {
 			case 'h':
 			case 'H':
-				printf("Usage: %s [-h] [-t terraformation] [-s special] [-m change] [-b type] [-v] [-V] [-f file]\n\n"
+				printf("Usage: %s [-h] [-t terraformation] [-s special] [-m change] [-b type] [-r numOfPlayersToMerge] [-`~ [-v] [-V] [-f file]\n\n"
 
 					"Example: %s -t toxic -t upoor -t lowg -t heavyg -t tiny -t small -f SAVE10.GAM\n\n"
 
@@ -39,7 +45,7 @@ int main(int argc, char *argv[]) {
 
 					"  -t Terraform\n"
 					"      toxic - Toxic planets become radiated\n"
-					"      upoor - Ultra Poor planets become poor\n"
+					"      upoor - Ultra Poor planets become abundant\n"
 					"      lowg - Low Gravity planets become Normal Gravity\n"
 					"      heavyg - Heavy Gravity planets become Normal Gravity\n"
 					"      tiny - Tiny planets become small\n"
@@ -86,6 +92,8 @@ int main(int argc, char *argv[]) {
 					"	   showringX - Make planets in X parsecs distance from HW visible to players\n"
 					"	   calc - Calculate opponent starts and print out results\n\n"
 					"  -v Verbose debugging output(CHEAT!)\n\n"
+
+					"  -r Num of PLAYERX.GAM files to merge in 'filename'\n\n"
 
 					"  -V Print Version and exit\n\n"
 
@@ -187,9 +195,14 @@ int main(int argc, char *argv[]) {
 			case 'b':
 					balanceFlags |= FLG_CALC;
 
-					if (strstr(optarg, "showring") && sscanf(optarg, "showring%d",&rings)) {
+					if (strstr(optarg, "showring") && sscanf(optarg, "showring%c",&rings)) {
 						balanceFlags |= FLG_RING;
 					}
+
+			break;
+			case 'r':
+					nFiles = atoi(optarg);
+					snprintf(aMergeFile[0], sizeof(aMergeFile[0]), "%s", sSaveFile);
 
 			break;
 			default:
@@ -228,60 +241,76 @@ int main(int argc, char *argv[]) {
 			fwrite(&byte, 1, 1, fp2);
 	}
 
+	fclose(fp);
 	fclose(fp2);
 
-	//Try to read all save data, its useless, for sure, cause exact structure size and offsets are not precide.
-	getFileData(&galaxy, sizeof galaxy, 0, fp);
+	i = 0;
+	do {
 
-	//Reading Star Systems information.
-	getFileData(&galaxy.aStars, sizeof galaxy.aStars, STAR_OFFSET, fp);
+		fp = fopen(aMergeFile[i], "rb+");
+		if (fp == NULL) {
 
-	//Reading Planets information.
-	getFileData(&galaxy.aPlanets, sizeof galaxy.aPlanets, PLANET_OFFSET, fp);
+			fprintf(stderr, "Can not open %s.\nPress any key to continue.", aMergeFile[i]);
+			getc(stdin);
+			exit(1);
+		}
+		ptrGalaxy = &galaxies[i];
 
-	//Reading Ships information.
-	getFileData(&galaxy.aShips, sizeof galaxy.aShips, SHIP_OFFSET, fp);
+		//Try to read all save data, its useless, for sure, cause exact structure size and offsets are not precise.
+		getFileData(ptrGalaxy, sizeof galaxies[0], 0, fp);
+		getFileData(ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, STAR_OFFSET, fp);
+		getFileData(ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, PLANET_OFFSET, fp);
+		getFileData(ptrGalaxy->aShips, sizeof ptrGalaxy->aShips, SHIP_OFFSET, fp);
+		getFileData(ptrGalaxy->aPlayers, sizeof ptrGalaxy->aPlayers, PLAYER_OFFSET, fp);
+		getFileData(ptrGalaxy->aColonies, sizeof ptrGalaxy->aColonies, PLAYER_OFFSET, fp);
+		getFileData(ptrGalaxy->aLeaders, sizeof ptrGalaxy->aLeaders, LEADER_OFFSET, fp);
+		getFileData(&nNumOfStars, sizeof nNumOfStars, NUM_OF_STARS_OFFSET, fp);
+		getFileData(&nNumOfPlanets, sizeof nNumOfPlanets, NUM_OF_PLANETS_OFFSET, fp);
+		getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
+		ptrGalaxy->nNumOfPlanets = &nNumOfPlanets;
+		ptrGalaxy->nNumOfStars = &nNumOfStars;
+		ptrGalaxy->nNumOfPlayers = &nNumOfPlayers;
 
-	//Reading Players information.
-	getFileData(&galaxy.aPlayers, sizeof galaxy.aPlayers, PLAYER_OFFSET, fp);
+		getHwCoords(ptrGalaxy->aStars, aHwCoordinates, nNumOfStars, ptrGalaxy->aPlanets);
+		ptrGalaxy->aHwCoordinates = (unsigned int *) aHwCoordinates;
 
-	getFileData(&nNumOfStars, sizeof nNumOfStars, NUM_OF_STARS_OFFSET, fp);
-	galaxy.nNumOfStars = &nNumOfStars;
+		fclose(fp);
 
-	getFileData(&nNumOfPlanets, sizeof nNumOfPlanets, NUM_OF_PLANETS_OFFSET, fp);
-	galaxy.nNumOfPlanets = &nNumOfPlanets;
+	} while (++i != nFiles);
 
-	getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
-	galaxy.nNumOfPlayers = &nNumOfPlayers;
+	fp = fopen(sSaveFile, "rb+");
 
-	getHwCoords(galaxy.aStars, aHwCoordinates, nNumOfStars, galaxy.aPlanets);
-	galaxy.aHwCoordinates = (unsigned int *) aHwCoordinates;
+	if (nFiles == 1) {
 
-	//All planets terraformation.
-	if (terraformFlags || specialsFlags || monsterFlags)
-		terraform(galaxy.aStars, galaxy.aPlanets, galaxy.aShips, nNumOfPlanets, nNumOfStars, terraformFlags, specialsFlags, monsterFlags);
+		//All planets terraformation.
+		if (terraformFlags || specialsFlags || monsterFlags)
+			terraform(ptrGalaxy->aStars, ptrGalaxy->aPlanets, ptrGalaxy->aShips, nNumOfPlanets, nNumOfStars, terraformFlags, specialsFlags, monsterFlags);
 
-	//Homeworld modification.
-	if (hwFlags) {
+		//Homeworld modification.
+		if (hwFlags) {
 
-		modifyHW(&galaxy, hwFlags);
-	}
+			modifyHW(ptrGalaxy, hwFlags);
+		}
 
-	//Map generation.
-	if (balanceFlags) {
+		//Map generation.
+		if (balanceFlags) {
 
-		balanceGalaxy(&galaxy, balanceFlags, rings);
+			balanceGalaxy(ptrGalaxy, balanceFlags, rings);
+		}
+	} else if (nFiles > 1) {
+
+		mergeGalaxies (galaxies, nFiles);
 	}
 
 	//Writing Planets information.
 	fseek(fp, PLANET_OFFSET, SEEK_SET);
 
-	fwrite(&galaxy.aPlanets, sizeof galaxy.aPlanets, 1, fp);
+	fwrite(&ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, 1, fp);
 
 	//Writing Star Systems information.
 	fseek(fp, STAR_OFFSET, SEEK_SET);
 
-	fwrite(&galaxy.aStars, sizeof galaxy.aStars, 1, fp);
+	fwrite(&ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, 1, fp);
 
 	//Writing Star Systems ammount.
 	fseek(fp, NUM_OF_STARS_OFFSET, SEEK_SET);

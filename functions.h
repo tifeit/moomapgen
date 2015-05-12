@@ -23,4 +23,7 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags);
 //BalanceGalaxy.
 void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings);
 
+//Merge provided galaxies
+void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles);
+
 #endif /*FUNCTIONS_H_*/

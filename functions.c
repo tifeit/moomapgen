@@ -37,7 +37,18 @@ void printSystem(struct star* starSystem, struct planet *aPlanets) {
 			printf("nOrbit: %.2X\n", ptrPlanet->nOrbit);
 			printf("nPlanetType: %.2X\n", ptrPlanet->nPlanetType);
 			printf("nPlanetSize: %.2X\n", ptrPlanet->nPlanetSize);
-			printf("nPlanetGravity: %.2X\n", ptrPlanet->nPlanetGravity);
+			switch (ptrPlanet->nPlanetGravity) {
+
+			case 0: //LowG
+				printf("nPlanetGravity: %.2X\n", 1);
+				break;
+			case 1: //NormalG
+				printf("nPlanetGravity: %.2X\n", 0);
+				break;
+			case 2: //HeavyG
+				printf("nPlanetGravity: %.2X\n", 2);
+				break;
+			}
 			printf("nEnvClass: %.2X\n", ptrPlanet->nEnvClass);
 			printf("nDrawingID: %.2X\n", ptrPlanet->nDrawingID);
 			printf("nMineralClass: %.2X\n", ptrPlanet->nMineralClass);
@@ -91,7 +102,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 			aPlanets[i].nEnvClass = 1;
 
 		if ((flags & FLG_NOUPOOR) && aPlanets[i].nMineralClass == 0)
-			aPlanets[i].nMineralClass = 1;
+			aPlanets[i].nMineralClass = 2;
 
 		if ((flags & FLG_NOLG) && aPlanets[i].nPlanetGravity == 0) {
 			if (aPlanets[i].nColonyID == 0xffff)
@@ -107,8 +118,11 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 			if (flags & FLG_NOSMALL)
 				aPlanets[i].nPlanetSize = 2;
 
-			else
-				aPlanets[i].nPlanetSize = 1;
+			else {
+
+				srand(time(NULL));
+				aPlanets[i].nPlanetSize = rand() % 4 + 1;
+			}
 		}
 
 		if ((flags & FLG_NOSMALL) && aPlanets[i].nPlanetSize == 1)
@@ -479,15 +493,16 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 					rangeFromHW = 1;
 				}
 
-				else if (parsec >6 && parsec <= 13) rangeFromHW = 2;
-				else if (parsec > 13 && parsec <= 15) rangeFromHW = 3;
+				else if (parsec > 6 && parsec <= 10) rangeFromHW = 2;
+				else if (parsec > 11 && parsec <= 14) rangeFromHW = 3;
+				else if (parsec == 15) rangeFromHW = 4;
 
 				for (l = 0; l != 8; l++) {
 
 					if (i == l) continue;
 
-				if (galaxy->aPlayers[l].home_planet_id == 0)
-					continue;
+					if (galaxy->aPlayers[l].home_planet_id == 0)
+						continue;
 
 					sum = (ptrHW[l]->nXpos - ptrStar->nXpos)*(ptrHW[l]->nXpos - ptrStar->nXpos) +
 						(ptrHW[l]->nYpos - ptrStar->nYpos)*(ptrHW[l]->nYpos - ptrStar->nYpos);
@@ -564,3 +579,71 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 	fclose(fpCsv);
 	return;
 }
+
+void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles) {
+
+	//We start from the first player, to reorder first player's colonies/ships etc. so that his ones go first in array
+	unsigned char i = 0; //Player
+	unsigned int j = 0; //Iterator for current player's galaxy
+	unsigned int c = 0; //Iterator for first player's colonies
+	unsigned int l = 0; //Iterator for first player's leaders
+	unsigned int s = 0; //Iterator for first player's ships
+	//Getting data
+	do {
+
+		printf("Merging player: %s\n", galaxies[i].aPlayers[i].name);
+
+		/*What to merge:
+		 * galaxy->current_colony_count
+		 * aPlayers
+		 * aColonies + respective planets
+		 * aShips
+		 * aLeaders
+		*/
+
+		//The simplest one
+		galaxies[0].aPlayers[i] = galaxies[i].aPlayers[i];
+
+		//Go through all colonies array
+		for (j = 0; j != MAX_COLONIES; j++) {
+
+			//If we find colony, that  belong to current player, we should copy it to first player's galaxy
+			if (galaxies[i].aColonies[j].owner == i) {
+
+				//Replace first available colony
+				galaxies[0].aColonies[c++] = galaxies[i].aColonies[j];
+				//Copy this colony planet
+				galaxies[0].aPlanets[galaxies[i].aColonies[j].planet] = galaxies[i].aPlanets[galaxies[i].aColonies[j].planet];
+			}
+		}
+
+		//Go through all ships array
+		for (j = 0; j != MAX_SHIPS; j++) {
+
+			//If we find colony, that  belong to current player, we should copy it to first player's galaxy
+			if (galaxies[i].aShips[j].owner == i) {
+
+				//Replace first available ship
+				galaxies[0].aShips[s++] = galaxies[i].aShips[j];
+			}
+		}
+
+		//Go through all leaders array
+		for (j = 0; j != MAX_LEADERS; j++) {
+
+			//If we find colony, that  belong to current player, we should copy it to first player's galaxy
+			if (galaxies[i].aLeaders[j].player_index == i) {
+
+				//Replace first available ship
+				galaxies[0].aLeaders[l++] = galaxies[i].aLeaders[j];
+			}
+		}
+
+		galaxies[0].current_colony_count = c;
+
+	} while (++i != nFiles);
+
+	galaxies[0].game_type = 2;
+}
+
+
