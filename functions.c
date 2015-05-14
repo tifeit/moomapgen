@@ -101,32 +101,41 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 		if ((flags & FLG_NOTOXIC) && aPlanets[i].nEnvClass == 0)
 			aPlanets[i].nEnvClass = 1;
 
-		if ((flags & FLG_NOUPOOR) && aPlanets[i].nMineralClass == 0)
-			aPlanets[i].nMineralClass = 2;
-
-		if ((flags & FLG_NOLG) && aPlanets[i].nPlanetGravity == 0) {
-			if (aPlanets[i].nColonyID == 0xffff)
-				aPlanets[i].nPlanetGravity = 1;
+		if ((flags & FLG_NOUPOOR) && aPlanets[i].nMineralClass == ULTRA_POOR) {
+			
+			if (aPlanets[i].nPlanetSize < LARGE) {
+				
+				aPlanets[i].nMineralClass = ABUNDANT;
+				
+			} else if (aPlanets[i].nPlanetSize == HUGEPLANET) {
+				
+				aPlanets[i].nMineralClass = POOR;
+			}
 		}
 
-		if ((flags & FLG_NOHG) && aPlanets[i].nPlanetGravity == 2)
+		if ((flags & FLG_NOLG) && aPlanets[i].nPlanetGravity == LOW_G) {
 			if (aPlanets[i].nColonyID == 0xffff)
-			aPlanets[i].nPlanetGravity = 1;
+				aPlanets[i].nPlanetGravity = NORMAL_G;
+		}
 
-		if ((flags & FLG_NOTINY) && aPlanets[i].nPlanetSize == 0) {
+		if ((flags & FLG_NOHG) && aPlanets[i].nPlanetGravity == HEAVY_G)
+			if (aPlanets[i].nColonyID == 0xffff)
+				aPlanets[i].nPlanetGravity = NORMAL_G;
+
+		if ((flags & FLG_NOTINY) && aPlanets[i].nPlanetSize == TINY) {
 
 			if (flags & FLG_NOSMALL)
-				aPlanets[i].nPlanetSize = 2;
+				aPlanets[i].nPlanetSize = MEDIUM;
 
 			else {
 
 				srand(time(NULL));
-				aPlanets[i].nPlanetSize = rand() % 4 + 1;
+				aPlanets[i].nPlanetSize = rand() % 3 + SMALL;
 			}
 		}
 
-		if ((flags & FLG_NOSMALL) && aPlanets[i].nPlanetSize == 1)
-			aPlanets[i].nPlanetSize = 2;
+		if ((flags & FLG_NOSMALL) && aPlanets[i].nPlanetSize == SMALL)
+			aPlanets[i].nPlanetSize = MEDIUM;
 
 		if (specialsFlags) {
 

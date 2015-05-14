@@ -112,9 +112,9 @@ typedef signed int sint;
 
 //Size
 #define TINY	0
-#define	 SMALL	1
-#define	 MEDIUM	2
-#define	 LARGE	3
+#define	SMALL	1
+#define	MEDIUM	2
+#define	LARGE	3
 #define HUGEPLANET	4
 
 STRUCT_TYPE star {

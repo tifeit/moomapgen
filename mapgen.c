@@ -45,10 +45,10 @@ int main(int argc, char *argv[]) {
 
 					"  -t Terraform\n"
 					"      toxic - Toxic planets become radiated\n"
-					"      upoor - Ultra Poor planets become abundant\n"
+					"      upoor - Huge Ultra Poor planets becomes poor. Other Ultra Poor planets become Abundant\n"
 					"      lowg - Low Gravity planets become Normal Gravity\n"
 					"      heavyg - Heavy Gravity planets become Normal Gravity\n"
-					"      tiny - Tiny planets become small\n"
+					"      tiny - Tiny planets become radomly from Small to Large. With except for -tsmall flag, if it is used, they become Medium.\n"
 					"      small - Small planets become medium\n"
 					"      flathw - Flattens unoccupied planets in HomeWorlds:\n"
 					"        They become Abundant, Toxics and Rads become Barren,\n"
