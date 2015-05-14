@@ -217,7 +217,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 
 void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
-	unsigned char i, j, nDonePlanets = 0, nHwGravity;
+	unsigned char i, j, nDonePlanets = 0, nHwGravity = 0;
 	struct planet *ptrPlanet;
 	struct star *ptrSystem;
 
@@ -370,9 +370,12 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 
 void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) {
 
-	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceGravity, numOfPlanets, rangeFromHW, z, monster, government;
+	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceCreativity, raceGravity, numOfPlanets, rangeFromHW = 0, z, monster, government;
+	int raceFood = 0;
+	int gravitySubstitution[3] = {1, 0, 2};
 	struct star *ptrHW[8], *ptrStar;
 	struct planet *ptrPlanet[5];
+
 
 	int aPlanetWeight[10][5];
 
@@ -385,7 +388,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 	fpCsv = fopen("autosave.csv", "w");
 
 	if (fpCsv != NULL) {
-		fprintf(fpCsv,"player number; government; capacity modifier; race special; race gravity; star name; number of planets; range from hw; monster; special;"
+		fprintf(fpCsv,"player number; government; capacity modifier; race special; race creativity; race food; race gravity; star name; number of planets; range from hw; monster; special;"
 		"planet 1 size; planet 1 climate; planet 1 richness; planet 1 gravity;planet 1 special;"
 		"planet 2 size; planet 2 climate; planet 2 richness; planet 2 gravity;planet 2 special;"
 		"planet 3 size; planet 3 climate; planet 3 richness; planet 3 gravity;planet 3 special;"
@@ -475,14 +478,26 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				if (galaxy->aPlayers[i].cybernetic)
 					raceSpecial = 2;
 				government = galaxy->aPlayers[i].current_government;
-        
+				
+				raceCreativity = 0;
+				if (galaxy->aPlayers[i].creative)
+					raceCreativity = 1;
+				
+				if (galaxy->aPlayers[i].food_bonus == -1)
+					raceFood = -0.5;
+				else if (galaxy->aPlayers[i].food_bonus == 0)
+					raceFood = 0;
+				else if (galaxy->aPlayers[i].food_bonus == 2)
+					raceFood = 1;
+				else if (galaxy->aPlayers[i].food_bonus == 4)
+					raceFood = 2;
+				
 				raceGravity = 0;
-
 				if (galaxy->aPlayers[i].low_g_world)
-					raceGravity = -1;
+					raceGravity = 1;
 
 				if (galaxy->aPlayers[i].heavy_g_world)
-					raceGravity = 1;
+					raceGravity = 2;
 
 				if ((balanceFlags & FLG_RING) && rings >= parsec )
 					ptrStar->nVisited |= (char)pow(2,i);
@@ -494,7 +509,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				}
 
 				else if (parsec > 6 && parsec <= 10) rangeFromHW = 2;
-				else if (parsec > 11 && parsec <= 14) rangeFromHW = 3;
+				else if (parsec >= 11 && parsec <= 14) rangeFromHW = 3;
 				else if (parsec == 15) rangeFromHW = 4;
 
 				for (l = 0; l != 8; l++) {
@@ -513,7 +528,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 
 					if (parsec <= 20) {
 
-						rangeFromHW = 4;
+						rangeFromHW = 5;
 					}
 
 				}
@@ -527,11 +542,13 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 					}
 				}
 
-				fprintf(fpCsv,"%d;%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
+				fprintf(fpCsv,"%d;%d;%d;%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
 						i, //player number
 						government, //race government
 						capModifier, //capacify modifier
 						raceSpecial, //race special
+						raceCreativity, //race creativity
+						raceFood, //race food
 						raceGravity, //race gravity
 						ptrStar->sName, //star name
 						numOfPlanets, //number of planets
@@ -541,31 +558,31 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[0] != NULL ? ptrPlanet[0]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[0] != NULL ? gravitySubstitution[ptrPlanet[0]->nPlanetGravity] : 0, //planet 1 gravity
 						ptrPlanet[0] != NULL ? ptrPlanet[0]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[1] != NULL ? gravitySubstitution[ptrPlanet[1]->nPlanetGravity] : 0, //planet 1 gravity
 						ptrPlanet[1] != NULL ? ptrPlanet[1]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[2] != NULL ? gravitySubstitution[ptrPlanet[2]->nPlanetGravity] : 0, //planet 1 gravity
 						ptrPlanet[2] != NULL ? ptrPlanet[2]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[3] != NULL ? gravitySubstitution[ptrPlanet[3]->nPlanetGravity] : 0, //planet 1 gravity
 						ptrPlanet[3] != NULL ? ptrPlanet[3]->nPlanetSpecial :0, //planet special
 
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetSize : 0, //planet 1 climate
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nEnvClass : 0, //planet 1 climate
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nMineralClass : 0, //planet 1 richness
-						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetGravity : 0, //planet 1 gravity
+						ptrPlanet[4] != NULL ? gravitySubstitution[ptrPlanet[4]->nPlanetGravity] : 0, //planet 1 gravity
 						ptrPlanet[4] != NULL ? ptrPlanet[4]->nPlanetSpecial :0 //planet special
 				);
 
@@ -588,6 +605,7 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles) {
 	unsigned int c = 0; //Iterator for first player's colonies
 	unsigned int l = 0; //Iterator for first player's leaders
 	unsigned int s = 0; //Iterator for first player's ships
+	
 	//Getting data
 	do {
 
@@ -607,7 +625,7 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles) {
 		//Go through all colonies array
 		for (j = 0; j != MAX_COLONIES; j++) {
 
-			//If we find colony, that  belong to current player, we should copy it to first player's galaxy
+			//If we find colony, that belongs to current player, we should copy it to first player's galaxy
 			if (galaxies[i].aColonies[j].owner == i) {
 
 				//Replace first available colony

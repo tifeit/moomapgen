@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>72F34260-4F70-4F29-B8EC-F3768D1827B6</string>
+	<key>IDESourceControlProjectName</key>
+	<string>project</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>612E7550E44E56F387A3BA9DBBAB88D675851F66</key>
+		<string>github.com:tifeit/moomapgen.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>moomapgen.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>612E7550E44E56F387A3BA9DBBAB88D675851F66</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:tifeit/moomapgen.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>612E7550E44E56F387A3BA9DBBAB88D675851F66</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>612E7550E44E56F387A3BA9DBBAB88D675851F66</string>
+			<key>IDESourceControlWCCName</key>
+			<string>moomapgen</string>
+		</dict>
+	</array>
+</dict>
+</plist>

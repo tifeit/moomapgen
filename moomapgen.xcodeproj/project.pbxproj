@@ -7,24 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BF8A25341B02256800CAEDF7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = BF8A25331B02256800CAEDF7 /* main.cpp */; };
+		BF4836E71B0228380030C2EF /* functions.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4836E01B0228380030C2EF /* functions.c */; };
+		BF4836E81B0228380030C2EF /* mapgen.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4836E31B0228380030C2EF /* mapgen.c */; };
+		BF4836E91B02470C0030C2EF /* moomapgen in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF8A25301B02256800CAEDF7 /* moomapgen */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		BF8A252E1B02256800CAEDF7 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
+			buildActionMask = 12;
+			dstPath = /Applications/IMOO2;
 			dstSubfolderSpec = 0;
 			files = (
+				BF4836E91B02470C0030C2EF /* moomapgen in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		BF4836E01B0228380030C2EF /* functions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = functions.c; sourceTree = "<group>"; };
+		BF4836E11B0228380030C2EF /* functions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = functions.h; sourceTree = "<group>"; };
+		BF4836E31B0228380030C2EF /* mapgen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mapgen.c; sourceTree = "<group>"; };
+		BF4836E51B0228380030C2EF /* mapgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapgen.h; sourceTree = "<group>"; };
+		BF4836E61B0228380030C2EF /* struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = struct.h; sourceTree = "<group>"; };
 		BF8A25301B02256800CAEDF7 /* moomapgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = moomapgen; sourceTree = BUILT_PRODUCTS_DIR; };
-		BF8A25331B02256800CAEDF7 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -41,7 +48,11 @@
 		BF8A25271B02256800CAEDF7 = {
 			isa = PBXGroup;
 			children = (
-				BF8A25321B02256800CAEDF7 /* moomapgen */,
+				BF4836E01B0228380030C2EF /* functions.c */,
+				BF4836E11B0228380030C2EF /* functions.h */,
+				BF4836E31B0228380030C2EF /* mapgen.c */,
+				BF4836E51B0228380030C2EF /* mapgen.h */,
+				BF4836E61B0228380030C2EF /* struct.h */,
 				BF8A25311B02256800CAEDF7 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -52,14 +63,6 @@
 				BF8A25301B02256800CAEDF7 /* moomapgen */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		BF8A25321B02256800CAEDF7 /* moomapgen */ = {
-			isa = PBXGroup;
-			children = (
-				BF8A25331B02256800CAEDF7 /* main.cpp */,
-			);
-			path = moomapgen;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,7 +121,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF8A25341B02256800CAEDF7 /* main.cpp in Sources */,
+				BF4836E71B0228380030C2EF /* functions.c in Sources */,
+				BF4836E81B0228380030C2EF /* mapgen.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +241,7 @@
 				BF8A25391B02256800CAEDF7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
