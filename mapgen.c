@@ -23,7 +23,7 @@ int main(int argc, char *argv[]) {
 	unsigned char byte;
 
 	char sSaveFile[12] = "SAVE10.GAM";
-	char sBakFile[12] = "MAPGEN.GAM";
+	char sBakFile[13] = "MAPGEN.GAM";
 	char aMergeFile[4][12] = {"SAVE10.GAM", "PLAYER2.GAM", "PLAYER3.GAM", "PLAYER4.GAM"};
 
 	time_t t;

@@ -451,10 +451,19 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 			if (ptrStar->sName[0] == 0 /*|| ptrStar == ptrHW*/)
 				continue;
 			
-			/*printf("%s: %d %d\n", ptrStar->sName, ptrStar->nPicture,ptrStar->nStarType);
+			//printf("%s: %d %d\n", ptrStar->sName, ptrStar->nPicture, ptrStar->nStarType);
 			//sprintf(ptrStar->sName, "ABC");
-			ptrStar->nPicture = 2;
-			ptrStar->nStarType = 5;*/
+			
+			if (ptrStar->nSpecial == 8) {
+				
+				ptrStar->nPicture = 2;
+				ptrStar->nStarType = 5;
+				
+			} else {
+				if (ptrStar->nPicture == 2 && ptrStar->nStarType == 5)
+					ptrStar->nPicture = 1;
+					ptrStar->nStarType = 3;
+			}
 
 			sum = (ptrHW[i]->nXpos - ptrStar->nXpos)*(ptrHW[i]->nXpos - ptrStar->nXpos) +
 				(ptrHW[i]->nYpos - ptrStar->nYpos)*(ptrHW[i]->nYpos - ptrStar->nYpos);
