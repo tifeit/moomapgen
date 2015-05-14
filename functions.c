@@ -450,6 +450,11 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 			ptrStar = &galaxy->aStars[j];
 			if (ptrStar->sName[0] == 0 /*|| ptrStar == ptrHW*/)
 				continue;
+			
+			/*printf("%s: %d %d\n", ptrStar->sName, ptrStar->nPicture,ptrStar->nStarType);
+			//sprintf(ptrStar->sName, "ABC");
+			ptrStar->nPicture = 2;
+			ptrStar->nStarType = 5;*/
 
 			sum = (ptrHW[i]->nXpos - ptrStar->nXpos)*(ptrHW[i]->nXpos - ptrStar->nXpos) +
 				(ptrHW[i]->nYpos - ptrStar->nYpos)*(ptrHW[i]->nYpos - ptrStar->nYpos);
@@ -492,14 +497,16 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				if (galaxy->aPlayers[i].creative)
 					raceCreativity = 1;
 				
-				if (galaxy->aPlayers[i].food_bonus == -1)
+				raceFood = galaxy->aPlayers[i].food_bonus;
+				/*Delete Me
+				 if (galaxy->aPlayers[i].food_bonus == -1)
 					raceFood = -0.5;
 				else if (galaxy->aPlayers[i].food_bonus == 0)
 					raceFood = 0;
 				else if (galaxy->aPlayers[i].food_bonus == 2)
 					raceFood = 1;
 				else if (galaxy->aPlayers[i].food_bonus == 4)
-					raceFood = 2;
+					raceFood = 2;*/
 				
 				raceGravity = 0;
 				if (galaxy->aPlayers[i].low_g_world)
