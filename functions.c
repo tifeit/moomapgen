@@ -96,6 +96,29 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 	unsigned int i, j;
 	struct planet *ptrPlanet;
 	struct star *ptrSystem;
+	
+	if (specialsFlags & FLG_HERO) {
+		for (i = 0; i !=nStars;i++) {
+			
+			ptrSystem = &aStarSystems[i];
+			//printf("%s %d %d\n", ptrSystem->sName, ptrSystem->nPicture, ptrSystem->nStarType);
+			if (ptrSystem->nSpecial == MAROONED_HERO) {
+				
+				/*if (strncmp(ptrSystem->sName, "*", 1) != 0) {
+					char sStarName[20];
+					sprintf(sStarName, "*%s", ptrSystem->sName);
+					strcpy(ptrSystem->sName, sStarName);
+				}*/
+				ptrSystem->nStarType = 5;
+				
+				if (verbose) printf("%s | Hero\n", ptrSystem->sName);
+				
+			} else {
+				if (ptrSystem->nStarType == 5)
+					ptrSystem->nStarType = 4;
+			}
+		}
+	}
 
 	for (i = 0; i!= nPlanets; i++) {
 		
@@ -163,17 +186,6 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 				aStarSystems[aPlanets[i].nStarID].bArtifactsGaveApp = 1;
 
 				if (verbose) printf("%s | Arti\n", aStarSystems[aPlanets[i].nStarID].sName);
-			}
-			
-			if ((specialsFlags & FLG_HERO) && ptrSystem->nSpecial == MAROONED_HERO) {
-				
-				if (strncmp(ptrSystem->sName, "*", 1) != 0) {
-					char sStarName[20];
-					sprintf(sStarName, "*%s", ptrSystem->sName);
-					strcpy(ptrSystem->sName, sStarName);
-				}
-				
-				if (verbose) printf("%s | Hero\n", ptrSystem->sName);
 			}
 		}
 	}
@@ -399,7 +411,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 	fpCsv = fopen("autosave.csv", "w");
 
 	if (fpCsv != NULL) {
-		fprintf(fpCsv,"player number; government; capacity modifier; race special; race creativity; race food; race gravity; star name; number of planets; range from hw; monster; special;HeroID;"
+		fprintf(fpCsv,"player number; government; capacity modifier; race special; is creative; race food; race gravity; star name; number of planets; range from hw; monster; special;HeroID;"
 		"planet 1 size; planet 1 climate; planet 1 richness; planet 1 gravity;planet 1 special;"
 		"planet 2 size; planet 2 climate; planet 2 richness; planet 2 gravity;planet 2 special;"
 		"planet 3 size; planet 3 climate; planet 3 richness; planet 3 gravity;planet 3 special;"

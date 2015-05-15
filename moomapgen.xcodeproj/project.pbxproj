@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		BF4836E71B0228380030C2EF /* functions.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4836E01B0228380030C2EF /* functions.c */; };
 		BF4836E81B0228380030C2EF /* mapgen.c in Sources */ = {isa = PBXBuildFile; fileRef = BF4836E31B0228380030C2EF /* mapgen.c */; };
-		BF4836E91B02470C0030C2EF /* moomapgen in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF8A25301B02256800CAEDF7 /* moomapgen */; };
+		BF4836E91B02470C0030C2EF /* mapgen in CopyFiles */ = {isa = PBXBuildFile; fileRef = BF8A25301B02256800CAEDF7 /* mapgen */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -19,7 +19,7 @@
 			dstPath = /Applications/IMOO2;
 			dstSubfolderSpec = 0;
 			files = (
-				BF4836E91B02470C0030C2EF /* moomapgen in CopyFiles */,
+				BF4836E91B02470C0030C2EF /* mapgen in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -31,7 +31,7 @@
 		BF4836E31B0228380030C2EF /* mapgen.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mapgen.c; sourceTree = "<group>"; };
 		BF4836E51B0228380030C2EF /* mapgen.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapgen.h; sourceTree = "<group>"; };
 		BF4836E61B0228380030C2EF /* struct.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = struct.h; sourceTree = "<group>"; };
-		BF8A25301B02256800CAEDF7 /* moomapgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = moomapgen; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF8A25301B02256800CAEDF7 /* mapgen */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mapgen; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,7 +60,7 @@
 		BF8A25311B02256800CAEDF7 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				BF8A25301B02256800CAEDF7 /* moomapgen */,
+				BF8A25301B02256800CAEDF7 /* mapgen */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -82,7 +82,7 @@
 			);
 			name = moomapgen;
 			productName = moomapgen;
-			productReference = BF8A25301B02256800CAEDF7 /* moomapgen */;
+			productReference = BF8A25301B02256800CAEDF7 /* mapgen */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -210,7 +210,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mapgen;
 			};
 			name = Debug;
 		};
@@ -218,7 +218,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = mapgen;
 			};
 			name = Release;
 		};

@@ -215,9 +215,9 @@ int main(int argc, char *argv[]) {
 		}
 	}
 
-	printf("Visit http://code.google.com/p/moomapgen/ for adding feature requests.\n");
+	printf("Visit https://github.com/tifeit/moomapgen for adding feature requests.\n");
 
-	fp = fopen(sSaveFile, "rb+");
+	fp = fopen(sSaveFile, "rb");
 
 	if (fp == NULL) {
 
@@ -227,7 +227,7 @@ int main(int argc, char *argv[]) {
 	}
 
 	//Backup file.
-	fp2 = fopen(sBakFile, "wb+");
+	fp2 = fopen(sBakFile, "wb");
 
 	if (fp2 == NULL) {
 
@@ -243,13 +243,13 @@ int main(int argc, char *argv[]) {
 			fwrite(&byte, 1, 1, fp2);
 	}
 
-	fclose(fp);
 	fclose(fp2);
+	fclose(fp);
 
 	i = 0;
 	do {
 
-		fp = fopen(aMergeFile[i], "rb+");
+		fp = fopen(aMergeFile[i], "rb");
 		if (fp == NULL) {
 
 			fprintf(stderr, "Can not open %s.\nPress any key to continue.", aMergeFile[i]);
@@ -280,8 +280,6 @@ int main(int argc, char *argv[]) {
 
 	} while (++i != nFiles);
 
-	fp = fopen(sSaveFile, "rb+");
-
 	if (nFiles == 1) {
 
 		//All planets terraformation.
@@ -303,6 +301,8 @@ int main(int argc, char *argv[]) {
 
 		mergeGalaxies (galaxies, nFiles);
 	}
+	
+	fp = fopen(sSaveFile, "rb+");
 
 	//Writing Planets information.
 	fseek(fp, PLANET_OFFSET, SEEK_SET);
