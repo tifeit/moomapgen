@@ -78,11 +78,11 @@ typedef signed int sint;
 #define FLG_SPLINT		1
 #define FLG_ARTI		2
 #define FLG_NONATIVES	4
+#define FLG_HERO		8
 
 //Monster flags
 #define FLG_GRAV		1
 #define FLG_TERRAFORM	2
-#define FLG_LEADERS		4
 
 //Mineral richness
 #define ULTRA_POOR            0
@@ -116,6 +116,16 @@ typedef signed int sint;
 #define	MEDIUM	2
 #define	LARGE	3
 #define HUGEPLANET	4
+
+//Leader status
+#define OFFICER_DEAD            (-2)
+#define OFFICER_NOT_IN_USE      (-1)  //an unassigned mercenary
+#define OFFICER_IN_POOL          0
+#define OFFICER_ASSIGNED         1
+#define OFFICER_UNASSIGNED       2      //in limbo between pool and ship
+#define OFFICER_BEING_CLONED     3      //not used
+#define OFFICER_WAITING          4      //in queue, not in pool or assigned...no maintenance
+#define OFFICER_MAROONED         5      //assigned to a planet , or, in the case of SHIP heroes, just not assigned.
 
 STRUCT_TYPE star {
 

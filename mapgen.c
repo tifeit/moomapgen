@@ -78,7 +78,8 @@ int main(int argc, char *argv[]) {
 					"\n  -s Specials Change\n"
 					"      splint - Splinter replaced by gem deposits.\n"
 					"      nonatives - Natives are replaced by gold deposits.\n"
-					"      arti - Arti planets still exist, but don't give techs anymore.\n\n"
+					"      arti - Arti planets still exist, but don't give techs anymore.\n"
+					"      hero - Systems with Marooned heroes get an asterisk before name.\n\n"
 
 					"  -m Monsters Change\n"
 					"      grav - Guarded planets become normal gravity, even ultrarich now.\n"
@@ -151,8 +152,13 @@ int main(int argc, char *argv[]) {
 
 				else if (strstr(optarg, "arti"))
 							specialsFlags |= FLG_ARTI;
+				
 				else if (strstr(optarg, "nonatives"))
 							specialsFlags |= FLG_NONATIVES;
+				
+				else if (strstr(optarg,"hero"))
+							specialsFlags |= FLG_HERO;
+				
 				else {
 						fprintf(stderr, "Unknown Special parameter %s.\nPress any key to continue.\n", optarg);
 						getc(stdin);
@@ -163,10 +169,6 @@ int main(int argc, char *argv[]) {
 			case 'm':
 				if		(strstr(optarg, "grav"))
 							monsterFlags |= FLG_GRAV;
-
-				//Leaders must be pregenerated to be shown on planets
-				/*if		(strstr(optarg, "leaders"))
-							monsterFlags |= FLG_LEADERS;*/
 
 				else if (strstr(optarg, "terraform"))
 							monsterFlags |= FLG_TERRAFORM;
