@@ -4,6 +4,7 @@
 struct star *ptrSystem;
 struct galaxy galaxies[4];
 struct galaxy *ptrGalaxy = &galaxies[0];
+struct galaxyHeader galaxyHeader;
 
 unsigned char nNumOfPlayers, nNumOfStars;
 unsigned short nNumOfPlanets;
@@ -17,14 +18,14 @@ int main(int argc, char *argv[]) {
 	unsigned char rings = 0;
 	unsigned char nFiles = 1;
 	unsigned char i = 0;
-	FILE *fp, *fp2;
+	FILE *fp, *fp2, *fp3;
 	unsigned int terraformFlags = 0, hwFlags = 0, specialsFlags = 0, monsterFlags = 0, balanceFlags = 0;
 
 	unsigned char byte;
 
 	char sSaveFile[12] = "SAVE10.GAM";
 	char sBakFile[13] = "MAPGEN.GAM";
-	char aMergeFile[4][12] = {"SAVE10.GAM", "PLAYER2.GAM", "PLAYER3.GAM", "PLAYER4.GAM"};
+	char aMergeFile[4][12] = {"PLAYER1.GAM", "PLAYER2.GAM", "PLAYER3.GAM", "PLAYER4.GAM"};
 
 	time_t t;
 	struct tm *tmp;
@@ -249,7 +250,9 @@ int main(int argc, char *argv[]) {
 	i = 0;
 	do {
 
-		fp = fopen(aMergeFile[i], "rb");
+		if (nFiles == 1) fp = fopen(sSaveFile, "rb");
+		else fp = fopen(aMergeFile[i], "rb");
+		
 		if (fp == NULL) {
 
 			fprintf(stderr, "Can not open %s.\nPress any key to continue.", aMergeFile[i]);
@@ -260,6 +263,12 @@ int main(int argc, char *argv[]) {
 
 		//Try to read all save data, its useless, for sure, cause exact structure size and offsets are not precise.
 		getFileData(ptrGalaxy, sizeof galaxies[0], 0, fp);
+		
+		/*fp3 = fopen(sSaveFile, "rb");
+		getFileData(&galaxyHeader, sizeof(galaxyHeader), 0, fp3);
+		printf("MultiplayerGameType: %d\n", galaxyHeader.multi_player_game_type);
+		printf("Data: %d\n", galaxyHeader.game_type);
+		fclose(fp3);*/
 		getFileData(ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, STAR_OFFSET, fp);
 		getFileData(ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, PLANET_OFFSET, fp);
 		getFileData(ptrGalaxy->aShips, sizeof ptrGalaxy->aShips, SHIP_OFFSET, fp);
@@ -279,6 +288,8 @@ int main(int argc, char *argv[]) {
 		fclose(fp);
 
 	} while (++i != nFiles);
+	
+	ptrGalaxy = &galaxies[0];
 
 	if (nFiles == 1) {
 
@@ -299,10 +310,14 @@ int main(int argc, char *argv[]) {
 		}
 	} else if (nFiles > 1) {
 
-		mergeGalaxies (galaxies, nFiles);
+		mergeGalaxies (galaxies, nFiles, &galaxyHeader);
 	}
 	
 	fp = fopen(sSaveFile, "rb+");
+	
+	//Writing galaxy information.
+	/*fseek(fp, 0, SEEK_SET);
+	fwrite(&galaxyHeader, sizeof(galaxyHeader),1, fp);*/
 
 	//Writing Planets information.
 	fseek(fp, PLANET_OFFSET, SEEK_SET);

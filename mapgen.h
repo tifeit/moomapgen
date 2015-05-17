@@ -11,6 +11,7 @@
 #include <math.h>
 #include "struct.h"
 #include "functions.h"
+#include <stdbool.h>
 
 #ifndef NULL
 #define NULL   ((void *) 0)

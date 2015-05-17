@@ -129,7 +129,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 
 		if ((flags & FLG_NOUPOOR) && aPlanets[i].nMineralClass == ULTRA_POOR) {
 			
-			if (aPlanets[i].nPlanetSize < LARGE) {
+			if (aPlanets[i].nPlanetSize < HUGEPLANET) {
 				
 				aPlanets[i].nMineralClass = ABUNDANT;
 				
@@ -631,7 +631,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 	return;
 }
 
-void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles) {
+void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyHeader *galaxyHeader) {
 
 	//We start from the first player, to reorder first player's colonies/ships etc. so that his ones go first in array
 	unsigned char i = 0; //Player
@@ -644,7 +644,12 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles) {
 	do {
 
 		printf("Merging player: %s\n", galaxies[i].aPlayers[i].name);
-
+		galaxies[i].aPlayers[i].network_player_id = i;
+		galaxyHeader->game_type = 35001;
+		galaxyHeader->multi_player_game_type = 10;
+		galaxies[0].aPlayers[i].objectives = 2;
+		sprintf(galaxies[0].aPlayers[0].name, "NAME1");
+		
 		/*What to merge:
 		 * galaxy->current_colony_count
 		 * aPlayers
@@ -694,8 +699,6 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles) {
 		galaxies[0].current_colony_count = c;
 
 	} while (++i != nFiles);
-
-	galaxies[0].game_type = 2;
 }
 
 
