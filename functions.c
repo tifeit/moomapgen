@@ -525,7 +525,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 					raceGravity = 2;
 
 				if ((balanceFlags & FLG_RING) && rings >= parsec ) {
-					//ptrStar->nVisited |= (char)pow(2,i);
+					ptrStar->nVisited |= (char)pow(2,i);
 				}
 
 				if (parsec == 0) rangeFromHW = 0;
