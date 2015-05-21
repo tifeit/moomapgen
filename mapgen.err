@@ -1,1 +1,1 @@
-\mapgen.c(21): Warning! W202: Symbol 'fp3' has been defined, but not referenced
+struct.h(912): Warning! W138: No newline at end of file

@@ -15,10 +15,10 @@ int main(int argc, char *argv[]) {
 
 	unsigned int opt;
 
-	unsigned char rings = 0;
+	unsigned int rings = 0;
 	unsigned char nFiles = 1;
 	unsigned char i = 0;
-	FILE *fp, *fp2, *fp3;
+	FILE *fp, *fp2;
 	unsigned int terraformFlags = 0, hwFlags = 0, specialsFlags = 0, monsterFlags = 0, balanceFlags = 0;
 
 	unsigned char byte;
@@ -198,7 +198,7 @@ int main(int argc, char *argv[]) {
 			case 'b':
 					balanceFlags |= FLG_CALC;
 
-					if (strstr(optarg, "showring") && sscanf(optarg, "showring%c",&rings)) {
+					if (strstr(optarg, "showring") && sscanf(optarg, "showring%d",&rings)) {
 						balanceFlags |= FLG_RING;
 					}
 
@@ -263,12 +263,7 @@ int main(int argc, char *argv[]) {
 
 		//Try to read all save data, its useless, for sure, cause exact structure size and offsets are not precise.
 		getFileData(ptrGalaxy, sizeof galaxies[0], 0, fp);
-		
-		/*fp3 = fopen(sSaveFile, "rb");
-		getFileData(&galaxyHeader, sizeof(galaxyHeader), 0, fp3);
-		printf("MultiplayerGameType: %d\n", galaxyHeader.multi_player_game_type);
-		printf("Data: %d\n", galaxyHeader.game_type);
-		fclose(fp3);*/
+		if (i == 0) getFileData(&galaxyHeader, sizeof(galaxyHeader), 0, fp);
 		getFileData(ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, STAR_OFFSET, fp);
 		getFileData(ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, PLANET_OFFSET, fp);
 		getFileData(ptrGalaxy->aShips, sizeof ptrGalaxy->aShips, SHIP_OFFSET, fp);
@@ -316,23 +311,26 @@ int main(int argc, char *argv[]) {
 	fp = fopen(sSaveFile, "rb+");
 	
 	//Writing galaxy information.
-	/*fseek(fp, 0, SEEK_SET);
-	fwrite(&galaxyHeader, sizeof(galaxyHeader),1, fp);*/
+	fseek(fp, 0, SEEK_SET);
+	fwrite(&galaxyHeader, sizeof(galaxyHeader),1, fp);
+	
+	if (nFiles == 1) {
 
-	//Writing Planets information.
-	fseek(fp, PLANET_OFFSET, SEEK_SET);
+		//Writing Planets information.
+		fseek(fp, PLANET_OFFSET, SEEK_SET);
 
-	fwrite(&ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, 1, fp);
+		fwrite(&ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, 1, fp);
 
-	//Writing Star Systems information.
-	fseek(fp, STAR_OFFSET, SEEK_SET);
+		//Writing Star Systems information.
+		fseek(fp, STAR_OFFSET, SEEK_SET);
 
-	fwrite(&ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, 1, fp);
+		fwrite(&ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, 1, fp);
 
-	//Writing Star Systems ammount.
-	fseek(fp, NUM_OF_STARS_OFFSET, SEEK_SET);
+		//Writing Star Systems ammount.
+		fseek(fp, NUM_OF_STARS_OFFSET, SEEK_SET);
 
-	fwrite(&nNumOfStars, sizeof nNumOfStars, 1, fp);
+		fwrite(&nNumOfStars, sizeof nNumOfStars, 1, fp);
+	}
 
 	fclose(fp);
 

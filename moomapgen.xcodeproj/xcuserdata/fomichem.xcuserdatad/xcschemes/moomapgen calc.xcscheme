@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BF8A252F1B02256800CAEDF7"
-               BuildableName = "moomapgen"
+               BuildableName = "mapgen"
                BlueprintName = "moomapgen"
                ReferencedContainer = "container:moomapgen.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF8A252F1B02256800CAEDF7"
-            BuildableName = "moomapgen"
+            BuildableName = "mapgen"
             BlueprintName = "moomapgen"
             ReferencedContainer = "container:moomapgen.xcodeproj">
          </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF8A252F1B02256800CAEDF7"
-            BuildableName = "moomapgen"
+            BuildableName = "mapgen"
             BlueprintName = "moomapgen"
             ReferencedContainer = "container:moomapgen.xcodeproj">
          </BuildableReference>
@@ -78,7 +78,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "BF8A252F1B02256800CAEDF7"
-            BuildableName = "moomapgen"
+            BuildableName = "mapgen"
             BlueprintName = "moomapgen"
             ReferencedContainer = "container:moomapgen.xcodeproj">
          </BuildableReference>

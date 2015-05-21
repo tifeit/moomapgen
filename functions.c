@@ -524,8 +524,9 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 				if (galaxy->aPlayers[i].heavy_g_world)
 					raceGravity = 2;
 
-				if ((balanceFlags & FLG_RING) && rings >= parsec )
-					ptrStar->nVisited |= (char)pow(2,i);
+				if ((balanceFlags & FLG_RING) && rings >= parsec ) {
+					//ptrStar->nVisited |= (char)pow(2,i);
+				}
 
 				if (parsec == 0) rangeFromHW = 0;
 
@@ -631,7 +632,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 	return;
 }
 
-void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyHeader *galaxyHeader) {
+void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyHeader *gH) {
 
 	//We start from the first player, to reorder first player's colonies/ships etc. so that his ones go first in array
 	unsigned char i = 0; //Player
@@ -643,62 +644,79 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 	//Getting data
 	do {
 
-		printf("Merging player: %s\n", galaxies[i].aPlayers[i].name);
-		galaxies[i].aPlayers[i].network_player_id = i;
-		galaxyHeader->game_type = 35001;
-		galaxyHeader->multi_player_game_type = 10;
+		printf("Merging player #%d: %s Objectives: %d\n", i, galaxies[i].aPlayers[i].name, galaxies[i].aPlayers[i].objectives);
+		printf("int     version %d\n"
+			   "char    description[37] %s\n"
+			   "int     galaxy age %d\n"
+			   "int     game type %d\n"
+			   "short int current_colony_count %hd\n"
+			   "short int current_planet_count %hd\n"
+			   "short int current_stars_count %hd\n"
+			   "short int current_players_count %hd\n"
+			   "short int current_ships_count %hd\n",
+			   gH->version,
+			   gH->description,
+			   gH->galaxy_age,
+			   gH->game_type,
+			   gH->current_colony_count,
+			   gH->current_planet_count,
+			   gH->current_stars_count,
+			   gH->current_players_count,
+			   gH->current_ships_count);
+		
+		//printf("struct offset: %lu; real offset: %d\n", offsetof(struct galaxyHeader, aShips), SHIP_OFFSET);
+
+		galaxies[0].game_type = 1;
 		galaxies[0].aPlayers[i].objectives = 2;
-		sprintf(galaxies[0].aPlayers[0].name, "NAME1");
+		sprintf(galaxies[0].aPlayers[i].name,"%s#%d", galaxies[0].aPlayers[i].name, i);
 		
 		/*What to merge:
 		 * galaxy->current_colony_count
-		 * aPlayers
-		 * aColonies + respective planets
-		 * aShips
+		 *
+		 * aColonies
+		 * aPlanets ?inside of colony copy, we copy only settled planets, considering unsetteled planets were not modified
+		 * aStars ?stars should not be modified
 		 * aLeaders
+		 * aPlayers
+		 * aShips
 		*/
-
-		//The simplest one
-		galaxies[0].aPlayers[i] = galaxies[i].aPlayers[i];
 
 		//Go through all colonies array
 		for (j = 0; j != MAX_COLONIES; j++) {
 
 			//If we find colony, that belongs to current player, we should copy it to first player's galaxy
-			if (galaxies[i].aColonies[j].owner == i) {
+			//if (galaxies[i].aColonies[j].owner == i) {
 
-				//Replace first available colony
-				galaxies[0].aColonies[c++] = galaxies[i].aColonies[j];
+				printf("Colony: %d; Planet: %d; Owner: %d\n", j, galaxies[i].aColonies[j].planet ,galaxies[i].aColonies[j].owner);
+				//Copy this colony
+				gH->aColonies[c++] = galaxies[i].aColonies[j];
 				//Copy this colony planet
-				galaxies[0].aPlanets[galaxies[i].aColonies[j].planet] = galaxies[i].aPlanets[galaxies[i].aColonies[j].planet];
-			}
+				//gH->aPlanets[galaxies[i].aColonies[j].planet] = galaxies[i].aPlanets[galaxies[i].aColonies[j].planet];
+			//}
+		}
+		/*
+		//Go through all leaders array
+		for (j = 0; j != MAX_LEADERS; j++) {
+
 		}
 
 		//Go through all ships array
 		for (j = 0; j != MAX_SHIPS; j++) {
 
-			//If we find colony, that  belong to current player, we should copy it to first player's galaxy
+			//If we find ship, that  belong to current player, we should copy it to first player's galaxy
 			if (galaxies[i].aShips[j].owner == i) {
 
 				//Replace first available ship
-				galaxies[0].aShips[s++] = galaxies[i].aShips[j];
+				gH->aShips[s++] = galaxies[i].aShips[j];
 			}
-		}
+		}*/
+		
+		//gH->aPlayers[i] = galaxies[i].aPlayers[i];
 
-		//Go through all leaders array
-		for (j = 0; j != MAX_LEADERS; j++) {
-
-			//If we find colony, that  belong to current player, we should copy it to first player's galaxy
-			if (galaxies[i].aLeaders[j].player_index == i) {
-
-				//Replace first available ship
-				galaxies[0].aLeaders[l++] = galaxies[i].aLeaders[j];
-			}
-		}
-
-		galaxies[0].current_colony_count = c;
-
-	} while (++i != nFiles);
+	} while (0/*++i != nFiles*/);
+	
+	gH->current_colony_count = c;
+	gH->current_ships_count = s;
 }
 
 

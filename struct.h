@@ -302,6 +302,8 @@ STRUCT_TYPE s_colony {
 
    char buildings[MAX_BUILDINGS];
    unsigned short int last_turn_building_destroyed;
+	
+	char filler[89];
 } STRUCT_TYPE_END
 
 STRUCT_TYPE planetInfo {
@@ -789,80 +791,30 @@ STRUCT_TYPE galaxyHeader {
 	
 	int     version;
 	char    description[37]; //- save game description
-	int     game_type;       //- 0:Single Player, 1:Hotseat, 2:Network, 3:Modem
+	int     galaxy_age;
+	char    game_type;       //- 0:Single Player, 1:Hotseat, 2:Network, 3:Modem
 	
-	char  end_of_turn_summary;
-	char  end_of_turn_wait;
-	char  random_events;
-	char  enemy_moves;
-	char  expanding_help;
-	char  auto_select_ships;
-	char  animations_on;
-	char  auto_select_colony;
-	char  show_relocation_lines;
-	char  show_gnn_report;
-	char  auto_delete_tg_housing;
-	char  auto_saves;
-	
-	char  only_show_serious_turn_summary_reports;
-	
-	char  ship_initiative;
-	char  option_14;
-	char  option_15;
-	char  option_16;
-	
-	char sound_fx_on;
-	char sound_fx_level;
-	char music_on;
-	char music_level;
-	signed char active_save_slot;
-	unsigned char  multi_player_game_type;
-	
-	char net_game_name[9]; //char net_game_name[NET_GAME_NAME_LENGTH + 1]; //9 bytes
-	char s_modem_comm_modem_settings[131]; //struct s_modem_comm modem_settings;           //131 bytes
-	char s_modem_init_string_modem_init_string[11]; //struct s_modem_init_string modem_init_string; //11 bytes
-	
-	char  combat_speed_flag;
-	char  combat_legal_moves_flag;
-	char  combat_msl_impact_flag;
-	char  combat_shield_arcs_flag;
-	char  combat_grid_flag;
-	
-	char filler1[25];
-	unsigned char language;
-	char xenons_exist_flag;
-	char game_difficulty;
-	char number_of_players;
-	char galaxy_size;
-	char galaxy_age;
-	char strategic_combat_flag;
-	char starting_civilization_level;
-	unsigned long start_of_game_seed;
-	
-	short int  sound_toggle;
-	short int  mouse_driver;
-	
-	short int  release_version;
-	
-	char        dummy[10][20];
-	short int   dummy2[10];
-	short int   dummy3[10];
-	char        dummy4[10];
-	unsigned char       filler2[75];
-	
-	unsigned long  random_seed;
+	char settings[557];
 	
 	short int current_colony_count;
 	
 	struct s_colony aColonies[250];
 	
+	short int current_planet_count;
+	
 	struct planet aPlanets[360];
+	
+	short int current_stars_count;
 	
 	struct star aStars[MAX_SYSTEMS];
 	
 	struct s_leader_data aLeaders[MAX_LEADERS];
 	
+	short int current_players_count;
+	
 	struct s_player aPlayers[MAX_PLAYERS];
+	
+	short int current_ships_count;
 	
 	struct ship aShips[500];
 	
@@ -890,3 +842,71 @@ STRUCT_TYPE galaxyHeader {
 } STRUCT_TYPE_END
 
 #endif /*STRUCT_H_*/
+
+/*		printf("int     version %d\n"
+ "char    description[37] %s\n"
+ "int     galaxy age %d\n"
+ "int     game type %d\n"
+ "char  end_of_turn_summary %d\n"
+ "char  end_of_turn_wait %d\n"
+ "char  random_events %d\n"
+ "char  enemy_moves %d\n"
+ "char  expanding_help %d\n"
+ "char  auto_select_ships %d\n"
+ "char  animations_on %d\n"
+ "char  auto_select_colony %d\n"
+ "char  show_relocation_lines %d\n"
+ "char  show_gnn_report %d\n"
+ "char  auto_delete_tg_housing %d\n"
+ "char  auto_saves %d\n"
+ "char  only_show_serious_turn_summary_reports %d\n"
+ "char  ship_initiative %d\n"
+ "char  option_14 %d\n"
+ "char  option_15 %d\n"
+ "char  option_16 %d\n"
+ "char sound_fx_on %d\n"
+ "char sound_fx_level %d\n"
+ "char music_on %d\n"
+ "char music_level %d\n"
+ "signed char active_save_slot %d\n"
+ "unsigned char  multi_player_game_type %d\n"
+ "char net_game_name[NET_GAME_NAME_LENGTH + 1] %s\n"
+ "struct s_modem_comm modem_settings %s\n"
+ "struct s_modem_init_string modem_init_string %s\n"
+ "char  combat_speed_flag %d\n"
+ "char  combat_legal_moves_flag %d\n"
+ "char  combat_msl_impact_flag %d\n"
+ "char  combat_shield_arcs_flag %d\n"
+ "char  combat_grid_flag %d\n"
+ "char filler1[25] %s\n"
+ "uchar language  %d\n"
+ "char xenons_exist_flag  %d\n"
+ "char game_difficulty %d\n"
+ "char number_of_players %d\n"
+ "char galaxy_size %d\n"
+ "char galaxy_age %d\n"
+ "char strategic_combat_flag %d\n"
+ "char starting_civilization_level %d\n"
+ "unsigned long start_of_game_seed %lu\n"
+ "short int  sound_toggle %d\n"
+ "short int  mouse_driver %d\n"
+ "short int  release_version  %d\n"
+ "char        dummy[10][20]  %s\n"
+ "short int   dummy[10]  %s\n"
+ "short int   dummy[10] %s\n"
+ "char        dummy[10] %s\n"
+ "uchar       filler2[75] %s\n"
+ "unsigned long  random_seed  %lu\n"
+ "short int current_colony_count  %d\n",
+ gH->version, gH->description,gH->galaxy_age1, gH->game_type, gH->end_of_turn_summary, gH->end_of_turn_wait, gH->random_events,
+ gH->enemy_moves, gH->expanding_help, gH->auto_select_ships, gH->animations_on, gH->auto_select_colony,
+ gH->show_relocation_lines, gH->show_gnn_report, gH->auto_delete_tg_housing, gH->auto_saves,
+ gH->only_show_serious_turn_summary_reports, gH->ship_initiative, gH->option_14, gH->option_15, gH->option_16,
+ gH->sound_fx_on, gH->sound_fx_level, gH->music_on, gH->music_level, gH->active_save_slot, gH->multi_player_game_type,
+ gH->net_game_name, gH->s_modem_comm_modem_settings, gH->s_modem_init_string_modem_init_string,
+ gH->combat_speed_flag, gH->combat_legal_moves_flag, gH->combat_msl_impact_flag, gH->combat_shield_arcs_flag, gH->combat_grid_flag,
+ gH->filler1, gH->language, gH->xenons_exist_flag,
+ gH->game_difficulty, gH->number_of_players, gH->galaxy_size, gH->galaxy_age, gH->strategic_combat_flag, gH->starting_civilization_level,
+ gH-> start_of_game_seed, gH->sound_toggle, gH->mouse_driver,gH->release_version,
+ gH->dummy, gH->dummy2, gH->dummy3, gH->dummy4, gH->filler2,
+ gH->random_seed, gH->current_colony_count);*/
