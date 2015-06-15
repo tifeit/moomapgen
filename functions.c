@@ -157,6 +157,10 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 
 				srand(time(NULL));
 				aPlanets[i].nPlanetSize = rand() % 3 + SMALL;
+				
+				if(aPlanets[i].nPlanetSize == LARGE && aPlanets[i].nMineralClass == RICH) {
+					aPlanets[i].nPlanetSize = MEDIUM;
+				}
 			}
 		}
 
@@ -394,18 +398,16 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) {
 
 	int i, j, k, l, sum, parsec, capModifier, raceSpecial, raceCreativity, raceGravity, numOfPlanets, rangeFromHW = 0, z, monster, government, heroID;
-	int raceFood = 0;
+	char raceFood = 0;
 	int gravitySubstitution[3] = {1, 0, 2};
 	struct star *ptrHW[8], *ptrStar;
 	struct planet *ptrPlanet[5];
-
 
 	int aPlanetWeight[10][5];
 
 	FILE *fpWeight, *fpCsv;
 
 	char str[100];
-
 
 	fpWeight = fopen("mgweight.txt", "rb");
 	fpCsv = fopen("autosave.csv", "w");
@@ -507,6 +509,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 					raceCreativity = 1;
 				
 				raceFood = galaxy->aPlayers[i].food_bonus;
+				
 				/*Delete Me
 				 if (galaxy->aPlayers[i].food_bonus == -1)
 					raceFood = -0.5;
@@ -576,7 +579,7 @@ void balanceGalaxy(struct galaxy *galaxy, unsigned int balanceFlags, int rings) 
 					}
 				}
 
-				fprintf(fpCsv,"%d;%d;%d;%d;%d;%d;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
+				fprintf(fpCsv,"%d;%d;%d;%d;%d;%hhd;%d;%s;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;%d;\n",
 						i, //player number
 						government, //race government
 						capModifier, //capacify modifier
@@ -638,7 +641,7 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 	unsigned char i = 0; //Player
 	unsigned int j = 0; //Iterator for current player's galaxy
 	unsigned int c = 0; //Iterator for first player's colonies
-	unsigned int l = 0; //Iterator for first player's leaders
+	//unsigned int l = 0; //Iterator for first player's leaders
 	unsigned int s = 0; //Iterator for first player's ships
 	
 	//Getting data
