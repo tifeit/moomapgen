@@ -120,6 +120,7 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 		}
 	}
 
+	srand(time(NULL));
 	for (i = 0; i!= nPlanets; i++) {
 		
 		ptrSystem = &aStarSystems[aPlanets[i].nStarID];
@@ -155,7 +156,6 @@ void terraform(struct star *aStarSystems, struct planet *aPlanets, struct ship *
 
 			else {
 
-				srand(time(NULL));
 				aPlanets[i].nPlanetSize = rand() % 3 + SMALL;
 				
 				if(aPlanets[i].nPlanetSize == LARGE && aPlanets[i].nMineralClass == RICH) {
