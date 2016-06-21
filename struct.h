@@ -33,6 +33,7 @@ typedef signed int sint;
 #define STAR_OFFSET 0x17ad3
 #define PLANET_OFFSET 0x162e9
 #define SHIP_OFFSET 0x21F58
+#define COLONY_OFFSET   0x25D
 #define PLAYER_OFFSET 0x1aa0e
 #define LEADER_OFFSET 0x19a9b
 
@@ -196,11 +197,11 @@ STRUCT_TYPE planet {
 } STRUCT_TYPE_END
 
 STRUCT_TYPE Pop_Info {
-           unsigned player:4;           // player id or POP_ANDROID or POP_NATIVE
-           unsigned loyalty:3;          // player id
-           unsigned job:2;              // 0-farmer, 1-worker, 2-scientist
-           unsigned employed:1;
-           unsigned conquered:1;        // true iff loyalty != colony owner
+           unsigned short player:4;           // player id or POP_ANDROID or POP_NATIVE
+           unsigned short loyalty:3;          // player id
+           unsigned short job:2;              // 0-farmer, 1-worker, 2-scientist
+           unsigned short employed:1;
+           unsigned short conquered:1;        // true iff loyalty != colony owner
 } STRUCT_TYPE_END
 
 STRUCT_TYPE s_leader_data {
@@ -224,18 +225,18 @@ STRUCT_TYPE s_leader_data {
 
 STRUCT_TYPE s_colony {
 
-   char       owner;                         // 0..NUM_PLAYERS or -1
-   char       allocated_to;                  // bookeeping
-   short int  planet;                        // planet id
-   short int  officer;                       // not used
+   char       owner;                         // 0..NUM_PLAYERS or -1                                  //1
+   char       allocated_to;                  // bookeeping                                            //2
+   short int  planet;                        // planet id                                             //4
+   short int  officer;                       // not used                                              //6
 
-   char  outpost_flag;                   // TRUE if an outpost
+   char  outpost_flag;                   // TRUE if an outpost                                        //7
 
-   char  morale;                       // morale bonus +/-
-   short int  pollution;                     // production lost to pollution
+   char  morale;                       // morale bonus +/-                                            //8
+   short int  pollution;                     // production lost to pollution                          //10
 
-   char  n_pops;                       // total population
-   char  specialty;                    // Colony specialty used in display only
+   char  n_pops;                       // total population                                            //11
+   char  specialty;                    // Colony specialty used in display only                       //12
 
    //   struct Pop_Info {
    //           unsigned player:4;           // player id or POP_ANDROID or POP_NATIVE
@@ -245,7 +246,7 @@ STRUCT_TYPE s_colony {
    //           unsigned conquered:1;        // true iff loyalty != colony owner
    //   };
 
-   struct Pop_Info pop[MAX_POPS];       //
+   struct Pop_Info pop[MAX_POPS];       //                                                            //
 
    short int   pop_roundoff[N_POP_PLAYERS];  // K toward next pop unit for each race
    short int   pop_growth[N_POP_PLAYERS];    // each race grows independently
@@ -680,76 +681,85 @@ STRUCT_TYPE s_player
 
 STRUCT_TYPE galaxy {
 	
-	int     version;
-	char    description[37]; //- save game description
-	int     game_type;       //- 0:Single Player, 1:Hotseat, 2:Network, 3:Modem
+	int     version;                                                                                                                          //4
+	char    description[37]; //- save game description                                                                                        //41
+      int     turn;                                                                                                                             //45
+	char    game_type;       //- 0:Single Player, 1:Hotseat, 2:Network, 3:Modem                                                               //46
 	
-	char  end_of_turn_summary;
-	char  end_of_turn_wait;
-	char  random_events;
-	char  enemy_moves;
-	char  expanding_help;
-	char  auto_select_ships;
-	char  animations_on;
-	char  auto_select_colony;
-	char  show_relocation_lines;
-	char  show_gnn_report;
-	char  auto_delete_tg_housing;
-	char  auto_saves;
+      //SETTINGS 553 bytes
+	char  end_of_turn_summary;                            //1
+	char  end_of_turn_wait;                               //2
+	char  random_events;                                  //3
+	char  enemy_moves;                                    //4
+	char  expanding_help;                                 //5
+	char  auto_select_ships;                              //6
+	char  animations_on;                                  //7
+	char  auto_select_colony;                             //8
+	char  show_relocation_lines;                          //9
+	char  show_gnn_report;                                //10
+	char  auto_delete_tg_housing;                         //11
+	char  auto_saves;                                     //12
 	
-	char  only_show_serious_turn_summary_reports;
+	char  only_show_serious_turn_summary_reports;         //13
 	
-	char  ship_initiative;
-	char  option_14;
-	char  option_15;
-	char  option_16;
+	char  ship_initiative;                                //14
+	char  option_14;                                      //15
+	char  option_15;                                      //16
+	char  option_16;                                      //17
 	
-	char sound_fx_on;
-	char sound_fx_level;
-	char music_on;
-	char music_level;
-	signed char active_save_slot;
-	unsigned char  multi_player_game_type;
+	char sound_fx_on;                                     //18
+	char sound_fx_level;                                  //19
+	char music_on;                                        //20
+	char music_level;                                     //21
+	signed char active_save_slot;                         //22
+	unsigned char  multi_player_game_type;                //23
 	
-	char net_game_name[9]; //char net_game_name[NET_GAME_NAME_LENGTH + 1]; //9 bytes
-	char s_modem_comm_modem_settings[131]; //struct s_modem_comm modem_settings;           //131 bytes
-	char s_modem_init_string_modem_init_string[11]; //struct s_modem_init_string modem_init_string; //11 bytes
+	char net_game_name[9]; //char net_game_name[NET_GAME_NAME_LENGTH + 1]; //9 bytes //32
+	char s_modem_comm_modem_settings[131]; //struct s_modem_comm modem_settings;           //131 bytes //163
+	char s_modem_init_string_modem_init_string[11]; //struct s_modem_init_string modem_init_string; //11 bytes //174
 	
-	char  combat_speed_flag;
-	char  combat_legal_moves_flag;
-	char  combat_msl_impact_flag;
-	char  combat_shield_arcs_flag;
-	char  combat_grid_flag;
+	char  combat_speed_flag;                              //175
+	char  combat_legal_moves_flag;                        //176
+	char  combat_msl_impact_flag;                         //177
+	char  combat_shield_arcs_flag;                        //178
+	char  combat_grid_flag;                               //179
 	
-	char filler1[25];
-	unsigned char language;
-	char xenons_exist_flag;
-	char game_difficulty;
-	char number_of_players;
-	char galaxy_size;
-	char galaxy_age;
-	char strategic_combat_flag;
-	char starting_civilization_level;
-	unsigned long start_of_game_seed;
+	char filler1[25];                                     //204
+	unsigned char language;                               //205
+	char xenons_exist_flag;                               //206
+	char game_difficulty;                                 //207
+	char number_of_players;                               //208
+	char galaxy_size;                                     //209
+	char galaxy_age;                                      //210
+	char strategic_combat_flag;                           //211
+	char starting_civilization_level;                     //212
+	unsigned long start_of_game_seed;                     //216
 	
-	short int  sound_toggle;
-	short int  mouse_driver;
+	short int  sound_toggle;                              //218
+	short int  mouse_driver;                              //220
 	
-	short int  release_version;
+	short int  release_version;                           //222
 	
-	char        dummy[10][20];
-	short int   dummy2[10];
-	short int   dummy3[10];
-	char        dummy4[10];
-	unsigned char       filler2[75];
+	char        dummy[10][20];                            //422
+	short int   dummy2[10];                               //442
+	short int   dummy3[10];                               //462
+	char        dummy4[10];                               //472
+	unsigned char       filler2[75];                      //547
 	
-	unsigned long  random_seed;
+      unsigned char questionable_filler[6];                 //553                                                                               //599
+
+	unsigned long  random_seed;                           //557                                                                               //603
+                              
 	
-	short int current_colony_count;
+	short int current_colony_count;                       //561                                                                                //605!!!!!CORRECT
 	
-	struct s_colony aColonies[250];
+	struct s_colony aColonies[250];                                                                                                           
+
+      short int current_planet_count;
 	
 	struct planet aPlanets[360];
+
+      short int current_stars_count;
 	
 	struct star aStars[MAX_SYSTEMS];
 	
@@ -791,12 +801,12 @@ STRUCT_TYPE galaxyHeader {
 	
 	int     version;
 	char    description[37]; //- save game description
-	int     galaxy_age;
+	int     turn;
 	char    game_type;       //- 0:Single Player, 1:Hotseat, 2:Network, 3:Modem
 	
 	char settings[557];
 	
-	short int current_colony_count;
+	short int current_colony_count;     //605
 	
 	struct s_colony aColonies[250];
 	

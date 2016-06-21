@@ -290,7 +290,11 @@ void modifyHW(struct galaxy *galaxy, unsigned int flags) {
 							ptrPlanet->nPlanetSize = LARGE;
 						break;
 						case 1: //Arid
-							ptrPlanet->nPlanetGravity = NORMAL_G;
+							if (nHwGravity == LOW_G)
+								ptrPlanet->nPlanetGravity = LOW_G;
+							else
+								ptrPlanet->nPlanetGravity = NORMAL_G;
+								
 							ptrPlanet->nPlanetSize = LARGE;
 						break;
 						case 2: //Tundra
@@ -647,7 +651,7 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 	//Getting data
 	do {
 
-		printf("Merging player #%d: %s Objectives: %d\n", i, galaxies[i].aPlayers[i].name, galaxies[i].aPlayers[i].objectives);
+/*		printf("Merging player #%d: %s Objectives: %d\n", i, galaxies[i].aPlayers[i].name, galaxies[i].aPlayers[i].objectives);
 		printf("int     version %d\n"
 			   "char    description[37] %s\n"
 			   "int     galaxy age %d\n"
@@ -659,19 +663,36 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 			   "short int current_ships_count %hd\n",
 			   gH->version,
 			   gH->description,
-			   gH->galaxy_age,
+			   gH->turn,
 			   gH->game_type,
 			   gH->current_colony_count,
 			   gH->current_planet_count,
 			   gH->current_stars_count,
 			   gH->current_players_count,
 			   gH->current_ships_count);
+
 		
+		printf("int     version %d\n"
+			   "char    description[37] %s\n"
+			   "int     galaxy age %d\n"
+			   "int     game type %d\n"
+			   "short int current_colony_count %hd\n"
+			   "short int current_planet_count %hd\n"
+			   "short int current_stars_count %hd\n"
+			   ,
+			   galaxies[i].version,
+			   galaxies[i].description,
+			   galaxies[i].turn,
+			   galaxies[i].game_type,
+			   galaxies[i].current_colony_count,
+			   galaxies[i].current_planet_count,
+			   galaxies[i].current_stars_count
+			   );
+*/		
 		//printf("struct offset: %lu; real offset: %d\n", offsetof(struct galaxyHeader, aShips), SHIP_OFFSET);
 
 		galaxies[0].game_type = 1;
 		galaxies[0].aPlayers[i].objectives = 2;
-		sprintf(galaxies[0].aPlayers[i].name,"%s#%d", galaxies[0].aPlayers[i].name, i);
 		
 		/*What to merge:
 		 * galaxy->current_colony_count
@@ -685,16 +706,24 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 		*/
 
 		//Go through all colonies array
-		for (j = 0; j != MAX_COLONIES; j++) {
+		//printf("%d \r\n", galaxies[i].current_colony_count);
+		//printf("%s \r\n", gH->aPlayers[i].name);
 
+		for (j = 0; j != galaxies[i].current_colony_count; j++) {
+			
 			//If we find colony, that belongs to current player, we should copy it to first player's galaxy
 			//if (galaxies[i].aColonies[j].owner == i) {
 
-				printf("Colony: %d; Planet: %d; Owner: %d\n", j, galaxies[i].aColonies[j].planet ,galaxies[i].aColonies[j].owner);
+				//printf("Colony: %d; Planet: %d; Owner: %d\n", j, galaxies[i].aColonies[j].planet ,galaxies[i].aColonies[j].owner);
+				/*printf("Colony: %d; Planet Name: %s\n", j, galaxies[i].aStars[
+				galaxies[i].aPlanets[galaxies[i].aColonies[j].planet].nStarID
+				].sName);*/
 				//Copy this colony
-				gH->aColonies[c++] = galaxies[i].aColonies[j];
-				//Copy this colony planet
-				//gH->aPlanets[galaxies[i].aColonies[j].planet] = galaxies[i].aPlanets[galaxies[i].aColonies[j].planet];
+				gH->aColonies[c] = galaxies[i].aColonies[j];
+				//Copy this colony planet. We expect, that the planet ID is the same as we start from initial save, but the planet climate might be different due to terraforming
+				gH->aPlanets[galaxies[i].aColonies[j].planet] = galaxies[i].aPlanets[galaxies[i].aColonies[j].planet];
+				gH->aPlanets[galaxies[i].aColonies[j].planet].nColonyID=c;
+				c++; //next free colonyID
 			//}
 		}
 		/*
@@ -716,10 +745,10 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 		
 		//gH->aPlayers[i] = galaxies[i].aPlayers[i];
 
-	} while (0/*++i != nFiles*/);
+	} while (++i != nFiles);
 	
 	gH->current_colony_count = c;
-	gH->current_ships_count = s;
+	//gH->current_ships_count = s;
 }
 
 
