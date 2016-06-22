@@ -698,7 +698,7 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 		 *
 		 * aColonies
 		 * aPlanets
-		 * aStars ?stars should not be modified
+		 * aStars to reflect the visit status of both parties
 		 * aLeaders
 		 * aPlayers
 		 * aShips
@@ -818,5 +818,23 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 			}
 		}
 		//printf("j: %d leader: %s player: %d\n", j, gH->aLeaders[j].name, gH->aLeaders[j].player_index);
+	}
+
+	//Secure star visibility for second player
+	for (j = 0; j != MAX_SYSTEMS; j++) {
+
+		//clear visibility
+		gH->aStars[j].nVisited &= 1;
+		gH->aStars[j].nVisited &= 2;
+
+		if(galaxies[0].aStars[j].nVisited & 1) {
+
+			gH->aStars[j].nVisited |= 1;
+		}
+
+		if(galaxies[1].aStars[j].nVisited & 2) {
+
+			gH->aStars[j].nVisited |= 2;
+		}
 	}
 }
