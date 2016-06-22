@@ -753,21 +753,25 @@ STRUCT_TYPE galaxy {
 	
 	short int current_colony_count;                       //561                                                                                //605!!!!!CORRECT
 	
-	struct s_colony aColonies[250];                                                                                                           
+	struct s_colony aColonies[250];                                                                                                           //90855
 
-      short int current_planet_count;
+      short int current_planet_count;                                                                                                           //90857                                                                 
 	
-	struct planet aPlanets[360];
+	struct planet aPlanets[360];                          //6120                                                                              //96977
 
-      short int current_stars_count;
+      short int current_stars_count;                        //2                                                                                 //96979
 	
-	struct star aStars[MAX_SYSTEMS];
+	struct star aStars[MAX_SYSTEMS];                      //113х72=8136                                                                       //105115                      
 	
-	struct s_leader_data aLeaders[MAX_LEADERS];
+	struct s_leader_data aLeaders[MAX_LEADERS];           //59*67=3953                                                                        //109068
+      
+      short int current_players_count;                      //2                                                                                 //109070
 	
-	struct s_player aPlayers[MAX_PLAYERS];
+	struct s_player aPlayers[MAX_PLAYERS];                //3753*8=30024                                                                      //139094
 	
-	struct ship aShips[500];
+      short int current_ships_count;                        //2                                                                                 //139096
+
+	struct ship aShips[500];                              //129x500=64500                                                                     //203596
 	
 	unsigned char filler3[3316];
 	

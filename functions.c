@@ -645,10 +645,9 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 	unsigned char i = 0; //Player
 	unsigned int j = 0; //Iterator for current player's galaxy
 	unsigned int c = 0; //Iterator for first player's colonies
-	//unsigned int l = 0; //Iterator for first player's leaders
 	unsigned int s = 0; //Iterator for first player's ships
+	unsigned int jj = 0; //Additional iterator
 	
-	//Getting data
 	do {
 
 /*		printf("Merging player #%d: %s Objectives: %d\n", i, galaxies[i].aPlayers[i].name, galaxies[i].aPlayers[i].objectives);
@@ -691,14 +690,14 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 */		
 		//printf("struct offset: %lu; real offset: %d\n", offsetof(struct galaxyHeader, aShips), SHIP_OFFSET);
 
-		galaxies[0].game_type = 1;
-		galaxies[0].aPlayers[i].objectives = 2;
+		gH->game_type = 1;
+		//gH->aPlayers[i].objectives = 2;
 		
 		/*What to merge:
 		 * galaxy->current_colony_count
 		 *
 		 * aColonies
-		 * aPlanets ?inside of colony copy, we copy only settled planets, considering unsetteled planets were not modified
+		 * aPlanets
 		 * aStars ?stars should not be modified
 		 * aLeaders
 		 * aPlayers
@@ -709,12 +708,14 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 		//printf("%d \r\n", galaxies[i].current_colony_count);
 		//printf("%s \r\n", gH->aPlayers[i].name);
 
+		//Copy the player from his galaxy
+		gH->aPlayers[i] = galaxies[i].aPlayers[i];
+
 		for (j = 0; j != galaxies[i].current_colony_count; j++) {
 			
 			//If we find colony, that belongs to current player, we should copy it to first player's galaxy
-			//if (galaxies[i].aColonies[j].owner == i) {
+			if (galaxies[i].aColonies[j].owner == i) {
 
-				//printf("Colony: %d; Planet: %d; Owner: %d\n", j, galaxies[i].aColonies[j].planet ,galaxies[i].aColonies[j].owner);
 				/*printf("Colony: %d; Planet Name: %s\n", j, galaxies[i].aStars[
 				galaxies[i].aPlanets[galaxies[i].aColonies[j].planet].nStarID
 				].sName);*/
@@ -724,16 +725,18 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 				gH->aPlanets[galaxies[i].aColonies[j].planet] = galaxies[i].aPlanets[galaxies[i].aColonies[j].planet];
 				gH->aPlanets[galaxies[i].aColonies[j].planet].nColonyID=c;
 				c++; //next free colonyID
-			//}
+			}
 		}
-		/*
+		
 		//Go through all leaders array
 		for (j = 0; j != MAX_LEADERS; j++) {
+
+			//printf("j: %d gal: %d leader: %s player: %d\n", j, i, galaxies[i].aLeaders[j].name, galaxies[i].aLeaders[j].player_index);
 
 		}
 
 		//Go through all ships array
-		for (j = 0; j != MAX_SHIPS; j++) {
+		for (j = 0; j != galaxies[i].current_ships_count; j++) {
 
 			//If we find ship, that  belong to current player, we should copy it to first player's galaxy
 			if (galaxies[i].aShips[j].owner == i) {
@@ -741,14 +744,79 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 				//Replace first available ship
 				gH->aShips[s++] = galaxies[i].aShips[j];
 			}
-		}*/
-		
-		//gH->aPlayers[i] = galaxies[i].aPlayers[i];
-
+		}
 	} while (++i != nFiles);
+
+	//copy only monsters who are alive in both files. Hack for two players only			
+	for (j = 0; j != galaxies[0].current_ships_count; j++) {
+
+		if (galaxies[0].aShips[j].owner > 8 && galaxies[0].aShips[j].d.name[0] != 0) {
+
+			if (galaxies[1].aShips[j].owner > 8 && galaxies[1].aShips[j].d.name[0] != 0)
+				gH->aShips[s++] = galaxies[0].aShips[j];
+		}
+	}
 	
 	gH->current_colony_count = c;
-	//gH->current_ships_count = s;
+	gH->current_ships_count = s;
+	//clear other colonies info
+	memset(&gH->aColonies[c], 0, sizeof(gH->aColonies[0])*(MAX_COLONIES-c));
+
+	//clear other ships info
+	//memset(&gH->aShips[s], 0, sizeof(gH->aShips[0])*(MAX_SHIPS-s));
+
+	//clear other planet's owners
+	for (j=0;j!=MAX_PLANETS;j++) {
+
+		if (!(gH->aPlanets[j].nColonyID != 65535 &&
+				gH->aPlanets[j].nColonyID < gH->current_colony_count &&
+				gH->aColonies[gH->aPlanets[j].nColonyID].planet == j)) {
+
+					gH->aPlanets[j].nColonyID = 65535;
+		}
+	}
+
+	//Go through all leaders array
+	for (j = 0; j != MAX_LEADERS; j++) {
+
+			//if we have a conflict, we need to clone the leader for the second player to the first unused leader
+			if (galaxies[0].aLeaders[j].player_index == 0 && galaxies[1].aLeaders[j].player_index == 1) {
+
+				//do nothinf for now
+
+			} else if (galaxies[0].aLeaders[j].player_index == 0) {
+
+				gH->aLeaders[j] = galaxies[0].aLeaders[j];
+
+			} else if (galaxies[1].aLeaders[j].player_index == 1) {
+
+				gH->aLeaders[j] = galaxies[1].aLeaders[j];
+
+			} else {
+				gH->aLeaders[j].player_index = 255;
+			}
+
+	}
+
+	for (j = 0; j != MAX_LEADERS; j++) {
+
+		//if we have a conflict, we need to clone the leader for the second player to the first unused leader
+		if (galaxies[0].aLeaders[j].player_index == 0 && galaxies[1].aLeaders[j].player_index == 1) {
+
+			//The leader stays in it's original place for the first player
+			gH->aLeaders[j] = galaxies[0].aLeaders[j];
+
+			//Copy it to the first available place for second player
+			for (jj = 0; jj != MAX_LEADERS; jj++) {
+
+				if (gH->aLeaders[jj].player_index==255) {
+
+					gH->aLeaders[jj] = galaxies[1].aLeaders[j];
+					jj = MAX_LEADERS;
+					break;
+				}
+			}
+		}
+		//printf("j: %d leader: %s player: %d\n", j, gH->aLeaders[j].name, gH->aLeaders[j].player_index);
+	}
 }
-
-

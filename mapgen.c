@@ -204,7 +204,7 @@ int main(int argc, char *argv[]) {
 			break;
 			case 'r':
 					nFiles = atoi(optarg);
-					snprintf(aMergeFile[0], sizeof(aMergeFile[0]), "%s", sSaveFile);
+					//why??? snprintf(aMergeFile[0], sizeof(aMergeFile[0]), "%s", sSaveFile);
 
 			break;
 			default:
@@ -260,26 +260,20 @@ int main(int argc, char *argv[]) {
 		}
 		ptrGalaxy = &galaxies[i];
 
-		//Try to read all save data, its useless, for sure, cause exact structure size and offsets are not precise.
+		//Try to read all save data, struct galaxy is now precise with galaxyHeader,
+		//except for that the first one have additional historical bookiping variables like HW coordinates
 		getFileData(ptrGalaxy, sizeof galaxies[0], 0, fp);
 		if (i == 0) getFileData(&galaxyHeader, sizeof(galaxyHeader), 0, fp);
-	printf("1 %s \r\n", galaxyHeader.aPlayers[0].name);
-	printf("2 %s \r\n", galaxyHeader.aPlayers[1].name);
-		getFileData(ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, STAR_OFFSET, fp);
+	
+		/*getFileData(ptrGalaxy->aStars, sizeof ptrGalaxy->aStars, STAR_OFFSET, fp);
 		getFileData(ptrGalaxy->aPlanets, sizeof ptrGalaxy->aPlanets, PLANET_OFFSET, fp);
 		getFileData(ptrGalaxy->aShips, sizeof ptrGalaxy->aShips, SHIP_OFFSET, fp);
 		getFileData(ptrGalaxy->aPlayers, sizeof ptrGalaxy->aPlayers, PLAYER_OFFSET, fp);
-	printf("3 %s \r\n", ptrGalaxy->aPlayers[0].name);
-	printf("4 %s \r\n", ptrGalaxy->aPlayers[1].name);
-
-	printf("%d \r\n", sizeof(ptrGalaxy->aColonies[0]));
-	printf("%d \r\n", sizeof(ptrGalaxy->aColonies[0].pop[0]));
-
 		getFileData(ptrGalaxy->aColonies, sizeof ptrGalaxy->aColonies, COLONY_OFFSET, fp);
 		getFileData(ptrGalaxy->aLeaders, sizeof ptrGalaxy->aLeaders, LEADER_OFFSET, fp);
 		getFileData(&nNumOfStars, sizeof nNumOfStars, NUM_OF_STARS_OFFSET, fp);
 		getFileData(&nNumOfPlanets, sizeof nNumOfPlanets, NUM_OF_PLANETS_OFFSET, fp);
-		getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);
+		getFileData(&nNumOfPlayers, sizeof nNumOfPlayers, NUM_OF_PLAYERS_OFFSET, fp);*/
 		ptrGalaxy->nNumOfPlanets = &nNumOfPlanets;
 		ptrGalaxy->nNumOfStars = &nNumOfStars;
 		ptrGalaxy->nNumOfPlayers = &nNumOfPlayers;
