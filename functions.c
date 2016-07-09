@@ -779,7 +779,6 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 	//Go through all leaders array
 	for (j = 0; j != MAX_LEADERS; j++) {
 
-			//if we have a conflict, we need to clone the leader for the second player to the first unused leader
 			if (galaxies[0].aLeaders[j].player_index == 0 && galaxies[1].aLeaders[j].player_index == 1) {
 
 				//do nothinf for now
@@ -812,6 +811,13 @@ void mergeGalaxies(struct galaxy *galaxies, unsigned char nFiles, struct galaxyH
 				if (gH->aLeaders[jj].player_index==255) {
 
 					gH->aLeaders[jj] = galaxies[1].aLeaders[j];
+					
+					//we need to alter the leader id on the ships which have this leader
+					for (s = 0; s!= MAX_SHIPS; s++) {
+						if(gH->aShips[s].officer_index == j && gH->aShips[s].owner == 1) {
+							gH->aShips[s].officer_index = jj;
+						}
+					}
 					jj = MAX_LEADERS;
 					break;
 				}
